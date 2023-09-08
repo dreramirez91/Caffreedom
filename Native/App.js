@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import * as SplashScreen from "expo-splash-screen"
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
+import MyAppText, {MyAppHeaderText} from './MyAppText';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -12,8 +13,8 @@ export default function App() {
     SplashScreen.hideAsync();
     return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>Caffreedom{"\n"}</Text>
-      <Text style={styles.baseText}>Thank you for choosing us to help you on your journey.</Text>
+      <MyAppHeaderText text={`Caffreedom${'\n'}`}></MyAppHeaderText>
+      <MyAppText text="Thank you for choosing us to help you on your journey..." />
       <StatusBar style="auto" />
     </View>
   );
@@ -29,13 +30,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  baseText: {
-    fontFamily: 'Lora_400Regular_Italic',
-    fontSize: 16
-  },
-  titleText: {
-    fontFamily: 'Lora_400Regular_Italic',
-    fontSize: 20,
-    fontWeight: 'bold'
-  }
 });
