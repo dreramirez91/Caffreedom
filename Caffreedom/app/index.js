@@ -1,6 +1,3 @@
-// export default function Page() {
-//   return <View><Link href="/home">Home</Link></View>;
-// }
 import React, {useState} from 'react';
 import { StatusBar } from "expo-status-bar";
 import {
@@ -10,7 +7,6 @@ import {
   Image,
   ImageBackground,
   Pressable,
-  Button
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
@@ -38,6 +34,7 @@ export default function Home() {
           style={styles.image}
         >
           <View style={styles.homeContainer}>
+          <View><Link href="/calculator">Calculator</Link></View>
             <Text style={styles.headerText}>Caffreedom</Text>
           <View style={styles.logoContainer}><Image style={styles.logo} source={logo} /></View>
           <View style={styles.userContainer}>
