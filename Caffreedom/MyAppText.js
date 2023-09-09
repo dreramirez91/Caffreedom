@@ -31,11 +31,22 @@ export function MyAppHeaderText({text}) {
 
 const styles = StyleSheet.create({
     myAppText: {
+    backgroundColor: 'white',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
     fontFamily: 'Lora_400Regular_Italic',
-    fontSize: 18
+    fontSize: 18,
+    textAlign: 'center'
   },
   myAppHeaderText: {
+    backgroundColor: 'white',
+    width: '100%',
+
+    justifyContent: 'center',
+    alignItems: 'center',
     fontFamily: 'Lora_400Regular_Italic',
-    fontSize: 20
+    fontSize: 20,
+    textAlign: 'center'
   },
 });
