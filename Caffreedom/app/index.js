@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   ImageBackground,
   Pressable,
   Button
@@ -14,6 +15,7 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
+import logo from "../assets/logo.png";
 import { Link } from "expo-router";
 
 export default function Home() {
@@ -35,10 +37,11 @@ export default function Home() {
           resizeMode="cover"
           style={styles.image}
         >
-          <View style={styles.home}>
+          <View style={styles.homeContainer}>
             <Text style={styles.headerText}>Caffreedom</Text>
           </View>
-          <View style={styles.user}>
+          <View style={styles.logoContainer}><Image style={styles.logo} source={logo} /></View>
+          <View style={styles.userContainer}>
             <Pressable onPressIn={() => setLoginPressed(true)} onPressOut={() => setLoginPressed(false)}>
               <Text style={loginPressed? styles.pressedText : styles.unpressedText}>Login</Text>
             </Pressable>
@@ -64,13 +67,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  home: {
-    backgroundColor: "rgba(157, 108, 255, 0.75)",
-    width: "100%",
+  homeContainer: {
+    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    width: "80%",
     justifyContent: "center",
     paddingTop: 10,
-    paddingBottom: 10,
-    width: "100%",
     flexDirection: "row",
   },
   headerText: {
@@ -79,20 +80,31 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
   },
-  user: {
-    backgroundColor: "rgba(157, 108, 255, 0.75)",
+  logoContainer: {
+    width: "80%",
+    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    alignItems: "center",
+    paddingTop: 20,
+    paddingBottom: 20
+  },
+  logo: {
+    width: 55,
+    height: 55,
+  },
+  userContainer: {
+    backgroundColor: "rgba(157, 108, 255, 0.70)",
     flexDirection: "row",
-    width: "100%",
+    width: "80%",
     justifyContent: "space-evenly",
     paddingBottom: 10,
   },
   unpressedText: {
-    color: "rgba(242, 255, 99, 1)",
+    color: "rgba(94, 25, 121, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
   },
   pressedText: {
-    color: "blue",
+    color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
   },
