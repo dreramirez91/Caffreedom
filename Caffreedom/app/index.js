@@ -39,7 +39,6 @@ export default function Home() {
         >
           <View style={styles.homeContainer}>
             <Text style={styles.headerText}>Caffreedom</Text>
-          </View>
           <View style={styles.logoContainer}><Image style={styles.logo} source={logo} /></View>
           <View style={styles.userContainer}>
             <Pressable onPressIn={() => setLoginPressed(true)} onPressOut={() => setLoginPressed(false)}>
@@ -48,6 +47,7 @@ export default function Home() {
             <Pressable onPressIn={() => setSignUpPressed(true)} onPressOut={() => setSignUpPressed(false)}>
               <Text style={signUpPressed? styles.pressedText : styles.unpressedText}>Sign-up</Text>
             </Pressable>
+          </View>
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     width: "80%",
     justifyContent: "center",
     paddingTop: 10,
-    flexDirection: "row",
     borderRadius: 4
   },
   headerText: {
@@ -82,8 +81,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   logoContainer: {
-    width: "80%",
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+
     alignItems: "center",
     paddingTop: 20,
     paddingBottom: 20
@@ -93,12 +91,11 @@ const styles = StyleSheet.create({
     height: 55,
   },
   userContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
     flexDirection: "row",
-    width: "80%",
+
     justifyContent: "space-evenly",
     paddingBottom: 10,
-    borderRadius: 4
+    alignContent: "center"
   },
   unpressedText: {
     color: "rgba(94, 25, 121, 1)",
