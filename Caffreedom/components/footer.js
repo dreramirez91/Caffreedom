@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import { Icon } from 'react-native-elements'
+
 import { Link } from "expo-router";
 
 export default function Footer() {
@@ -22,6 +22,7 @@ export default function Footer() {
     SplashScreen.hideAsync();
     return (
       <View style={styles.footerContainer}>
+        <Link style={styles.footerText} href="/home">Home</Link>
         <Link style={styles.footerText} href="/calculator">Calculator</Link>
       </View>
     );
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
     position: "fixed",
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     justifyContent: "space-evenly",
-    alignItems: "center"
+    alignItems: "center",
+    flexDirection: "row"
   },
   footerText: {
     color: "rgba(242, 255, 99, 1)",
