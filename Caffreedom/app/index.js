@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: 10,
     flexDirection: "row",
+    borderRadius: 4
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
@@ -97,16 +98,19 @@ const styles = StyleSheet.create({
     width: "80%",
     justifyContent: "space-evenly",
     paddingBottom: 10,
+    borderRadius: 4
   },
   unpressedText: {
     color: "rgba(94, 25, 121, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
+    textDecorationLine: "underline"
   },
   pressedText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
+    textDecorationLine: "underline"
   },
   separator: {
     marginVertical: 8,
