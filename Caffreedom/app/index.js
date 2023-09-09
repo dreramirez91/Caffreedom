@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   logoContainer: {
-
     alignItems: "center",
     paddingTop: 20,
     paddingBottom: 20
@@ -92,7 +91,6 @@ const styles = StyleSheet.create({
   },
   userContainer: {
     flexDirection: "row",
-
     justifyContent: "space-evenly",
     paddingBottom: 10,
     alignContent: "center"
