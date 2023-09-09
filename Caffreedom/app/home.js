@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import * as SplashScreen from "expo-splash-screen"
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import MyAppText, {MyAppHeaderText} from '../MyAppText';
 import background from '../assets/background.jpeg';
 
 export default function Home() {
@@ -15,8 +14,7 @@ export default function Home() {
     return (
     <View style={styles.container}>
       <ImageBackground source={background} resizeMode='cover' style={styles.image}>
-      <Text>Caffreedom</Text>
-      <Text>Thank you for choosing us to help you on your journey...</Text>
+      <Text style={styles.home}>Caffreedom{'\n\n'}Thank you for choosing us to help you on your journey...</Text>
       </ImageBackground>
       <StatusBar style="auto" />
     </View>
@@ -39,5 +37,16 @@ const styles = StyleSheet.create({
     borderBottomStyle: 'solid',
     borderColor: 'black',
     margin:10
-  }
+  },
+  home: {
+    backgroundColor: 'white',
+    width: '100%',
+    fontFamily: 'Lora_400Regular_Italic',
+    fontSize: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    paddingTop: 10,
+    paddingBottom: 10
+  },
 });
