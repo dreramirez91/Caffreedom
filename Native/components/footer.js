@@ -35,10 +35,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     flexDirection: "row",
-    paddingTop: 3,
-    paddingBottom: 1,
+    paddingTop: 4,
+    paddingBottom: 2,
     borderTopWidth: 2,
-    borderBottomWidth: 2,
     borderColor: "rgba(94, 25, 121, 1)"
   },
   footerText: {

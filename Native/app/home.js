@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
-    fontSize: 24,
+    fontSize: 26,
     textAlign: "center",
   },
   logoContainer: {
