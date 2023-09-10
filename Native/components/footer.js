@@ -18,8 +18,8 @@ export default function Footer() {
     SplashScreen.hideAsync();
     return (
       <View style={styles.footerContainer}>
-        <Link style={styles.footerText} href="/home"><MaterialCommunityIcons name="home-outline" size={24} color="rgba(242, 255, 99, 1)" /></Link>
-        <Link style={styles.footerText} href="/calculator"><AntDesign name="calculator" size={24} color="rgba(242, 255, 99, 1)" /></Link>
+        <Link style={styles.footerText} href="/home"><MaterialCommunityIcons name="home-outline" size={32} color="rgba(242, 255, 99, 1)" /></Link>
+        <Link style={styles.footerText} href="/calculator"><AntDesign name="calculator" size={32} color="rgba(242, 255, 99, 1)" /></Link>
       </View>
     );
   } else {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: "fixed",
     backgroundColor: "rgba(157, 108, 255, 0.70)",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",
     paddingTop: 4,
