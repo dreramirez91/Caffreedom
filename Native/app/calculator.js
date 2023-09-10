@@ -4,18 +4,34 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ImageBackground,
   Pressable,
+  SafeAreaView,
+  TextInput,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
-import logo from "../assets/logo.png";
-import { Link } from "expo-router";
 import Footer from '../components/footer';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function Calculator() {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([{ label: 'Coffee (black)', value: 'coffee_black'},{ label: 'Black tea', value: 'tea_black'}]);
+  const [amount, setChangeAmount] = useState('')
+  const [caffeine, setCaffeine] = useState(0)
+
+  const caffeinePer100 = {
+    "coffee_black": .8679,
+    "tea_black": .47
+
+  }
+
+  const onChangeAmount = amount => {
+    setChangeAmount(amount)
+    setCaffeine(caffeinePer100[value] * amount)
+  }
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -26,19 +42,24 @@ export default function Calculator() {
   if (fontsLoaded) {
     SplashScreen.hideAsync();
     return (
-      <View style={styles.container}>
-        <View><Link href="/home">Home</Link></View>
+      <SafeAreaView style={styles.container}>
         <ImageBackground
           source={background}
           resizeMode="cover"
           style={styles.image}
         >
-          <View style={styles.homeContainer}>
+          <View style={styles.calculatorContainer}>
+            <Text style={styles.headerText}>Calculator</Text>
+            <Text style={styles.baseText}>What drink are you having?</Text>
+            <DropDownPicker style={{marginTop: 10}} open={open} value={value} items={items} setOpen={setOpen} setValue={setValue} setItems={setItems} />
+            <Text style={styles.baseText}>How much? In milliliters...</Text>
+            <TextInput style={styles.input} editable={value ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} defaultValue="mL" placeholder="mL"></TextInput>
+            <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine today.</Text>
           </View>
         </ImageBackground>
         <Footer />
         <StatusBar style="auto" />
-      </View>
+      </SafeAreaView>
     );
   } else {
     return null;
@@ -54,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  homeContainer: {
+  calculatorContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     width: "80%",
     justifyContent: "center",
@@ -82,21 +103,24 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     alignContent: "center"
   },
-  unpressedText: {
-    color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline"
-  },
-  pressedText: {
+  baseText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
-    textDecorationLine: "underline"
+    marginTop: 10
   },
   separator: {
     marginVertical: 8,
     borderBottomColor: "black",
     bottomBorderWidth: StyleSheet.hairlineWidth,
   },
+  input: {
+    height: 50,
+    width: '100%',
+    color: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+    backgroundColor: 'white'
+  }
 });

@@ -6,6 +6,7 @@ import {
   View,
   Image,
   ImageBackground,
+  SafeAreaView,
   Pressable,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
@@ -28,7 +29,7 @@ export default function Home() {
   if (fontsLoaded) {
     SplashScreen.hideAsync();
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ImageBackground
           source={background}
           resizeMode="cover"
@@ -49,7 +50,7 @@ export default function Home() {
         </ImageBackground>
         <Footer />
         <StatusBar style="auto" />
-      </View>
+      </SafeAreaView>
     );
   } else {
     return null;
