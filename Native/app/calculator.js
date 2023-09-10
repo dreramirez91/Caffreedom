@@ -54,7 +54,7 @@ export default function Calculator() {
             <Text style={styles.baseText}>What drink are you having?</Text>
             <DropDownPicker style={{marginTop: 10}} open={open} value={value} items={items} setOpen={setOpen} setValue={setValue} setItems={setItems} />
             <Text style={styles.baseText}>How much? In milliliters...</Text>
-            <TextInput style={styles.input} editable={value ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder="mL"></TextInput>
+            <TextInput style={styles.input} returnKeyType={ 'done' } editable={value ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder="mL"></TextInput>
             <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
           </View>
         </ImageBackground>
