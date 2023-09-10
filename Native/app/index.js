@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   logo: {
-    width: 55,
-    height: 55,
+    width: 62,
+    height: 62,
   },
   userContainer: {
     flexDirection: "row",
