@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-native-dropdown-picker": "^5.4.6",
     "yarn": "^1.22.19"
   }
 }

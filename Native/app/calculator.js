@@ -18,19 +18,20 @@ import DropDownPicker from 'react-native-dropdown-picker';
 export default function Calculator() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([{ label: 'Coffee (black)', value: 'coffee_black'},{ label: 'Black tea', value: 'tea_black'}]);
+  const [items, setItems] = useState([{ label: 'Coffee (black)', value: 'coffee_black'},{ label: 'Cold brew', value: 'cold_brew'},{ label: 'Black tea', value: 'tea_black'}]);
   const [amount, setChangeAmount] = useState('')
   const [caffeine, setCaffeine] = useState(0)
 
-  const caffeinePer100 = {
-    "coffee_black": .8679,
-    "tea_black": .47
+  const caffeinePerMl = {
+    "coffee_black": .3958,
+    "cold_brew": .423,
+    "tea_black": .2292
 
   }
 
   const onChangeAmount = amount => {
     setChangeAmount(amount)
-    setCaffeine(caffeinePer100[value] * amount)
+    setCaffeine(caffeinePerMl[value] * amount)
   }
 
   let [fontsLoaded] = useFonts({
@@ -53,8 +54,8 @@ export default function Calculator() {
             <Text style={styles.baseText}>What drink are you having?</Text>
             <DropDownPicker style={{marginTop: 10}} open={open} value={value} items={items} setOpen={setOpen} setValue={setValue} setItems={setItems} />
             <Text style={styles.baseText}>How much? In milliliters...</Text>
-            <TextInput style={styles.input} editable={value ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} defaultValue="mL" placeholder="mL"></TextInput>
-            <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine today.</Text>
+            <TextInput style={styles.input} editable={value ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder="mL"></TextInput>
+            <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
           </View>
         </ImageBackground>
         <Footer />
@@ -79,8 +80,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     width: "80%",
     justifyContent: "center",
-    paddingTop: 10,
-    borderRadius: 4
+    borderRadius: 4,
+    padding:10
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
@@ -107,7 +108,8 @@ const styles = StyleSheet.create({
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
-    marginTop: 10
+    marginTop: 10,
+    textAlign: "center"
   },
   separator: {
     marginVertical: 8,
@@ -121,6 +123,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     padding: 10,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    marginTop: 10
   }
 });

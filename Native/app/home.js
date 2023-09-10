@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     width: "80%",
     justifyContent: "center",
-    paddingTop: 10,
+    padding:10,
     borderRadius: 4
   },
   headerText: {
