@@ -52,7 +52,7 @@ export default function Calculator() {
           <View style={styles.calculatorContainer}>
           <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
-            <AutocompleteDropdown
+            <AutocompleteDropdown containerStyle={styles.dropdown}
               clearOnFocus={false}
               closeOnBlur={true}
               closeOnSubmit={false}
@@ -109,13 +109,17 @@ const styles = StyleSheet.create({
     bottomBorderWidth: StyleSheet.hairlineWidth,
   },
   input: {
-    height: 50,
+    height: 41,
     width: '100%',
     color: 'black',
     borderWidth: 1,
     borderRadius: 8,
     padding: 10,
     backgroundColor: 'white',
-    marginTop: 10
+    marginTop: 10,
+    borderWidth:0
+  },
+  dropdown: {
+    marginTop: 10,
   }
 });
