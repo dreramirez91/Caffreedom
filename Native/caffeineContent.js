@@ -1,2486 +1,2486 @@
 export const caffeineContent = [
   {
-    "drink": "28 Black Energy Drink",
-    "mg/floz": 9.5
+    "label": "28 Black Energy label",
+    "value": 9.5
   },
   {
-    "drink": "3 Water",
-    "mg/floz": 3
+    "label": "3 Water",
+    "value": 3
   },
   {
-    "drink": "3D Energy Drink",
-    "mg/floz": 12.5
+    "label": "3D Energy label",
+    "value": 12.5
   },
   {
-    "drink": "4 Purpose Energy Drink",
-    "mg/floz": 8.3
+    "label": "4 Purpose Energy label",
+    "value": 8.3
   },
   {
-    "drink": "4C Energy Drink Mix",
-    "mg/floz": 10.1
+    "label": "4C Energy label Mix",
+    "value": 10.1
   },
   {
-    "drink": "5 Hour Energy",
-    "mg/floz": 103.6
+    "label": "5 Hour Energy",
+    "value": 103.6
   },
   {
-    "drink": "5 Hour Energy Extra Strength",
-    "mg/floz": 119.2
+    "label": "5 Hour Energy Extra Strength",
+    "value": 119.2
   },
   {
-    "drink": "7 Eleven Brewed Coffee",
-    "mg/floz": 17.5
+    "label": "7 Eleven Brewed Coffee",
+    "value": 17.5
   },
   {
-    "drink": "7-Eleven Energy Shot",
-    "mg/floz": 130
+    "label": "7-Eleven Energy Shot",
+    "value": 130
   },
   {
-    "drink": "7-Up",
-    "mg/floz": 0
+    "label": "7-Up",
+    "value": 0
   },
   {
-    "drink": "A&W Cream Soda",
-    "mg/floz": 0
+    "label": "A&W Cream Soda",
+    "value": 0
   },
   {
-    "drink": "A&W Root Beer",
-    "mg/floz": 0
+    "label": "A&W Root Beer",
+    "value": 0
   },
   {
-    "drink": "A&W Zero Sugar Cream Soda",
-    "mg/floz": 0
+    "label": "A&W Zero Sugar Cream Soda",
+    "value": 0
   },
   {
-    "drink": "ABB Turbo Tea Zero",
-    "mg/floz": 6.7
+    "label": "ABB Turbo Tea Zero",
+    "value": 6.7
   },
   {
-    "drink": "Adrenaline Shoc",
-    "mg/floz": 18.8
+    "label": "Adrenaline Shoc",
+    "value": 18.8
   },
   {
-    "drink": "Advocare Slam Energy Shot",
-    "mg/floz": 60
+    "label": "Advocare Slam Energy Shot",
+    "value": 60
   },
   {
-    "drink": "Advocare Slim",
-    "mg/floz": 15
+    "label": "Advocare Slim",
+    "value": 15
   },
   {
-    "drink": "Afri Cola",
-    "mg/floz": 7.4
+    "label": "Afri Cola",
+    "value": 7.4
   },
   {
-    "drink": "AHA Sparkling Water",
-    "mg/floz": 2.5
+    "label": "AHA Sparkling Water",
+    "value": 2.5
   },
   {
-    "drink": "Alani Nu Energy Drink",
-    "mg/floz": 16.7
+    "label": "Alani Nu Energy label",
+    "value": 16.7
   },
   {
-    "drink": "Ale 8 1",
-    "mg/floz": 3.1
+    "label": "Ale 8 1",
+    "value": 3.1
   },
   {
-    "drink": "ALL IN Energy Drink",
-    "mg/floz": 6.2
+    "label": "ALL IN Energy label",
+    "value": 6.2
   },
   {
-    "drink": "Alpine Start Instant Coffee",
-    "mg/floz": 15
+    "label": "Alpine Start Instant Coffee",
+    "value": 15
   },
   {
-    "drink": "Alsa Energy Drink Mix",
-    "mg/floz": 6.2
+    "label": "Alsa Energy label Mix",
+    "value": 6.2
   },
   {
-    "drink": "Americano Coffee",
-    "mg/floz": 12.8
+    "label": "Americano Coffee",
+    "value": 12.8
   },
   {
-    "drink": "AMIN.O. Energy Drink",
-    "mg/floz": 8.3
+    "label": "AMIN.O. Energy label",
+    "value": 8.3
   },
   {
-    "drink": "Amino Force Energy Drink",
-    "mg/floz": 9.1
+    "label": "Amino Force Energy label",
+    "value": 9.1
   },
   {
-    "drink": "Arbonne Energy Fizz Stck",
-    "mg/floz": 6.9
+    "label": "Arbonne Energy Fizz Stck",
+    "value": 6.9
   },
   {
-    "drink": "Arby's Jamocha Shake",
-    "mg/floz": 0.7
+    "label": "Arby's Jamocha Shake",
+    "value": 0.7
   },
   {
-    "drink": "Arizona Arnold Palmer Half and Half",
-    "mg/floz": 0.9
+    "label": "Arizona Arnold Palmer Half and Half",
+    "value": 0.9
   },
   {
-    "drink": "Arizona Energy Drink Rx",
-    "mg/floz": 11
+    "label": "Arizona Energy label Rx",
+    "value": 11
   },
   {
-    "drink": "Arizona Iced Tea",
-    "mg/floz": 1.9
+    "label": "Arizona Iced Tea",
+    "value": 1.9
   },
   {
-    "drink": "Arti Sparkling Water",
-    "mg/floz": 10
+    "label": "Arti Sparkling Water",
+    "value": 10
   },
   {
-    "drink": "AXIO Energy Drink Mix",
-    "mg/floz": 8.3
+    "label": "AXIO Energy label Mix",
+    "value": 8.3
   },
   {
-    "drink": "Bai Antioxidant Infusion",
-    "mg/floz": 3.1
+    "label": "Bai Antioxidant Infusion",
+    "value": 3.1
   },
   {
-    "drink": "Bai Boost",
-    "mg/floz": 9.6
+    "label": "Bai Boost",
+    "value": 9.6
   },
   {
-    "drink": "Balance Active Shot",
-    "mg/floz": 50
+    "label": "Balance Active Shot",
+    "value": 50
   },
   {
-    "drink": "Balance Energy Shot",
-    "mg/floz": 75
+    "label": "Balance Energy Shot",
+    "value": 75
   },
   {
-    "drink": "Bang Energy",
-    "mg/floz": 18.8
+    "label": "Bang Energy",
+    "value": 18.8
   },
   {
-    "drink": "Bang Keto Coffee",
-    "mg/floz": 18.8
+    "label": "Bang Keto Coffee",
+    "value": 18.8
   },
   {
-    "drink": "Bang Natural",
-    "mg/floz": 15.6
+    "label": "Bang Natural",
+    "value": 15.6
   },
   {
-    "drink": "Bang Shot",
-    "mg/floz": 100
+    "label": "Bang Shot",
+    "value": 100
   },
   {
-    "drink": "Bang Sweet Tea",
-    "mg/floz": 18.8
+    "label": "Bang Sweet Tea",
+    "value": 18.8
   },
   {
-    "drink": "Barista Bros Iced Coffee",
-    "mg/floz": 8.3
+    "label": "Barista Bros Iced Coffee",
+    "value": 8.3
   },
   {
-    "drink": "Barqs Red Creme Soda",
-    "mg/floz": 0
+    "label": "Barqs Red Creme Soda",
+    "value": 0
   },
   {
-    "drink": "Barqs Root Beer",
-    "mg/floz": 1.8
+    "label": "Barqs Root Beer",
+    "value": 1.8
   },
   {
-    "drink": "Baskin Robbins Cappuccino Blast",
-    "mg/floz": 9.8
+    "label": "Baskin Robbins Cappuccino Blast",
+    "value": 9.8
   },
   {
-    "drink": "Bawls",
-    "mg/floz": 6.4
+    "label": "Bawls",
+    "value": 6.4
   },
   {
-    "drink": "BE Beyond Energy Drink",
-    "mg/floz": 13.3
+    "label": "BE Beyond Energy label",
+    "value": 13.3
   },
   {
-    "drink": "Beaver Buzz Energy Drink",
-    "mg/floz": 11.1
+    "label": "Beaver Buzz Energy label",
+    "value": 11.1
   },
   {
-    "drink": "BEEBAD Energy Drink",
-    "mg/floz": 9.5
+    "label": "BEEBAD Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Berocca",
-    "mg/floz": 11.2
+    "label": "Berocca",
+    "value": 11.2
   },
   {
-    "drink": "Berzerk Energy Drink Mix",
-    "mg/floz": 12.5
+    "label": "Berzerk Energy label Mix",
+    "value": 12.5
   },
   {
-    "drink": "Best Choice Strawberry Energy Drink Mix",
-    "mg/floz": 15
+    "label": "Best Choice Strawberry Energy label Mix",
+    "value": 15
   },
   {
-    "drink": "Big Red Soda",
-    "mg/floz": 2.8
+    "label": "Big Red Soda",
+    "value": 2.8
   },
   {
-    "drink": "Big Train Java Chip Ice Coffee",
-    "mg/floz": 4.1
+    "label": "Big Train Java Chip Ice Coffee",
+    "value": 4.1
   },
   {
-    "drink": "Big Train Spiced Chai",
-    "mg/floz": 8.1
+    "label": "Big Train Spiced Chai",
+    "value": 8.1
   },
   {
-    "drink": "Bigelow Tea",
-    "mg/floz": 5.6
+    "label": "Bigelow Tea",
+    "value": 5.6
   },
   {
-    "drink": "Biggby Brewed Coffee",
-    "mg/floz": 12.5
+    "label": "Biggby Brewed Coffee",
+    "value": 12.5
   },
   {
-    "drink": "Biggby Creamy Lattes",
-    "mg/floz": 6.2
+    "label": "Biggby Creamy Lattes",
+    "value": 6.2
   },
   {
-    "drink": "Biggby Espresso",
-    "mg/floz": 50
+    "label": "Biggby Espresso",
+    "value": 50
   },
   {
-    "drink": "Biggby Iced Coffee",
-    "mg/floz": 9.7
+    "label": "Biggby Iced Coffee",
+    "value": 9.7
   },
   {
-    "drink": "Biggby Iced Tea",
-    "mg/floz": 2.4
+    "label": "Biggby Iced Tea",
+    "value": 2.4
   },
   {
-    "drink": "Bing Energy Drink",
-    "mg/floz": 10
+    "label": "Bing Energy label",
+    "value": 10
   },
   {
-    "drink": "Biohazard Coffee",
-    "mg/floz": 77.3
+    "label": "Biohazard Coffee",
+    "value": 77.3
   },
   {
-    "drink": "Bizzy Cold Brew",
-    "mg/floz": 46.8
+    "label": "Bizzy Cold Brew",
+    "value": 46.8
   },
   {
-    "drink": "Black Bruin Energy Drink",
-    "mg/floz": 4.4
+    "label": "Black Bruin Energy label",
+    "value": 4.4
   },
   {
-    "drink": "Black Ink Coffee",
-    "mg/floz": 12
+    "label": "Black Ink Coffee",
+    "value": 12
   },
   {
-    "drink": "Black Insomnia Coffee",
-    "mg/floz": 92.1
+    "label": "Black Insomnia Coffee",
+    "value": 92.1
   },
   {
-    "drink": "Black Label Brewed Coffee",
-    "mg/floz": 129.6
+    "label": "Black Label Brewed Coffee",
+    "value": 129.6
   },
   {
-    "drink": "Blu Frog Energy Drink",
-    "mg/floz": 9.5
+    "label": "Blu Frog Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Blue Bolt (UK)",
-    "mg/floz": 9.5
+    "label": "Blue Bolt (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Blue Charge (UK)",
-    "mg/floz": 9.5
+    "label": "Blue Charge (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Blue Spark (UK)",
-    "mg/floz": 8.9
+    "label": "Blue Spark (UK)",
+    "value": 8.9
   },
   {
-    "drink": "Bodyarmour Edge",
-    "mg/floz": 5
+    "label": "Bodyarmour Edge",
+    "value": 5
   },
   {
-    "drink": "Bomb Energy Drink",
-    "mg/floz": 9.5
+    "label": "Bomb Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Bomba (EU)",
-    "mg/floz": 9.5
+    "label": "Bomba (EU)",
+    "value": 9.5
   },
   {
-    "drink": "Boost Energy (UK)",
-    "mg/floz": 9.5
+    "label": "Boost Energy (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Boost Nutritional Drink",
-    "mg/floz": 0.6
+    "label": "Boost Nutritional label",
+    "value": 0.6
   },
   {
-    "drink": "Bottled Iced Coffee Dunkin Donuts",
-    "mg/floz": 12.5
+    "label": "Bottled Iced Coffee Dunkin Donuts",
+    "value": 12.5
   },
   {
-    "drink": "BreinFuel",
-    "mg/floz": 30
+    "label": "BreinFuel",
+    "value": 30
   },
   {
-    "drink": "Brew Dr Kombucha Uplift",
-    "mg/floz": 9.3
+    "label": "Brew Dr Kombucha Uplift",
+    "value": 9.3
   },
   {
-    "drink": "Brisk Iced Tea",
-    "mg/floz": 0.9
+    "label": "Brisk Iced Tea",
+    "value": 0.9
   },
   {
-    "drink": "Brown Rice Tea",
-    "mg/floz": 0.5
+    "label": "Brown Rice Tea",
+    "value": 0.5
   },
   {
-    "drink": "Bubbl'r Sparkling Water",
-    "mg/floz": 5.8
+    "label": "Bubbl'r Sparkling Water",
+    "value": 5.8
   },
   {
-    "drink": "Bubly Bounce Sparkling Water",
-    "mg/floz": 2.9
+    "label": "Bubly Bounce Sparkling Water",
+    "value": 2.9
   },
   {
-    "drink": "Bubly Sparkling Water",
-    "mg/floz": 0
+    "label": "Bubly Sparkling Water",
+    "value": 0
   },
   {
-    "drink": "Bucked Up",
-    "mg/floz": 18.8
+    "label": "Bucked Up",
+    "value": 18.8
   },
   {
-    "drink": "Bulletproof Coffee",
-    "mg/floz": 18.1
+    "label": "Bulletproof Coffee",
+    "value": 18.1
   },
   {
-    "drink": "Burn Energy Drink",
-    "mg/floz": 9.3
+    "label": "Burn Energy label",
+    "value": 9.3
   },
   {
-    "drink": "C4 Energy Drink",
-    "mg/floz": 12.5
+    "label": "C4 Energy label",
+    "value": 12.5
   },
   {
-    "drink": "C4 On The Go",
-    "mg/floz": 16.7
+    "label": "C4 On The Go",
+    "value": 16.7
   },
   {
-    "drink": "C4 Smart Energy Drink",
-    "mg/floz": 12.5
+    "label": "C4 Smart Energy label",
+    "value": 12.5
   },
   {
-    "drink": "C4 Ultimate Energy Drink",
-    "mg/floz": 18.8
+    "label": "C4 Ultimate Energy label",
+    "value": 18.8
   },
   {
-    "drink": "Cafe Bustelo",
-    "mg/floz": 12.5
+    "label": "Cafe Bustelo",
+    "value": 12.5
   },
   {
-    "drink": "Cafe Con Leche",
-    "mg/floz": 25.7
+    "label": "Cafe Con Leche",
+    "value": 25.7
   },
   {
-    "drink": "Caffe Mocha",
-    "mg/floz": 12.7
+    "label": "Caffe Mocha",
+    "value": 12.7
   },
   {
-    "drink": "Caffe Nero Coffee",
-    "mg/floz": 13.3
+    "label": "Caffe Nero Coffee",
+    "value": 13.3
   },
   {
-    "drink": "Califia Farms Cold Brew Coffee",
-    "mg/floz": 22.5
+    "label": "Califia Farms Cold Brew Coffee",
+    "value": 22.5
   },
   {
-    "drink": "Canada Dry Green Tea Ginger Ale",
-    "mg/floz": 0.8
+    "label": "Canada Dry Green Tea Ginger Ale",
+    "value": 0.8
   },
   {
-    "drink": "Cannonball Coffee Maximum Charge (UK)",
-    "mg/floz": 91.8
+    "label": "Cannonball Coffee Maximum Charge (UK)",
+    "value": 91.8
   },
   {
-    "drink": "Cappuccino",
-    "mg/floz": 12.8
+    "label": "Cappuccino",
+    "value": 12.8
   },
   {
-    "drink": "Carabao Energy Drink (UK)",
-    "mg/floz": 9.5
+    "label": "Carabao Energy label (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Caribou BOUsted Sparkling Water",
-    "mg/floz": 6.5
+    "label": "Caribou BOUsted Sparkling Water",
+    "value": 6.5
   },
   {
-    "drink": "Caribou Brewed Coffee",
-    "mg/floz": 19.1
+    "label": "Caribou Brewed Coffee",
+    "value": 19.1
   },
   {
-    "drink": "Caribou Canned Cold Brew",
-    "mg/floz": 15.4
+    "label": "Caribou Canned Cold Brew",
+    "value": 15.4
   },
   {
-    "drink": "CBD Coffee",
-    "mg/floz": 12.5
+    "label": "CBD Coffee",
+    "value": 12.5
   },
   {
-    "drink": "Celsius Energy Drink",
-    "mg/floz": 16.7
+    "label": "Celsius Energy label",
+    "value": 16.7
   },
   {
-    "drink": "Celsius Heat Energy Drink",
-    "mg/floz": 18.8
+    "label": "Celsius Heat Energy label",
+    "value": 18.8
   },
   {
-    "drink": "Celsius Stevia",
-    "mg/floz": 16.7
+    "label": "Celsius Stevia",
+    "value": 16.7
   },
   {
-    "drink": "Chai Tea",
-    "mg/floz": 6.2
+    "label": "Chai Tea",
+    "value": 6.2
   },
   {
-    "drink": "Chameleon Cold Brew Coffee",
-    "mg/floz": 32.5
+    "label": "Chameleon Cold Brew Coffee",
+    "value": 32.5
   },
   {
-    "drink": "Chameleon Cold Brew RTD",
-    "mg/floz": 23
+    "label": "Chameleon Cold Brew RTD",
+    "value": 23
   },
   {
-    "drink": "Chameleon Cold Brew With Milk",
-    "mg/floz": 9.1
+    "label": "Chameleon Cold Brew With Milk",
+    "value": 9.1
   },
   {
-    "drink": "Cheerwine",
-    "mg/floz": 3.9
+    "label": "Cheerwine",
+    "value": 3.9
   },
   {
-    "drink": "Chick-fil-A Brewed Coffee",
-    "mg/floz": 13.6
+    "label": "Chick-fil-A Brewed Coffee",
+    "value": 13.6
   },
   {
-    "drink": "Chick-fil-A Frosted Coffee",
-    "mg/floz": 9.3
+    "label": "Chick-fil-A Frosted Coffee",
+    "value": 9.3
   },
   {
-    "drink": "Chick-fil-A Iced Coffee",
-    "mg/floz": 5.7
+    "label": "Chick-fil-A Iced Coffee",
+    "value": 5.7
   },
   {
-    "drink": "Chick-fil-A Iced Tea",
-    "mg/floz": 3.9
+    "label": "Chick-fil-A Iced Tea",
+    "value": 3.9
   },
   {
-    "drink": "Choffy (roasted cacao)",
-    "mg/floz": 3.8
+    "label": "Choffy (roasted cacao)",
+    "value": 3.8
   },
   {
-    "drink": "Cintron Energy Drink",
-    "mg/floz": 10.1
+    "label": "Cintron Energy label",
+    "value": 10.1
   },
   {
-    "drink": "Clif Shot Energy Gel",
-    "mg/floz": 83.3
+    "label": "Clif Shot Energy Gel",
+    "value": 83.3
   },
   {
-    "drink": "Club Mate (EU)",
-    "mg/floz": 5.9
+    "label": "Club Mate (EU)",
+    "value": 5.9
   },
   {
-    "drink": "Coca-Cola Caffeine Free",
-    "mg/floz": 0
+    "label": "Coca-Cola Caffeine Free",
+    "value": 0
   },
   {
-    "drink": "Coca-Cola Cherry",
-    "mg/floz": 2.8
+    "label": "Coca-Cola Cherry",
+    "value": 2.8
   },
   {
-    "drink": "Coca-Cola Cherry Vanilla",
-    "mg/floz": 2.8
+    "label": "Coca-Cola Cherry Vanilla",
+    "value": 2.8
   },
   {
-    "drink": "Coca-Cola Cherry Zero Sugar",
-    "mg/floz": 2.8
+    "label": "Coca-Cola Cherry Zero Sugar",
+    "value": 2.8
   },
   {
-    "drink": "Coca-Cola Classic",
-    "mg/floz": 2.8
+    "label": "Coca-Cola Classic",
+    "value": 2.8
   },
   {
-    "drink": "Coca-Cola Energy",
-    "mg/floz": 9.5
+    "label": "Coca-Cola Energy",
+    "value": 9.5
   },
   {
-    "drink": "Coca-Cola Orange Vanilla",
-    "mg/floz": 2.8
+    "label": "Coca-Cola Orange Vanilla",
+    "value": 2.8
   },
   {
-    "drink": "Coca-Cola Vanilla",
-    "mg/floz": 2.8
+    "label": "Coca-Cola Vanilla",
+    "value": 2.8
   },
   {
-    "drink": "Coca-Cola Vanilla Zero Sugar",
-    "mg/floz": 2.8
+    "label": "Coca-Cola Vanilla Zero Sugar",
+    "value": 2.8
   },
   {
-    "drink": "Coca-Cola With Coffee",
-    "mg/floz": 5.8
+    "label": "Coca-Cola With Coffee",
+    "value": 5.8
   },
   {
-    "drink": "Coca-Cola Zero Sugar",
-    "mg/floz": 2.8
+    "label": "Coca-Cola Zero Sugar",
+    "value": 2.8
   },
   {
-    "drink": "Cocaine Energy Drink",
-    "mg/floz": 23.3
+    "label": "Cocaine Energy label",
+    "value": 23.3
   },
   {
-    "drink": "Coffee",
-    "mg/floz": 20.4
+    "label": "Coffee",
+    "value": 20.4
   },
   {
-    "drink": "Coffee (Decaf, Instant)",
-    "mg/floz": 0.3
+    "label": "Coffee (Decaf, Instant)",
+    "value": 0.3
   },
   {
-    "drink": "Coffee (Instant)",
-    "mg/floz": 7.1
+    "label": "Coffee (Instant)",
+    "value": 7.1
   },
   {
-    "drink": "Coffee Bean & Tea leaf Coffee",
-    "mg/floz": 20.8
+    "label": "Coffee Bean & Tea leaf Coffee",
+    "value": 20.8
   },
   {
-    "drink": "Coffee Friend Brewed Coffee",
-    "mg/floz": 17.1
+    "label": "Coffee Friend Brewed Coffee",
+    "value": 17.1
   },
   {
-    "drink": "Coffee Leaf Tea",
-    "mg/floz": 2.5
+    "label": "Coffee Leaf Tea",
+    "value": 2.5
   },
   {
-    "drink": "COGO Caffeinated Hot Chocolate",
-    "mg/floz": 16.3
+    "label": "COGO Caffeinated Hot Chocolate",
+    "value": 16.3
   },
   {
-    "drink": "Cold Brew Tea",
-    "mg/floz": 8.8
+    "label": "Cold Brew Tea",
+    "value": 8.8
   },
   {
-    "drink": "CoolBrew Coffee",
-    "mg/floz": 6
+    "label": "CoolBrew Coffee",
+    "value": 6
   },
   {
-    "drink": "Costa Coffee",
-    "mg/floz": 31.9
+    "label": "Costa Coffee",
+    "value": 31.9
   },
   {
-    "drink": "Cran Energy Juice",
-    "mg/floz": 7
+    "label": "Cran Energy Juice",
+    "value": 7
   },
   {
-    "drink": "Crave Energy Drink (UK)",
-    "mg/floz": 9.5
+    "label": "Crave Energy label (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Crio Bru Brewed Cacao",
-    "mg/floz": 1.2
+    "label": "Crio Bru Brewed Cacao",
+    "value": 1.2
   },
   {
-    "drink": "Crunk Energy Drink",
-    "mg/floz": 12
+    "label": "Crunk Energy label",
+    "value": 12
   },
   {
-    "drink": "Crystal Light Energy Mix",
-    "mg/floz": 3.8
+    "label": "Crystal Light Energy Mix",
+    "value": 3.8
   },
   {
-    "drink": "Crystal Light Iced Tea",
-    "mg/floz": 1.2
+    "label": "Crystal Light Iced Tea",
+    "value": 1.2
   },
   {
-    "drink": "Dare Iced Coffee",
-    "mg/floz": 9.5
+    "label": "Dare Iced Coffee",
+    "value": 9.5
   },
   {
-    "drink": "Dark Dog Organic Energy",
-    "mg/floz": 9.5
+    "label": "Dark Dog Organic Energy",
+    "value": 9.5
   },
   {
-    "drink": "Death Wish Canned Cold Brew",
-    "mg/floz": 37.5
+    "label": "Death Wish Canned Cold Brew",
+    "value": 37.5
   },
   {
-    "drink": "Death Wish Coffee",
-    "mg/floz": 60.7
+    "label": "Death Wish Coffee",
+    "value": 60.7
   },
   {
-    "drink": "Death Wish Latte",
-    "mg/floz": 37.5
+    "label": "Death Wish Latte",
+    "value": 37.5
   },
   {
-    "drink": "Decaf Coffee",
-    "mg/floz": 0.7
+    "label": "Decaf Coffee",
+    "value": 0.7
   },
   {
-    "drink": "Demon Energy Drink",
-    "mg/floz": 9.5
+    "label": "Demon Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Devils Brew Extreme Caffeine Coffee",
-    "mg/floz": 110.4
+    "label": "Devils Brew Extreme Caffeine Coffee",
+    "value": 110.4
   },
   {
-    "drink": "Diet Barqs Root Beer",
-    "mg/floz": 0
+    "label": "Diet Barqs Root Beer",
+    "value": 0
   },
   {
-    "drink": "Diet Cheerwine",
-    "mg/floz": 3.9
+    "label": "Diet Cheerwine",
+    "value": 3.9
   },
   {
-    "drink": "Diet Coke",
-    "mg/floz": 3.8
+    "label": "Diet Coke",
+    "value": 3.8
   },
   {
-    "drink": "Diet Coke with Splenda",
-    "mg/floz": 3.8
+    "label": "Diet Coke with Splenda",
+    "value": 3.8
   },
   {
-    "drink": "Diet Dr Pepper",
-    "mg/floz": 3.4
+    "label": "Diet Dr Pepper",
+    "value": 3.4
   },
   {
-    "drink": "Diet Mountain Dew",
-    "mg/floz": 4.5
+    "label": "Diet Mountain Dew",
+    "value": 4.5
   },
   {
-    "drink": "Diet Pepsi",
-    "mg/floz": 2.9
+    "label": "Diet Pepsi",
+    "value": 2.9
   },
   {
-    "drink": "Diet RC Cola",
-    "mg/floz": 4
+    "label": "Diet RC Cola",
+    "value": 4
   },
   {
-    "drink": "Diet Wild Cherry Pepsi",
-    "mg/floz": 3.2
+    "label": "Diet Wild Cherry Pepsi",
+    "value": 3.2
   },
   {
-    "drink": "doc Soda",
-    "mg/floz": 5
+    "label": "doc Soda",
+    "value": 5
   },
   {
-    "drink": "Double Cola",
-    "mg/floz": 3
+    "label": "Double Cola",
+    "value": 3
   },
   {
-    "drink": "Dr Pepper",
-    "mg/floz": 3.5
+    "label": "Dr Pepper",
+    "value": 3.5
   },
   {
-    "drink": "Dr Pepper 10",
-    "mg/floz": 4.2
+    "label": "Dr Pepper 10",
+    "value": 4.2
   },
   {
-    "drink": "Dr Shasta Soda",
-    "mg/floz": 2.4
+    "label": "Dr Shasta Soda",
+    "value": 2.4
   },
   {
-    "drink": "Driftaway Coffee",
-    "mg/floz": 20
+    "label": "Driftaway Coffee",
+    "value": 20
   },
   {
-    "drink": "Dripdash Kyoto Coffee",
-    "mg/floz": 37.5
+    "label": "Dripdash Kyoto Coffee",
+    "value": 37.5
   },
   {
-    "drink": "Duff Energy Drink",
-    "mg/floz": 10
+    "label": "Duff Energy label",
+    "value": 10
   },
   {
-    "drink": "Dunkin Donuts Shot In The Dark",
-    "mg/floz": 16.5
+    "label": "Dunkin Donuts Shot In The Dark",
+    "value": 16.5
   },
   {
-    "drink": "Dunkin' Cold Brew",
-    "mg/floz": 10.8
+    "label": "Dunkin' Cold Brew",
+    "value": 10.8
   },
   {
-    "drink": "Dunkin' Donuts Brewed Coffee",
-    "mg/floz": 15
+    "label": "Dunkin' Donuts Brewed Coffee",
+    "value": 15
   },
   {
-    "drink": "Dunkin' Donuts Dunkaccino",
-    "mg/floz": 5.9
+    "label": "Dunkin' Donuts Dunkaccino",
+    "value": 5.9
   },
   {
-    "drink": "Dunkin' Donuts Extra Charged Coffee",
-    "mg/floz": 18
+    "label": "Dunkin' Donuts Extra Charged Coffee",
+    "value": 18
   },
   {
-    "drink": "Dunkin' Donuts Iced Coffee",
-    "mg/floz": 12.4
+    "label": "Dunkin' Donuts Iced Coffee",
+    "value": 12.4
   },
   {
-    "drink": "Dunkin' Donuts Iced Latte",
-    "mg/floz": 6.9
+    "label": "Dunkin' Donuts Iced Latte",
+    "value": 6.9
   },
   {
-    "drink": "Dunkin' Donuts Iced Tea",
-    "mg/floz": 2.6
+    "label": "Dunkin' Donuts Iced Tea",
+    "value": 2.6
   },
   {
-    "drink": "Dunkin' Donuts Latte",
-    "mg/floz": 11.9
+    "label": "Dunkin' Donuts Latte",
+    "value": 11.9
   },
   {
-    "drink": "Dutch Bros Blue Rebel Energy Drink",
-    "mg/floz": 9.5
+    "label": "Dutch Bros Blue Rebel Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Dutch Bros Coffee (Classic)",
-    "mg/floz": 9.3
+    "label": "Dutch Bros Coffee (Classic)",
+    "value": 9.3
   },
   {
-    "drink": "E6 Energy Shot",
-    "mg/floz": 121.8
+    "label": "E6 Energy Shot",
+    "value": 121.8
   },
   {
-    "drink": "EBOOST Energy Drink Mix",
-    "mg/floz": 13.8
+    "label": "EBOOST Energy label Mix",
+    "value": 13.8
   },
   {
-    "drink": "EBOOST Super Fuel",
-    "mg/floz": 9.2
+    "label": "EBOOST Super Fuel",
+    "value": 9.2
   },
   {
-    "drink": "EBOOST Workout Crusher Mix",
-    "mg/floz": 21.9
+    "label": "EBOOST Workout Crusher Mix",
+    "value": 21.9
   },
   {
-    "drink": "Eight O'Clock Coffee",
-    "mg/floz": 14
+    "label": "Eight O'Clock Coffee",
+    "value": 14
   },
   {
-    "drink": "Einstein Bros Coffee",
-    "mg/floz": 12.9
+    "label": "Einstein Bros Coffee",
+    "value": 12.9
   },
   {
-    "drink": "Electric Monkey Wild Energy Drink",
-    "mg/floz": 10
+    "label": "Electric Monkey Wild Energy label",
+    "value": 10
   },
   {
-    "drink": "EnerBee Energy Drink",
-    "mg/floz": 8.3
+    "label": "EnerBee Energy label",
+    "value": 8.3
   },
   {
-    "drink": "Equip Pure Energy Shot",
-    "mg/floz": 55.6
+    "label": "Equip Pure Energy Shot",
+    "value": 55.6
   },
   {
-    "drink": "Espresso Monster",
-    "mg/floz": 19
+    "label": "Espresso Monster",
+    "value": 19
   },
   {
-    "drink": "Espresso Shot",
-    "mg/floz": 51.3
+    "label": "Espresso Shot",
+    "value": 51.3
   },
   {
-    "drink": "Eternal Energy Extra Strength",
-    "mg/floz": 145.1
+    "label": "Eternal Energy Extra Strength",
+    "value": 145.1
   },
   {
-    "drink": "Eternal Energy Shot",
-    "mg/floz": 119.2
+    "label": "Eternal Energy Shot",
+    "value": 119.2
   },
   {
-    "drink": "Euro Shopper Energy Drink (EU)",
-    "mg/floz": 9.5
+    "label": "Euro Shopper Energy label (EU)",
+    "value": 9.5
   },
   {
-    "drink": "Fakeer Energy Drink (EU)",
-    "mg/floz": 9.4
+    "label": "Fakeer Energy label (EU)",
+    "value": 9.4
   },
   {
-    "drink": "Fanta",
-    "mg/floz": 0
+    "label": "Fanta",
+    "value": 0
   },
   {
-    "drink": "Fast Lane Black Tea",
-    "mg/floz": 13.8
+    "label": "Fast Lane Black Tea",
+    "value": 13.8
   },
   {
-    "drink": "Faygo Cola",
-    "mg/floz": 3.6
+    "label": "Faygo Cola",
+    "value": 3.6
   },
   {
-    "drink": "Faygo Moon Mist",
-    "mg/floz": 1.6
+    "label": "Faygo Moon Mist",
+    "value": 1.6
   },
   {
-    "drink": "Flat White",
-    "mg/floz": 10.8
+    "label": "Flat White",
+    "value": 10.8
   },
   {
-    "drink": "Folgers Coffee",
-    "mg/floz": 14
+    "label": "Folgers Coffee",
+    "value": 14
   },
   {
-    "drink": "Forto Organic Coffee Shot",
-    "mg/floz": 112.5
+    "label": "Forto Organic Coffee Shot",
+    "value": 112.5
   },
   {
-    "drink": "Freeway Cola",
-    "mg/floz": 2.9
+    "label": "Freeway Cola",
+    "value": 2.9
   },
   {
-    "drink": "Fresca",
-    "mg/floz": 0
+    "label": "Fresca",
+    "value": 0
   },
   {
-    "drink": "Fritz Kola (EU)",
-    "mg/floz": 7.4
+    "label": "Fritz Kola (EU)",
+    "value": 7.4
   },
   {
-    "drink": "Full Throttle Energy Drink",
-    "mg/floz": 10
+    "label": "Full Throttle Energy label",
+    "value": 10
   },
   {
-    "drink": "Fuze Iced Tea",
-    "mg/floz": 1
+    "label": "Fuze Iced Tea",
+    "value": 1
   },
   {
-    "drink": "Gatorade Bolt 24 Energize",
-    "mg/floz": 4.4
+    "label": "Gatorade Bolt 24 Energize",
+    "value": 4.4
   },
   {
-    "drink": "GFuel Cans",
-    "mg/floz": 18.8
+    "label": "GFuel Cans",
+    "value": 18.8
   },
   {
-    "drink": "GFuel Energy Drink Mix",
-    "mg/floz": 8.8
+    "label": "GFuel Energy label Mix",
+    "value": 8.8
   },
   {
-    "drink": "Ghost Energy Drink",
-    "mg/floz": 12.5
+    "label": "Ghost Energy label",
+    "value": 12.5
   },
   {
-    "drink": "Ginger Ale",
-    "mg/floz": 0
+    "label": "Ginger Ale",
+    "value": 0
   },
   {
-    "drink": "Gloria Jean's Coffee",
-    "mg/floz": 33
+    "label": "Gloria Jean's Coffee",
+    "value": 33
   },
   {
-    "drink": "Go Fast Energy Drink",
-    "mg/floz": 10
+    "label": "Go Fast Energy label",
+    "value": 10
   },
   {
-    "drink": "Go Fast High Octane Energy Drink",
-    "mg/floz": 18.8
+    "label": "Go Fast High Octane Energy label",
+    "value": 18.8
   },
   {
-    "drink": "Go Girl Energy Drink",
-    "mg/floz": 8.3
+    "label": "Go Girl Energy label",
+    "value": 8.3
   },
   {
-    "drink": "Gold Peak Coffee",
-    "mg/floz": 15.8
+    "label": "Gold Peak Coffee",
+    "value": 15.8
   },
   {
-    "drink": "Gold Peak Tea",
-    "mg/floz": 2.6
+    "label": "Gold Peak Tea",
+    "value": 2.6
   },
   {
-    "drink": "Gothrider Gasoline Coffee",
-    "mg/floz": 25
+    "label": "Gothrider Gasoline Coffee",
+    "value": 25
   },
   {
-    "drink": "Gourmesso Coffee Pods",
-    "mg/floz": 48.1
+    "label": "Gourmesso Coffee Pods",
+    "value": 48.1
   },
   {
-    "drink": "Great Value Energy Drink Enhancers",
-    "mg/floz": 6.2
+    "label": "Great Value Energy label Enhancers",
+    "value": 6.2
   },
   {
-    "drink": "Great Value Energy Drink Mix",
-    "mg/floz": 7.5
+    "label": "Great Value Energy label Mix",
+    "value": 7.5
   },
   {
-    "drink": "Greek Coffee (Metrios)",
-    "mg/floz": 25
+    "label": "Greek Coffee (Metrios)",
+    "value": 25
   },
   {
-    "drink": "Green Cola",
-    "mg/floz": 3.1
+    "label": "Green Cola",
+    "value": 3.1
   },
   {
-    "drink": "Gridlock Energy Drink",
-    "mg/floz": 8.8
+    "label": "Gridlock Energy label",
+    "value": 8.8
   },
   {
-    "drink": "Guayaki Canned Yerba Mate",
-    "mg/floz": 9.7
+    "label": "Guayaki Canned Yerba Mate",
+    "value": 9.7
   },
   {
-    "drink": "Guayaki Yerba Mate Bottled Tea",
-    "mg/floz": 8.8
+    "label": "Guayaki Yerba Mate Bottled Tea",
+    "value": 8.8
   },
   {
-    "drink": "Guayusa Tea",
-    "mg/floz": 5.1
+    "label": "Guayusa Tea",
+    "value": 5.1
   },
   {
-    "drink": "GURU Energy Drink",
-    "mg/floz": 11.7
+    "label": "GURU Energy label",
+    "value": 11.7
   },
   {
-    "drink": "GURU Sparkling Energy Water",
-    "mg/floz": 8.3
+    "label": "GURU Sparkling Energy Water",
+    "value": 8.3
   },
   {
-    "drink": "GymBrew Coffee",
-    "mg/floz": 27.8
+    "label": "GymBrew Coffee",
+    "value": 27.8
   },
   {
-    "drink": "Hell Energy Coffee",
-    "mg/floz": 11.8
+    "label": "Hell Energy Coffee",
+    "value": 11.8
   },
   {
-    "drink": "Hell Energy Drink (EU)",
-    "mg/floz": 9.5
+    "label": "Hell Energy label (EU)",
+    "value": 9.5
   },
   {
-    "drink": "Heroec Energy Water",
-    "mg/floz": 3.6
+    "label": "Heroec Energy Water",
+    "value": 3.6
   },
   {
-    "drink": "Hi Ball Energy Drink",
-    "mg/floz": 10
+    "label": "Hi Ball Energy label",
+    "value": 10
   },
   {
-    "drink": "HICAF Tea",
-    "mg/floz": 13.8
+    "label": "HICAF Tea",
+    "value": 13.8
   },
   {
-    "drink": "High Brew Coffee",
-    "mg/floz": 17.5
+    "label": "High Brew Coffee",
+    "value": 17.5
   },
   {
-    "drink": "High Voltage Coffee (AU)",
-    "mg/floz": 95.8
+    "label": "High Voltage Coffee (AU)",
+    "value": 95.8
   },
   {
-    "drink": "Hint Caffeine Kick Water",
-    "mg/floz": 3.8
+    "label": "Hint Caffeine Kick Water",
+    "value": 3.8
   },
   {
-    "drink": "Honest Iced Tea",
-    "mg/floz": 3.7
+    "label": "Honest Iced Tea",
+    "value": 3.7
   },
   {
-    "drink": "Hyde Xtreme",
-    "mg/floz": 33.3
+    "label": "Hyde Xtreme",
+    "value": 33.3
   },
   {
-    "drink": "Hype Energy Drink (EU)",
-    "mg/floz": 9.5
+    "label": "Hype Energy label (EU)",
+    "value": 9.5
   },
   {
-    "drink": "IBC Root Beer",
-    "mg/floz": 0
+    "label": "IBC Root Beer",
+    "value": 0
   },
   {
-    "drink": "Illy Issimo Cafe",
-    "mg/floz": 22.8
+    "label": "Illy Issimo Cafe",
+    "value": 22.8
   },
   {
-    "drink": "Inca Kola",
-    "mg/floz": 3.2
+    "label": "Inca Kola",
+    "value": 3.2
   },
   {
-    "drink": "Indulgio Cappuccino",
-    "mg/floz": 2.5
+    "label": "Indulgio Cappuccino",
+    "value": 2.5
   },
   {
-    "drink": "Inko's White Tea Energy",
-    "mg/floz": 10.6
+    "label": "Inko's White Tea Energy",
+    "value": 10.6
   },
   {
-    "drink": "International Delight Iced Coffee",
-    "mg/floz": 7.3
+    "label": "International Delight Iced Coffee",
+    "value": 7.3
   },
   {
-    "drink": "Irn Bru (UK)",
-    "mg/floz": 2.7
+    "label": "Irn Bru (UK)",
+    "value": 2.7
   },
   {
-    "drink": "Java Kick Coffee Cola",
-    "mg/floz": 8.3
+    "label": "Java Kick Coffee Cola",
+    "value": 8.3
   },
   {
-    "drink": "Java Monster",
-    "mg/floz": 13.3
+    "label": "Java Monster",
+    "value": 13.3
   },
   {
-    "drink": "Java Monster 300",
-    "mg/floz": 20
+    "label": "Java Monster 300",
+    "value": 20
   },
   {
-    "drink": "Joker Mad Energy",
-    "mg/floz": 10
+    "label": "Joker Mad Energy",
+    "value": 10
   },
   {
-    "drink": "Juice Monster",
-    "mg/floz": 10
+    "label": "Juice Monster",
+    "value": 10
   },
   {
-    "drink": "K Cup Decaf",
-    "mg/floz": 0.5
+    "label": "K Cup Decaf",
+    "value": 0.5
   },
   {
-    "drink": "K Cup Tea",
-    "mg/floz": 5.1
+    "label": "K Cup Tea",
+    "value": 5.1
   },
   {
-    "drink": "K-Cup Coffee",
-    "mg/floz": 12.5
+    "label": "K-Cup Coffee",
+    "value": 12.5
   },
   {
-    "drink": "Kaffn8 Liquified Caffeine",
-    "mg/floz": 300
+    "label": "Kaffn8 Liquified Caffeine",
+    "value": 300
   },
   {
-    "drink": "Kickapoo Soda: Joy Juice & Fruit Shine",
-    "mg/floz": 3.3
+    "label": "Kickapoo Soda: Joy Juice & Fruit Shine",
+    "value": 3.3
   },
   {
-    "drink": "Kill Cliff Energy X Recover",
-    "mg/floz": 2.1
+    "label": "Kill Cliff Energy X Recover",
+    "value": 2.1
   },
   {
-    "drink": "Kill Cliff Ignite",
-    "mg/floz": 12.5
+    "label": "Kill Cliff Ignite",
+    "value": 12.5
   },
   {
-    "drink": "Killer Coffee (AU)",
-    "mg/floz": 50.8
+    "label": "Killer Coffee (AU)",
+    "value": 50.8
   },
   {
-    "drink": "Kin Spritz",
-    "mg/floz": 6.2
+    "label": "Kin Spritz",
+    "value": 6.2
   },
   {
-    "drink": "Kirkland Energy Shot",
-    "mg/floz": 90
+    "label": "Kirkland Energy Shot",
+    "value": 90
   },
   {
-    "drink": "KOE Kombucha",
-    "mg/floz": 1.2
+    "label": "KOE Kombucha",
+    "value": 1.2
   },
   {
-    "drink": "Kombucha Tea",
-    "mg/floz": 3
+    "label": "Kombucha Tea",
+    "value": 3
   },
   {
-    "drink": "Kona Gold Energy Drink",
-    "mg/floz": 9.6
+    "label": "Kona Gold Energy label",
+    "value": 9.6
   },
   {
-    "drink": "La Colombe Cold Brew",
-    "mg/floz": 20
+    "label": "La Colombe Cold Brew",
+    "value": 20
   },
   {
-    "drink": "La Colombe Draft Latte",
-    "mg/floz": 13.3
+    "label": "La Colombe Draft Latte",
+    "value": 13.3
   },
   {
-    "drink": "La Croix Sparkling Water",
-    "mg/floz": 0
+    "label": "La Croix Sparkling Water",
+    "value": 0
   },
   {
-    "drink": "Latte",
-    "mg/floz": 9.6
+    "label": "Latte",
+    "value": 9.6
   },
   {
-    "drink": "LevlUp Gaming Booster",
-    "mg/floz": 14.8
+    "label": "LevlUp Gaming Booster",
+    "value": 14.8
   },
   {
-    "drink": "Limitless Sparkling Water",
-    "mg/floz": 2.9
+    "label": "Limitless Sparkling Water",
+    "value": 2.9
   },
   {
-    "drink": "Lipton Iced Tea",
-    "mg/floz": 1.2
+    "label": "Lipton Iced Tea",
+    "value": 1.2
   },
   {
-    "drink": "Lipton Natural Energy Tea",
-    "mg/floz": 9.4
+    "label": "Lipton Natural Energy Tea",
+    "value": 9.4
   },
   {
-    "drink": "Lipton Tea",
-    "mg/floz": 6.9
+    "label": "Lipton Tea",
+    "value": 6.9
   },
   {
-    "drink": "Liquid Help Energy Drink",
-    "mg/floz": 18.8
+    "label": "Liquid Help Energy label",
+    "value": 18.8
   },
   {
-    "drink": "Liquid Ice Energy Drink",
-    "mg/floz": 9.6
+    "label": "Liquid Ice Energy label",
+    "value": 9.6
   },
   {
-    "drink": "Live+ Energy Drink",
-    "mg/floz": 8.9
+    "label": "Live+ Energy label",
+    "value": 8.9
   },
   {
-    "drink": "Long Black",
-    "mg/floz": 25.7
+    "label": "Long Black",
+    "value": 25.7
   },
   {
-    "drink": "Loud Energy Drink",
-    "mg/floz": 20
+    "label": "Loud Energy label",
+    "value": 20
   },
   {
-    "drink": "Lucozade",
-    "mg/floz": 3.6
+    "label": "Lucozade",
+    "value": 3.6
   },
   {
-    "drink": "LYFT Energy Mix",
-    "mg/floz": 15.6
+    "label": "LYFT Energy Mix",
+    "value": 15.6
   },
   {
-    "drink": "M-150 Energy Drink",
-    "mg/floz": 9.5
+    "label": "M-150 Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Mamma Chia Energy",
-    "mg/floz": 9
+    "label": "Mamma Chia Energy",
+    "value": 9
   },
   {
-    "drink": "Mana Energy Potion",
-    "mg/floz": 44.4
+    "label": "Mana Energy Potion",
+    "value": 44.4
   },
   {
-    "drink": "Marquis Energy Drink",
-    "mg/floz": 8.3
+    "label": "Marquis Energy label",
+    "value": 8.3
   },
   {
-    "drink": "Master Brew Kombucha",
-    "mg/floz": 5
+    "label": "Master Brew Kombucha",
+    "value": 5
   },
   {
-    "drink": "Matcha Tea",
-    "mg/floz": 8
+    "label": "Matcha Tea",
+    "value": 8
   },
   {
-    "drink": "MATI Energy Drink",
-    "mg/floz": 9.2
+    "label": "MATI Energy label",
+    "value": 9.2
   },
   {
-    "drink": "Maxwell House Coffee",
-    "mg/floz": 14
+    "label": "Maxwell House Coffee",
+    "value": 14
   },
   {
-    "drink": "Maxwell House Max Boost Coffee",
-    "mg/floz": 24.5
+    "label": "Maxwell House Max Boost Coffee",
+    "value": 24.5
   },
   {
-    "drink": "McDonalds (McCafe) Latte",
-    "mg/floz": 8.9
+    "label": "McDonalds (McCafe) Latte",
+    "value": 8.9
   },
   {
-    "drink": "McDonalds (McCafe) Mocha",
-    "mg/floz": 10.4
+    "label": "McDonalds (McCafe) Mocha",
+    "value": 10.4
   },
   {
-    "drink": "McDonalds Coffee",
-    "mg/floz": 9.1
+    "label": "McDonalds Coffee",
+    "value": 9.1
   },
   {
-    "drink": "McDonalds Iced Coffee",
-    "mg/floz": 11.6
+    "label": "McDonalds Iced Coffee",
+    "value": 11.6
   },
   {
-    "drink": "McDonalds Sweet Tea",
-    "mg/floz": 3.1
+    "label": "McDonalds Sweet Tea",
+    "value": 3.1
   },
   {
-    "drink": "Mega Monster Energy Drink",
-    "mg/floz": 10
+    "label": "Mega Monster Energy label",
+    "value": 10
   },
   {
-    "drink": "Mello Yello",
-    "mg/floz": 4.2
+    "label": "Mello Yello",
+    "value": 4.2
   },
   {
-    "drink": "Meltdown Ketone Drink",
-    "mg/floz": 18.8
+    "label": "Meltdown Ketone label",
+    "value": 18.8
   },
   {
-    "drink": "MiO Energy Water Enhancer",
-    "mg/floz": 7.5
+    "label": "MiO Energy Water Enhancer",
+    "value": 7.5
   },
   {
-    "drink": "Monster Assault",
-    "mg/floz": 10
+    "label": "Monster Assault",
+    "value": 10
   },
   {
-    "drink": "Monster Dragon Tea",
-    "mg/floz": 2.6
+    "label": "Monster Dragon Tea",
+    "value": 2.6
   },
   {
-    "drink": "Monster Energy",
-    "mg/floz": 10
+    "label": "Monster Energy",
+    "value": 10
   },
   {
-    "drink": "Monster Hydro",
-    "mg/floz": 7.4
+    "label": "Monster Hydro",
+    "value": 7.4
   },
   {
-    "drink": "Monster Import",
-    "mg/floz": 9.6
+    "label": "Monster Import",
+    "value": 9.6
   },
   {
-    "drink": "Monster Lo-Carb",
-    "mg/floz": 8.8
+    "label": "Monster Lo-Carb",
+    "value": 8.8
   },
   {
-    "drink": "Monster Mango Loco",
-    "mg/floz": 9.5
+    "label": "Monster Mango Loco",
+    "value": 9.5
   },
   {
-    "drink": "Monster Mule",
-    "mg/floz": 10
+    "label": "Monster Mule",
+    "value": 10
   },
   {
-    "drink": "Monster Nitro",
-    "mg/floz": 10
+    "label": "Monster Nitro",
+    "value": 10
   },
   {
-    "drink": "Monster Pipeline Punch",
-    "mg/floz": 10
+    "label": "Monster Pipeline Punch",
+    "value": 10
   },
   {
-    "drink": "Monster Rehab",
-    "mg/floz": 10.3
+    "label": "Monster Rehab",
+    "value": 10.3
   },
   {
-    "drink": "Monster Reserve",
-    "mg/floz": 10
+    "label": "Monster Reserve",
+    "value": 10
   },
   {
-    "drink": "Monster Ripper Energy Juice (UK)",
-    "mg/floz": 9.5
+    "label": "Monster Ripper Energy Juice (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Monster The Doctor VR46 (UK)",
-    "mg/floz": 9.5
+    "label": "Monster The Doctor VR46 (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Monster Ultra",
-    "mg/floz": 9.4
+    "label": "Monster Ultra",
+    "value": 9.4
   },
   {
-    "drink": "Monster Zero Sugar",
-    "mg/floz": 8.8
+    "label": "Monster Zero Sugar",
+    "value": 8.8
   },
   {
-    "drink": "Moose Juice Energy Drink",
-    "mg/floz": 11.8
+    "label": "Moose Juice Energy label",
+    "value": 11.8
   },
   {
-    "drink": "Morning Thunder Tea",
-    "mg/floz": 5.6
+    "label": "Morning Thunder Tea",
+    "value": 5.6
   },
   {
-    "drink": "Mother Energy Drink",
-    "mg/floz": 9.5
+    "label": "Mother Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Mountain Dew",
-    "mg/floz": 4.5
+    "label": "Mountain Dew",
+    "value": 4.5
   },
   {
-    "drink": "Mountain Dew Amp",
-    "mg/floz": 8.9
+    "label": "Mountain Dew Amp",
+    "value": 8.9
   },
   {
-    "drink": "Mountain Dew Baja Blast",
-    "mg/floz": 4.5
+    "label": "Mountain Dew Baja Blast",
+    "value": 4.5
   },
   {
-    "drink": "Mountain Dew Code Red",
-    "mg/floz": 4.5
+    "label": "Mountain Dew Code Red",
+    "value": 4.5
   },
   {
-    "drink": "Mountain Dew Game Fuel",
-    "mg/floz": 5.6
+    "label": "Mountain Dew Game Fuel",
+    "value": 5.6
   },
   {
-    "drink": "Mountain Dew Kickstart",
-    "mg/floz": 5.6
+    "label": "Mountain Dew Kickstart",
+    "value": 5.6
   },
   {
-    "drink": "Mountain Dew Live Wire",
-    "mg/floz": 4.5
+    "label": "Mountain Dew Live Wire",
+    "value": 4.5
   },
   {
-    "drink": "Mountain Dew Major Melon",
-    "mg/floz": 4.6
+    "label": "Mountain Dew Major Melon",
+    "value": 4.6
   },
   {
-    "drink": "Mountain Dew Rise",
-    "mg/floz": 11.2
+    "label": "Mountain Dew Rise",
+    "value": 11.2
   },
   {
-    "drink": "Mountain Dew Spark",
-    "mg/floz": 3.8
+    "label": "Mountain Dew Spark",
+    "value": 3.8
   },
   {
-    "drink": "Mountain Dew Voltage",
-    "mg/floz": 4.6
+    "label": "Mountain Dew Voltage",
+    "value": 4.6
   },
   {
-    "drink": "Mountain Dew Zero Sugar",
-    "mg/floz": 5.7
+    "label": "Mountain Dew Zero Sugar",
+    "value": 5.7
   },
   {
-    "drink": "Moxie Soda",
-    "mg/floz": 2
+    "label": "Moxie Soda",
+    "value": 2
   },
   {
-    "drink": "Mucho Mango Energy Drink",
-    "mg/floz": 0
+    "label": "Mucho Mango Energy label",
+    "value": 0
   },
   {
-    "drink": "Mug Root Beer",
-    "mg/floz": 0
+    "label": "Mug Root Beer",
+    "value": 0
   },
   {
-    "drink": "Muscle Milk Coffee House",
-    "mg/floz": 10.9
+    "label": "Muscle Milk Coffee House",
+    "value": 10.9
   },
   {
-    "drink": "Muscle Monster",
-    "mg/floz": 10.5
+    "label": "Muscle Monster",
+    "value": 10.5
   },
   {
-    "drink": "Mushroom Coffee",
-    "mg/floz": 5.7
+    "label": "Mushroom Coffee",
+    "value": 5.7
   },
   {
-    "drink": "Nerd Focus",
-    "mg/floz": 10.7
+    "label": "Nerd Focus",
+    "value": 10.7
   },
   {
-    "drink": "Nescafe 3 in 1 Instant Coffee",
-    "mg/floz": 8.3
+    "label": "Nescafe 3 in 1 Instant Coffee",
+    "value": 8.3
   },
   {
-    "drink": "Nescafe Dolce Gusto",
-    "mg/floz": 13.2
+    "label": "Nescafe Dolce Gusto",
+    "value": 13.2
   },
   {
-    "drink": "Nescafe Gold",
-    "mg/floz": 7.8
+    "label": "Nescafe Gold",
+    "value": 7.8
   },
   {
-    "drink": "Nescafe Ice Java",
-    "mg/floz": 12.5
+    "label": "Nescafe Ice Java",
+    "value": 12.5
   },
   {
-    "drink": "Nescafe Ricoffy",
-    "mg/floz": 0.8
+    "label": "Nescafe Ricoffy",
+    "value": 0.8
   },
   {
-    "drink": "Nespresso Coffee Capsules",
-    "mg/floz": 44.4
+    "label": "Nespresso Coffee Capsules",
+    "value": 44.4
   },
   {
-    "drink": "Nestea Iced Tea",
-    "mg/floz": 1.4
+    "label": "Nestea Iced Tea",
+    "value": 1.4
   },
   {
-    "drink": "Nestle Milo",
-    "mg/floz": 0.4
+    "label": "Nestle Milo",
+    "value": 0.4
   },
   {
-    "drink": "Neu Nootropic Shot",
-    "mg/floz": 175
+    "label": "Neu Nootropic Shot",
+    "value": 175
   },
   {
-    "drink": "Neuro Sonic",
-    "mg/floz": 6.9
+    "label": "Neuro Sonic",
+    "value": 6.9
   },
   {
-    "drink": "NOCCO Energy Drink (EU)",
-    "mg/floz": 16.1
+    "label": "NOCCO Energy label (EU)",
+    "value": 16.1
   },
   {
-    "drink": "Noocaf Smart Coffee",
-    "mg/floz": 20
+    "label": "Noocaf Smart Coffee",
+    "value": 20
   },
   {
-    "drink": "NOS Energy Drink",
-    "mg/floz": 10
+    "label": "NOS Energy label",
+    "value": 10
   },
   {
-    "drink": "Nutramint Smart Serum",
-    "mg/floz": 100
+    "label": "Nutramint Smart Serum",
+    "value": 100
   },
   {
-    "drink": "Nuun Sport",
-    "mg/floz": 2.5
+    "label": "Nuun Sport",
+    "value": 2.5
   },
   {
-    "drink": "OCA Energy Drink",
-    "mg/floz": 10
+    "label": "OCA Energy label",
+    "value": 10
   },
   {
-    "drink": "Ocean Spray Brew",
-    "mg/floz": 5
+    "label": "Ocean Spray Brew",
+    "value": 5
   },
   {
-    "drink": "Octane Energy Drink Mix",
-    "mg/floz": 18.8
+    "label": "Octane Energy label Mix",
+    "value": 18.8
   },
   {
-    "drink": "Oi Ocha Green Tea",
-    "mg/floz": 3.6
+    "label": "Oi Ocha Green Tea",
+    "value": 3.6
   },
   {
-    "drink": "Oikos Pro Fuel",
-    "mg/floz": 10
+    "label": "Oikos Pro Fuel",
+    "value": 10
   },
   {
-    "drink": "OK Energy Drink",
-    "mg/floz": 9.5
+    "label": "OK Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Orange Crush",
-    "mg/floz": 0
+    "label": "Orange Crush",
+    "value": 0
   },
   {
-    "drink": "Oregon Chai Tea",
-    "mg/floz": 7.5
+    "label": "Oregon Chai Tea",
+    "value": 7.5
   },
   {
-    "drink": "Pacific Chai",
-    "mg/floz": 4.8
+    "label": "Pacific Chai",
+    "value": 4.8
   },
   {
-    "drink": "Panera Bread Coffee",
-    "mg/floz": 11.8
+    "label": "Panera Bread Coffee",
+    "value": 11.8
   },
   {
-    "drink": "PC Cola",
-    "mg/floz": 1
+    "label": "PC Cola",
+    "value": 1
   },
   {
-    "drink": "PC Cola Diet",
-    "mg/floz": 1.1
+    "label": "PC Cola Diet",
+    "value": 1.1
   },
   {
-    "drink": "Peace Tea",
-    "mg/floz": 1
+    "label": "Peace Tea",
+    "value": 1
   },
   {
-    "drink": "Peet's Brewed Coffee",
-    "mg/floz": 16.7
+    "label": "Peet's Brewed Coffee",
+    "value": 16.7
   },
   {
-    "drink": "Peet's Caffe Americano",
-    "mg/floz": 8.8
+    "label": "Peet's Caffe Americano",
+    "value": 8.8
   },
   {
-    "drink": "Peet's Caffe Latte",
-    "mg/floz": 8.8
+    "label": "Peet's Caffe Latte",
+    "value": 8.8
   },
   {
-    "drink": "Peet's Caffe Mocha",
-    "mg/floz": 10.3
+    "label": "Peet's Caffe Mocha",
+    "value": 10.3
   },
   {
-    "drink": "Peet's Cappuccino",
-    "mg/floz": 8.8
+    "label": "Peet's Cappuccino",
+    "value": 8.8
   },
   {
-    "drink": "Peet's Coffee Espresso",
-    "mg/floz": 46.7
+    "label": "Peet's Coffee Espresso",
+    "value": 46.7
   },
   {
-    "drink": "Peet's Decaf Espresso",
-    "mg/floz": 6.7
+    "label": "Peet's Decaf Espresso",
+    "value": 6.7
   },
   {
-    "drink": "Peet's Iced Coffee",
-    "mg/floz": 9.4
+    "label": "Peet's Iced Coffee",
+    "value": 9.4
   },
   {
-    "drink": "Peet's Iced Latte",
-    "mg/floz": 8.8
+    "label": "Peet's Iced Latte",
+    "value": 8.8
   },
   {
-    "drink": "Peet's Iced Mocha",
-    "mg/floz": 10.3
+    "label": "Peet's Iced Mocha",
+    "value": 10.3
   },
   {
-    "drink": "Pep Talk Sparkling Water",
-    "mg/floz": 4.6
+    "label": "Pep Talk Sparkling Water",
+    "value": 4.6
   },
   {
-    "drink": "Pepsi",
-    "mg/floz": 3.2
+    "label": "Pepsi",
+    "value": 3.2
   },
   {
-    "drink": "Pepsi Caffeine Free",
-    "mg/floz": 0
+    "label": "Pepsi Caffeine Free",
+    "value": 0
   },
   {
-    "drink": "Pepsi Made With Sugar",
-    "mg/floz": 3.2
+    "label": "Pepsi Made With Sugar",
+    "value": 3.2
   },
   {
-    "drink": "Pepsi Max (UK)",
-    "mg/floz": 3.8
+    "label": "Pepsi Max (UK)",
+    "value": 3.8
   },
   {
-    "drink": "Pepsi Zero Sugar",
-    "mg/floz": 3.2
+    "label": "Pepsi Zero Sugar",
+    "value": 3.2
   },
   {
-    "drink": "Performance Caffeine",
-    "mg/floz": 90
+    "label": "Performance Caffeine",
+    "value": 90
   },
   {
-    "drink": "PerformElite Pre-Workout",
-    "mg/floz": 28.1
+    "label": "PerformElite Pre-Workout",
+    "value": 28.1
   },
   {
-    "drink": "Perk Energy Beverage",
-    "mg/floz": 12.5
+    "label": "Perk Energy Beverage",
+    "value": 12.5
   },
   {
-    "drink": "Perrier Energize",
-    "mg/floz": 11.7
+    "label": "Perrier Energize",
+    "value": 11.7
   },
   {
-    "drink": "Perrier Sparkling Water",
-    "mg/floz": 0
+    "label": "Perrier Sparkling Water",
+    "value": 0
   },
   {
-    "drink": "PG Tips Black Tea",
-    "mg/floz": 7.4
+    "label": "PG Tips Black Tea",
+    "value": 7.4
   },
   {
-    "drink": "Phocus Sparkling Water",
-    "mg/floz": 6.5
+    "label": "Phocus Sparkling Water",
+    "value": 6.5
   },
   {
-    "drink": "Phoenix Energy Shot",
-    "mg/floz": 140
+    "label": "Phoenix Energy Shot",
+    "value": 140
   },
   {
-    "drink": "Pibb Xtra",
-    "mg/floz": 3.3
+    "label": "Pibb Xtra",
+    "value": 3.3
   },
   {
-    "drink": "Poland Spring Sparkling Energy Water",
-    "mg/floz": 6.5
+    "label": "Poland Spring Sparkling Energy Water",
+    "value": 6.5
   },
   {
-    "drink": "Polar Frost Plus Energy",
-    "mg/floz": 3.9
+    "label": "Polar Frost Plus Energy",
+    "value": 3.9
   },
   {
-    "drink": "Polar Seltzer Water",
-    "mg/floz": 0
+    "label": "Polar Seltzer Water",
+    "value": 0
   },
   {
-    "drink": "Power Horse Energy Drink (EU)",
-    "mg/floz": 9.5
+    "label": "Power Horse Energy label (EU)",
+    "value": 9.5
   },
   {
-    "drink": "Premier Protein Cafe Latte",
-    "mg/floz": 10.4
+    "label": "Premier Protein Cafe Latte",
+    "value": 10.4
   },
   {
-    "drink": "Premium Cola (EU)",
-    "mg/floz": 7.4
+    "label": "Premium Cola (EU)",
+    "value": 7.4
   },
   {
-    "drink": "Prime Energy Drink",
-    "mg/floz": 16.7
+    "label": "Prime Energy label",
+    "value": 16.7
   },
   {
-    "drink": "Private Selection Canned Espresso",
-    "mg/floz": 9.7
+    "label": "Private Selection Canned Espresso",
+    "value": 9.7
   },
   {
-    "drink": "Propel Zero Powder",
-    "mg/floz": 0
+    "label": "Propel Zero Powder",
+    "value": 0
   },
   {
-    "drink": "Proper Wild Energy Shot",
-    "mg/floz": 72
+    "label": "Proper Wild Energy Shot",
+    "value": 72
   },
   {
-    "drink": "Protein2O + Energy",
-    "mg/floz": 7.4
+    "label": "Protein2O + Energy",
+    "value": 7.4
   },
   {
-    "drink": "Pure Boost Energy Drink Mix",
-    "mg/floz": 6.2
+    "label": "Pure Boost Energy label Mix",
+    "value": 6.2
   },
   {
-    "drink": "Pure Cofain 699 (EU)",
-    "mg/floz": 20.7
+    "label": "Pure Cofain 699 (EU)",
+    "value": 20.7
   },
   {
-    "drink": "Pure Kick Energy Drink Mix",
-    "mg/floz": 4.7
+    "label": "Pure Kick Energy label Mix",
+    "value": 4.7
   },
   {
-    "drink": "Pure Leaf Iced Tea",
-    "mg/floz": 3.7
+    "label": "Pure Leaf Iced Tea",
+    "value": 3.7
   },
   {
-    "drink": "Purity Coffee",
-    "mg/floz": 20.4
+    "label": "Purity Coffee",
+    "value": 20.4
   },
   {
-    "drink": "Quake Energy Berry Blast Slurpee",
-    "mg/floz": 5.8
+    "label": "Quake Energy Berry Blast Slurpee",
+    "value": 5.8
   },
   {
-    "drink": "Quake Energy Drink",
-    "mg/floz": 15.6
+    "label": "Quake Energy label",
+    "value": 15.6
   },
   {
-    "drink": "Raze Energy Drink",
-    "mg/floz": 18.8
+    "label": "Raze Energy label",
+    "value": 18.8
   },
   {
-    "drink": "RC (Royal Crown) Cola",
-    "mg/floz": 3.6
+    "label": "RC (Royal Crown) Cola",
+    "value": 3.6
   },
   {
-    "drink": "Red Bull",
-    "mg/floz": 9.5
+    "label": "Red Bull",
+    "value": 9.5
   },
   {
-    "drink": "Red Bull Editions",
-    "mg/floz": 9.5
+    "label": "Red Bull Editions",
+    "value": 9.5
   },
   {
-    "drink": "Red Bull Simply Cola",
-    "mg/floz": 3.8
+    "label": "Red Bull Simply Cola",
+    "value": 3.8
   },
   {
-    "drink": "Red Bull Sugarfree",
-    "mg/floz": 9.5
+    "label": "Red Bull Sugarfree",
+    "value": 9.5
   },
   {
-    "drink": "Red Bull Zero",
-    "mg/floz": 9.5
+    "label": "Red Bull Zero",
+    "value": 9.5
   },
   {
-    "drink": "Red Devil Energy Drink",
-    "mg/floz": 10
+    "label": "Red Devil Energy label",
+    "value": 10
   },
   {
-    "drink": "Red Eye Energy Drink",
-    "mg/floz": 9.5
+    "label": "Red Eye Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Red Power Elixir",
-    "mg/floz": 13.3
+    "label": "Red Power Elixir",
+    "value": 13.3
   },
   {
-    "drink": "Red Thunder Energy Drink",
-    "mg/floz": 10
+    "label": "Red Thunder Energy label",
+    "value": 10
   },
   {
-    "drink": "Red Thunder Energy Shot",
-    "mg/floz": 69
+    "label": "Red Thunder Energy Shot",
+    "value": 69
   },
   {
-    "drink": "Red Thunder Extra Strength",
-    "mg/floz": 115
+    "label": "Red Thunder Extra Strength",
+    "value": 115
   },
   {
-    "drink": "Redline Max 300",
-    "mg/floz": 120
+    "label": "Redline Max 300",
+    "value": 120
   },
   {
-    "drink": "Redline Princess",
-    "mg/floz": 37.5
+    "label": "Redline Princess",
+    "value": 37.5
   },
   {
-    "drink": "Redline Xtreme Energy Drink",
-    "mg/floz": 39.5
+    "label": "Redline Xtreme Energy label",
+    "value": 39.5
   },
   {
-    "drink": "Redline Xtreme Shot",
-    "mg/floz": 100
+    "label": "Redline Xtreme Shot",
+    "value": 100
   },
   {
-    "drink": "Reed's Ginger Energize Shot",
-    "mg/floz": 50
+    "label": "Reed's Ginger Energize Shot",
+    "value": 50
   },
   {
-    "drink": "Reign Total Body Fuel",
-    "mg/floz": 18.8
+    "label": "Reign Total Body Fuel",
+    "value": 18.8
   },
   {
-    "drink": "Revv Coffee Pods",
-    "mg/floz": 15.9
+    "label": "Revv Coffee Pods",
+    "value": 15.9
   },
   {
-    "drink": "Rip It Energy Drink",
-    "mg/floz": 10
+    "label": "Rip It Energy label",
+    "value": 10
   },
   {
-    "drink": "Rip It Energy Shot",
-    "mg/floz": 60
+    "label": "Rip It Energy Shot",
+    "value": 60
   },
   {
-    "drink": "Ritz Cola",
-    "mg/floz": 0.9
+    "label": "Ritz Cola",
+    "value": 0.9
   },
   {
-    "drink": "Roaring Lion Energy Drink",
-    "mg/floz": 9.6
+    "label": "Roaring Lion Energy label",
+    "value": 9.6
   },
   {
-    "drink": "Robusta Coffee",
-    "mg/floz": 33.1
+    "label": "Robusta Coffee",
+    "value": 33.1
   },
   {
-    "drink": "Rockstar Boom",
-    "mg/floz": 10
+    "label": "Rockstar Boom",
+    "value": 10
   },
   {
-    "drink": "Rockstar Energy Drink (Original)",
-    "mg/floz": 10
+    "label": "Rockstar Energy label (Original)",
+    "value": 10
   },
   {
-    "drink": "Rockstar Halo Infinite",
-    "mg/floz": 15
+    "label": "Rockstar Halo Infinite",
+    "value": 15
   },
   {
-    "drink": "Rockstar Juiced",
-    "mg/floz": 10.6
+    "label": "Rockstar Juiced",
+    "value": 10.6
   },
   {
-    "drink": "Rockstar Organic Energy Drink",
-    "mg/floz": 10.7
+    "label": "Rockstar Organic Energy label",
+    "value": 10.7
   },
   {
-    "drink": "Rockstar Punched",
-    "mg/floz": 15
+    "label": "Rockstar Punched",
+    "value": 15
   },
   {
-    "drink": "Rockstar Pure Zero",
-    "mg/floz": 15
+    "label": "Rockstar Pure Zero",
+    "value": 15
   },
   {
-    "drink": "Rockstar Recovery",
-    "mg/floz": 10
+    "label": "Rockstar Recovery",
+    "value": 10
   },
   {
-    "drink": "Rockstar Sugar Free",
-    "mg/floz": 10
+    "label": "Rockstar Sugar Free",
+    "value": 10
   },
   {
-    "drink": "Rockstar Thermo",
-    "mg/floz": 18.8
+    "label": "Rockstar Thermo",
+    "value": 18.8
   },
   {
-    "drink": "Rockstar Unplugged",
-    "mg/floz": 10
+    "label": "Rockstar Unplugged",
+    "value": 10
   },
   {
-    "drink": "Rockstar XDurance",
-    "mg/floz": 18.8
+    "label": "Rockstar XDurance",
+    "value": 18.8
   },
   {
-    "drink": "Rockstar Zero Carb",
-    "mg/floz": 15
+    "label": "Rockstar Zero Carb",
+    "value": 15
   },
   {
-    "drink": "Rogue Energy Drink Mix",
-    "mg/floz": 10.9
+    "label": "Rogue Energy label Mix",
+    "value": 10.9
   },
   {
-    "drink": "RootJack Caffeinated Pirate Root Beer",
-    "mg/floz": 10
+    "label": "RootJack Caffeinated Pirate Root Beer",
+    "value": 10
   },
   {
-    "drink": "Rowdy Energy Drink",
-    "mg/floz": 10
+    "label": "Rowdy Energy label",
+    "value": 10
   },
   {
-    "drink": "Ruby Red Squirt",
-    "mg/floz": 3.2
+    "label": "Ruby Red Squirt",
+    "value": 3.2
   },
   {
-    "drink": "Runa",
-    "mg/floz": 12.5
+    "label": "Runa",
+    "value": 12.5
   },
   {
-    "drink": "Rush! Energy Drink",
-    "mg/floz": 9.6
+    "label": "Rush! Energy label",
+    "value": 9.6
   },
   {
-    "drink": "Sambazon Amazon Energy Drink",
-    "mg/floz": 10
+    "label": "Sambazon Amazon Energy label",
+    "value": 10
   },
   {
-    "drink": "Sarsaparilla",
-    "mg/floz": 0
+    "label": "Sarsaparilla",
+    "value": 0
   },
   {
-    "drink": "Scheckters Energy Drink",
-    "mg/floz": 9.5
+    "label": "Scheckters Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Screamin Energy Max Hit",
-    "mg/floz": 303.3
+    "label": "Screamin Energy Max Hit",
+    "value": 303.3
   },
   {
-    "drink": "Seattle's Best Brewed Coffee",
-    "mg/floz": 21.7
+    "label": "Seattle's Best Brewed Coffee",
+    "value": 21.7
   },
   {
-    "drink": "Sencha Green Tea Shot",
-    "mg/floz": 6.2
+    "label": "Sencha Green Tea Shot",
+    "value": 6.2
   },
   {
-    "drink": "Shasta Cola",
-    "mg/floz": 3.6
+    "label": "Shasta Cola",
+    "value": 3.6
   },
   {
-    "drink": "Shasta Diet Cola",
-    "mg/floz": 3.9
+    "label": "Shasta Diet Cola",
+    "value": 3.9
   },
   {
-    "drink": "Shasta Mountain Rush",
-    "mg/floz": 4.5
+    "label": "Shasta Mountain Rush",
+    "value": 4.5
   },
   {
-    "drink": "Ski Soda",
-    "mg/floz": 5.8
+    "label": "Ski Soda",
+    "value": 5.8
   },
   {
-    "drink": "Slammers Energy Drink (EU)",
-    "mg/floz": 9.5
+    "label": "Slammers Energy label (EU)",
+    "value": 9.5
   },
   {
-    "drink": "SlimFast Shake - Cappuccino",
-    "mg/floz": 9.1
+    "label": "SlimFast Shake - Cappuccino",
+    "value": 9.1
   },
   {
-    "drink": "Slurpee",
-    "mg/floz": 2.5
+    "label": "Slurpee",
+    "value": 2.5
   },
   {
-    "drink": "Snapple Tea",
-    "mg/floz": 2.3
+    "label": "Snapple Tea",
+    "value": 2.3
   },
   {
-    "drink": "Sneak Energy Drink Mix",
-    "mg/floz": 9.4
+    "label": "Sneak Energy label Mix",
+    "value": 9.4
   },
   {
-    "drink": "SoBe Energy Citrus",
-    "mg/floz": 4
+    "label": "SoBe Energy Citrus",
+    "value": 4
   },
   {
-    "drink": "SoBe Green Tea",
-    "mg/floz": 0.3
+    "label": "SoBe Green Tea",
+    "value": 0.3
   },
   {
-    "drink": "Soda Stream",
-    "mg/floz": 3.9
+    "label": "Soda Stream",
+    "value": 3.9
   },
   {
-    "drink": "Solimo Energy Drink",
-    "mg/floz": 9.5
+    "label": "Solimo Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Source 1899 (UK)",
-    "mg/floz": 9.5
+    "label": "Source 1899 (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Southern Sweet Tea",
-    "mg/floz": 2.6
+    "label": "Southern Sweet Tea",
+    "value": 2.6
   },
   {
-    "drink": "Soylent Stacked",
-    "mg/floz": 9
+    "label": "Soylent Stacked",
+    "value": 9
   },
   {
-    "drink": "Spark Energy Drink Mix",
-    "mg/floz": 15
+    "label": "Spark Energy label Mix",
+    "value": 15
   },
   {
-    "drink": "Sparkling Ice +Caffeine",
-    "mg/floz": 4.4
+    "label": "Sparkling Ice +Caffeine",
+    "value": 4.4
   },
   {
-    "drink": "Speed Energy Fuel",
-    "mg/floz": 11.6
+    "label": "Speed Energy Fuel",
+    "value": 11.6
   },
   {
-    "drink": "Spider Energy Drink",
-    "mg/floz": 15
+    "label": "Spider Energy label",
+    "value": 15
   },
   {
-    "drink": "Spike Energy Double Shot",
-    "mg/floz": 82.2
+    "label": "Spike Energy Double Shot",
+    "value": 82.2
   },
   {
-    "drink": "Spike Hardcore Energy",
-    "mg/floz": 21.9
+    "label": "Spike Hardcore Energy",
+    "value": 21.9
   },
   {
-    "drink": "Spike Shooter",
-    "mg/floz": 25
+    "label": "Spike Shooter",
+    "value": 25
   },
   {
-    "drink": "Sprecher Cherry Cola",
-    "mg/floz": 0
+    "label": "Sprecher Cherry Cola",
+    "value": 0
   },
   {
-    "drink": "Sprite",
-    "mg/floz": 0
+    "label": "Sprite",
+    "value": 0
   },
   {
-    "drink": "Squirt Soda",
-    "mg/floz": 0
+    "label": "Squirt Soda",
+    "value": 0
   },
   {
-    "drink": "Stacker Extreme Energy Shot",
-    "mg/floz": 102.5
+    "label": "Stacker Extreme Energy Shot",
+    "value": 102.5
   },
   {
-    "drink": "Starbucks 2X Coffee Pods",
-    "mg/floz": 32.5
+    "label": "Starbucks 2X Coffee Pods",
+    "value": 32.5
   },
   {
-    "drink": "Starbucks Bottled Cold Brew",
-    "mg/floz": 16.4
+    "label": "Starbucks Bottled Cold Brew",
+    "value": 16.4
   },
   {
-    "drink": "Starbucks Bottled Frappuccino",
-    "mg/floz": 8
+    "label": "Starbucks Bottled Frappuccino",
+    "value": 8
   },
   {
-    "drink": "Starbucks Bottled Iced Coffee",
-    "mg/floz": 13.3
+    "label": "Starbucks Bottled Iced Coffee",
+    "value": 13.3
   },
   {
-    "drink": "Starbucks Canned Nitro Cold Brew",
-    "mg/floz": 21.4
+    "label": "Starbucks Canned Nitro Cold Brew",
+    "value": 21.4
   },
   {
-    "drink": "Starbucks Caramel Macchiato",
-    "mg/floz": 9.4
+    "label": "Starbucks Caramel Macchiato",
+    "value": 9.4
   },
   {
-    "drink": "Starbucks Cold & Crafted",
-    "mg/floz": 12.3
+    "label": "Starbucks Cold & Crafted",
+    "value": 12.3
   },
   {
-    "drink": "Starbucks Cold Brew Coffee",
-    "mg/floz": 12.8
+    "label": "Starbucks Cold Brew Coffee",
+    "value": 12.8
   },
   {
-    "drink": "Starbucks Cordusio Mocha",
-    "mg/floz": 19.4
+    "label": "Starbucks Cordusio Mocha",
+    "value": 19.4
   },
   {
-    "drink": "Starbucks Decaf Coffee",
-    "mg/floz": 1.6
+    "label": "Starbucks Decaf Coffee",
+    "value": 1.6
   },
   {
-    "drink": "Starbucks Doubleshot Energy",
-    "mg/floz": 9
+    "label": "Starbucks Doubleshot Energy",
+    "value": 9
   },
   {
-    "drink": "Starbucks Doubleshot Espresso",
-    "mg/floz": 18.5
+    "label": "Starbucks Doubleshot Espresso",
+    "value": 18.5
   },
   {
-    "drink": "Starbucks Grande Caffe Americano",
-    "mg/floz": 14.1
+    "label": "Starbucks Grande Caffe Americano",
+    "value": 14.1
   },
   {
-    "drink": "Starbucks Grande Caffe Latte",
-    "mg/floz": 9.4
+    "label": "Starbucks Grande Caffe Latte",
+    "value": 9.4
   },
   {
-    "drink": "Starbucks Grande Caffe Mocha",
-    "mg/floz": 10.9
+    "label": "Starbucks Grande Caffe Mocha",
+    "value": 10.9
   },
   {
-    "drink": "Starbucks Grande Cappuccino",
-    "mg/floz": 9.4
+    "label": "Starbucks Grande Cappuccino",
+    "value": 9.4
   },
   {
-    "drink": "Starbucks Grande Coffee",
-    "mg/floz": 19.4
+    "label": "Starbucks Grande Coffee",
+    "value": 19.4
   },
   {
-    "drink": "Starbucks Iced Americano",
-    "mg/floz": 14.1
+    "label": "Starbucks Iced Americano",
+    "value": 14.1
   },
   {
-    "drink": "Starbucks Iced Espresso Classics",
-    "mg/floz": 10.4
+    "label": "Starbucks Iced Espresso Classics",
+    "value": 10.4
   },
   {
-    "drink": "Starbucks Nitro Cold Brew Coffee",
-    "mg/floz": 17.5
+    "label": "Starbucks Nitro Cold Brew Coffee",
+    "value": 17.5
   },
   {
-    "drink": "Starbucks Pink Drink",
-    "mg/floz": 2.8
+    "label": "Starbucks Pink label",
+    "value": 2.8
   },
   {
-    "drink": "Starbucks Pumpkin Cream Cold Brew",
-    "mg/floz": 11.6
+    "label": "Starbucks Pumpkin Cream Cold Brew",
+    "value": 11.6
   },
   {
-    "drink": "Starbucks Refreshers",
-    "mg/floz": 2.8
+    "label": "Starbucks Refreshers",
+    "value": 2.8
   },
   {
-    "drink": "Starbucks Refreshers Canned",
-    "mg/floz": 4.2
+    "label": "Starbucks Refreshers Canned",
+    "value": 4.2
   },
   {
-    "drink": "Starbucks Triple Shot Energy",
-    "mg/floz": 15
+    "label": "Starbucks Triple Shot Energy",
+    "value": 15
   },
   {
-    "drink": "Starbucks Verismo Coffee Pods",
-    "mg/floz": 7.5
+    "label": "Starbucks Verismo Coffee Pods",
+    "value": 7.5
   },
   {
-    "drink": "Starbucks Via Ready Brew",
-    "mg/floz": 16.9
+    "label": "Starbucks Via Ready Brew",
+    "value": 16.9
   },
   {
-    "drink": "Steaz Energy",
-    "mg/floz": 8.3
+    "label": "Steaz Energy",
+    "value": 8.3
   },
   {
-    "drink": "Steep 18 Cold Brew",
-    "mg/floz": 11.2
+    "label": "Steep 18 Cold Brew",
+    "value": 11.2
   },
   {
-    "drink": "Stipe Miocic Extra Strength Coffee",
-    "mg/floz": 41.7
+    "label": "Stipe Miocic Extra Strength Coffee",
+    "value": 41.7
   },
   {
-    "drink": "Stok Coffee Shots",
-    "mg/floz": 93
+    "label": "Stok Coffee Shots",
+    "value": 93
   },
   {
-    "drink": "Stok Cold Brew",
-    "mg/floz": 10.6
+    "label": "Stok Cold Brew",
+    "value": 10.6
   },
   {
-    "drink": "Strike Force Energy Drink Mix",
-    "mg/floz": 9.5
+    "label": "Strike Force Energy label Mix",
+    "value": 9.5
   },
   {
-    "drink": "Stumptown Cold Brew Coffee",
-    "mg/floz": 26.6
+    "label": "Stumptown Cold Brew Coffee",
+    "value": 26.6
   },
   {
-    "drink": "Stumptown Nitro Cold Brew",
-    "mg/floz": 30
+    "label": "Stumptown Nitro Cold Brew",
+    "value": 30
   },
   {
-    "drink": "Sudden Instant Coffee",
-    "mg/floz": 7.9
+    "label": "Sudden Instant Coffee",
+    "value": 7.9
   },
   {
-    "drink": "Sun Drop Soda",
-    "mg/floz": 5.3
+    "label": "Sun Drop Soda",
+    "value": 5.3
   },
   {
-    "drink": "Sunkist Orange Soda",
-    "mg/floz": 1.6
+    "label": "Sunkist Orange Soda",
+    "value": 1.6
   },
   {
-    "drink": "Sunup Pure Green Coffee",
-    "mg/floz": 18.2
+    "label": "Sunup Pure Green Coffee",
+    "value": 18.2
   },
   {
-    "drink": "T-Virus Antidote",
-    "mg/floz": 8.3
+    "label": "T-Virus Antidote",
+    "value": 8.3
   },
   {
-    "drink": "Taft Coffee (EU)",
-    "mg/floz": 98.5
+    "label": "Taft Coffee (EU)",
+    "value": 98.5
   },
   {
-    "drink": "Taiwanese Milk Tea",
-    "mg/floz": 9.4
+    "label": "Taiwanese Milk Tea",
+    "value": 9.4
   },
   {
-    "drink": "Taster's Choice Instant Coffee",
-    "mg/floz": 12.2
+    "label": "Taster's Choice Instant Coffee",
+    "value": 12.2
   },
   {
-    "drink": "Taurus Energy Drink",
-    "mg/floz": 5.9
+    "label": "Taurus Energy label",
+    "value": 5.9
   },
   {
-    "drink": "Tazo Chai",
-    "mg/floz": 5.9
+    "label": "Tazo Chai",
+    "value": 5.9
   },
   {
-    "drink": "Tea (Black)",
-    "mg/floz": 5.2
+    "label": "Tea (Black)",
+    "value": 5.2
   },
   {
-    "drink": "Tea (Decaf)",
-    "mg/floz": 0.5
+    "label": "Tea (Decaf)",
+    "value": 0.5
   },
   {
-    "drink": "Tea (Green)",
-    "mg/floz": 2.2
+    "label": "Tea (Green)",
+    "value": 2.2
   },
   {
-    "drink": "Tea (Herbal)",
-    "mg/floz": 0
+    "label": "Tea (Herbal)",
+    "value": 0
   },
   {
-    "drink": "Tea (Iced)",
-    "mg/floz": 5.9
+    "label": "Tea (Iced)",
+    "value": 5.9
   },
   {
-    "drink": "Tea (Instant)",
-    "mg/floz": 5
+    "label": "Tea (Instant)",
+    "value": 5
   },
   {
-    "drink": "Tea (Jasmine)",
-    "mg/floz": 3.1
+    "label": "Tea (Jasmine)",
+    "value": 3.1
   },
   {
-    "drink": "Tea (Oolong)",
-    "mg/floz": 4.6
+    "label": "Tea (Oolong)",
+    "value": 4.6
   },
   {
-    "drink": "Tea (White)",
-    "mg/floz": 3.5
+    "label": "Tea (White)",
+    "value": 3.5
   },
   {
-    "drink": "Teas' Tea Oolong",
-    "mg/floz": 4.1
+    "label": "Teas' Tea Oolong",
+    "value": 4.1
   },
   {
-    "drink": "Teavana Tea",
-    "mg/floz": 5.1
+    "label": "Teavana Tea",
+    "value": 5.1
   },
   {
-    "drink": "Tejava Iced Tea",
-    "mg/floz": 4.2
+    "label": "Tejava Iced Tea",
+    "value": 4.2
   },
   {
-    "drink": "TENZING Natural Energy",
-    "mg/floz": 9.5
+    "label": "TENZING Natural Energy",
+    "value": 9.5
   },
   {
-    "drink": "Tiger Energy Drink",
-    "mg/floz": 9.5
+    "label": "Tiger Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Tim Hortons Large Brewed Coffee",
-    "mg/floz": 13.5
+    "label": "Tim Hortons Large Brewed Coffee",
+    "value": 13.5
   },
   {
-    "drink": "Tim Hortons Small French Vanilla Coffee",
-    "mg/floz": 6
+    "label": "Tim Hortons Small French Vanilla Coffee",
+    "value": 6
   },
   {
-    "drink": "Tonic Water",
-    "mg/floz": 0
+    "label": "Tonic Water",
+    "value": 0
   },
   {
-    "drink": "Triton Energy Drink",
-    "mg/floz": 12.5
+    "label": "Triton Energy label",
+    "value": 12.5
   },
   {
-    "drink": "Tropicana Twister Soda",
-    "mg/floz": 0
+    "label": "Tropicana Twister Soda",
+    "value": 0
   },
   {
-    "drink": "Tru Energy Wakeup",
-    "mg/floz": 8.3
+    "label": "Tru Energy Wakeup",
+    "value": 8.3
   },
   {
-    "drink": "TruBrain Extra",
-    "mg/floz": 100
+    "label": "TruBrain Extra",
+    "value": 100
   },
   {
-    "drink": "True Lemon Energy Mix",
-    "mg/floz": 7.5
+    "label": "True Lemon Energy Mix",
+    "value": 7.5
   },
   {
-    "drink": "TrueStart Performance Coffee",
-    "mg/floz": 18.6
+    "label": "TrueStart Performance Coffee",
+    "value": 18.6
   },
   {
-    "drink": "Turkey Hill Iced Tea",
-    "mg/floz": 5.3
+    "label": "Turkey Hill Iced Tea",
+    "value": 5.3
   },
   {
-    "drink": "Turkish Coffee",
-    "mg/floz": 25
+    "label": "Turkish Coffee",
+    "value": 25
   },
   {
-    "drink": "Tweaker Energy Drink",
-    "mg/floz": 9.5
+    "label": "Tweaker Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Tweaker Shot",
-    "mg/floz": 137.5
+    "label": "Tweaker Shot",
+    "value": 137.5
   },
   {
-    "drink": "Twig Tea (Kukicha)",
-    "mg/floz": 3.1
+    "label": "Twig Tea (Kukicha)",
+    "value": 3.1
   },
   {
-    "drink": "Ugly Energy Water",
-    "mg/floz": 10
+    "label": "Ugly Energy Water",
+    "value": 10
   },
   {
-    "drink": "UPTIME Energy Drink",
-    "mg/floz": 11.8
+    "label": "UPTIME Energy label",
+    "value": 11.8
   },
   {
-    "drink": "USANA Rev3 Energy Drink",
-    "mg/floz": 10
+    "label": "USANA Rev3 Energy label",
+    "value": 10
   },
   {
-    "drink": "V Iced Coffee",
-    "mg/floz": 9.2
+    "label": "V Iced Coffee",
+    "value": 9.2
   },
   {
-    "drink": "V Energy Drink",
-    "mg/floz": 9.2
+    "label": "V Energy label",
+    "value": 9.2
   },
   {
-    "drink": "V8 +Energy Drink",
-    "mg/floz": 10
+    "label": "V8 +Energy label",
+    "value": 10
   },
   {
-    "drink": "Venom Death Adder",
-    "mg/floz": 10
+    "label": "Venom Death Adder",
+    "value": 10
   },
   {
-    "drink": "Vernors Ginger Ale",
-    "mg/floz": 0
+    "label": "Vernors Ginger Ale",
+    "value": 0
   },
   {
-    "drink": "Very Strong Coffee",
-    "mg/floz": 112.5
+    "label": "Very Strong Coffee",
+    "value": 112.5
   },
   {
-    "drink": "Virtue Clean Energy Beverage",
-    "mg/floz": 9.5
+    "label": "Virtue Clean Energy Beverage",
+    "value": 9.5
   },
   {
-    "drink": "Viso Energy Drink",
-    "mg/floz": 17.6
+    "label": "Viso Energy label",
+    "value": 17.6
   },
   {
-    "drink": "Vital 4U Liquid Energy",
-    "mg/floz": 310
+    "label": "Vital 4U Liquid Energy",
+    "value": 310
   },
   {
-    "drink": "VitaminWater Energy",
-    "mg/floz": 2.5
+    "label": "VitaminWater Energy",
+    "value": 2.5
   },
   {
-    "drink": "VitaRain Zero Enhanced Water",
-    "mg/floz": 2.1
+    "label": "VitaRain Zero Enhanced Water",
+    "value": 2.1
   },
   {
-    "drink": "Voila Instant Coffee",
-    "mg/floz": 12.5
+    "label": "Voila Instant Coffee",
+    "value": 12.5
   },
   {
-    "drink": "Waka Decaf Instant Coffee",
-    "mg/floz": 0.5
+    "label": "Waka Decaf Instant Coffee",
+    "value": 0.5
   },
   {
-    "drink": "Waka Indian Instant Coffee",
-    "mg/floz": 8.8
+    "label": "Waka Indian Instant Coffee",
+    "value": 8.8
   },
   {
-    "drink": "Waka Instant Coffee",
-    "mg/floz": 8.8
+    "label": "Waka Instant Coffee",
+    "value": 8.8
   },
   {
-    "drink": "Waka Instant Tea",
-    "mg/floz": 3.8
+    "label": "Waka Instant Tea",
+    "value": 3.8
   },
   {
-    "drink": "Water Joe",
-    "mg/floz": 3.5
+    "label": "Water Joe",
+    "value": 3.5
   },
   {
-    "drink": "Wave Soda",
-    "mg/floz": 3.5
+    "label": "Wave Soda",
+    "value": 3.5
   },
   {
-    "drink": "Wawa Coffee",
-    "mg/floz": 18.1
+    "label": "Wawa Coffee",
+    "value": 18.1
   },
   {
-    "drink": "Wendy's Iced Tea",
-    "mg/floz": 2
+    "label": "Wendy's Iced Tea",
+    "value": 2
   },
   {
-    "drink": "Whipped (Dalgona) Coffee",
-    "mg/floz": 13.1
+    "label": "Whipped (Dalgona) Coffee",
+    "value": 13.1
   },
   {
-    "drink": "Wide Awak Energy Coffee",
-    "mg/floz": 12
+    "label": "Wide Awak Energy Coffee",
+    "value": 12
   },
   {
-    "drink": "Wide Awake Coffee Cold Brew",
-    "mg/floz": 10.9
+    "label": "Wide Awake Coffee Cold Brew",
+    "value": 10.9
   },
   {
-    "drink": "Wide Awake Iced Coffee Drinks",
-    "mg/floz": 2.2
+    "label": "Wide Awake Iced Coffee labels",
+    "value": 2.2
   },
   {
-    "drink": "Wild Cherry Pepsi",
-    "mg/floz": 3.2
+    "label": "Wild Cherry Pepsi",
+    "value": 3.2
   },
   {
-    "drink": "Wild Tiger Energy Drink",
-    "mg/floz": 9
+    "label": "Wild Tiger Energy label",
+    "value": 9
   },
   {
-    "drink": "Wildcat Energy Drink (UK)",
-    "mg/floz": 9.5
+    "label": "Wildcat Energy label (UK)",
+    "value": 9.5
   },
   {
-    "drink": "Wired X 3000 Energy Drink",
-    "mg/floz": 11.6
+    "label": "Wired X 3000 Energy label",
+    "value": 11.6
   },
   {
-    "drink": "Wired X Berry Rush",
-    "mg/floz": 5.9
+    "label": "Wired X Berry Rush",
+    "value": 5.9
   },
   {
-    "drink": "Wired X344 Energy Drink",
-    "mg/floz": 21.5
+    "label": "Wired X344 Energy label",
+    "value": 21.5
   },
   {
-    "drink": "Woke Up Energy Shot",
-    "mg/floz": 116.6
+    "label": "Woke Up Energy Shot",
+    "value": 116.6
   },
   {
-    "drink": "X Ray Energy Drink",
-    "mg/floz": 9.3
+    "label": "X Ray Energy label",
+    "value": 9.3
   },
   {
-    "drink": "X-Mode Energy Shot",
-    "mg/floz": 150
+    "label": "X-Mode Energy Shot",
+    "value": 150
   },
   {
-    "drink": "Xing Craft Brew",
-    "mg/floz": 7.5
+    "label": "Xing Craft Brew",
+    "value": 7.5
   },
   {
-    "drink": "Xingtea Iced Green Tea",
-    "mg/floz": 4.7
+    "label": "Xingtea Iced Green Tea",
+    "value": 4.7
   },
   {
-    "drink": "XL Energy Drink (EU)",
-    "mg/floz": 9.5
+    "label": "XL Energy label (EU)",
+    "value": 9.5
   },
   {
-    "drink": "XS Energy Drink",
-    "mg/floz": 9.5
+    "label": "XS Energy label",
+    "value": 9.5
   },
   {
-    "drink": "Xtreme Shock Energy Drink",
-    "mg/floz": 16.7
+    "label": "Xtreme Shock Energy label",
+    "value": 16.7
   },
   {
-    "drink": "Xyience Energy Drink",
-    "mg/floz": 10
+    "label": "Xyience Energy label",
+    "value": 10
   },
   {
-    "drink": "Yellow Tea",
-    "mg/floz": 7.9
+    "label": "Yellow Tea",
+    "value": 7.9
   },
   {
-    "drink": "Yerba Mate Tea",
-    "mg/floz": 5
+    "label": "Yerba Mate Tea",
+    "value": 5
   },
   {
-    "drink": "Yerbae Sparkling Water",
-    "mg/floz": 8.3
+    "label": "Yerbae Sparkling Water",
+    "value": 8.3
   },
   {
-    "drink": "YMateina Yerba Mate",
-    "mg/floz": 10
+    "label": "YMateina Yerba Mate",
+    "value": 10
   },
   {
-    "drink": "Zest Highly Caffeinated Tea",
-    "mg/floz": 18.8
+    "label": "Zest Highly Caffeinated Tea",
+    "value": 18.8
   },
   {
-    "drink": "Zest Sparkling Tea",
-    "mg/floz": 11.2
+    "label": "Zest Sparkling Tea",
+    "value": 11.2
   },
   {
-    "drink": "Zevia Cola",
-    "mg/floz": 3.8
+    "label": "Zevia Cola",
+    "value": 3.8
   },
   {
-    "drink": "Zevia Energy Drink",
-    "mg/floz": 10
+    "label": "Zevia Energy label",
+    "value": 10
   },
   {
-    "drink": "ZipFizz Energy Drink Mix",
-    "mg/floz": 6.2
+    "label": "ZipFizz Energy label Mix",
+    "value": 6.2
   },
   {
-    "drink": "Zoa Energy Drink",
-    "mg/floz": 10
+    "label": "Zoa Energy label",
+    "value": 10
   },
   {
-    "drink": "Zola Coconut Water Espresso",
-    "mg/floz": 7.1
+    "label": "Zola Coconut Water Espresso",
+    "value": 7.1
   },
   {
-    "drink": "Zombie Blood Energy Potion",
-    "mg/floz": 23.5
+    "label": "Zombie Blood Energy Potion",
+    "value": 23.5
   }
 ]

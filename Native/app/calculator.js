@@ -20,7 +20,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import logo from "../assets/logo.png";
 
 export default function Calculator() {
-  const drinks = caffeineContent.map((drink, index) => {return drink["drink"], key=index})
+  const drinks = caffeineContent.map((index, drink) => {return drink["drink"], key=index})
   console.log(drinks)
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
