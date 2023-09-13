@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { StatusBar } from "expo-status-bar";
+import { caffeineContent } from '../caffeineContent';
+
 import {
   StyleSheet,
   Text,
@@ -18,22 +20,17 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import logo from "../assets/logo.png";
 
 export default function Calculator() {
+  const drinks = caffeineContent.map((drink, index) => {return drink["drink"], key=index})
+  console.log(drinks)
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([{ label: 'Coffee (black)', value: 'coffee_black'},{ label: 'Cold brew', value: 'cold_brew'},{ label: 'Black tea', value: 'tea_black'}]);
+  const [items, setItems] = useState(drinks);
   const [amount, setChangeAmount] = useState('')
   const [caffeine, setCaffeine] = useState(0)
 
-  const caffeinePerMl = {
-    "coffee_black": .3958,
-    "cold_brew": .423,
-    "tea_black": .2292
-
-  }
-
   const onChangeAmount = amount => {
     setChangeAmount(amount)
-    setCaffeine(caffeinePerMl[value] * amount)
+    setCaffeine(value * amount)
   }
 
   let [fontsLoaded] = useFonts({
@@ -54,7 +51,7 @@ export default function Calculator() {
           <View style={styles.calculatorContainer}>
           <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
-            <DropDownPicker style={{marginTop: 10}} open={open} value={value} items={items} setOpen={setOpen} setValue={setValue} setItems={setItems} />
+            <DropDownPicker style={{marginTop: 10}} key={drinks} open={open} value={value} items={items} setOpen={setOpen} setValue={setValue} setItems={setItems} />
             <Text style={styles.baseText}>How much? In milliliters...</Text>
             <TextInput style={styles.input} returnKeyType={ 'done' } editable={value ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder="mL"></TextInput>
             <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
