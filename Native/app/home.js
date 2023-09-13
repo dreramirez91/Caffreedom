@@ -13,7 +13,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import logo from "../assets/logo.png";
-import { Link } from "expo-router";
 import Footer from '../components/footer';
 
 export default function Home() {

@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   myAppHeaderText: {
     backgroundColor: 'white',
     width: '100%',
-
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'Lora_400Regular_Italic',

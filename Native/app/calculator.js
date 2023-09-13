@@ -6,6 +6,7 @@ import {
   View,
   ImageBackground,
   Pressable,
+  Image,
   SafeAreaView,
   TextInput,
 } from "react-native";
@@ -14,6 +15,7 @@ import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import Footer from '../components/footer';
 import DropDownPicker from 'react-native-dropdown-picker';
+import logo from "../assets/logo.png";
 
 export default function Calculator() {
   const [open, setOpen] = useState(false);
@@ -50,7 +52,7 @@ export default function Calculator() {
           style={styles.image}
         >
           <View style={styles.calculatorContainer}>
-            <Text style={styles.headerText}>Calculator</Text>
+          <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
             <DropDownPicker style={{marginTop: 10}} open={open} value={value} items={items} setOpen={setOpen} setValue={setValue} setItems={setItems} />
             <Text style={styles.baseText}>How much? In milliliters...</Text>
@@ -77,32 +79,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   calculatorContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.7)",
     width: "80%",
     justifyContent: "center",
     borderRadius: 4,
-    padding:10
+    padding: 10
+
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 24,
     textAlign: "center",
-  },
-  logoContainer: {
-    alignItems: "center",
-    paddingTop: 20,
-    paddingBottom: 20
-  },
-  logo: {
-    width: 55,
-    height: 55,
-  },
-  userContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingBottom: 10,
-    alignContent: "center"
   },
   baseText: {
     color: "rgba(242, 255, 99, 1)",
