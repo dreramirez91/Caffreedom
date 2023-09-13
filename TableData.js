@@ -8,7 +8,7 @@ function main() {
     var workbookData = XLSX.read(fileContent, { type: 'buffer' });
     var sheetName = workbookData.SheetNames[0];
     var sheet = workbookData.Sheets[sheetName];
-    var jsonData = XLSX.utils.sheet_to_json(sheet, { header: ['drink', 'mg/floz'] });
+    var jsonData = XLSX.utils.sheet_to_json(sheet, { header: ['id', 'drink', 'mg/floz'] });
     console.log(JSON.stringify(jsonData, null, 2));
 }
 main();

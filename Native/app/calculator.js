@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { StatusBar } from "expo-status-bar";
 import { caffeineContent } from '../caffeineContent';
+import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown';
 
 import {
   StyleSheet,
@@ -16,21 +17,21 @@ import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import Footer from '../components/footer';
-import DropDownPicker from 'react-native-dropdown-picker';
-import logo from "../assets/logo.png";
 
 export default function Calculator() {
-  const drinks = caffeineContent.map((index, drink) => {return drink["drink"], key=index})
-  console.log(drinks)
-  const [open, setOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [drink, setDrink] = useState('');
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState(drinks);
   const [amount, setChangeAmount] = useState('')
   const [caffeine, setCaffeine] = useState(0)
 
+  const onChangeDrink = drink => {
+    setDrink(drink)
+  }
+
   const onChangeAmount = amount => {
     setChangeAmount(amount)
-    setCaffeine(value * amount)
+    setCaffeine(drink["mg/floz"] * amount)
   }
 
   let [fontsLoaded] = useFonts({
@@ -51,9 +52,15 @@ export default function Calculator() {
           <View style={styles.calculatorContainer}>
           <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
-            <DropDownPicker style={{marginTop: 10}} key={drinks} open={open} value={value} items={items} setOpen={setOpen} setValue={setValue} setItems={setItems} />
-            <Text style={styles.baseText}>How much? In milliliters...</Text>
-            <TextInput style={styles.input} returnKeyType={ 'done' } editable={value ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder="mL"></TextInput>
+            <AutocompleteDropdown
+              clearOnFocus={false}
+              closeOnBlur={true}
+              closeOnSubmit={false}
+              onSelectItem={onChangeDrink}
+              dataSet={caffeineContent}
+            />
+            <Text style={styles.baseText}>How much? In fluid ounces...</Text>
+            <TextInput style={styles.input} returnKeyType={ 'done' } editable={drink ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder="mL"></TextInput>
             <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
           </View>
         </ImageBackground>
