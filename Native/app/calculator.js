@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { StatusBar } from "expo-status-bar";
 import { caffeineContent } from '../caffeineContent';
 import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown';
-
+import DropDownPicker from 'react-native-dropdown-picker';
 import {
   StyleSheet,
   Text,
@@ -19,9 +19,14 @@ import background from "../assets/background.jpeg";
 import Footer from '../components/footer';
 
 export default function Calculator() {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [open, setOpen] = useState(false);
   const [drink, setDrink] = useState('');
-  const [value, setValue] = useState(null);
+  const [measurement, setMeasurement] = useState(null)
+  const [items, setItems] = useState([
+    {label: 'fl oz', value: 'floz'},
+    {label: 'cups', value: 'cups'},
+    {label: 'mL', value: 'ml'}
+  ]);
   const [amount, setChangeAmount] = useState('')
   const [caffeine, setCaffeine] = useState(0)
 
@@ -31,7 +36,9 @@ export default function Calculator() {
 
   const onChangeAmount = amount => {
     setChangeAmount(amount)
-    setCaffeine(drink["mg/floz"] * amount)
+    if (measurement === 'floz') {setCaffeine(drink["mg/floz"] * amount)}
+    else if (measurement === 'cups') {setCaffeine(drink["mg/floz"] * amount * 8 )}
+    else if (measurement === 'ml') {setCaffeine((drink["mg/floz"] * amount)/29.5735 )}
   }
 
   let [fontsLoaded] = useFonts({
@@ -52,16 +59,30 @@ export default function Calculator() {
           <View style={styles.calculatorContainer}>
           <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
-            <AutocompleteDropdown containerStyle={styles.dropdown}
-              clearOnFocus={false}
-              closeOnBlur={true}
-              closeOnSubmit={false}
-              onSelectItem={onChangeDrink}
-              dataSet={caffeineContent}
-            />
-            <Text style={styles.baseText}>How much? In fluid ounces...</Text>
-            <TextInput style={styles.input} returnKeyType={ 'done' } editable={drink ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder="mL"></TextInput>
-            <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
+            
+          <AutocompleteDropdown containerStyle={styles.dropdown}
+            clearOnFocus={false}
+            closeOnBlur={true}
+            closeOnSubmit={false}
+            onSelectItem={onChangeDrink}
+            dataSet={caffeineContent}
+          />
+          <Text style={styles.baseText}>How much?</Text>
+          <View style={open? styles.howMuchOpen : styles.howMuchClosed}>
+          <TextInput style={styles.input} returnKeyType={ 'done' } editable={drink && measurement ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder='Amount'></TextInput>
+          <DropDownPicker
+            open={open}
+            value={measurement}
+            items={items}
+            setOpen={setOpen}
+            setValue={setMeasurement}
+            setItems={setItems}
+            containerStyle={{width: '45%'}}
+            style={{borderWidth:0}}
+            placeholder='Unit of measurement'
+          />
+          </View>
+          <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
           </View>
         </ImageBackground>
         <Footer />
@@ -103,23 +124,38 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: "center"
   },
+  howMuch: {
+    flex: 1,
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 20,
+    textAlign: "center"
+  },
   separator: {
     marginVertical: 8,
     borderBottomColor: "black",
     bottomBorderWidth: StyleSheet.hairlineWidth,
   },
   input: {
-    height: 41,
-    width: '100%',
     color: 'black',
-    borderWidth: 1,
     borderRadius: 8,
-    padding: 10,
     backgroundColor: 'white',
-    marginTop: 10,
-    borderWidth:0
+    borderWidth:0,
+    width: '45%',
+    padding: 10
   },
   dropdown: {
     marginTop: 10,
-  }
+  },
+  howMuchOpen: {
+    zIndex: 100,
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  howMuchClosed: {
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
 });
