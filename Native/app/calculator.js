@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StatusBar } from "expo-status-bar";
 import { caffeineContent } from '../caffeineContent';
 import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown';
@@ -40,6 +40,8 @@ export default function Calculator() {
     else if (measurement === 'cups') {setCaffeine(drink["mg/floz"] * amount * 8 )}
     else if (measurement === 'ml') {setCaffeine((drink["mg/floz"] * amount)/29.5735 )}
   }
+
+  useEffect(() => {onChangeAmount()}, [drink]);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
