@@ -42,12 +42,12 @@ export default function Calculator() {
     else if (measurement === 'ml') {setCaffeine((drink["mg/floz"] * amount)/29.5735 )}
   }
 
-  const swapDrink = () => {
+  const swapDrink = (amount) => {
     if (drink === null) {
-    } else {onChangeAmount();}
+    } else {onChangeAmount(amount);}
   }
 
-  useEffect(() => {swapDrink()}, [drink]);
+  useEffect(() => {swapDrink(amount)}, [drink]);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -67,10 +67,9 @@ export default function Calculator() {
           <View style={styles.calculatorContainer}>
           <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
-            
           <AutocompleteDropdown containerStyle={styles.dropdown}
             clearOnFocus={false}
-            closeOnBlur={true}
+            closeOnBlur={false}
             closeOnSubmit={false}
             onSelectItem={onChangeDrink}
             dataSet={caffeineContent}
