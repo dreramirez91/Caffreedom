@@ -27,21 +27,27 @@ export default function Calculator() {
     {label: 'cups', value: 'cups'},
     {label: 'mL', value: 'ml'}
   ]);
-  const [amount, setChangeAmount] = useState('')
+  const [amount, setAmount] = useState('')
   const [caffeine, setCaffeine] = useState(0)
 
   const onChangeDrink = drink => {
+    console.log(drink)
     setDrink(drink)
   }
 
   const onChangeAmount = amount => {
-    setChangeAmount(amount)
+    setAmount(amount)
     if (measurement === 'floz') {setCaffeine(drink["mg/floz"] * amount)}
     else if (measurement === 'cups') {setCaffeine(drink["mg/floz"] * amount * 8 )}
     else if (measurement === 'ml') {setCaffeine((drink["mg/floz"] * amount)/29.5735 )}
   }
 
-  useEffect(() => {onChangeAmount()}, [drink]);
+  const swapDrink = () => {
+    if (drink === null) {
+    } else {onChangeAmount();}
+  }
+
+  useEffect(() => {swapDrink()}, [drink]);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
