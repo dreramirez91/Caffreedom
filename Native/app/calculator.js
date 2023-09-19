@@ -47,7 +47,7 @@ export default function Calculator() {
     } else {onChangeAmount(amount);}
   }
 
-  useEffect(() => {swapDrink(amount)}, [drink]);
+  useEffect(() => {swapDrink(amount)}, [drink, measurement]);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
