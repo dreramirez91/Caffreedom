@@ -31,7 +31,7 @@ export default function Graph() {
         setIntakes(data.intakes)
     }
   };
-  useEffect(() => {fetchIntakes()}, []);
+  useEffect(() => {fetchIntakes()}, []); // Must login to be able to fetch this data
 
   var month = new Date().getMonth() + 1;
 
