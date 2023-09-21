@@ -12,7 +12,6 @@ class CaffeineIntakesEncoder(ModelEncoder):
     properties = ["amount", "date"]
     
  
-
 @login_required
 @require_http_methods(["GET", "POST"])
 def api_list_caffeine_intake(request):

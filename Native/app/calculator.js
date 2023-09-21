@@ -8,8 +8,6 @@ import {
   Text,
   View,
   ImageBackground,
-  Pressable,
-  Image,
   SafeAreaView,
   TextInput,
 } from "react-native";
