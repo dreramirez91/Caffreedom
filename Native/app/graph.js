@@ -81,9 +81,6 @@ export default function Graph() {
     yAxisSuffix=""
     yAxisInterval={1} // optional, defaults to 1
     chartConfig={{
-      backgroundColor: "inherit",
-      backgroundGradientFrom: "inherit",
-      backgroundGradientTo: "inherit",
       decimalPlaces: 2, // optional, defaults to 2dp
       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
       labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
