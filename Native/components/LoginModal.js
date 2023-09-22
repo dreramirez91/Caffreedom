@@ -28,7 +28,8 @@ export default function LoginModal({modalVisible, setModalVisible}) {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Login</Text>
-            <TextInput style={styles.input} value={username}></TextInput>
+            <TextInput style={styles.input} value={username}>Username</TextInput>
+            <TextInput style={styles.input} value={password}>Password</TextInput>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
@@ -37,6 +38,7 @@ export default function LoginModal({modalVisible, setModalVisible}) {
           </View>
         </View>
       </Modal>
+      
         </View>
        
     );
@@ -47,10 +49,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(157, 108, 255, 1)',
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -78,17 +81,23 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: "Lora_400Regular_Italic",
   },
   modalText: {
+    color: "rgba(242, 255, 99, 1)",
     marginBottom: 15,
+    fontFamily: "Lora_400Regular_Italic",
     textAlign: 'center',
   },
   input: {
     color: 'black',
+    fontFamily: "Lora_400Regular_Italic",
     borderRadius: 8,
+    borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: 'white',
-    borderWidth:0,
-    width: '45%',
-    padding: 10
+    borderWidth:1,
+    width: 150,
+    padding: 10,
+    margin:10
   },
 });

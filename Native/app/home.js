@@ -41,8 +41,10 @@ export default function Home() {
           resizeMode="cover"
           style={styles.image}
         >
+           <View style={styles.homeContainer}>
+             <LoginModal setModalVisible={setModalVisible} modalVisible={modalVisible} />
+             </View>
           <View style={styles.homeContainer}>
-          <LoginModal setModalVisible={setModalVisible} modalVisible={modalVisible} />
             <Text style={styles.headerText}>Caffreedom</Text>
           <View style={styles.logoContainer}><Image style={styles.logo} source={logo} /></View>
           <View style={styles.userContainer}>
