@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404
+from rest_framework.authentication import BasicAuthentication
 from .models import Profile, CaffeineIntake
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from rest_framework import generics
+from .serializers import UserSerializer 
 from django.http import JsonResponse
 from common.json import ModelEncoder
 import json
-from common.json import ModelEncoder
 
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
@@ -24,3 +27,12 @@ def api_list_caffeine_intake(request):
             {"intakes": intakes},
             encoder=CaffeineIntakesEncoder
         )
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    
