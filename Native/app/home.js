@@ -41,10 +41,8 @@ export default function Home() {
           resizeMode="cover"
           style={styles.image}
         >
-        
           <View style={styles.homeContainer}>
           <LoginModal setModalVisible={setModalVisible} modalVisible={modalVisible} />
-          
             <Text style={styles.headerText}>Caffreedom</Text>
           <View style={styles.logoContainer}><Image style={styles.logo} source={logo} /></View>
           <View style={styles.userContainer}>
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     width: "80%",
     justifyContent: "center",
-    padding:10,
+    paddingTop: 10,
     borderRadius: 4
   },
   headerText: {
@@ -95,8 +93,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   logo: {
-    width: 55,
-    height: 55,
+    width: 62,
+    height: 62,
   },
   userContainer: {
     flexDirection: "row",
@@ -115,10 +113,5 @@ const styles = StyleSheet.create({
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
     textDecorationLine: "underline"
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "black",
-    bottomBorderWidth: StyleSheet.hairlineWidth,
   },
 });

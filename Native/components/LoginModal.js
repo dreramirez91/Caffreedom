@@ -4,18 +4,17 @@ import {
   Text,
   View,
   Pressable,
-  Modal
+  Modal,
+  TextInput
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
+import Footer from './Footer';
 
 export default function LoginModal({modalVisible, setModalVisible}) {
-  let [fontsLoaded] = useFonts({
-    Lora_400Regular_Italic,
-  });
-
-  if (fontsLoaded) {
-    SplashScreen.hideAsync();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  
     return (
       <View style={styles.centeredView}>
       <Modal
@@ -28,38 +27,28 @@ export default function LoginModal({modalVisible, setModalVisible}) {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hellofdsfjdkfjdsalkfjdklfjdalkfjdklfjdslkfjdalfjdlskf World!</Text>
+            <Text style={styles.modalText}>Login</Text>
+            <TextInput style={styles.input} value={username}></TextInput>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text style={styles.textStyle}>Close</Text>
             </Pressable>
           </View>
         </View>
-        </Modal>
+      </Modal>
         </View>
+       
     );
-  } else {
-    return null;
   }
-}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  modalContainer: {
+  modalView: {
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
@@ -74,47 +63,32 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  headerText: {
-    color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 26,
-    textAlign: "center",
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
   },
-  logoContainer: {
-    alignItems: "center",
-    paddingTop: 20,
-    paddingBottom: 20
+  buttonOpen: {
+    backgroundColor: '#F194FF',
   },
-  logo: {
-    width: 55,
-    height: 55,
+  buttonClose: {
+    backgroundColor: "rgba(157, 108, 255, 1)",
   },
-  userContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingBottom: 10,
-    alignContent: "center",
-    zIndex:100
-  },
-  unpressedText: {
-    color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline"
-  },
-  pressedText: {
-    color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline"
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "black",
-    bottomBorderWidth: StyleSheet.hairlineWidth,
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+  input: {
+    color: 'black',
+    borderRadius: 8,
+    backgroundColor: 'white',
+    borderWidth:0,
+    width: '45%',
+    padding: 10
   },
 });
