@@ -7,14 +7,35 @@ import {
   Modal,
   TextInput
 } from "react-native";
-import * as SplashScreen from "expo-splash-screen";
-import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import Footer from './Footer';
 
 export default function LoginModal({modalVisible, setModalVisible}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+
+  const handleSubmit = async (e) => {
+    const data = {}
+    data.username = username
+    data.password = password
+    console.log(data)
+    const loginUrl = "http://localhost:8000/users/login"
+    const fetchConfig = {
+        method: "post",
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    const response = await fetch(loginUrl, fetchConfig)
+    if (response.ok) {
+        const userInfo = await response.json()
+        console.log(userInfo)
+        setUsername('')
+        setPassword('')
+    } else {
+      console.error(e)
+    }
+  }
+
     return (
       <View style={styles.centeredView}>
       <Modal
@@ -28,8 +49,13 @@ export default function LoginModal({modalVisible, setModalVisible}) {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Login</Text>
-            <TextInput style={styles.input} value={username}>Username</TextInput>
-            <TextInput style={styles.input} value={password}>Password</TextInput>
+            <TextInput style={styles.input} onChangeText={setUsername} placeholder='Username' value={username}></TextInput>
+            <TextInput style={styles.input} onChangeText={setPassword} placeholder='Password' value={password} secureTextEntry={true}></TextInput>
+            <Pressable
+              style={[styles.submitButton, styles.buttonClose]}
+              onPress={() => handleSubmit()}>
+              <Text style={styles.submitStyle}>Submit</Text>
+            </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
@@ -71,6 +97,11 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
+  submitButton: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
   buttonOpen: {
     backgroundColor: '#F194FF',
   },
@@ -79,6 +110,12 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontFamily: "Lora_400Regular_Italic",
+  },
+  submitStyle: {
+    color: "rgba(242, 255, 99, 1)",
     fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: "Lora_400Regular_Italic",
