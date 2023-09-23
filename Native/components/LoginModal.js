@@ -27,14 +27,13 @@ export default function LoginModal({ modalVisible, setModalVisible }) {
       },
     };
     const response = await fetch(loginUrl, fetchConfig);
-    console.log(response);
     if (response.ok) {
       const userInfo = await response.json();
-      console.log(userInfo);
+      console.log("Login successful", JSON.stringify(userInfo));
       setUsername("");
       setPassword("");
     } else {
-      console.error(e);
+      console.log("Invalid login credentials")
     }
   };
 
