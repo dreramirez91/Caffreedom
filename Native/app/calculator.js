@@ -95,7 +95,7 @@ export default function Calculator() {
       </SafeAreaView>
     );
   } else {
-    return null;
+    SplashScreen.show;
   }
 }
 

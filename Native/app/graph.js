@@ -109,7 +109,7 @@ export default function Graph() {
       </SafeAreaView>
     );
   } else {
-    return null;
+    SplashScreen.show;
   }
 }
 

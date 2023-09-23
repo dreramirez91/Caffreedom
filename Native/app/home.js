@@ -63,7 +63,7 @@ export default function Home() {
       </SafeAreaView>
     );
   } else {
-    return null;
+    SplashScreen.show;
   }
 }
 
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     width: "80%",
     justifyContent: "center",
-    paddingTop: 10,
+    paddingTop: 5,
     borderRadius: 4
   },
   headerText: {
