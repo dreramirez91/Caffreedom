@@ -14,16 +14,17 @@ from rest_framework.decorators import api_view
 from .serializers import UserSerializer 
 from django.http import JsonResponse
 from common.json import ModelEncoder
-import json
+
 
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
     properties = ["amount", "date"]
     
  
-@login_required
 @require_http_methods(["GET", "POST"])
 def api_list_caffeine_intake(request):
+    permission_classes = [IsAuthenticated,]
+    print("REQUEST DATA", request.user)
     if request.method == "GET":
         user_id = request.user.id
         profile = Profile.objects.get(id=user_id)

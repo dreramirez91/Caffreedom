@@ -24,11 +24,21 @@ export default function Graph() {
 
   const [intakes, setIntakes] = useState([]);
   async function fetchIntakes() {
-    const response = await fetch("http://localhost:8000/users/list_caffeine");
+    console.log("function called")
+    const fetchConfig = {
+      method: "get",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
+        console.log("Response ok")
         setIntakes(data.intakes)
+    } else {
+      console.log("fetch failed")
     }
   };
   useEffect(() => {fetchIntakes()}, []); // Must login to be able to fetch this data
