@@ -46,11 +46,11 @@ export default function Graph() {
           console.log("Fetch successful");
           setIntakes(data.intakes);
           console.log("INTAKES", intakes);
+          if (intakes !== null) {}
           const amountsArray = data.intakes.map(intake => intake.amount);
           setAmounts(amountsArray);
           const datesArray = data.intakes.map(intake => intake.date.slice(5));
           setDates(datesArray);
-          console.log("DATES", dates);
           setFetchSuccessful(true);
       } else {
         console.error("Fetch failed");
@@ -64,7 +64,8 @@ export default function Graph() {
   }
 
   useEffect(() => {getValueFor("token")}, []);
- useEffect(() => console.log("AMOUNTS", amounts), [amounts])
+  useEffect(() => console.log("AMOUNTS", amounts), [amounts])
+  useEffect(() => console.log("DATES", dates), [dates])
 
 
   // var month = new Date().getMonth() + 1;
