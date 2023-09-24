@@ -20,24 +20,13 @@ export default function Graph() {
 
   const [token, setToken] = useState(null);
   const [intakes, setIntakes] = useState([]);
-  const [amounts, setAmounts] = useState([]);
-  const [dates, setDates] = useState([]);
+  const [amounts, setAmounts] = useState([0]);
+  const [dates, setDates] = useState([0]);
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
   });
-
-  async function getValueFor(key) {
-    let result = await SecureStore.getItemAsync(key);
-    if (result) {
-      setToken(result);
-      console.log("Token fetched successfully", token)
-    } else {
-      console.log("Could not retrieve token from store")
-    }
-  }
-
 
   async function fetchIntakes() {
     const fetchConfig = {
@@ -50,6 +39,7 @@ export default function Graph() {
     const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
     if (response.ok) {
         const data = await response.json();
+        console.log(data)
         console.log("Fetch successful");
         setIntakes(data.intakes);
         console.log("INTAKES", intakes);
@@ -57,15 +47,30 @@ export default function Graph() {
         setAmounts(amountsArray);
         const datesArray = intakes.map(intake => intake.date.slice(5));
         setDates(datesArray);
+
         console.log("DATES", dates);
-        console.log("Hi")
         setFetchSuccessful(true);
     } else {
       console.error("Fetch failed");
     }
   };
+
+  async function getValueFor(key) {
+    try {const result = await SecureStore.getItemAsync(key);
+    if (result) {
+      setToken(result)
+      console.log(result)
+      console.log("Token fetched successfully", token)
+      fetchIntakes();
+    } else {
+      console.log("Could not retrieve token from store")
+    }}
+    catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {getValueFor("token")}, []);
-  useEffect(() => {fetchIntakes()}, [token]); 
 
   var month = new Date().getMonth() + 1;
 
@@ -81,8 +86,22 @@ export default function Graph() {
   }
   var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
-  if (fetchSuccessful) {
-    SplashScreen.hideAsync();
+  if (!intakes) {
+    return (
+      <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={background}
+        resizeMode="cover"
+        style={styles.image}
+      >
+        <View style={styles.homeContainer}>
+          <Text style={styles.headerText}>Caffeine intake (mg)</Text>
+        </View>
+      </ImageBackground>
+      <StatusBar style="auto" />
+      <Footer />
+    </SafeAreaView>
+    )} else {
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -107,9 +126,11 @@ export default function Graph() {
     yAxisSuffix=""
     yAxisInterval={1} // optional, defaults to 1
     chartConfig={{
-      backgroundColor: "none",
-      backgroundGradientFrom: "none",
-      backgroundGradientTo: "none",
+      backgroundColor: "#e26a00",
+      backgroundGradientFrom: "#fb8c00",
+      backgroundGradientTo: "#ffa726",
+      backgroundGradientFromOpacity: 0,
+      backgroundGradientToOpacity: 0,
       decimalPlaces: 2, // optional, defaults to 2dp
       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
       labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -133,10 +154,8 @@ export default function Graph() {
         <StatusBar style="auto" />
         <Footer />
       </SafeAreaView>
-    );
+    )};
   }
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
