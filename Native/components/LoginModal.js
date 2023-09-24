@@ -38,6 +38,7 @@ export default function LoginModal({ modalVisible, setModalVisible }) {
       save("token", token);
       setUsername("");
       setPassword("");
+      setModalVisible(false);
     } else {
       console.log("Invalid login credentials")
     }

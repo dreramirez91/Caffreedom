@@ -15,6 +15,8 @@ import background from "../assets/background.jpeg";
 import logo from "../assets/logo.png";
 import Footer from '../components/Footer';
 import LoginModal from '../components/LoginModal';
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);

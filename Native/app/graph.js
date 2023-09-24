@@ -19,6 +19,10 @@ import * as SecureStore from 'expo-secure-store';
 
 export default function Graph() {
   const [token, setToken] = useState(null);
+  const [intakes, setIntakes] = useState([]);
+  const [amounts, setAmounts] = useState([]);
+  const [dates, setDates] = useState([]);
+
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
   });
@@ -33,7 +37,7 @@ export default function Graph() {
     }
   }
 
-  const [intakes, setIntakes] = useState([]);
+
   async function fetchIntakes() {
     const fetchConfig = {
       method: "get",
@@ -47,13 +51,17 @@ export default function Graph() {
         const data = await response.json()
         console.log("Fetch successful")
         setIntakes(data.intakes)
-        console.log("Intakes", intakes)
+        console.log(intakes)
+        const amountsArray = intakes.map(intake => intake.amount)
+        amountsArray.push(0)
+        setAmounts(amountsArray)
+        console.log("Amounts", amounts)
     } else {
       console.log("Fetch failed")
     }
   };
-  useEffect(() => {getValueFor("token")}, []); // Must login to be able to fetch this data
-  useEffect(() => {fetchIntakes()}, [token]); // Must login to be able to fetch this data
+  useEffect(() => {getValueFor("token")}, []);
+  useEffect(() => {fetchIntakes()}, [token]); 
 
   var month = new Date().getMonth() + 1;
 
@@ -69,6 +77,8 @@ export default function Graph() {
   }
   var datesThisMonth = eachDay.map(day => `${month}/${day}`);
   console.log(datesThisMonth)
+
+  
 
   if (fontsLoaded) {
     SplashScreen.hideAsync();
@@ -86,14 +96,7 @@ export default function Graph() {
       labels: datesThisMonth.slice(1,8), // You want to be able to press an arrow and change the labels or display by weeks...
       datasets: [
         {
-          data: [
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100
-          ]
+          data: amounts
         }
       ]
     }}
