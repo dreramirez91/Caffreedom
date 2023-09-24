@@ -38,8 +38,9 @@ export default function Graph() {
     };
     const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
     if (response.ok) {
+      console.log("Token in fetch"), token
         const data = await response.json();
-        console.log(data)
+        console.log("DATA", data)
         console.log("Fetch successful");
         setIntakes(data.intakes);
         console.log("INTAKES", intakes);
@@ -47,7 +48,6 @@ export default function Graph() {
         setAmounts(amountsArray);
         const datesArray = intakes.map(intake => intake.date.slice(5));
         setDates(datesArray);
-
         console.log("DATES", dates);
         setFetchSuccessful(true);
     } else {
@@ -56,37 +56,37 @@ export default function Graph() {
   };
 
   async function getValueFor(key) {
-    try {const result = await SecureStore.getItemAsync(key);
+    try {
+    let result = await SecureStore.getItemAsync(key);
     if (result) {
-      setToken(result)
-      console.log(result)
-      console.log("Token fetched successfully", token)
-      fetchIntakes();
+      setToken(result);
+      console.log("token", token);
+      setTimeout(fetchIntakes, 5000);
     } else {
-      console.log("Could not retrieve token from store")
+      console.log("Could not retrieve token from store");
     }}
     catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   useEffect(() => {getValueFor("token")}, []);
 
-  var month = new Date().getMonth() + 1;
+  // var month = new Date().getMonth() + 1;
 
-  function daysInThisMonth() {
-    var now = new Date();
-    return new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
-  };
+  // function daysInThisMonth() {
+  //   var now = new Date();
+  //   return new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+  // };
   
-  var days = daysInThisMonth();
-  var eachDay = []
-  for (var day = 1; day <= days; day++) {
-    eachDay.push(day)
-  }
-  var datesThisMonth = eachDay.map(day => `${month}/${day}`);
+  // var days = daysInThisMonth();
+  // var eachDay = []
+  // for (var day = 1; day <= days; day++) {
+  //   eachDay.push(day)
+  // }
+  // var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
-  if (!intakes) {
+  if (!fetchSuccessful) {
     return (
       <SafeAreaView style={styles.container}>
       <ImageBackground
