@@ -16,6 +16,8 @@ import logo from "../assets/logo.png";
 import Footer from '../components/Footer';
 import LoginModal from '../components/LoginModal';
 
+SplashScreen.hideAsync();
+
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
@@ -33,7 +35,6 @@ export default function Home() {
   }
 
   if (fontsLoaded) {
-    SplashScreen.hideAsync();
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground

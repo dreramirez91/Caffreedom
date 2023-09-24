@@ -16,6 +16,8 @@ import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import Footer from '../components/Footer';
 
+SplashScreen.hideAsync();
+
 export default function Calculator() {
   const [open, setOpen] = useState(false);
   const [drink, setDrink] = useState('');
@@ -54,7 +56,6 @@ export default function Calculator() {
   const Separator = () => <View style={styles.separator} />;
 
   if (fontsLoaded) {
-    SplashScreen.hideAsync();
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground

@@ -16,12 +16,15 @@ import Footer from '../components/Footer';
 import {LineChart} from 'react-native-chart-kit';
 import * as SecureStore from 'expo-secure-store';
 
+SplashScreen.hideAsync();
 
 export default function Graph() {
+
   const [token, setToken] = useState(null);
   const [intakes, setIntakes] = useState([]);
   const [amounts, setAmounts] = useState([]);
   const [dates, setDates] = useState([]);
+  const [fetchSuccesful, setFetchSuccessful] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -31,7 +34,7 @@ export default function Graph() {
     let result = await SecureStore.getItemAsync(key);
     if (result) {
       setToken(result);
-      console.log("TOKEN =>", token)
+      console.log("Token fetched successfully", token)
     } else {
       console.log("Could not retrieve token from store")
     }
@@ -48,16 +51,18 @@ export default function Graph() {
     };
     const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
     if (response.ok) {
-        const data = await response.json()
-        console.log("Fetch successful")
-        setIntakes(data.intakes)
-        console.log(intakes)
-        const amountsArray = intakes.map(intake => intake.amount)
-        amountsArray.push(0)
-        setAmounts(amountsArray)
-        console.log("Amounts", amounts)
+        const data = await response.json();
+        console.log("Fetch successful");
+        setIntakes(data.intakes);
+        console.log("INTAKES", intakes);
+        const amountsArray = intakes.map(intake => intake.amount);
+        setAmounts(amountsArray);
+        const datesArray = intakes.map(intake => intake.date.slice(5));
+        setDates(datesArray);
+        console.log("DATES", dates);
+        setFetchSuccessful(true);
     } else {
-      console.log("Fetch failed")
+      console.log("Fetch failed");
     }
   };
   useEffect(() => {getValueFor("token")}, []);
@@ -76,12 +81,8 @@ export default function Graph() {
     eachDay.push(day)
   }
   var datesThisMonth = eachDay.map(day => `${month}/${day}`);
-  console.log(datesThisMonth)
 
-  
-
-  if (fontsLoaded) {
-    SplashScreen.hideAsync();
+  if (fontsLoaded && intakes?.length > 1) {
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -93,7 +94,7 @@ export default function Graph() {
             <Text style={styles.headerText}>Caffeine intake (mg)</Text>
             <LineChart
     data={{
-      labels: datesThisMonth.slice(1,8), // You want to be able to press an arrow and change the labels or display by weeks...
+      labels: dates,
       datasets: [
         {
           data: amounts
@@ -133,8 +134,6 @@ export default function Graph() {
         <Footer />
       </SafeAreaView>
     );
-  } else {
-    SplashScreen.show;
   }
 }
 
