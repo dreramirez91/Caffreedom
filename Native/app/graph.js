@@ -7,41 +7,53 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
-  Pressable,
   Dimensions
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
-import logo from "../assets/logo.png";
 import Footer from '../components/Footer';
 import {LineChart} from 'react-native-chart-kit';
+import * as SecureStore from 'expo-secure-store';
+
 
 export default function Graph() {
+  const [token, setToken] = useState(null);
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
   });
 
+  async function getValueFor(key) {
+    let result = await SecureStore.getItemAsync(key);
+    if (result) {
+      setToken(result);
+      console.log("TOKEN =>", token)
+    } else {
+      console.log("Could not retrieve token from store")
+    }
+  }
+
   const [intakes, setIntakes] = useState([]);
   async function fetchIntakes() {
-    console.log("function called")
     const fetchConfig = {
       method: "get",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        "Authentication": token,
       },
     };
     const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
     if (response.ok) {
         const data = await response.json()
-        console.log("Response ok")
+        console.log("Fetch successful")
         setIntakes(data.intakes)
+        console.log("Intakes", intakes)
     } else {
-      console.log("fetch failed")
+      console.log("Fetch failed")
     }
   };
-  useEffect(() => {fetchIntakes()}, []); // Must login to be able to fetch this data
+  useEffect(() => {getValueFor("token")}, []); // Must login to be able to fetch this data
+  useEffect(() => {fetchIntakes()}, [token]); // Must login to be able to fetch this data
 
   var month = new Date().getMonth() + 1;
 

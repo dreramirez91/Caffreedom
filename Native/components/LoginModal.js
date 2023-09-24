@@ -8,11 +8,15 @@ import {
   Modal,
   TextInput,
 } from "react-native";
+import * as SecureStore from 'expo-secure-store';
 
 export default function LoginModal({ modalVisible, setModalVisible }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  async function save(key, value) {
+    await SecureStore.setItemAsync(key, value);
+  }
   const handleSubmit = async (e) => {
     const data = {};
     data.username = username;
@@ -28,14 +32,17 @@ export default function LoginModal({ modalVisible, setModalVisible }) {
     };
     const response = await fetch(loginUrl, fetchConfig);
     if (response.ok) {
-      const userInfo = await response.json();
-      console.log("Login successful", JSON.stringify(userInfo));
+      const tokenInfo = await response.json();
+      const token = tokenInfo.token
+      console.log(token)
+      save("token", token);
       setUsername("");
       setPassword("");
     } else {
       console.log("Invalid login credentials")
     }
   };
+
 
   return (
     <View style={styles.centeredView}>

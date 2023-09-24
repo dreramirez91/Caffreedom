@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Profile, CaffeineIntake
+from .models import CaffeineIntake
 
-admin.site.register(Profile)
 admin.site.register(CaffeineIntake)

@@ -34,7 +34,8 @@
     "sheetjs": "^2.0.0",
     "undefined": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz",
-    "react-native-svg": "13.9.0"
+    "react-native-svg": "13.9.0",
+    "expo-secure-store": "~12.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

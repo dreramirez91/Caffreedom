@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
 from rest_framework.authentication import BasicAuthentication
-from .models import Profile, CaffeineIntake
+from .models import CaffeineIntake
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from rest_framework import generics, status
+from django.contrib.auth import authenticate, get_user
+from rest_framework import generics, status, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -14,6 +15,8 @@ from rest_framework.decorators import api_view
 from .serializers import UserSerializer 
 from django.http import JsonResponse
 from common.json import ModelEncoder
+from django.core.handlers.wsgi import WSGIRequest
+from django.contrib.sessions.models import Session
 
 
 class CaffeineIntakesEncoder(ModelEncoder):
@@ -24,13 +27,10 @@ class CaffeineIntakesEncoder(ModelEncoder):
 @require_http_methods(["GET", "POST"])
 def api_list_caffeine_intake(request):
     permission_classes = [IsAuthenticated,]
-    print("REQUEST DATA", request.user)
     if request.method == "GET":
-        user_id = request.user.id
-        profile = Profile.objects.get(id=user_id)
-        print("PROFILE =>", profile)
-        intakes = profile.caffeine_intakes.all()
-        print("Intakes =>", intakes)
+        print("META", request.META["HTTP_AUTHENTICATION"])
+        user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
+        intakes = user.caffeine_intakes.all()
         return JsonResponse(
             {"intakes": intakes},
             encoder=CaffeineIntakesEncoder

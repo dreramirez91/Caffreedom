@@ -56,7 +56,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "Server.urls"
 
 CORS_ALLOWED_ORIGINS = [
-        'http://localhost',
+    'http://localhost:8081'
     ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -95,6 +95,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
