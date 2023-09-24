@@ -16,15 +16,13 @@ import Footer from '../components/Footer';
 import {LineChart} from 'react-native-chart-kit';
 import * as SecureStore from 'expo-secure-store';
 
-SplashScreen.hideAsync();
-
 export default function Graph() {
 
   const [token, setToken] = useState(null);
   const [intakes, setIntakes] = useState([]);
   const [amounts, setAmounts] = useState([]);
   const [dates, setDates] = useState([]);
-  const [fetchSuccesful, setFetchSuccessful] = useState(false);
+  const [fetchSuccessful, setFetchSuccessful] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -60,9 +58,10 @@ export default function Graph() {
         const datesArray = intakes.map(intake => intake.date.slice(5));
         setDates(datesArray);
         console.log("DATES", dates);
+        console.log("Hi")
         setFetchSuccessful(true);
     } else {
-      console.log("Fetch failed");
+      console.error("Fetch failed");
     }
   };
   useEffect(() => {getValueFor("token")}, []);
@@ -82,7 +81,8 @@ export default function Graph() {
   }
   var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
-  if (fontsLoaded && intakes?.length > 1) {
+  if (fetchSuccessful) {
+    SplashScreen.hideAsync();
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -92,7 +92,7 @@ export default function Graph() {
         >
           <View style={styles.homeContainer}>
             <Text style={styles.headerText}>Caffeine intake (mg)</Text>
-            <LineChart
+             <LineChart
     data={{
       labels: dates,
       datasets: [
