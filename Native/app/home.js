@@ -64,7 +64,6 @@ export default function Home() {
       </SafeAreaView>
     );
   } else {
-    SplashScreen.show;
   }
 }
 

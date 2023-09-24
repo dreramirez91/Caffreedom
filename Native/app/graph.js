@@ -17,9 +17,7 @@ import {LineChart} from 'react-native-chart-kit';
 import * as SecureStore from 'expo-secure-store';
 
 export default function Graph() {
-
-  const [token, setToken] = useState(null);
-  const [intakes, setIntakes] = useState([]);
+  const [intakes, setIntakes] = useState([0]);
   const [amounts, setAmounts] = useState([0]);
   const [dates, setDates] = useState([0]);
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
@@ -28,40 +26,35 @@ export default function Graph() {
     Lora_400Regular_Italic,
   });
 
-  async function fetchIntakes() {
-    const fetchConfig = {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        "Authentication": token,
-      },
-    };
-    const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
-    if (response.ok) {
-      console.log("Token in fetch"), token
-        const data = await response.json();
-        console.log("DATA", data)
-        console.log("Fetch successful");
-        setIntakes(data.intakes);
-        console.log("INTAKES", intakes);
-        const amountsArray = intakes.map(intake => intake.amount);
-        setAmounts(amountsArray);
-        const datesArray = intakes.map(intake => intake.date.slice(5));
-        setDates(datesArray);
-        console.log("DATES", dates);
-        setFetchSuccessful(true);
-    } else {
-      console.error("Fetch failed");
-    }
-  };
-
   async function getValueFor(key) {
     try {
     let result = await SecureStore.getItemAsync(key);
     if (result) {
-      setToken(result);
-      console.log("token", token);
-      setTimeout(fetchIntakes, 5000);
+      console.log("Successfully retrieved token from store", result);
+      const fetchConfig = {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          "Authentication": result,
+        },
+      };
+      const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
+      if (response.ok) {
+        console.log("Token in fetch", result)
+          const data = await response.json();
+          console.log("DATA", data)
+          console.log("Fetch successful");
+          setIntakes(data.intakes);
+          console.log("INTAKES", intakes);
+          const amountsArray = data.intakes.map(intake => intake.amount);
+          setAmounts(amountsArray);
+          const datesArray = data.intakes.map(intake => intake.date.slice(5));
+          setDates(datesArray);
+          console.log("DATES", dates);
+          setFetchSuccessful(true);
+      } else {
+        console.error("Fetch failed");
+      }
     } else {
       console.log("Could not retrieve token from store");
     }}
@@ -71,6 +64,8 @@ export default function Graph() {
   }
 
   useEffect(() => {getValueFor("token")}, []);
+ useEffect(() => console.log("AMOUNTS", amounts), [amounts])
+
 
   // var month = new Date().getMonth() + 1;
 
@@ -86,22 +81,22 @@ export default function Graph() {
   // }
   // var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
-  if (!fetchSuccessful) {
-    return (
-      <SafeAreaView style={styles.container}>
-      <ImageBackground
-        source={background}
-        resizeMode="cover"
-        style={styles.image}
-      >
-        <View style={styles.homeContainer}>
-          <Text style={styles.headerText}>Caffeine intake (mg)</Text>
-        </View>
-      </ImageBackground>
-      <StatusBar style="auto" />
-      <Footer />
-    </SafeAreaView>
-    )} else {
+  // if (!fetchSuccessful) {
+  //   return (
+  //     <SafeAreaView style={styles.container}>
+  //     <ImageBackground
+  //       source={background}
+  //       resizeMode="cover"
+  //       style={styles.image}
+  //     >
+  //       <View style={styles.homeContainer}>
+  //         <Text style={styles.headerText}>Caffeine intake (mg)</Text>
+  //       </View>
+  //     </ImageBackground>
+  //     <StatusBar style="auto" />
+  //     <Footer />
+  //   </SafeAreaView>
+  //   )}
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -155,7 +150,6 @@ export default function Graph() {
         <Footer />
       </SafeAreaView>
     )};
-  }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
