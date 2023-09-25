@@ -10,15 +10,18 @@ import {
   ImageBackground,
   SafeAreaView,
   TextInput,
+  Pressable
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import Footer from '../components/Footer';
+import * as SecureStore from 'expo-secure-store';
 
 SplashScreen.hideAsync();
 
 export default function Calculator() {
+  const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
   const [drink, setDrink] = useState('');
   const [measurement, setMeasurement] = useState(null)
@@ -29,6 +32,18 @@ export default function Calculator() {
   ]);
   const [amount, setAmount] = useState('')
   const [caffeine, setCaffeine] = useState(0)
+
+  async function getValueFor(key) {
+    try {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        console.log("Successfully retrieved token from store", result);
+        setToken(result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const onChangeDrink = drink => {
     console.log(drink)
@@ -48,12 +63,35 @@ export default function Calculator() {
   }
 
   useEffect(() => {swapDrink(amount)}, [drink, measurement]);
+  useEffect(() => {getValueFor("token")}, [])
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
   });
 
   const Separator = () => <View style={styles.separator} />;
+
+  const addIntake = async () => {
+    const data = {};
+    data.amount = parseInt(caffeine);
+    data.date = new Date().toISOString().split('T')[0]
+    console.log(data)
+    const fetchConfig = {
+      method: "post",
+      headers: {
+        "Content-type": "application/json",
+        "Authentication": token,
+      },
+      body: JSON.stringify(data)
+    }
+    const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+    } else {
+      console.log("Post failed");
+    }
+  }
 
   if (fontsLoaded) {
     return (
@@ -89,6 +127,9 @@ export default function Calculator() {
           />
           </View>
           <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
+          <Pressable style={styles.addButton} onPress={() => {addIntake()}} onPressIn={() => {}} onPressOut={() => {}}>
+              <Text style={styles.addButtonText}>Add</Text>
+            </Pressable>
           </View>
         </ImageBackground>
         <Footer />
@@ -163,4 +204,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
   },
+  addButtonText: {
+    textAlign: 'center',
+    padding: 10,
+    marginTop: 10,
+    borderColor: "rgba(242, 255, 99, 1)",
+    borderWidth: 2,
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 20,
+    color: "rgba(242, 255, 99, 1)",
+    borderRadius: 4,
+  },
+  addButton: {
+    alignItems: 'center'
+  }
 });

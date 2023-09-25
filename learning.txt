@@ -1,0 +1,2 @@
+When you call setIntakes, setAmounts, and setDates, React schedules a re-render of your component to reflect the updated state values. However, this re-render may not happen immediately, and the component may still render with the initial state values before the updated state values are applied.
+tldr: useState doesn't necessarily cause an immediate rerender so, for instance, you cannot console.log the new value right away but must do it once the state variable has changed

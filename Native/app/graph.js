@@ -26,7 +26,7 @@ export default function Graph() {
     Lora_400Regular_Italic,
   });
 
-  async function getValueFor(key) {
+  async function populateData(key) {
     try {
     let result = await SecureStore.getItemAsync(key);
     if (result) {
@@ -63,7 +63,7 @@ export default function Graph() {
     }
   }
 
-  useEffect(() => {getValueFor("token")}, []);
+  useEffect(() => {populateData("token")}, []);
   useEffect(() => console.log("AMOUNTS", amounts), [amounts])
   useEffect(() => console.log("DATES", dates), [dates])
 

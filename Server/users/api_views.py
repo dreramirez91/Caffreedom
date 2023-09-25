@@ -17,24 +17,38 @@ from django.http import JsonResponse
 from common.json import ModelEncoder
 from django.core.handlers.wsgi import WSGIRequest
 from django.contrib.sessions.models import Session
+import json
 
 
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
     properties = ["amount", "date"]
     
- 
+    
+@csrf_exempt
 @require_http_methods(["GET", "POST"])
 def api_list_caffeine_intake(request):
     permission_classes = [IsAuthenticated,]
     if request.method == "GET":
-        print("META", request.META["HTTP_AUTHENTICATION"])
         user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
         intakes = user.caffeine_intakes.all()
         return JsonResponse(
             {"intakes": intakes},
             encoder=CaffeineIntakesEncoder
         )
+    elif request.method == "POST":
+        user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
+        data = json.loads(request.body)
+        print("DATA", data)
+        intake = data["amount"]
+        date = data["date"]
+        user.caffeine_intakes.create(amount=intake, date=date)
+        intakes = user.caffeine_intakes.all()
+        return JsonResponse(
+            {"intakes": intakes},
+            encoder=CaffeineIntakesEncoder
+        )
+        
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
