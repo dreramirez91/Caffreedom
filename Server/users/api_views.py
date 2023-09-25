@@ -39,10 +39,18 @@ def api_list_caffeine_intake(request):
     elif request.method == "POST":
         user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
         data = json.loads(request.body)
-        print("DATA", data)
         intake = data["amount"]
         date = data["date"]
-        user.caffeine_intakes.create(amount=intake, date=date)
+        user_intakes = user.caffeine_intakes.all()
+        date_in_database = False
+        for i in user_intakes:
+            if str(date) == str(i.date):
+                intake += int(i.amount)
+                i.amount = intake
+                i.save()
+                date_in_database = True
+        if date_in_database is False:
+            user.caffeine_intakes.create(amount=intake, date=date)
         intakes = user.caffeine_intakes.all()
         return JsonResponse(
             {"intakes": intakes},

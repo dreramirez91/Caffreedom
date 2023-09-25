@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { StatusBar } from "expo-status-bar";
 import { caffeineContent } from '../caffeineContent';
 import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown';
@@ -10,7 +10,8 @@ import {
   ImageBackground,
   SafeAreaView,
   TextInput,
-  Pressable
+  Pressable,
+  Alert
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
@@ -30,8 +31,10 @@ export default function Calculator() {
     {label: 'cups', value: 'cups'},
     {label: 'mL', value: 'ml'}
   ]);
-  const [amount, setAmount] = useState('')
+  const [amount, setAmount] = useState(0)
   const [caffeine, setCaffeine] = useState(0)
+  const dropdownController = useRef(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   async function getValueFor(key) {
     try {
@@ -88,6 +91,14 @@ export default function Calculator() {
     if (response.ok) {
       const data = await response.json();
       console.log(data);
+      setAmount(0);
+      setCaffeine(0);
+      setMeasurement(null);
+      dropdownController.current.clear();
+      Alert.alert('Intake added', '', [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
+  
     } else {
       console.log("Post failed");
     }
@@ -105,6 +116,7 @@ export default function Calculator() {
           <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
           <AutocompleteDropdown containerStyle={styles.dropdown}
+            controller={controller => {dropdownController.current = controller}}
             clearOnFocus={false}
             closeOnBlur={false}
             closeOnSubmit={false}
