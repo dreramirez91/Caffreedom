@@ -34,7 +34,6 @@ export default function Calculator() {
   const [amount, setAmount] = useState(0)
   const [caffeine, setCaffeine] = useState(0)
   const dropdownController = useRef(null);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   async function getValueFor(key) {
     try {
@@ -94,6 +93,7 @@ export default function Calculator() {
       setAmount(0);
       setCaffeine(0);
       setMeasurement(null);
+      setDrink('');
       dropdownController.current.clear();
       Alert.alert('Intake added', '', [
         {text: 'OK', onPress: () => console.log('OK Pressed')},
