@@ -22,7 +22,7 @@ import json
 
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
-    properties = ["amount", "date"]
+    properties = ["amount", "date", "caffeine", "type"]
     
     
 @csrf_exempt
@@ -39,18 +39,20 @@ def api_list_caffeine_intake(request):
     elif request.method == "POST":
         user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
         data = json.loads(request.body)
-        intake = data["amount"]
+        caffeine = data["caffeine"]
         date = data["date"]
+        type = data["type"]
+        amount = data["amount"]
         user_intakes = user.caffeine_intakes.all()
         date_in_database = False
         for i in user_intakes:
             if str(date) == str(i.date):
-                intake += int(i.amount)
-                i.amount = intake
+                caffeine += int(i.caffeine)
+                i.caffeine = caffeine
                 i.save()
                 date_in_database = True
         if date_in_database is False:
-            user.caffeine_intakes.create(amount=intake, date=date)
+            user.caffeine_intakes.create(amount=amount, date=date, type=type, caffeine=caffeine)
         intakes = user.caffeine_intakes.all()
         return JsonResponse(
             {"intakes": intakes},
