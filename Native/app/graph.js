@@ -45,7 +45,6 @@ export default function Graph() {
           console.log("DATA", data)
           console.log("Fetch successful");
           setIntakes(data.intakes);
-          console.log("INTAKES", intakes);
           if (intakes !== null) {}
           const amountsArray = data.intakes.map(intake => intake.amount);
           setAmounts(amountsArray);
@@ -82,22 +81,60 @@ export default function Graph() {
   // }
   // var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
-  // if (!fetchSuccessful) {
-  //   return (
-  //     <SafeAreaView style={styles.container}>
-  //     <ImageBackground
-  //       source={background}
-  //       resizeMode="cover"
-  //       style={styles.image}
-  //     >
-  //       <View style={styles.homeContainer}>
-  //         <Text style={styles.headerText}>Caffeine intake (mg)</Text>
-  //       </View>
-  //     </ImageBackground>
-  //     <StatusBar style="auto" />
-  //     <Footer />
-  //   </SafeAreaView>
-  //   )}
+  if (intakes.length === 0) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ImageBackground
+          source={background}
+          resizeMode="cover"
+          style={styles.image}
+        >
+          <View style={styles.homeContainer}>
+            <Text style={styles.headerText}>Caffeine intake (mg)</Text>
+             <LineChart
+    data={{
+      labels: [`${new Date().getMonth() + 1}-${new Date().getDate()}`],
+      datasets: [
+        {
+          data: [0]
+        }
+      ]
+    }}
+    width={Dimensions.get("window").width}
+    height={220}
+    yAxisLabel=""
+    yAxisSuffix=""
+    yAxisInterval={1} // optional, defaults to 1
+    chartConfig={{
+      backgroundColor: "#e26a00",
+      backgroundGradientFrom: "#fb8c00",
+      backgroundGradientTo: "#ffa726",
+      backgroundGradientFromOpacity: 0,
+      backgroundGradientToOpacity: 0,
+      decimalPlaces: 2, // optional, defaults to 2dp
+      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      style: {
+        borderRadius: 16,
+      },
+      propsForDots: {
+        r: "6",
+        strokeWidth: "2",
+        stroke: "#ffa726"
+      }
+    }}
+    bezier
+    style={{
+      marginVertical: 8,
+      borderRadius: 16,
+    }}
+  />
+          </View>
+        </ImageBackground>
+        <StatusBar style="auto" />
+        <Footer />
+      </SafeAreaView>
+    )} else {
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -150,7 +187,7 @@ export default function Graph() {
         <StatusBar style="auto" />
         <Footer />
       </SafeAreaView>
-    )};
+    )}};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
