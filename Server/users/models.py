@@ -4,6 +4,7 @@ from datetime import date
 
 class CaffeineIntake(models.Model):
     amount = models.PositiveSmallIntegerField(default=0)
+    type = models.CharField(max_length=100)
     date = models.DateField(default=date.today)
     user = models.ForeignKey(
         User,
