@@ -19,8 +19,8 @@ import * as SecureStore from 'expo-secure-store';
 export default function Graph() {
   const [intakes, setIntakes] = useState([0]);
   const [amounts, setAmounts] = useState([0]);
-  const [totalCaffeine, setTotalCaffeine] = useState([0])
   const [dates, setDates] = useState([0]);
+  const [fetchSuccessful, setFetchSuccessful] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -45,24 +45,13 @@ export default function Graph() {
           console.log("DATA", data)
           console.log("Fetch successful");
           setIntakes(data.intakes);
-          const amountsArray = data.intakes.map(intake => intake.caffeine);
+          console.log("INTAKES", intakes);
+          if (intakes !== null) {}
+          const amountsArray = data.intakes.map(intake => intake.amount);
           setAmounts(amountsArray);
           const datesArray = data.intakes.map(intake => intake.date.slice(5));
-          datesToSet = [...new Set(datesArray)]
-          setDates(datesToSet);
-          //calculate total caffeine and store it in variable then render it in graph
-          const caffArray = []
-          let dailyCaffeine = 0
-          for (d of datesToSet) {
-            for (intake of data.intakes) {
-              if (intake.date.slice(5) === d) {
-                dailyCaffeine += intake.caffeine
-              }
-            }
-            caffArray.push(dailyCaffeine)
-          }
-          setTotalCaffeine(caffArray);
-
+          setDates(datesArray);
+          setFetchSuccessful(true);
       } else {
         console.error("Fetch failed");
       }
@@ -75,9 +64,8 @@ export default function Graph() {
   }
 
   useEffect(() => {populateData("token")}, []);
-  useEffect(() => console.log("Intakes", intakes), [intakes])
-  useEffect(() => console.log("Dates", dates), [dates])
-  useEffect(() => console.log("Total Caffeine", totalCaffeine), [totalCaffeine])
+  useEffect(() => console.log("AMOUNTS", amounts), [amounts])
+  useEffect(() => console.log("DATES", dates), [dates])
 
 
   // var month = new Date().getMonth() + 1;
@@ -94,60 +82,22 @@ export default function Graph() {
   // }
   // var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
-  if (intakes.length === 0) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
-          <View style={styles.homeContainer}>
-            <Text style={styles.headerText}>Total Caffeine intake (mg)</Text>
-             <LineChart
-    data={{
-      labels: [`${new Date().getMonth() + 1}-${new Date().getDate()}`],
-      datasets: [
-        {
-          data: [0]
-        }
-      ]
-    }}
-    width={Dimensions.get("window").width}
-    height={220}
-    yAxisLabel=""
-    yAxisSuffix=""
-    yAxisInterval={1} // optional, defaults to 1
-    chartConfig={{
-      backgroundColor: "#e26a00",
-      backgroundGradientFrom: "#fb8c00",
-      backgroundGradientTo: "#ffa726",
-      backgroundGradientFromOpacity: 0,
-      backgroundGradientToOpacity: 0,
-      decimalPlaces: 2, // optional, defaults to 2dp
-      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      style: {
-        borderRadius: 16,
-      },
-      propsForDots: {
-        r: "6",
-        strokeWidth: "2",
-        stroke: "#ffa726"
-      }
-    }}
-    bezier
-    style={{
-      marginVertical: 8,
-      borderRadius: 16,
-    }}
-  />
-          </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-        <Footer />
-      </SafeAreaView>
-    )} else {
+  // if (!fetchSuccessful) {
+  //   return (
+  //     <SafeAreaView style={styles.container}>
+  //     <ImageBackground
+  //       source={background}
+  //       resizeMode="cover"
+  //       style={styles.image}
+  //     >
+  //       <View style={styles.homeContainer}>
+  //         <Text style={styles.headerText}>Caffeine intake (mg)</Text>
+  //       </View>
+  //     </ImageBackground>
+  //     <StatusBar style="auto" />
+  //     <Footer />
+  //   </SafeAreaView>
+  //   )}
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -162,7 +112,7 @@ export default function Graph() {
       labels: dates,
       datasets: [
         {
-          data: totalCaffeine
+          data: amounts
         }
       ]
     }}
@@ -200,7 +150,7 @@ export default function Graph() {
         <StatusBar style="auto" />
         <Footer />
       </SafeAreaView>
-    )}};
+    )};
 const styles = StyleSheet.create({
   container: {
     flex: 1,

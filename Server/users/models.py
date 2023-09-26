@@ -14,4 +14,4 @@ class CaffeineIntake(models.Model):
     )
     
     def __str__(self):
-        return str(self.amount)
+        return str(self.type)

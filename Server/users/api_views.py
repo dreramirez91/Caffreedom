@@ -43,16 +43,7 @@ def api_list_caffeine_intake(request):
         date = data["date"]
         type = data["type"]
         amount = data["amount"]
-        user_intakes = user.caffeine_intakes.all()
-        date_in_database = False
-        for i in user_intakes:
-            if str(date) == str(i.date):
-                caffeine += int(i.caffeine)
-                i.caffeine = caffeine
-                i.save()
-                date_in_database = True
-        if date_in_database is False:
-            user.caffeine_intakes.create(amount=amount, date=date, type=type, caffeine=caffeine)
+        user.caffeine_intakes.create(amount=amount, date=date, type=type, caffeine=caffeine)
         intakes = user.caffeine_intakes.all()
         return JsonResponse(
             {"intakes": intakes},

@@ -75,9 +75,12 @@ export default function Calculator() {
 
   const addIntake = async () => {
     const data = {};
-    data.amount = parseInt(caffeine);
+    data.caffeine = parseInt(caffeine);
     data.date = new Date().toISOString().split('T')[0]
-    console.log(data)
+    data.type = drink["title"]
+    data.amount = parseInt(amount);
+    data.measurement = measurement
+    console.log("DATA", data)
     const fetchConfig = {
       method: "post",
       headers: {
