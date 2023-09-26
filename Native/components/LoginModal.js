@@ -8,7 +8,7 @@ import {
   Modal,
   TextInput,
 } from "react-native";
-import * as SecureStore from 'expo-secure-store';
+import * as SecureStore from "expo-secure-store";
 
 SplashScreen.hideAsync();
 
@@ -35,17 +35,16 @@ export default function LoginModal({ modalVisible, setModalVisible }) {
     const response = await fetch(loginUrl, fetchConfig);
     if (response.ok) {
       const tokenInfo = await response.json();
-      const token = tokenInfo.token
-      console.log(token)
+      const token = tokenInfo.token;
+      console.log(token);
       save("token", token);
       setUsername("");
       setPassword("");
       setModalVisible(false);
     } else {
-      console.log("Invalid login credentials")
+      console.log("Invalid login credentials");
     }
   };
-
 
   return (
     <View style={styles.centeredView}>

@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import { StatusBar } from "expo-status-bar";
-import { caffeineContent } from '../caffeineContent';
-import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { caffeineContent } from "../caffeineContent";
+import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
+import DropDownPicker from "react-native-dropdown-picker";
 import {
   StyleSheet,
   Text,
@@ -12,29 +12,29 @@ import {
   TextInput,
   Pressable,
   Alert,
-  Button
+  Button,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
-import Footer from '../components/Footer';
-import * as SecureStore from 'expo-secure-store';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import Footer from "../components/Footer";
+import * as SecureStore from "expo-secure-store";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 SplashScreen.hideAsync();
 
 export default function Calculator() {
   const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
-  const [drink, setDrink] = useState('');
-  const [measurement, setMeasurement] = useState(null)
+  const [drink, setDrink] = useState("");
+  const [measurement, setMeasurement] = useState(null);
   const [items, setItems] = useState([
-    {label: 'fl oz', value: 'floz'},
-    {label: 'cups', value: 'cups'},
-    {label: 'mL', value: 'ml'}
+    { label: "fl oz", value: "floz" },
+    { label: "cups", value: "cups" },
+    { label: "mL", value: "ml" },
   ]);
-  const [amount, setAmount] = useState(0)
-  const [caffeine, setCaffeine] = useState(0)
+  const [amount, setAmount] = useState(0);
+  const [caffeine, setCaffeine] = useState(0);
   const dropdownController = useRef(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [datePickerVisible, setDatePickerVisible] = useState(false);
@@ -49,10 +49,9 @@ export default function Calculator() {
 
   const handleConfirm = (date) => {
     setSelectedDate(date);
+    console.log("DATE", date);
     hideDatePicker();
   };
-
-
 
   async function getValueFor(key) {
     try {
@@ -66,26 +65,38 @@ export default function Calculator() {
     }
   }
 
-  const onChangeDrink = drink => {
-    console.log(drink)
-    setDrink(drink)
-  }
+  const onChangeDrink = (drink) => {
+    console.log(drink);
+    setDrink(drink);
+  };
 
-  const onChangeAmount = amount => {
-    setAmount(amount)
-    if (measurement === 'floz') {setCaffeine(drink["mg/floz"] * amount)}
-    else if (measurement === 'cups') {setCaffeine(drink["mg/floz"] * amount * 8 )}
-    else if (measurement === 'ml') {setCaffeine((drink["mg/floz"] * amount)/29.5735 )}
-  }
+  const onChangeAmount = (amount) => {
+    setAmount(amount);
+    if (measurement === "floz") {
+      setCaffeine(drink["mg/floz"] * amount);
+    } else if (measurement === "cups") {
+      setCaffeine(drink["mg/floz"] * amount * 8);
+    } else if (measurement === "ml") {
+      setCaffeine((drink["mg/floz"] * amount) / 29.5735);
+    }
+  };
 
   const swapDrink = (amount) => {
     if (drink === null) {
-    } else {onChangeAmount(amount);}
-  }
+    } else {
+      onChangeAmount(amount);
+    }
+  };
 
-  useEffect(() => {swapDrink(amount)}, [drink, measurement]);
-  useEffect(() => {getValueFor("token")}, [])
-  useEffect(() => {console.log("DATE =>", selectedDate.toISOString())}, [selectedDate])
+  useEffect(() => {
+    swapDrink(amount);
+  }, [drink, measurement]);
+  useEffect(() => {
+    getValueFor("token");
+  }, []);
+  // useEffect(() => {
+  //   console.log("DATE =>", selectedDate.toISOString());
+  // }, [selectedDate]);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -96,36 +107,38 @@ export default function Calculator() {
   const addIntake = async () => {
     const data = {};
     data.caffeine = parseInt(caffeine);
-    data.date = new Date().toISOString().split('T')[0]
-    console.log("DATE", data)
-    data.type = drink["title"]
+    data.date = selectedDate.toISOString().split("T")[0];
+    console.log("data", data);
+    data.type = drink["title"];
     data.amount = parseInt(amount);
-    data.measurement = measurement
+    data.measurement = measurement;
     const fetchConfig = {
       method: "post",
       headers: {
         "Content-type": "application/json",
-        "Authentication": token,
+        Authentication: token,
       },
-      body: JSON.stringify(data)
-    }
-    const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
+      body: JSON.stringify(data),
+    };
+    const response = await fetch(
+      "http://192.168.86.105:8000/users/list_caffeine",
+      fetchConfig
+    );
     if (response.ok) {
       const data = await response.json();
       console.log(data);
       setAmount(0);
       setCaffeine(0);
       setMeasurement(null);
-      setDrink('');
+      setDrink("");
       dropdownController.current.clear();
-      Alert.alert('Intake added', '', [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      Alert.alert("Intake added", "", [
+        { text: "OK", onPress: () => console.log("OK Pressed") },
       ]);
-  
     } else {
       console.log("Post failed");
     }
-  }
+  };
 
   if (fontsLoaded) {
     return (
@@ -136,54 +149,81 @@ export default function Calculator() {
           style={styles.image}
         >
           <View style={styles.calculatorContainer}>
-          <Text style={styles.headerText}>Calculator</Text>
+            <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
-          <AutocompleteDropdown containerStyle={styles.dropdown}
-            controller={controller => {dropdownController.current = controller}}
-            clearOnFocus={false}
-            closeOnBlur={false}
-            closeOnSubmit={false}
-            onSelectItem={onChangeDrink}
-            dataSet={caffeineContent}
-          />
-          <Text style={styles.baseText}>How much?</Text>
-          <View style={open? styles.howMuchOpen : styles.howMuchClosed}>
-          <TextInput style={styles.input} returnKeyType={ 'done' } editable={drink && measurement ? true :false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount} placeholder='Amount'></TextInput>
-          <DropDownPicker
-            open={open}
-            value={measurement}
-            items={items}
-            setOpen={setOpen}
-            setValue={setMeasurement}
-            setItems={setItems}
-            containerStyle={{width: '45%'}}
-            style={{borderWidth:0}}
-            placeholder='Unit of measurement'
-          />
-          </View>
-          <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
-          <View style={styles.calendar}>
-          </View>
-          <View
-      >
-        <Pressable style={styles.addButton} onPress={() => {showDatePicker()}} onPressIn={() => {}} onPressOut={() => {}}>
-              <Text style={styles.addButtonText}>Date</Text>
-          </Pressable>
-        <Text style={styles.baseText}>
-          {selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'}
-        </Text>
-        <DateTimePickerModal
-          date={selectedDate}
-          isVisible={datePickerVisible}
-          mode="date"
-          onConfirm={handleConfirm}
-          onCancel={hideDatePicker}
-        />
-      </View>
-          
-          <Pressable style={styles.addButton} onPress={() => {addIntake()}} onPressIn={() => {}} onPressOut={() => {}}>
-              <Text style={styles.addButtonText}>Add</Text>
-          </Pressable>
+            <AutocompleteDropdown
+              containerStyle={styles.dropdown}
+              controller={(controller) => {
+                dropdownController.current = controller;
+              }}
+              clearOnFocus={false}
+              closeOnBlur={false}
+              closeOnSubmit={false}
+              onSelectItem={onChangeDrink}
+              dataSet={caffeineContent}
+            />
+            <Text style={styles.baseText}>How much?</Text>
+            <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
+              <TextInput
+                style={styles.input}
+                returnKeyType={"done"}
+                editable={drink && measurement ? true : false}
+                onChangeText={onChangeAmount}
+                keyboardType="numeric"
+                value={amount}
+                placeholder="Amount"
+              ></TextInput>
+              <DropDownPicker
+                open={open}
+                value={measurement}
+                items={items}
+                setOpen={setOpen}
+                setValue={setMeasurement}
+                setItems={setItems}
+                containerStyle={{ width: "45%" }}
+                style={{ borderWidth: 0 }}
+                placeholder="Unit of measurement"
+              />
+            </View>
+            <Text style={styles.baseText}>
+              You have consumed {parseInt(caffeine)} mg of caffeine.
+            </Text>
+            <View style={styles.calendar}></View>
+            <View>
+              <Pressable
+                style={styles.addButton}
+                onPress={() => {
+                  showDatePicker();
+                }}
+                onPressIn={() => {}}
+                onPressOut={() => {}}
+              >
+                <Text style={styles.addButtonText}>
+                  Date:{" "}
+                  {selectedDate
+                    ? selectedDate.toLocaleDateString()
+                    : "No date selected"}
+                </Text>
+              </Pressable>
+              <Text style={styles.baseText}></Text>
+              <DateTimePickerModal
+                date={selectedDate}
+                isVisible={datePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+              />
+            </View>
+            <Pressable
+              style={styles.addButton}
+              onPress={() => {
+                addIntake();
+              }}
+              onPressIn={() => {}}
+              onPressOut={() => {}}
+            >
+              <Text style={styles.addButtonText}>Save</Text>
+            </Pressable>
           </View>
         </ImageBackground>
         <Footer />
@@ -208,8 +248,7 @@ const styles = StyleSheet.create({
     width: "80%",
     justifyContent: "center",
     borderRadius: 4,
-    padding: 10
-
+    padding: 10,
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
@@ -222,14 +261,14 @@ const styles = StyleSheet.create({
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
     marginTop: 10,
-    textAlign: "center"
+    textAlign: "center",
   },
   howMuch: {
     flex: 1,
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
-    textAlign: "center"
+    textAlign: "center",
   },
   separator: {
     marginVertical: 8,
@@ -237,12 +276,12 @@ const styles = StyleSheet.create({
     bottomBorderWidth: StyleSheet.hairlineWidth,
   },
   input: {
-    color: 'black',
+    color: "black",
     borderRadius: 8,
-    backgroundColor: 'white',
-    borderWidth:0,
-    width: '45%',
-    padding: 10
+    backgroundColor: "white",
+    borderWidth: 0,
+    width: "45%",
+    padding: 10,
   },
   dropdown: {
     marginTop: 10,
@@ -259,7 +298,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   addButtonText: {
-    textAlign: 'center',
+    textAlign: "center",
     padding: 10,
     marginTop: 10,
     borderColor: "rgba(242, 255, 99, 1)",
@@ -270,13 +309,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   addButton: {
-    alignItems: 'center'
+    alignItems: "center",
   },
   calendar: {
-    alignItems:'center',
-    marginTop:10,
+    alignItems: "center",
+    marginTop: 10,
   },
   test: {
     fontFamily: "Lora_400Regular_Italic",
-  }
+  },
 });
