@@ -1,2 +1,28 @@
+• Clear expo cache: npx expo start -c 
+• Display local IP: ipconfig getifaddr en0
+
 When you call setIntakes, setAmounts, and setDates, React schedules a re-render of your component to reflect the updated state values. However, this re-render may not happen immediately, and the component may still render with the initial state values before the updated state values are applied.
 tldr: useState doesn't necessarily cause an immediate rerender so, for instance, you cannot console.log the new value right away but must do it once the state variable has changed
+
+useState by default simply does one thing and one thing only, set the new state and cause a re-render of the function. It is asynchronous in nature so by default, methods running after it usually run.
+
+From your example, on a fresh load of the page, typing 's' causes useState to change the state, but because it is asynchronous, console.log will be called with the old state value, i.e. undefined (since you didn't set a value. You should consider setting an initial state, if you want to)
+
+const [weather, setWeather] = useState('');    // Set the intial state
+The only way to truly read the value of the state is to use useEffect, which is called when there is a re-render of the component. Your method simply becomes:
+
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+
+function Weather() {
+    const [weather, setWeather] = useState('');
+
+    useEffect(() => console.log(weather), [weather]);
+
+    const changeValue = event => setWeather(event.target.value);
+
+    return <input value={weather} onChange={changeValue} />;
+}
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(<Weather />, rootElement);

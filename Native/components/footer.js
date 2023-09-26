@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import { MaterialCommunityIcons, Octicons, AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Octicons, AntDesign, FontAwesome } from '@expo/vector-icons';
 import { Link } from "expo-router";
 
 SplashScreen.hideAsync();
@@ -21,6 +21,7 @@ export default function Footer() {
       <View style={styles.footerContainer}>
         <Link style={styles.footerText} href="/home"><MaterialCommunityIcons name="home-outline" size={32} color="rgba(242, 255, 99, 1)" /></Link>
         <Link style={styles.footerText} href="/calculator"><AntDesign name="calculator" size={32} color="rgba(242, 255, 99, 1)" /></Link>
+        <Link style={styles.footerText} href="/table"><FontAwesome name="table" size={32} color="rgba(242, 255, 99, 1)" /></Link>
         <Link style={styles.footerText} href="/graph"><Octicons name="graph" size={32} color="rgba(242, 255, 99, 1)" /></Link>
       </View>
     );
