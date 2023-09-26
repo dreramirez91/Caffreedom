@@ -11,13 +11,15 @@ import {
   SafeAreaView,
   TextInput,
   Pressable,
-  Alert
+  Alert,
+  Button
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import Footer from '../components/Footer';
 import * as SecureStore from 'expo-secure-store';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 SplashScreen.hideAsync();
 
@@ -34,6 +36,23 @@ export default function Calculator() {
   const [amount, setAmount] = useState(0)
   const [caffeine, setCaffeine] = useState(0)
   const dropdownController = useRef(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [datePickerVisible, setDatePickerVisible] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisible(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisible(false);
+  };
+
+  const handleConfirm = (date) => {
+    setSelectedDate(date);
+    hideDatePicker();
+  };
+
+
 
   async function getValueFor(key) {
     try {
@@ -66,6 +85,7 @@ export default function Calculator() {
 
   useEffect(() => {swapDrink(amount)}, [drink, measurement]);
   useEffect(() => {getValueFor("token")}, [])
+  useEffect(() => {console.log("DATE =>", selectedDate.toISOString())}, [selectedDate])
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -77,10 +97,10 @@ export default function Calculator() {
     const data = {};
     data.caffeine = parseInt(caffeine);
     data.date = new Date().toISOString().split('T')[0]
+    console.log("DATE", data)
     data.type = drink["title"]
     data.amount = parseInt(amount);
     data.measurement = measurement
-    console.log("DATA", data)
     const fetchConfig = {
       method: "post",
       headers: {
@@ -142,9 +162,28 @@ export default function Calculator() {
           />
           </View>
           <Text style={styles.baseText}>You have consumed {parseInt(caffeine)} mg of caffeine.</Text>
+          <View style={styles.calendar}>
+          </View>
+          <View
+      >
+        <Pressable style={styles.addButton} onPress={() => {showDatePicker()}} onPressIn={() => {}} onPressOut={() => {}}>
+              <Text style={styles.addButtonText}>Date</Text>
+          </Pressable>
+        <Text style={styles.baseText}>
+          {selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'}
+        </Text>
+        <DateTimePickerModal
+          date={selectedDate}
+          isVisible={datePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+      </View>
+          
           <Pressable style={styles.addButton} onPress={() => {addIntake()}} onPressIn={() => {}} onPressOut={() => {}}>
               <Text style={styles.addButtonText}>Add</Text>
-            </Pressable>
+          </Pressable>
           </View>
         </ImageBackground>
         <Footer />
@@ -232,5 +271,12 @@ const styles = StyleSheet.create({
   },
   addButton: {
     alignItems: 'center'
+  },
+  calendar: {
+    alignItems:'center',
+    marginTop:10,
+  },
+  test: {
+    fontFamily: "Lora_400Regular_Italic",
   }
 });
