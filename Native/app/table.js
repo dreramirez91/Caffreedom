@@ -15,12 +15,19 @@ import background from "../assets/background.jpeg";
 import Footer from '../components/Footer';
 import {LineChart} from 'react-native-chart-kit';
 import * as SecureStore from 'expo-secure-store';
+import { Table, Row, Rows } from "react-native-table-component";
 
-export default function Graph() {
+export default function CaffeineTable() {
   const [intakes, setIntakes] = useState([0]);
   const [amounts, setAmounts] = useState([0]);
+  const [totalCaffeine, setTotalCaffeine] = useState([0])
   const [dates, setDates] = useState([0]);
-  const [fetchSuccessful, setFetchSuccessful] = useState(false);
+  const tableHead = ["Drink", "Amount", "Caffeine content"];
+  const tableData = [
+      ["Row 1, Cell 1", "Row 1, Cell 2", "Row 1, Cell 3"],
+      ["Row 2, Cell 1", "Row 2, Cell 2", "Row 2, Cell 3"],
+      ["Row 3, Cell 1", "Row 3, Cell 2", "Row 3, Cell 3"],
+  ];
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -45,13 +52,24 @@ export default function Graph() {
           console.log("DATA", data)
           console.log("Fetch successful");
           setIntakes(data.intakes);
-          console.log("INTAKES", intakes);
-          if (intakes !== null) {}
-          const amountsArray = data.intakes.map(intake => intake.amount);
+          const amountsArray = data.intakes.map(intake => intake.caffeine);
           setAmounts(amountsArray);
           const datesArray = data.intakes.map(intake => intake.date.slice(5));
-          setDates(datesArray);
-          setFetchSuccessful(true);
+          datesToSet = [...new Set(datesArray)]
+          setDates(datesToSet);
+          //calculate total caffeine and store it in variable then render it in graph
+          const caffArray = []
+          let dailyCaffeine = 0
+          for (d of datesToSet) {
+            for (intake of data.intakes) {
+              if (intake.date.slice(5) === d) {
+                dailyCaffeine += intake.caffeine
+              }
+            }
+            caffArray.push(dailyCaffeine)
+          }
+          setTotalCaffeine(caffArray);
+
       } else {
         console.error("Fetch failed");
       }
@@ -64,8 +82,9 @@ export default function Graph() {
   }
 
   useEffect(() => {populateData("token")}, []);
-  useEffect(() => console.log("AMOUNTS", amounts), [amounts])
-  useEffect(() => console.log("DATES", dates), [dates])
+  useEffect(() => console.log("Intakes", intakes), [intakes])
+  useEffect(() => console.log("Dates", dates), [dates])
+  useEffect(() => console.log("Total Caffeine", totalCaffeine), [totalCaffeine])
 
 
   // var month = new Date().getMonth() + 1;
@@ -82,22 +101,7 @@ export default function Graph() {
   // }
   // var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
-  // if (!fetchSuccessful) {
-  //   return (
-  //     <SafeAreaView style={styles.container}>
-  //     <ImageBackground
-  //       source={background}
-  //       resizeMode="cover"
-  //       style={styles.image}
-  //     >
-  //       <View style={styles.homeContainer}>
-  //         <Text style={styles.headerText}>Caffeine intake (mg)</Text>
-  //       </View>
-  //     </ImageBackground>
-  //     <StatusBar style="auto" />
-  //     <Footer />
-  //   </SafeAreaView>
-  //   )}
+  if (intakes.length === 0) {
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -106,13 +110,13 @@ export default function Graph() {
           style={styles.image}
         >
           <View style={styles.homeContainer}>
-            <Text style={styles.headerText}>Caffeine intake (mg)</Text>
+            <Text style={styles.headerText}>Your Caffeine intake (mg)</Text>
              <LineChart
     data={{
-      labels: dates,
+      labels: [`${new Date().getMonth() + 1}-${new Date().getDate()}`],
       datasets: [
         {
-          data: amounts
+          data: [0]
         }
       ]
     }}
@@ -150,10 +154,36 @@ export default function Graph() {
         <StatusBar style="auto" />
         <Footer />
       </SafeAreaView>
-    )};
+    )} else {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ImageBackground
+          source={background}
+          resizeMode="cover"
+          style={styles.image}
+        >
+          <View style={styles.homeContainer}>
+            <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+            <Table borderStyle={{ borderWidth: 2, borderColor: "gray" }}>
+            <Row
+               data={tableHead}
+               style={{ height: 40, backgroundColor: "#f1f8ff" }}
+               textStyle={{ textAlign: "center", fontWeight: "bold" }}
+            />
+            <Rows data={tableData} style={{ height: 80 }} textStyle={{ textAlign: "center" }} />
+         </Table>
+          </View>
+        </ImageBackground>
+        <StatusBar style="auto" />
+        <Footer />
+      </SafeAreaView>
+    )}};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  tableContainer: {
+    padding: 15
   },
   image: {
     flex: 1,
@@ -180,6 +210,9 @@ const styles = StyleSheet.create({
   logo: {
     width: 55,
     height: 55,
+  },
+  tableHeader: {
+    backgroundColor: '#DCDCDC',
   },
   userContainer: {
     flexDirection: "row",

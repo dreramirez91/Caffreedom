@@ -103,7 +103,7 @@ export default function Graph() {
           style={styles.image}
         >
           <View style={styles.homeContainer}>
-            <Text style={styles.headerText}>Total Caffeine intake (mg)</Text>
+            <Text style={styles.headerText}>Your Caffeine intake (mg)</Text>
              <LineChart
     data={{
       labels: [`${new Date().getMonth() + 1}-${new Date().getDate()}`],
@@ -156,7 +156,7 @@ export default function Graph() {
           style={styles.image}
         >
           <View style={styles.homeContainer}>
-            <Text style={styles.headerText}>Caffeine intake (mg)</Text>
+            <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
              <LineChart
     data={{
       labels: dates,
