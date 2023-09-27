@@ -20,7 +20,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 export default function CaffeineTable() {
   const [intakes, setIntakes] = useState([0]);
   const [amounts, setAmounts] = useState([0]);
-  const [totalCaffeine, setTotalCaffeine] = useState([0]);
+  const [caffeines, setCaffeines] = useState([0]);
   const [dates, setDates] = useState([0]);
   const tableHead = ["Drink", "Amount", "Caffeine content"];
   const tableData = [
@@ -55,23 +55,12 @@ export default function CaffeineTable() {
           console.log("DATA", data);
           console.log("Fetch successful");
           setIntakes(data.intakes);
-          const amountsArray = data.intakes.map((intake) => intake.caffeine);
+          const amountsArray = data.intakes.map((intake) => {
+            intake.caffeine, intake.type, intake.caffeine;
+          });
           setAmounts(amountsArray);
           const datesArray = data.intakes.map((intake) => intake.date.slice(5));
-          datesToSet = [...new Set(datesArray)];
-          setDates(datesToSet);
-          //calculate total caffeine and store it in variable then render it in graph
-          const caffArray = [];
-          let dailyCaffeine = 0;
-          for (d of datesToSet) {
-            for (intake of data.intakes) {
-              if (intake.date.slice(5) === d) {
-                dailyCaffeine += intake.caffeine;
-              }
-            }
-            caffArray.push(dailyCaffeine);
-          }
-          setTotalCaffeine(caffArray);
+          setDates(datesArray);
         } else {
           console.error("Fetch failed");
         }
@@ -88,10 +77,7 @@ export default function CaffeineTable() {
   }, []);
   useEffect(() => console.log("Intakes", intakes), [intakes]);
   useEffect(() => console.log("Dates", dates), [dates]);
-  useEffect(
-    () => console.log("Total Caffeine", totalCaffeine),
-    [totalCaffeine]
-  );
+  useEffect(() => console.log("Amounts", amounts), [amounts]);
 
   // var month = new Date().getMonth() + 1;
 
@@ -108,62 +94,6 @@ export default function CaffeineTable() {
   // var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
   if (intakes.length === 0) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
-          <View style={styles.homeContainer}>
-            <Text style={styles.headerText}>Your Caffeine intake (mg)</Text>
-            <LineChart
-              data={{
-                labels: [
-                  `${new Date().getMonth() + 1}-${new Date().getDate()}`,
-                ],
-                datasets: [
-                  {
-                    data: [0],
-                  },
-                ],
-              }}
-              width={Dimensions.get("window").width}
-              height={220}
-              yAxisLabel=""
-              yAxisSuffix=""
-              yAxisInterval={1} // optional, defaults to 1
-              chartConfig={{
-                backgroundColor: "#e26a00",
-                backgroundGradientFrom: "#fb8c00",
-                backgroundGradientTo: "#ffa726",
-                backgroundGradientFromOpacity: 0,
-                backgroundGradientToOpacity: 0,
-                decimalPlaces: 2, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                },
-                propsForDots: {
-                  r: "6",
-                  strokeWidth: "2",
-                  stroke: "#ffa726",
-                },
-              }}
-              bezier
-              style={{
-                marginVertical: 8,
-                borderRadius: 16,
-              }}
-            />
-          </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-        <Footer />
-      </SafeAreaView>
-    );
-  } else {
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -191,6 +121,44 @@ export default function CaffeineTable() {
         <Footer />
       </SafeAreaView>
     );
+  } else {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ImageBackground
+          source={background}
+          resizeMode="cover"
+          style={styles.image}
+        >
+          <View style={styles.mainContainer}>
+            <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+            <Table
+              borderStyle={{
+                borderWidth: 2,
+                borderColor: "gray",
+              }}
+            >
+              <Row
+                data={tableHead}
+                style={{ height: 40, backgroundColor: "#f1f8ff" }}
+                textStyle={{ textAlign: "center", fontWeight: "bold" }}
+              />
+              <Rows
+                data={tableData}
+                style={{ height: 80 }}
+                textStyle={{
+                  textAlign: "center",
+                  color: "rgba(242, 255, 99, 1)",
+                  fontFamily: "Lora_400Regular_Italic",
+                  fontSize: 12,
+                }}
+              />
+            </Table>
+          </View>
+        </ImageBackground>
+        <StatusBar style="auto" />
+        <Footer />
+      </SafeAreaView>
+    );
   }
 }
 const styles = StyleSheet.create({
@@ -205,17 +173,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  homeContainer: {
+  mainContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     justifyContent: "center",
     padding: 10,
     borderRadius: 4,
+    width: "100%",
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 26,
     textAlign: "center",
+    marginBottom: 10,
   },
   logoContainer: {
     alignItems: "center",

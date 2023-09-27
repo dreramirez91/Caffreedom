@@ -52,6 +52,7 @@ export default function Graph() {
           setAmounts(amountsArray);
           const datesArray = data.intakes.map((intake) => intake.date.slice(5));
           datesToSet = [...new Set(datesArray)];
+          datesToSet.sort();
           setDates(datesToSet);
           //calculate total caffeine and store it in variable then render it in graph
           const caffArray = [];
