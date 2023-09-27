@@ -189,7 +189,7 @@ export default function Calculator() {
               You have consumed {parseInt(caffeine)} mg of caffeine.
             </Text>
             <View style={styles.calendar}></View>
-            <View>
+            <View style={styles.buttonContainer}>
               <Pressable
                 style={styles.addButton}
                 onPress={() => {
@@ -213,17 +213,18 @@ export default function Calculator() {
                 onConfirm={handleConfirm}
                 onCancel={hideDatePicker}
               />
+
+              <Pressable
+                style={styles.addButton}
+                onPress={() => {
+                  addIntake();
+                }}
+                onPressIn={() => {}}
+                onPressOut={() => {}}
+              >
+                <Text style={styles.addButtonText}>Save</Text>
+              </Pressable>
             </View>
-            <Pressable
-              style={styles.addButton}
-              onPress={() => {
-                addIntake();
-              }}
-              onPressIn={() => {}}
-              onPressOut={() => {}}
-            >
-              <Text style={styles.addButtonText}>Save</Text>
-            </Pressable>
           </View>
         </ImageBackground>
         <Footer />
@@ -237,6 +238,10 @@ export default function Calculator() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
   image: {
     flex: 1,
@@ -300,7 +305,6 @@ const styles = StyleSheet.create({
   addButtonText: {
     textAlign: "center",
     padding: 10,
-    marginTop: 10,
     borderColor: "rgba(242, 255, 99, 1)",
     borderWidth: 2,
     fontFamily: "Lora_400Regular_Italic",

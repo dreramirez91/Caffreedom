@@ -15,4 +15,5 @@ yarn-debug.log*
 yarn-error.log*
 
 notes.txt
+learning.txt
 Server/db.sqlite3
