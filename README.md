@@ -9,8 +9,7 @@ To run Caffreedom on your local machine, you need to run both the frontend (Nati
 ### Native (Frontend)
 
 1. Install the Expo Go app on your smartphone.
-2. Open your terminal and navigate to the 'Native' directory by running:
-   `cd Native`
+2. Open your terminal and navigate to the 'Native' directory by running: `cd Native`
 3. Start the Expo development server by running: `npx expo start`
 4. The Expo development server will display a QR code in the terminal.
 5. Use your smartphone's camera to scan the QR code displayed in the terminal.
@@ -21,7 +20,7 @@ To run Caffreedom on your local machine, you need to run both the frontend (Nati
 1. Navigate to the 'Server' directory by running: `cd Server`
 2. Start the Django development server, specifying your local IP address: `python manage.py runserver <your_local_ip_address_here>`
 
-Replace ` <your_local_ip_address_here>`` with your actual local IP address, which can be found by typing  `ipconfig getifaddr en0` in your terminal.
+Replace ` <your_local_ip_address_here>` with your actual local IP address, which can be found by typing `ipconfig getifaddr en0` in your terminal.
 
 ## Contributing
 
