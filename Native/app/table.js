@@ -22,12 +22,8 @@ export default function CaffeineTable() {
   const [amounts, setAmounts] = useState([0]);
   const [caffeines, setCaffeines] = useState([0]);
   const [dates, setDates] = useState([0]);
-  const tableHead = ["Drink", "Amount", "Caffeine content"];
-  const tableData = [
-    ["Row 1, Cell 1", "Row 1, Cell 2", "Row 1, Cell 3"],
-    ["Row 2, Cell 1", "Row 2, Cell 2", "Row 2, Cell 3"],
-    ["Row 3, Cell 1", "Row 3, Cell 2", "Row 3, Cell 3"],
-  ];
+  const tableHead = ["Drink", "Amount", "Caffeine content", "Date"];
+  const [tableData, setTableData] = useState([]);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -55,12 +51,16 @@ export default function CaffeineTable() {
           console.log("DATA", data);
           console.log("Fetch successful");
           setIntakes(data.intakes);
-          const amountsArray = data.intakes.map((intake) => {
-            intake.caffeine, intake.type, intake.caffeine;
-          });
-          setAmounts(amountsArray);
-          const datesArray = data.intakes.map((intake) => intake.date.slice(5));
-          setDates(datesArray);
+          const tableDataToSet = [];
+          for (intake of data.intakes) {
+            const tableRow = [];
+            tableRow.push(intake.type);
+            tableRow.push(intake.amount);
+            tableRow.push(intake.caffeine);
+            tableRow.push(intake.date);
+            tableDataToSet.push(tableRow);
+          }
+          setTableData(tableDataToSet);
         } else {
           console.error("Fetch failed");
         }
@@ -75,9 +75,7 @@ export default function CaffeineTable() {
   useEffect(() => {
     populateData("token");
   }, []);
-  useEffect(() => console.log("Intakes", intakes), [intakes]);
-  useEffect(() => console.log("Dates", dates), [dates]);
-  useEffect(() => console.log("Amounts", amounts), [amounts]);
+  useEffect(() => console.log("Table data", tableData), [tableData]);
 
   // var month = new Date().getMonth() + 1;
 
