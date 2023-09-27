@@ -6,7 +6,7 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, get_user
+from django.contrib.auth import authenticate, get_user, logout
 from rest_framework import generics, status, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -84,3 +84,20 @@ def login(request):
 
     token, _ = Token.objects.get_or_create(user=user)
     return Response({"token": token.key}, status=status.HTTP_200_OK)
+
+
+@csrf_exempt
+@api_view(["POST"])
+def signout(request):
+    user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
+    logout(user)
+    return JsonResponse({"Logout": "Success"})
+
+
+@csrf_exempt
+@api_view
+def signup(request):
+    username = request.data.get("username")
+    password = request.data.get("password")
+    # check if user is in database, if not make it, otherwise return an error and catch that error in the frontend
+    # can refer to past projects for this
