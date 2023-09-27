@@ -54,10 +54,12 @@ export default function CaffeineTable() {
           const tableDataToSet = [];
           for (intake of data.intakes) {
             const tableRow = [];
-            tableRow.push(intake.type);
-            tableRow.push(intake.amount);
-            tableRow.push(intake.caffeine);
-            tableRow.push(intake.date);
+            tableRow.push(
+              intake.type,
+              intake.amount,
+              intake.caffeine,
+              intake.date
+            );
             tableDataToSet.push(tableRow);
           }
           setTableData(tableDataToSet);
