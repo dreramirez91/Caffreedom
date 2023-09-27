@@ -4,26 +4,29 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ImageBackground,
   SafeAreaView,
-  Dimensions,
+  Pressable,
 } from "react-native";
-import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import Footer from "../components/Footer";
-import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 
 export default function CaffeineTable() {
   const [intakes, setIntakes] = useState([0]);
-  const [amounts, setAmounts] = useState([0]);
-  const [caffeines, setCaffeines] = useState([0]);
-  const [dates, setDates] = useState([0]);
-  const tableHead = ["Drink", "Amount", "Caffeine content", "Date"];
+  const tableHead = ["Drink", "Amount", "Caffeine content", "Date", ""];
   const [tableData, setTableData] = useState([]);
+  const elementButton = (text) => (
+    <Pressable
+      onPress={() => {
+        console.log(tableRow);
+      }}
+    >
+      <Text style={styles.tableText}>{text}</Text>
+    </Pressable>
+  );
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -52,6 +55,7 @@ export default function CaffeineTable() {
           console.log("Fetch successful");
           setIntakes(data.intakes);
           const tableDataToSet = [];
+          let rowNumber = 1;
           for (intake of data.intakes) {
             const tableRow = [];
             tableRow.push(
@@ -62,8 +66,16 @@ export default function CaffeineTable() {
                   : intake.measurement
               }`,
               intake.caffeine,
-              intake.date
+              intake.date,
+              <Pressable
+                onPress={() => {
+                  console.log(tableRow);
+                }}
+              >
+                <Text style={styles.tableText}>Delete</Text>
+              </Pressable>
             );
+            // rowNumber += 1;
             tableDataToSet.push(tableRow);
           }
           setTableData(tableDataToSet);
@@ -190,6 +202,12 @@ const styles = StyleSheet.create({
     fontSize: 26,
     textAlign: "center",
     marginBottom: 10,
+  },
+  tableText: {
+    textAlign: "center",
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 12,
   },
   logoContainer: {
     alignItems: "center",
