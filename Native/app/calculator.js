@@ -178,7 +178,7 @@ export default function Calculator() {
                 setOpen={setOpen}
                 setValue={setMeasurement}
                 setItems={setItems}
-                containerStyle={{ width: "45%" }}
+                containerStyle={{ width: "50%" }}
                 style={{ borderWidth: 0 }}
                 placeholder="Unit of measurement"
               />
