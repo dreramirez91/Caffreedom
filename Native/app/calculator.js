@@ -94,9 +94,6 @@ export default function Calculator() {
   useEffect(() => {
     getValueFor("token");
   }, []);
-  // useEffect(() => {
-  //   console.log("DATE =>", selectedDate.toISOString());
-  // }, [selectedDate]);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -112,6 +109,7 @@ export default function Calculator() {
     data.type = drink["title"];
     data.amount = parseInt(amount);
     data.measurement = measurement;
+    console.log("Measurement", measurement);
     const fetchConfig = {
       method: "post",
       headers: {

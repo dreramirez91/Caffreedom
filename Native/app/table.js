@@ -56,7 +56,11 @@ export default function CaffeineTable() {
             const tableRow = [];
             tableRow.push(
               intake.type,
-              intake.amount,
+              `${intake.amount} ${
+                intake.amount === 1
+                  ? intake.measurement.slice(0, intake.measurement.length - 1)
+                  : intake.measurement
+              }`,
               intake.caffeine,
               intake.date
             );
