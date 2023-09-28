@@ -89,8 +89,8 @@ def login(request):
 @csrf_exempt
 @api_view(["POST"])
 def signout(request):
-    user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
-    logout(user)
+    print(request)
+    logout(request)
     return JsonResponse({"Logout": "Success"})
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -15,6 +15,7 @@ import background from "../assets/background.jpeg";
 import logo from "../assets/logo.png";
 import Footer from "../components/Footer";
 import LoginModal from "../components/LoginModal";
+import * as SecureStore from "expo-secure-store";
 
 SplashScreen.hideAsync();
 
@@ -22,6 +23,7 @@ export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [token, setToken] = useState("");
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -33,6 +35,46 @@ export default function Home() {
     setLoginPressed(true);
     setModalVisible(true);
   };
+
+  const signout = async (userToken) => {
+    const logoutUrl = "http://192.168.86.105:8000/users/signout";
+    const fetchConfig = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authentication: token,
+      },
+    };
+    const response = await fetch(logoutUrl, fetchConfig);
+    if (response.ok) {
+      console.log(await response.json());
+      setToken("");
+    } else {
+      console.log("Signout failed");
+    }
+  };
+
+  async function fetchToken(key) {
+    try {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        console.log("Successfully retrieved token from store", typeof result);
+        setToken(result);
+      } else {
+        console.log("Could not retrieve token from store");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchToken("token");
+  }, []);
+
+  useEffect(() => {
+    console.log(token);
+  }, [token]);
 
   if (fontsLoaded) {
     return (
@@ -53,32 +95,46 @@ export default function Home() {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={logo} />
             </View>
-            <View style={styles.userContainer}>
-              <Pressable
-                onPressIn={() => loginButtonPress()}
-                onPressOut={() => setLoginPressed(false)}
-              >
-                <Text
-                  style={
-                    loginPressed ? styles.pressedText : styles.unpressedText
-                  }
+            {!token ? (
+              <View style={styles.userContainer}>
+                <Pressable
+                  onPressIn={() => loginButtonPress()}
+                  onPressOut={() => setLoginPressed(false)}
                 >
-                  Login
-                </Text>
-              </Pressable>
-              <Pressable
-                onPressIn={() => setSignUpPressed(true)}
-                onPressOut={() => setSignUpPressed(false)}
-              >
-                <Text
-                  style={
-                    signUpPressed ? styles.pressedText : styles.unpressedText
-                  }
+                  <Text
+                    style={
+                      loginPressed ? styles.pressedText : styles.unpressedText
+                    }
+                  >
+                    Log In
+                  </Text>
+                </Pressable>
+                <Pressable
+                  onPressIn={() => setSignUpPressed(true)}
+                  onPressOut={() => setSignUpPressed(false)}
                 >
-                  Sign-up
-                </Text>
-              </Pressable>
-            </View>
+                  <Text
+                    style={
+                      signUpPressed ? styles.pressedText : styles.unpressedText
+                    }
+                  >
+                    Sign-up
+                  </Text>
+                </Pressable>
+              </View>
+            ) : (
+              <View style={styles.userContainer}>
+                <Pressable onPressIn={() => signout(token)}>
+                  <Text
+                    style={
+                      loginPressed ? styles.pressedText : styles.unpressedText
+                    }
+                  >
+                    Log out
+                  </Text>
+                </Pressable>
+              </View>
+            )}
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
