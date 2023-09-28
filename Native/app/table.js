@@ -18,6 +18,8 @@ export default function CaffeineTable() {
   const [intakes, setIntakes] = useState([0]);
   const tableHead = ["Drink", "Amount", "Caffeine content", "Date", ""];
   const [tableData, setTableData] = useState([]);
+  const [token, setToken] = useState("");
+  const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const elementButton = (text) => (
     <Pressable
       onPress={() => {
@@ -32,8 +34,43 @@ export default function CaffeineTable() {
     Lora_400Regular_Italic,
   });
 
+  async function deleteIntake(id, key) {
+    try {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        console.log("TOKEN WITHIN DELETE FUNCTION", token);
+        const data = {};
+        data.id = id;
+        const fetchConfig = {
+          method: "post",
+          headers: {
+            "Content-type": "application/json",
+            Authentication: result,
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch(
+          "http://192.168.86.105:8000/users/delete",
+          fetchConfig
+        );
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setDeleteSuccessful(true);
+        } else {
+          console.log("Delete failed");
+        }
+      } else {
+        console.log("Could not retrieve token from store for delete request");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function populateData(key) {
     try {
+      setDeleteSuccessful(false);
       let result = await SecureStore.getItemAsync(key);
       if (result) {
         console.log("Successfully retrieved token from store", result);
@@ -69,10 +106,10 @@ export default function CaffeineTable() {
               intake.date,
               <Pressable
                 onPress={() => {
-                  console.log(tableRow);
+                  deleteIntake(intake.id, "token");
                 }}
               >
-                <Text style={styles.tableText}>Delete</Text>
+                <Text style={styles.deleteText}>Delete</Text>
               </Pressable>
             );
             // rowNumber += 1;
@@ -92,22 +129,8 @@ export default function CaffeineTable() {
 
   useEffect(() => {
     populateData("token");
-  }, []);
+  }, [deleteSuccessful]);
   useEffect(() => console.log("Table data", tableData), [tableData]);
-
-  // var month = new Date().getMonth() + 1;
-
-  // function daysInThisMonth() {
-  //   var now = new Date();
-  //   return new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
-  // };
-
-  // var days = daysInThisMonth();
-  // var eachDay = []
-  // for (var day = 1; day <= days; day++) {
-  //   eachDay.push(day)
-  // }
-  // var datesThisMonth = eachDay.map(day => `${month}/${day}`);
 
   if (intakes.length === 0) {
     return (
@@ -206,6 +229,15 @@ const styles = StyleSheet.create({
   tableText: {
     textAlign: "center",
     color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 12,
+  },
+  deleteText: {
+    textAlign: "center",
+    color: "rgba(255, 99, 99, 1)",
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 12,
   },

@@ -22,7 +22,7 @@ import json
 
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
-    properties = ["amount", "date", "caffeine", "type", "measurement"]
+    properties = ["id", "amount", "date", "caffeine", "type", "measurement"]
 
 
 @login_required
@@ -50,6 +50,19 @@ def api_list_caffeine_intake(request):
         )
         intakes = user.caffeine_intakes.all()
         return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
+
+
+@login_required
+@csrf_exempt
+@require_http_methods(["POST"])
+def api_delete_caffeine_intake(request):
+    data = json.loads(request.body)
+    print("DATA FOR DELETE => ", data)
+    user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
+    id = data["id"]
+    intake = get_object_or_404(user.caffeine_intakes, id=id)
+    intake.delete()
+    return JsonResponse({"Delete": "Success"})
 
 
 class UserList(generics.ListCreateAPIView):

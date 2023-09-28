@@ -6,6 +6,7 @@ from .api_views import (
     signin,
     signout,
     signup,
+    api_delete_caffeine_intake,
 )
 
 urlpatterns = [
@@ -15,4 +16,9 @@ urlpatterns = [
     path("signin", signin, name="signin"),
     path("signout", signout, name="signout"),
     path("signup", signup, name="signup"),
+    path(
+        "delete",
+        api_delete_caffeine_intake,
+        name="api_delete_caffeine_intake",
+    ),
 ]
