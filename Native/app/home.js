@@ -24,6 +24,7 @@ export default function Home() {
   const [signUpPressed, setSignUpPressed] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [token, setToken] = useState("");
+  const [loginSuccessful, setLoginSuccessful] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -49,6 +50,7 @@ export default function Home() {
     if (response.ok) {
       console.log(await response.json());
       setToken("");
+      SecureStore.deleteItemAsync("token");
     } else {
       console.log("Signout failed");
     }
@@ -70,10 +72,10 @@ export default function Home() {
 
   useEffect(() => {
     fetchToken("token");
-  }, []);
+  }, [loginSuccessful]);
 
   useEffect(() => {
-    console.log(token);
+    console.log("TOKEN =>", token);
   }, [token]);
 
   if (fontsLoaded) {
@@ -88,6 +90,7 @@ export default function Home() {
             <LoginModal
               setModalVisible={setModalVisible}
               modalVisible={modalVisible}
+              setLoginSuccessful={setLoginSuccessful}
             />
           </View>
           <View style={styles.homeContainer}>

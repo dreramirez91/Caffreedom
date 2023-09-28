@@ -12,7 +12,11 @@ import * as SecureStore from "expo-secure-store";
 
 SplashScreen.hideAsync();
 
-export default function LoginModal({ modalVisible, setModalVisible }) {
+export default function LoginModal({
+  modalVisible,
+  setModalVisible,
+  setLoginSuccessful,
+}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,7 +28,7 @@ export default function LoginModal({ modalVisible, setModalVisible }) {
     data.username = username;
     data.password = password;
     console.log(data);
-    const loginUrl = "http://192.168.86.105:8000/users/login";
+    const loginUrl = "http://192.168.86.105:8000/users/signin";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -41,6 +45,7 @@ export default function LoginModal({ modalVisible, setModalVisible }) {
       setUsername("");
       setPassword("");
       setModalVisible(false);
+      setLoginSuccessful(true);
     } else {
       console.log("Invalid login credentials");
     }

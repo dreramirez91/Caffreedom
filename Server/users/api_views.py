@@ -6,7 +6,7 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, get_user, logout
+from django.contrib.auth import authenticate, get_user, logout, login
 from rest_framework import generics, status, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -25,12 +25,10 @@ class CaffeineIntakesEncoder(ModelEncoder):
     properties = ["amount", "date", "caffeine", "type", "measurement"]
 
 
+@login_required
 @csrf_exempt
 @require_http_methods(["GET", "POST"])
 def api_list_caffeine_intake(request):
-    permission_classes = [
-        IsAuthenticated,
-    ]
     if request.method == "GET":
         user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
         intakes = user.caffeine_intakes.all()
@@ -66,7 +64,7 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 
 @csrf_exempt
 @api_view(["POST"])
-def login(request):
+def signin(request):
     username = request.data.get("username")
     password = request.data.get("password")
     if username is None and password is None:
@@ -77,10 +75,8 @@ def login(request):
 
     user = authenticate(username=username, password=password)
 
-    if not user:
-        return Response(
-            {"error": "Invalid credentials"}, status=status.HTTP_404_NOT_FOUND
-        )
+    if user is not None:
+        login(request, user)
 
     token, _ = Token.objects.get_or_create(user=user)
     return Response({"token": token.key}, status=status.HTTP_200_OK)
@@ -89,7 +85,6 @@ def login(request):
 @csrf_exempt
 @api_view(["POST"])
 def signout(request):
-    print(request)
     logout(request)
     return JsonResponse({"Logout": "Success"})
 
