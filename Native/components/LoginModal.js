@@ -13,10 +13,11 @@ import * as SecureStore from "expo-secure-store";
 SplashScreen.hideAsync();
 
 export default function LoginModal({
-  modalVisible,
-  setModalVisible,
+  loginModalVisible,
+  setLoginModalVisible,
   setLoginSuccessful,
 }) {
+  console.log("Function:", setLoginModalVisible);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -44,7 +45,7 @@ export default function LoginModal({
       save("token", token);
       setUsername("");
       setPassword("");
-      setModalVisible(false);
+      setLoginModalVisible(false);
       setLoginSuccessful(true);
     } else {
       console.log("Invalid login credentials");
@@ -56,10 +57,10 @@ export default function LoginModal({
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={loginModalVisible}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
+          setLoginModalVisible(!loginModalVisible);
         }}
       >
         <View style={styles.centeredView}>
@@ -86,7 +87,7 @@ export default function LoginModal({
             </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => setLoginModalVisible(!loginModalVisible)}
             >
               <Text style={styles.textStyle}>Close</Text>
             </Pressable>

@@ -82,6 +82,7 @@ def signin(request):
     return Response({"token": token.key}, status=status.HTTP_200_OK)
 
 
+@login_required
 @csrf_exempt
 @api_view(["POST"])
 def signout(request):
@@ -90,9 +91,12 @@ def signout(request):
 
 
 @csrf_exempt
-@api_view
+@api_view(["POST"])
 def signup(request):
     username = request.data.get("username")
     password = request.data.get("password")
-    # check if user is in database, if not make it, otherwise return an error and catch that error in the frontend
-    # can refer to past projects for this
+    user = User.objects.create_user(username=username, password=password)
+    user.save()
+    login(request, user)
+    token, _ = Token.objects.get_or_create(user=user)
+    return Response({"token": token.key}, status=status.HTTP_200_OK)

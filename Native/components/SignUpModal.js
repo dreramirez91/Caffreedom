@@ -13,41 +13,46 @@ import * as SecureStore from "expo-secure-store";
 SplashScreen.hideAsync();
 
 export default function SignUpModal({
-  modalVisible,
-  setModalVisible,
-  setLoginSuccessful,
+  signUpModalVisible,
+  setSignUpModalVisible,
+  setSignUpSuccessful,
 }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
   }
   const handleSubmit = async (e) => {
-    const data = {};
-    data.username = username;
-    data.password = password;
-    console.log(data);
-    const loginUrl = "http://192.168.86.105:8000/users/signin";
-    const fetchConfig = {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await fetch(loginUrl, fetchConfig);
-    if (response.ok) {
-      const tokenInfo = await response.json();
-      const token = tokenInfo.token;
-      console.log(token);
-      save("token", token);
-      setUsername("");
-      setPassword("");
-      setModalVisible(false);
-      setLoginSuccessful(true);
+    if (password === confirmPassword) {
+      const data = {};
+      data.username = username;
+      data.password = password;
+      console.log(data);
+      const signUpUrl = "http://192.168.86.105:8000/users/signup";
+      const fetchConfig = {
+        method: "post",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await fetch(signUpUrl, fetchConfig);
+      if (response.ok) {
+        const tokenInfo = await response.json();
+        const token = tokenInfo.token;
+        console.log(token);
+        save("token", token);
+        setUsername("");
+        setPassword("");
+        setSignUpModalVisible(false);
+        setSignUpSuccessful(true);
+      } else {
+        console.log("Sign up failed");
+      }
     } else {
-      console.log("Invalid login credentials");
+      console.log("Passwords do not match");
     }
   };
 
@@ -56,15 +61,15 @@ export default function SignUpModal({
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={signUpModalVisible}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
+          setSignUpModalVisible(!signUpModalVisible);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Login</Text>
+            <Text style={styles.modalText}>Sign Up</Text>
             <TextInput
               style={styles.input}
               onChangeText={setUsername}
@@ -78,6 +83,13 @@ export default function SignUpModal({
               value={password}
               secureTextEntry={true}
             ></TextInput>
+            <TextInput
+              style={styles.input}
+              onChangeText={setConfirmPassword}
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              secureTextEntry={true}
+            ></TextInput>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => handleSubmit()}
@@ -86,7 +98,7 @@ export default function SignUpModal({
             </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => setSignUpModalVisible(!signUpModalVisible)}
             >
               <Text style={styles.textStyle}>Close</Text>
             </Pressable>

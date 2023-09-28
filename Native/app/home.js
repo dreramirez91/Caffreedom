@@ -16,15 +16,18 @@ import logo from "../assets/logo.png";
 import Footer from "../components/Footer";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
+import SignUpModal from "../components/SignUpModal";
 
 SplashScreen.hideAsync();
 
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [loginModalVisible, setLoginModalVisible] = useState(false);
+  const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [token, setToken] = useState("");
   const [loginSuccessful, setLoginSuccessful] = useState(false);
+  const [signUpSuccessful, setSignUpSuccessful] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -34,7 +37,12 @@ export default function Home() {
 
   const loginButtonPress = () => {
     setLoginPressed(true);
-    setModalVisible(true);
+    setLoginModalVisible(true);
+  };
+
+  const signUpButtonPress = () => {
+    setSignUpPressed(true);
+    setSignUpModalVisible(true);
   };
 
   const signout = async (userToken) => {
@@ -72,7 +80,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchToken("token");
-  }, [loginSuccessful]);
+  }, [loginSuccessful, signUpSuccessful]);
 
   useEffect(() => {
     console.log("TOKEN =>", token);
@@ -88,9 +96,16 @@ export default function Home() {
         >
           <View style={styles.homeContainer}>
             <LoginModal
-              setModalVisible={setModalVisible}
-              modalVisible={modalVisible}
+              setLoginModalVisible={setLoginModalVisible}
+              loginModalVisible={loginModalVisible}
               setLoginSuccessful={setLoginSuccessful}
+            />
+          </View>
+          <View style={styles.homeContainer}>
+            <SignUpModal
+              setSignUpModalVisible={setSignUpModalVisible}
+              signUpModalVisible={signUpModalVisible}
+              setSignUpSuccessful={setSignUpSuccessful}
             />
           </View>
           <View style={styles.homeContainer}>
@@ -113,7 +128,7 @@ export default function Home() {
                   </Text>
                 </Pressable>
                 <Pressable
-                  onPressIn={() => setSignUpPressed(true)}
+                  onPressIn={() => signUpButtonPress()}
                   onPressOut={() => setSignUpPressed(false)}
                 >
                   <Text
