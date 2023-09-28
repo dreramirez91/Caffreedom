@@ -20,10 +20,16 @@ export default function LoginModal({
   console.log("Function:", setLoginModalVisible);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
   }
+
+  const onClose = () => {
+    setLoginModalVisible(!loginModalVisible);
+    setError("");
+  };
   const handleSubmit = async (e) => {
     const data = {};
     data.username = username;
@@ -39,6 +45,7 @@ export default function LoginModal({
     };
     const response = await fetch(loginUrl, fetchConfig);
     if (response.ok) {
+      setError("");
       const tokenInfo = await response.json();
       const token = tokenInfo.token;
       console.log(token);
@@ -47,8 +54,10 @@ export default function LoginModal({
       setPassword("");
       setLoginModalVisible(false);
       setLoginSuccessful(true);
+      setInvalidLoginInformation(false);
     } else {
-      console.log("Invalid login credentials");
+      const errorMessage = await response.json();
+      setError(errorMessage["Error"]);
     }
   };
 
@@ -61,6 +70,7 @@ export default function LoginModal({
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
           setLoginModalVisible(!loginModalVisible);
+          setError("");
         }}
       >
         <View style={styles.centeredView}>
@@ -72,6 +82,17 @@ export default function LoginModal({
               placeholder="Username"
               value={username}
             ></TextInput>
+            {error ? (
+              <View
+                styles={{
+                  borderWidth: 10,
+                  borderColor: "orange",
+                  borderStyle: "solid",
+                }}
+              >
+                <Text style={styles.errorText}>{error}</Text>
+              </View>
+            ) : null}
             <TextInput
               style={styles.input}
               onChangeText={setPassword}
@@ -87,7 +108,7 @@ export default function LoginModal({
             </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setLoginModalVisible(!loginModalVisible)}
+              onPress={() => onClose()}
             >
               <Text style={styles.textStyle}>Close</Text>
             </Pressable>
@@ -142,13 +163,22 @@ const styles = StyleSheet.create({
   },
   submitStyle: {
     color: "rgba(242, 255, 99, 1)",
-
     textAlign: "center",
     fontFamily: "Lora_400Regular_Italic",
   },
   modalText: {
     color: "rgba(242, 255, 99, 1)",
     marginBottom: 15,
+
+    fontFamily: "Lora_400Regular_Italic",
+    textAlign: "center",
+  },
+  errorText: {
+    color: "rgba(242, 255, 99, 1)",
+    textDecorationLine: "underline",
+    // textShadowColor: "rgba(0, 0, 0, 0.5)",
+    // textShadowOffset: { width: -1, height: 1 },
+    // textShadowRadius: 10,
 
     fontFamily: "Lora_400Regular_Italic",
     textAlign: "center",

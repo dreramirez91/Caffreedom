@@ -17,6 +17,7 @@ from django.http import JsonResponse
 from common.json import ModelEncoder
 from django.core.handlers.wsgi import WSGIRequest
 from django.contrib.sessions.models import Session
+from django.db.utils import IntegrityError
 import json
 
 
@@ -90,6 +91,8 @@ def signin(request):
 
     if user is not None:
         login(request, user)
+    else:
+        return Response({"Error": "Invalid username"}, status=status.HTTP_404_NOT_FOUND)
 
     token, _ = Token.objects.get_or_create(user=user)
     return Response({"token": token.key}, status=status.HTTP_200_OK)
