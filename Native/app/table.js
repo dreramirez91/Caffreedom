@@ -140,7 +140,7 @@ export default function CaffeineTable() {
           resizeMode="cover"
           style={styles.image}
         >
-          <View style={styles.homeContainer}>
+          <View style={styles.mainContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
             <Table borderStyle={{ borderWidth: 2, borderColor: "gray" }}>
               <Row
