@@ -23,6 +23,7 @@ SplashScreen.hideAsync();
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
+  const [logoutPressed, setLogoutPressed] = useState(false);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [token, setToken] = useState("");
@@ -46,6 +47,7 @@ export default function Home() {
   };
 
   const signout = async (userToken) => {
+    setLogoutPressed(true);
     const logoutUrl = "http://192.168.86.105:8000/users/signout";
     const fetchConfig = {
       method: "post",
@@ -145,7 +147,7 @@ export default function Home() {
                 <Pressable onPressIn={() => signout(token)}>
                   <Text
                     style={
-                      loginPressed ? styles.pressedText : styles.unpressedText
+                      logoutPressed ? styles.pressedText : styles.unpressedText
                     }
                   >
                     Log out
