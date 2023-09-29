@@ -169,6 +169,7 @@ export default function Graph() {
           <View style={styles.homeContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
             <LineChart
+              fromZero="True"
               data={{
                 labels: dates,
                 datasets: [

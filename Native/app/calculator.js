@@ -39,6 +39,15 @@ export default function Calculator() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [datePickerVisible, setDatePickerVisible] = useState(false);
 
+  useEffect(() => console.log("DRINK: ", drink), [drink]);
+  useEffect(() => console.log("MEASUREMENT: ", measurement), [measurement]);
+  useEffect(() => console.log("AMOUNT: ", amount), [amount]);
+  useEffect(() => console.log("CAFFEINE: ", caffeine), [caffeine]);
+  useEffect(
+    () => console.log("DATE: ", selectedDate.toISOString().split("T")[0]),
+    [selectedDate]
+  );
+
   const showDatePicker = () => {
     setDatePickerVisible(true);
   };
