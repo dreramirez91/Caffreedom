@@ -229,7 +229,7 @@ export default function Calculator() {
                 onPressIn={() => {}}
                 onPressOut={() => {}}
               >
-                <Text style={styles.saveButton}>Save</Text>
+                <Text style={styles.addButtonText}>Save</Text>
               </Pressable>
             </View>
           </View>
@@ -247,7 +247,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    marginTop: 2,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
   image: {
     flex: 1,
@@ -310,20 +311,13 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     textAlign: "center",
-    padding: 7,
+    padding: 10,
     borderColor: "rgba(242, 255, 99, 1)",
     borderWidth: 2,
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
     color: "rgba(242, 255, 99, 1)",
     borderRadius: 4,
-  },
-  saveButton: {
-    color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline",
-    paddingBottom: 10,
   },
   addButton: {
     alignItems: "center",
