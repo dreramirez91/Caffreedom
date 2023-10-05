@@ -23,6 +23,7 @@ SplashScreen.hideAsync();
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
+  const [signOutPressed, setSignOutPressed] = useState(false);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [token, setToken] = useState("");
@@ -43,6 +44,11 @@ export default function Home() {
   const signUpButtonPress = () => {
     setSignUpPressed(true);
     setSignUpModalVisible(true);
+  };
+
+  const signOutButtonPress = () => {
+    setSignOutPressed(true);
+    signout(token);
   };
 
   const signout = async (userToken) => {
@@ -113,43 +119,49 @@ export default function Home() {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={logo} />
             </View>
-            <View style={styles.userContainer}>
-              <Pressable
-                onPressIn={() => loginButtonPress()}
-                onPressOut={() => setLoginPressed(false)}
-              >
-                <Text
-                  style={
-                    loginPressed ? styles.pressedText : styles.unpressedText
-                  }
+            {!token ? (
+              <View style={styles.userContainer}>
+                <Pressable
+                  onPressIn={() => loginButtonPress()}
+                  onPressOut={() => setLoginPressed(false)}
                 >
-                  Log In
-                </Text>
-              </Pressable>
-              <Pressable
-                onPressIn={() => signUpButtonPress()}
-                onPressOut={() => setSignUpPressed(false)}
-              >
-                <Text
-                  style={
-                    signUpPressed ? styles.pressedText : styles.unpressedText
-                  }
+                  <Text
+                    style={
+                      loginPressed ? styles.pressedText : styles.unpressedText
+                    }
+                  >
+                    Log In
+                  </Text>
+                </Pressable>
+                <Pressable
+                  onPressIn={() => signUpButtonPress()}
+                  onPressOut={() => setSignUpPressed(false)}
                 >
-                  Sign-up
-                </Text>
-              </Pressable>
-            </View>
-            <View style={styles.userContainer}>
-              <Pressable onPressIn={() => signout(token)}>
-                <Text
-                  style={
-                    loginPressed ? styles.pressedText : styles.unpressedText
-                  }
+                  <Text
+                    style={
+                      signUpPressed ? styles.pressedText : styles.unpressedText
+                    }
+                  >
+                    Sign-up
+                  </Text>
+                </Pressable>
+              </View>
+            ) : (
+              <View style={styles.userContainer}>
+                <Pressable
+                  onPressIn={() => signOutButtonPress()}
+                  onPressOut={() => setSignOutPressed(false)}
                 >
-                  Log out
-                </Text>
-              </Pressable>
-            </View>
+                  <Text
+                    style={
+                      signOutPressed ? styles.pressedText : styles.unpressedText
+                    }
+                  >
+                    Log out
+                  </Text>
+                </Pressable>
+              </View>
+            )}
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
