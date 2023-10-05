@@ -113,46 +113,43 @@ export default function Home() {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={logo} />
             </View>
-            {!token ? (
-              <View style={styles.userContainer}>
-                <Pressable
-                  onPressIn={() => loginButtonPress()}
-                  onPressOut={() => setLoginPressed(false)}
+            <View style={styles.userContainer}>
+              <Pressable
+                onPressIn={() => loginButtonPress()}
+                onPressOut={() => setLoginPressed(false)}
+              >
+                <Text
+                  style={
+                    loginPressed ? styles.pressedText : styles.unpressedText
+                  }
                 >
-                  <Text
-                    style={
-                      loginPressed ? styles.pressedText : styles.unpressedText
-                    }
-                  >
-                    Log In
-                  </Text>
-                </Pressable>
-                <Pressable
-                  onPressIn={() => signUpButtonPress()}
-                  onPressOut={() => setSignUpPressed(false)}
+                  Log In
+                </Text>
+              </Pressable>
+              <Pressable
+                onPressIn={() => signUpButtonPress()}
+                onPressOut={() => setSignUpPressed(false)}
+              >
+                <Text
+                  style={
+                    signUpPressed ? styles.pressedText : styles.unpressedText
+                  }
                 >
-                  <Text
-                    style={
-                      signUpPressed ? styles.pressedText : styles.unpressedText
-                    }
-                  >
-                    Sign-up
-                  </Text>
-                </Pressable>
-              </View>
-            ) : (
-              <View style={styles.userContainer}>
-                <Pressable onPressIn={() => signout(token)}>
-                  <Text
-                    style={
-                      loginPressed ? styles.pressedText : styles.unpressedText
-                    }
-                  >
-                    Log out
-                  </Text>
-                </Pressable>
-              </View>
-            )}
+                  Sign-up
+                </Text>
+              </Pressable>
+            </View>
+            <View style={styles.userContainer}>
+              <Pressable onPressIn={() => signout(token)}>
+                <Text
+                  style={
+                    loginPressed ? styles.pressedText : styles.unpressedText
+                  }
+                >
+                  Log out
+                </Text>
+              </Pressable>
+            </View>
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
