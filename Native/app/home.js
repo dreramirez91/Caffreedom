@@ -29,6 +29,7 @@ export default function Home() {
   const [token, setToken] = useState("");
   const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [signUpSuccessful, setSignUpSuccessful] = useState(false);
+  const [signoutSuccessful, setSignOutSuccessful] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -64,6 +65,7 @@ export default function Home() {
     if (response.ok) {
       console.log(await response.json());
       setToken("");
+      setSignOutSuccessful(true);
       SecureStore.deleteItemAsync("token");
     } else {
       console.log("Signout failed");
@@ -86,7 +88,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchToken("token");
-  }, [loginSuccessful, signUpSuccessful]);
+  }, [loginSuccessful, signUpSuccessful, signoutSuccessful]);
 
   useEffect(() => {
     console.log("TOKEN =>", token);

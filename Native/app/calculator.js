@@ -39,6 +39,8 @@ export default function Calculator() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [datePickerVisible, setDatePickerVisible] = useState(false);
 
+  const onOpenSuggestionsList = () => setOpen(false);
+
   useEffect(() => console.log("DRINK: ", drink), [drink]);
   useEffect(() => console.log("MEASUREMENT: ", measurement), [measurement]);
   useEffect(() => console.log("AMOUNT: ", amount), [amount]);
@@ -168,6 +170,7 @@ export default function Calculator() {
               closeOnSubmit={false}
               onSelectItem={onChangeDrink}
               dataSet={caffeineContent}
+              onOpenSuggestionsList={onOpenSuggestionsList}
             />
             <Text style={styles.baseText}>How much?</Text>
             <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
