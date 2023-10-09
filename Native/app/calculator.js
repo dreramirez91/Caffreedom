@@ -180,7 +180,7 @@ export default function Calculator() {
                 editable={drink && measurement ? true : false}
                 onChangeText={onChangeAmount}
                 keyboardType="numeric"
-                value={amount}
+                value={amount.toString()}
                 placeholder="Amount"
               ></TextInput>
               <DropDownPicker
