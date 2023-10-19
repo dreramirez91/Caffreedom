@@ -217,7 +217,7 @@ export default function Graph() {
                 size={24}
                 color="rgba(242, 255, 99, 1)"
               />
-              <Text style={styles.week}>Week</Text>
+              <Text style={styles.week}>Week 1</Text>
               <MaterialCommunityIcons
                 name="calendar-arrow-right"
                 size={24}
