@@ -7,6 +7,7 @@ import {
   ImageBackground,
   SafeAreaView,
   Pressable,
+  ScrollView,
 } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
@@ -168,8 +169,12 @@ export default function CaffeineTable() {
           resizeMode="cover"
           style={styles.image}
         >
-          <View style={styles.mainContainer}>
+          <ScrollView
+            style={styles.scrollView}
+            contentContainerStyle={styles.contentContainer}
+          >
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+
             <Table
               borderStyle={{
                 borderWidth: 2,
@@ -192,7 +197,7 @@ export default function CaffeineTable() {
                 }}
               />
             </Table>
-          </View>
+          </ScrollView>
         </ImageBackground>
         <StatusBar style="auto" />
         <Footer />
@@ -218,6 +223,15 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 4,
     width: "100%",
+  },
+  scrollView: {
+    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    padding: 10,
+    borderRadius: 4,
+    width: "100%",
+  },
+  contentContainerStyle: {
+    justifyContent: "center",
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
