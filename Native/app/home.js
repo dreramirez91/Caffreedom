@@ -68,6 +68,7 @@ export default function Home() {
       setSignOutSuccessful(true);
       SecureStore.deleteItemAsync("token");
     } else {
+      SecureStore.deleteItemAsync("token");
       console.log("Signout failed");
     }
   };

@@ -54,7 +54,6 @@ export default function LoginModal({
       setPassword("");
       setLoginModalVisible(false);
       setLoginSuccessful(true);
-      setInvalidLoginInformation(false);
     } else {
       const errorMessage = await response.json();
       setError(errorMessage["Error"]);
