@@ -8,6 +8,7 @@ import {
   ImageBackground,
   SafeAreaView,
   Dimensions,
+  Pressable,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
@@ -22,8 +23,11 @@ export default function Graph() {
   const [amounts, setAmounts] = useState([0]);
   const [totalCaffeine, setTotalCaffeine] = useState([0]);
   const [dates, setDates] = useState([0]);
+  const [weekStart, setWeekStart] = useState(0);
+  const [weekEnd, setWeekEnd] = useState(6);
   // You can either go through a nested list when you press a button and increment index by 1 where each nested list
-  // is a week OR press and shift the index by 7
+  // is a week OR press and shift the index by 7. First option is cleaner, hard-easy and you can then put the week
+  // number for the user to see
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -81,6 +85,22 @@ export default function Graph() {
       console.log(error);
     }
   }
+
+  const nextWeek = () => {
+    if (weekEnd === totalCaffeine.length) {
+    } else {
+      setWeekStart(weekStart + 1);
+      setWeekEnd(weekEnd + 1);
+    }
+  };
+
+  const lastWeek = () => {
+    if (weekStart == 0) {
+    } else {
+      setWeekStart(weekStart - 1);
+      setWeekEnd(weekEnd - 1);
+    }
+  };
 
   useEffect(() => {
     populateData("token");
@@ -175,10 +195,10 @@ export default function Graph() {
             <LineChart
               fromZero="True"
               data={{
-                labels: dates.slice(0, 7),
+                labels: dates.slice(weekStart, weekEnd),
                 datasets: [
                   {
-                    data: totalCaffeine.slice(0, 6),
+                    data: totalCaffeine.slice(weekStart, weekEnd),
                   },
                 ],
               }}
@@ -212,17 +232,21 @@ export default function Graph() {
               }}
             />
             <View style={styles.changeDates}>
-              <MaterialCommunityIcons
-                name="calendar-arrow-left"
-                size={24}
-                color="rgba(242, 255, 99, 1)"
-              />
-              <Text style={styles.week}>Week 1</Text>
-              <MaterialCommunityIcons
-                name="calendar-arrow-right"
-                size={24}
-                color="rgba(242, 255, 99, 1)"
-              />
+              <Pressable onPressIn={lastWeek}>
+                <MaterialCommunityIcons
+                  name="calendar-arrow-left"
+                  size={24}
+                  color="rgba(242, 255, 99, 1)"
+                />
+              </Pressable>
+              {/* <Text style={styles.week}>Week {weekStart + 1}</Text> */}
+              <Pressable onPress={nextWeek}>
+                <MaterialCommunityIcons
+                  name="calendar-arrow-right"
+                  size={24}
+                  color="rgba(242, 255, 99, 1)"
+                />
+              </Pressable>
             </View>
           </View>
         </ImageBackground>
