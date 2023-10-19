@@ -15,12 +15,15 @@ import background from "../assets/background.jpeg";
 import Footer from "../components/Footer";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Graph() {
   const [intakes, setIntakes] = useState([0]);
   const [amounts, setAmounts] = useState([0]);
   const [totalCaffeine, setTotalCaffeine] = useState([0]);
   const [dates, setDates] = useState([0]);
+  // You can either go through a nested list when you press a button and increment index by 1 where each nested list
+  // is a week OR press and shift the index by 7
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -67,6 +70,7 @@ export default function Graph() {
             dailyCaffeine = 0;
           }
           setTotalCaffeine(caffArray);
+          console.log("Total caffeine =>", totalCaffeine);
         } else {
           console.error("Fetch failed");
         }
@@ -171,10 +175,10 @@ export default function Graph() {
             <LineChart
               fromZero="True"
               data={{
-                labels: dates,
+                labels: dates.slice(0, 7),
                 datasets: [
                   {
-                    data: totalCaffeine,
+                    data: totalCaffeine.slice(0, 6),
                   },
                 ],
               }}
@@ -207,6 +211,19 @@ export default function Graph() {
                 borderRadius: 16,
               }}
             />
+            <View style={styles.changeDates}>
+              <MaterialCommunityIcons
+                name="calendar-arrow-left"
+                size={24}
+                color="rgba(242, 255, 99, 1)"
+              />
+              <Text style={styles.week}>Week</Text>
+              <MaterialCommunityIcons
+                name="calendar-arrow-right"
+                size={24}
+                color="rgba(242, 255, 99, 1)"
+              />
+            </View>
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
@@ -245,6 +262,11 @@ const styles = StyleSheet.create({
     width: 55,
     height: 55,
   },
+  changeDates: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
   userContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
@@ -256,6 +278,11 @@ const styles = StyleSheet.create({
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
     textDecorationLine: "underline",
+  },
+  week: {
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 20,
   },
   pressedText: {
     color: "rgba(242, 255, 99, 1)",
