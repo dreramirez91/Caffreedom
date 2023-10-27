@@ -17,6 +17,9 @@ import Footer from "../components/Footer";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell']);
 
 SplashScreen.hideAsync();
 
