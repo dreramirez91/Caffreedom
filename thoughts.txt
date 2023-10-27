@@ -1,2 +1,0 @@
-More than 8 entries... Well, might as well do it per week. Starting on a sunday and going through saturday, then click and get the next
-Does django have week tracker?
