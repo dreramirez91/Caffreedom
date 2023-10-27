@@ -14,6 +14,10 @@ import background from "../assets/background.jpeg";
 import Footer from "../components/Footer";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
+
 
 export default function CaffeineTable() {
   const [intakes, setIntakes] = useState([0]);

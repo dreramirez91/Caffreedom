@@ -24,7 +24,7 @@ export default function Graph() {
   const [totalCaffeine, setTotalCaffeine] = useState([0]);
   const [dates, setDates] = useState([0]);
   const [weekStart, setWeekStart] = useState(0);
-  const [weekEnd, setWeekEnd] = useState(6);
+  const [weekEnd, setWeekEnd] = useState(7);
   // You can either go through a nested list when you press a button and increment index by 1 where each nested list
   // is a week OR press and shift the index by 7. First option is cleaner, hard-easy and you can then put the week
   // number for the user to see
@@ -86,7 +86,7 @@ export default function Graph() {
     }
   }
 
-  const nextWeek = () => {
+  const nextDay = () => {
     if (weekEnd === totalCaffeine.length) {
     } else {
       setWeekStart(weekStart + 1);
@@ -94,7 +94,7 @@ export default function Graph() {
     }
   };
 
-  const lastWeek = () => {
+  const previousDay = () => {
     if (weekStart == 0) {
     } else {
       setWeekStart(weekStart - 1);
@@ -232,20 +232,22 @@ export default function Graph() {
               }}
             />
             <View style={styles.changeDates}>
-              <Pressable onPressIn={lastWeek}>
-                <MaterialCommunityIcons
+              <Pressable onPressIn={previousDay}>
+                {/* <MaterialCommunityIcons
                   name="calendar-arrow-left"
                   size={24}
                   color="rgba(242, 255, 99, 1)"
-                />
+                /> */}
+                <Text style={styles.dayText}>Previous Day</Text>
               </Pressable>
               {/* <Text style={styles.week}>Week {weekStart + 1}</Text> */}
-              <Pressable onPress={nextWeek}>
-                <MaterialCommunityIcons
+              <Pressable onPress={nextDay}>
+                {/* <MaterialCommunityIcons
                   name="calendar-arrow-right"
                   size={24}
                   color="rgba(242, 255, 99, 1)"
-                />
+                /> */}
+                <Text style={styles.dayText}>Next Day</Text>
               </Pressable>
             </View>
           </View>
@@ -277,6 +279,15 @@ const styles = StyleSheet.create({
     fontSize: 26,
     textAlign: "center",
   },
+  dayText: {
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 16,
+    padding: 8.4,
+    borderColor: "rgba(242, 255, 99, 0.75)",
+    borderWidth: 2,
+    borderRadius: 4,
+  },
   logoContainer: {
     alignItems: "center",
     paddingTop: 20,
@@ -289,7 +300,8 @@ const styles = StyleSheet.create({
   changeDates: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    alignItems: "center",
+    
+
   },
   userContainer: {
     flexDirection: "row",

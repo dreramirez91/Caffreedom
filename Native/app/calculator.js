@@ -311,13 +311,13 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     textAlign: "center",
-    padding: 10,
+    padding: 8.4,
     borderColor: "rgba(242, 255, 99, 1)",
     borderWidth: 2,
+    borderRadius: 4,
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
     color: "rgba(242, 255, 99, 1)",
-    borderRadius: 4,
   },
   addButton: {
     alignItems: "center",
