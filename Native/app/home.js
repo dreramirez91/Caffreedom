@@ -18,8 +18,6 @@ import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
 
-SplashScreen.hideAsync();
-
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);

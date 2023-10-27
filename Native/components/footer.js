@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import {
   MaterialCommunityIcons,
@@ -10,15 +9,12 @@ import {
 } from "@expo/vector-icons";
 import { Link } from "expo-router";
 
-SplashScreen.hideAsync();
-
 export default function Footer() {
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
   });
 
   if (fontsLoaded) {
-    SplashScreen.hideAsync();
     return (
       <View style={styles.footerContainer}>
         <Link style={styles.footerText} href="/home">

@@ -1,4 +1,3 @@
-import { SplashScreen } from "expo-router";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -9,8 +8,6 @@ import {
   TextInput,
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
-
-SplashScreen.hideAsync();
 
 export default function LoginModal({
   loginModalVisible,
