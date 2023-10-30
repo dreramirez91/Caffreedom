@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Pressable,
   ScrollView,
+  Alert
 } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
@@ -38,6 +39,27 @@ export default function CaffeineTable() {
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
   });
+
+  const twoOptionAlertHandler = (intake, token) => {
+    console.log("INTAKE TO BE DELETED =>", intake)
+    //function to make two option alert
+    Alert.alert(
+      //title
+      'Delete',
+      //body
+      'Are you sure?',
+      [
+        { text: 'Yes', onPress: () => deleteIntake(intake, token)},
+        {
+          text: 'No',
+          onPress: () => console.log('No Pressed'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false }
+      //clicking out side of alert will not cancel
+    );
+  };
 
   async function deleteIntake(id, key) {
     try {
@@ -111,7 +133,7 @@ export default function CaffeineTable() {
               intake.date,
               <Pressable
                 onPress={() => {
-                  deleteIntake(intake.id, "token");
+                  twoOptionAlertHandler(intake.id, "token");
                 }}
               >
                 <Text style={styles.deleteText}>Delete</Text>
