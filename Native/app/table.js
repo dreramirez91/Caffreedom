@@ -40,8 +40,10 @@ export default function CaffeineTable() {
     Lora_400Regular_Italic,
   });
 
-  const twoOptionAlertHandler = (intake, token) => {
-    console.log("INTAKE TO BE DELETED =>", intake)
+  const handleDelete = (intakeId) => {
+    twoOptionAlertHandler(intakeId, "token");
+  }
+  const twoOptionAlertHandler = (intakeInstance, token) => {
     //function to make two option alert
     Alert.alert(
       //title
@@ -49,7 +51,7 @@ export default function CaffeineTable() {
       //body
       'Are you sure?',
       [
-        { text: 'Yes', onPress: () => deleteIntake(intake, token)},
+        { text: 'Yes', onPress: () => deleteIntake(intakeInstance, token)},
         {
           text: 'No',
           onPress: () => console.log('No Pressed'),
@@ -86,6 +88,7 @@ export default function CaffeineTable() {
           setDeleteSuccessful(true);
         } else {
           console.log("Delete failed");
+          console.log(id)
         }
       } else {
         console.log("Could not retrieve token from store for delete request");
@@ -121,6 +124,8 @@ export default function CaffeineTable() {
           const tableDataToSet = [];
           let rowNumber = 1;
           for (intake of data.intakes) {
+            const intakeId = intake.id
+            console.log(intake.id)
             const tableRow = [];
             tableRow.push(
               intake.type,
@@ -130,11 +135,9 @@ export default function CaffeineTable() {
                   : intake.measurement
               }`,
               intake.caffeine,
-              intake.date,
+              `ID => ${intake.id}`,
               <Pressable
-                onPress={() => {
-                  twoOptionAlertHandler(intake.id, "token");
-                }}
+                onPress={() => handleDelete(intakeId)}
               >
                 <Text style={styles.deleteText}>Delete</Text>
               </Pressable>
