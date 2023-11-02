@@ -26,7 +26,6 @@ class CaffeineIntakesEncoder(ModelEncoder):
     properties = ["id", "amount", "date", "caffeine", "type", "measurement"]
 
 
-@login_required
 @csrf_exempt
 @require_http_methods(["GET", "POST"])
 def api_list_caffeine_intake(request):
@@ -53,7 +52,6 @@ def api_list_caffeine_intake(request):
         return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
 
 
-@login_required
 @csrf_exempt
 @require_http_methods(["POST"])
 def api_delete_caffeine_intake(request):
@@ -98,7 +96,6 @@ def signin(request):
     return Response({"token": token.key}, status=status.HTTP_200_OK)
 
 
-@login_required
 @csrf_exempt
 @api_view(["POST"])
 def signout(request):
