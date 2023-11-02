@@ -13,17 +13,23 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 from .serializers import UserSerializer
 from django.http import JsonResponse
-from common.json import ModelEncoder
+from common.json import ModelEncoder, DecimalEncoder
 from django.core.handlers.wsgi import WSGIRequest
 from django.contrib.sessions.models import Session
 from django.db.utils import IntegrityError
 import json
 from decimal import Decimal
+from json import JSONEncoder
 
+
+    
 
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
     properties = ["id", "amount", "date", "caffeine", "type", "measurement"]
+    encoders = {
+        "amount": DecimalEncoder()
+    }
 
 
 @csrf_exempt
