@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from rest_framework.authentication import BasicAuthentication
 from .models import CaffeineIntake
 from django.views.decorators.http import require_http_methods
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, get_user, logout, login
@@ -50,6 +49,7 @@ def api_list_caffeine_intake(request):
         )
         intakes = user.caffeine_intakes.all()
         return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
+
 
 
 @csrf_exempt

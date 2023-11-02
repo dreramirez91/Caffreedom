@@ -79,6 +79,8 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_URL = "signin/"
+
 WSGI_APPLICATION = "Server.wsgi.application"
 
 
