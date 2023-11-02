@@ -35,6 +35,7 @@ def api_list_caffeine_intake(request):
     elif request.method == "POST":
         user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
         data = json.loads(request.body)
+        amount = data["amount"]
         caffeine = data["caffeine"]
         date = data["date"]
         type = data["type"]
