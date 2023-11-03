@@ -16,6 +16,7 @@ import Footer from "../components/Footer";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
+import * as SplashScreen from 'expo-splash-screen';
 
 LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
@@ -26,6 +27,7 @@ export default function CaffeineTable() {
   const [tableData, setTableData] = useState([]);
   const [token, setToken] = useState("");
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const elementButton = (text) => (
     <Pressable
       onPress={() => {
@@ -143,8 +145,12 @@ export default function CaffeineTable() {
             tableDataToSet.push(tableRow);
           }
           setTableData(tableDataToSet);
+          setUserLoggedIn(true);
+          await SplashScreen.hideAsync();
+
         } else {
           console.error("Fetch failed");
+          await SplashScreen.hideAsync();
         }
       } else {
         console.log("Could not retrieve token from store");
@@ -159,7 +165,25 @@ export default function CaffeineTable() {
   }, [deleteSuccessful]);
   useEffect(() => console.log("Table data", tableData), [tableData]);
 
-  if (intakes.length === 0) {
+  if (!userLoggedIn) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ImageBackground
+          source={background}
+          resizeMode="cover"
+          style={styles.image}
+        >
+          <View style={styles.mainContainer}>
+            <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+            <Text style={styles.bodyText}>Login or make an account to display your caffeine intake.</Text>
+          </View>
+        </ImageBackground>
+        <StatusBar style="auto" />
+        <Footer />
+      </SafeAreaView>
+    );
+  }
+  else if (intakes.length === 0) {
     return (
       <SafeAreaView style={styles.container}>
         <ImageBackground
@@ -265,6 +289,14 @@ const styles = StyleSheet.create({
     fontSize: 26,
     textAlign: "center",
     marginBottom: 10,
+  },
+  bodyText: {
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 10,
+    marginTop:10,
   },
   tableText: {
     textAlign: "center",
