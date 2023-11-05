@@ -19,7 +19,7 @@ import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
 import { LogBox } from "react-native";
 
-LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
+// LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);

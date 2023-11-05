@@ -20,6 +20,8 @@ import background from "../assets/background.jpeg";
 import Footer from "../components/Footer";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+
+
 export default function Calculator() {
   const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
