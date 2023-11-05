@@ -20,3 +20,4 @@ thoughts.txt
 Server/db.sqlite3
 Server/users/__pycache__/
 Server/Server/__pycache__/
+yarn.lock
