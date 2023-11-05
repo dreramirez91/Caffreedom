@@ -34,10 +34,10 @@ export default function Home() {
 
   const signOutButtonPress = () => {
     setSignOutPressed(true);
-    signout(token);
+    signout();
   };
 
-  const signout = async (userToken) => {
+  const signout = async () => {
     const logoutUrl = "http://192.168.86.105:8000/users/signout";
     const fetchConfig = {
       method: "post",
@@ -151,9 +151,6 @@ export default function Home() {
   }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   image: {
     flex: 1,
     justifyContent: "center",

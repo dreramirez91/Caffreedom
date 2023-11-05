@@ -32,15 +32,6 @@ export default function Calculator() {
 
   const onOpenSuggestionsList = () => setOpen(false);
 
-  useEffect(() => console.log("DRINK: ", drink), [drink]);
-  useEffect(() => console.log("MEASUREMENT: ", measurement), [measurement]);
-  useEffect(() => console.log("AMOUNT: ", amount), [amount]);
-  useEffect(() => console.log("CAFFEINE: ", caffeine), [caffeine]);
-  useEffect(
-    () => console.log("DATE: ", selectedDate.toISOString().split("T")[0]),
-    [selectedDate]
-  );
-
   const showDatePicker = () => {
     setDatePickerVisible(true);
   };
@@ -101,7 +92,7 @@ export default function Calculator() {
     const data = {};
     data.caffeine = parseInt(caffeine);
     data.date = selectedDate.toISOString().split("T")[0];
-    console.log("data", data);
+    console.log("Data", data);
     data.type = drink["title"];
     data.amount = parseInt(amount);
     data.measurement = measurement;
@@ -119,8 +110,6 @@ export default function Calculator() {
       fetchConfig
     );
     if (response.ok) {
-      const data = await response.json();
-      console.log(data);
       setAmount(0);
       setCaffeine(0);
       setMeasurement(null);
@@ -250,11 +239,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "black",
-    bottomBorderWidth: StyleSheet.hairlineWidth,
-  },
   input: {
     color: "black",
     borderRadius: 8,
@@ -293,8 +277,5 @@ const styles = StyleSheet.create({
   calendar: {
     alignItems: "center",
     marginTop: 10,
-  },
-  test: {
-    fontFamily: "Lora_400Regular_Italic",
   },
 });
