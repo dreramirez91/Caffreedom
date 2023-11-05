@@ -32,7 +32,7 @@ export default function LoginModal({
     data.username = username;
     data.password = password;
     console.log(data);
-    const loginUrl = "http://192.168.86.105:8000/users/signin";
+    const loginUrl = "http://172.16.121.190:8000/users/signin";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -53,7 +53,7 @@ export default function LoginModal({
       setLoginSuccessful(true);
     } else {
       const errorMessage = await response.json();
-      setError(errorMessage["Error"]);
+      setError(errorMessage["error"]);
     }
   };
 
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(157, 108, 255, 1)",
     borderRadius: 20,
     padding: 35,
+    width: '80%',
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -186,7 +187,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: "white",
     borderWidth: 1,
-    width: 150,
+    width: '75%',
     padding: 10,
     margin: 10,
   },

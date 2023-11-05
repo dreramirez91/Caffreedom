@@ -1,25 +1,19 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from rest_framework.authentication import BasicAuthentication
 from .models import CaffeineIntake
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, get_user, logout, login
-from rest_framework import generics, status, viewsets
+from django.contrib.auth import authenticate, logout, login
+from rest_framework import generics, status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 from .serializers import UserSerializer
 from django.http import JsonResponse
 from common.json import ModelEncoder, DecimalEncoder
-from django.core.handlers.wsgi import WSGIRequest
-from django.contrib.sessions.models import Session
-from django.db.utils import IntegrityError
 import json
 from decimal import Decimal
-from json import JSONEncoder
+
 
 
     
@@ -87,9 +81,9 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 def signin(request):
     username = request.data.get("username")
     password = request.data.get("password")
-    if username is None and password is None:
+    if not username and not password:
         return Response(
-            {"error": "Please provide a username & password"},
+            {"error": "Please enter a username & password"},
             status=status.HTTP_400_BAD_REQUEST,
         )
 
@@ -98,7 +92,7 @@ def signin(request):
     if user is not None:
         login(request, user)
     else:
-        return Response({"Error": "Invalid username"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error": "Invalid login credentials"}, status=status.HTTP_404_NOT_FOUND)
 
     token, _ = Token.objects.get_or_create(user=user)
     return Response({"token": token.key}, status=status.HTTP_200_OK)

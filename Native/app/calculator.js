@@ -17,7 +17,6 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
-import Footer from "../components/Footer";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -109,8 +108,6 @@ export default function Calculator() {
     Lora_400Regular_Italic,
   });
 
-  const Separator = () => <View style={styles.separator} />;
-
   const addIntake = async () => {
     const data = {};
     data.caffeine = parseInt(caffeine);
@@ -129,7 +126,7 @@ export default function Calculator() {
       body: JSON.stringify(data),
     };
     const response = await fetch(
-      "http://192.168.86.105:8000/users/list_caffeine",
+      "http://172.16.121.190:8000/users/list_caffeine",
       fetchConfig
     );
     if (response.ok) {
@@ -150,12 +147,6 @@ export default function Calculator() {
 
   if (fontsLoaded) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
           <View style={styles.calculatorContainer}>
             <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
@@ -235,27 +226,15 @@ export default function Calculator() {
               </Pressable>
             </View>
           </View>
-        </ImageBackground>
-        <Footer />
-        <StatusBar style="auto" />
-      </SafeAreaView>
     );
   } else {
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   calculatorContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.7)",

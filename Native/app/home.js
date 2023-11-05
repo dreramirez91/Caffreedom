@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
   Image,
-  ImageBackground,
-  SafeAreaView,
   Pressable,
 } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import background from "../assets/background.jpeg";
 import logo from "../assets/logo.png";
-import Footer from "../components/Footer";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
@@ -50,7 +45,7 @@ export default function Home() {
   };
 
   const signout = async (userToken) => {
-    const logoutUrl = "http://192.168.86.105:8000/users/signout";
+    const logoutUrl = "http://172.16.121.190:8000/users/signout";
     const fetchConfig = {
       method: "post",
       headers: {
@@ -94,12 +89,7 @@ export default function Home() {
 
   if (fontsLoaded) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
+      <>
           <View style={styles.homeContainer}>
             <LoginModal
               setLoginModalVisible={setLoginModalVisible}
@@ -163,10 +153,7 @@ export default function Home() {
               </View>
             )}
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-        <Footer />
-      </SafeAreaView>
+          </>
     );
   } else {
   }

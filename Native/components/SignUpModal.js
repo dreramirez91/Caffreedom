@@ -27,7 +27,7 @@ export default function SignUpModal({
       data.username = username;
       data.password = password;
       console.log(data);
-      const signUpUrl = "http://192.168.86.105:8000/users/signup";
+      const signUpUrl = "http://172.16.121.190:8000/users/signup";
       const fetchConfig = {
         method: "post",
         body: JSON.stringify(data),
@@ -113,9 +113,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalView: {
+
     margin: 20,
     backgroundColor: "rgba(157, 108, 255, 1)",
     borderRadius: 20,
+    width: '80%',
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",
@@ -150,7 +152,6 @@ const styles = StyleSheet.create({
   },
   submitStyle: {
     color: "rgba(242, 255, 99, 1)",
-
     textAlign: "center",
     fontFamily: "Lora_400Regular_Italic",
   },
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: "white",
     borderWidth: 1,
-    width: 150,
+    width: '75%',
     padding: 10,
     margin: 10,
   },

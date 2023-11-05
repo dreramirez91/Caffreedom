@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
-  SafeAreaView,
   Pressable,
   ScrollView,
   Alert
 } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import background from "../assets/background.jpeg";
-import Footer from "../components/Footer";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
@@ -79,7 +74,7 @@ export default function CaffeineTable() {
           body: JSON.stringify(data),
         };
         const response = await fetch(
-          "http://192.168.86.105:8000/users/delete",
+          "http://172.16.121.190:8000/users/delete",
           fetchConfig
         );
         if (response.ok) {
@@ -111,7 +106,7 @@ export default function CaffeineTable() {
           },
         };
         const response = await fetch(
-          "http://192.168.86.105:8000/users/list_caffeine",
+          "http://172.16.121.190:8000/users/list_caffeine",
           fetchConfig
         );
         if (response.ok) {
@@ -167,30 +162,15 @@ export default function CaffeineTable() {
 
   if (!userLoggedIn) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
           <View style={styles.mainContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-            <Text style={styles.bodyText}>Login or make an account to record your caffeine intake.</Text>
+            <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-        <Footer />
-      </SafeAreaView>
     );
   }
   else if (intakes.length === 0) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
+
           <View style={styles.mainContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
             <Table borderStyle={{ borderWidth: 2, borderColor: "gray" }}>
@@ -206,19 +186,9 @@ export default function CaffeineTable() {
               />
             </Table>
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-        <Footer />
-      </SafeAreaView>
     );
   } else {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
           <ScrollView
             style={styles.scrollView}
             contentContainerStyle={styles.contentContainer}
@@ -248,24 +218,12 @@ export default function CaffeineTable() {
               />
             </Table>
           </ScrollView>
-        </ImageBackground>
-        <StatusBar style="auto" />
-        <Footer />
-      </SafeAreaView>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   tableContainer: {
     padding: 15,
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   mainContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.70)",
@@ -312,40 +270,5 @@ const styles = StyleSheet.create({
     textShadowRadius: 10,
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 12,
-  },
-  logoContainer: {
-    alignItems: "center",
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  logo: {
-    width: 55,
-    height: 55,
-  },
-  tableHeader: {
-    backgroundColor: "#DCDCDC",
-  },
-  userContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingBottom: 10,
-    alignContent: "center",
-  },
-  unpressedText: {
-    color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline",
-  },
-  pressedText: {
-    color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline",
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "black",
-    bottomBorderWidth: StyleSheet.hairlineWidth,
   },
 });
