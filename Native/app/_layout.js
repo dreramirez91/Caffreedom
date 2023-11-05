@@ -1,12 +1,14 @@
 // This file is used to add providers, such as Redux, into the app, which can be accessed by any route in the app.
 // Compare App.js in traditional React Native projects
 
-import { Slot } from 'expo-router';
+import { Slot, SplashScreen } from 'expo-router';
 import Footer from '../components/Footer'
 import background from "../assets/background.jpeg";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, ImageBackground, StyleSheet } from 'react-native';
 // import * as operatingSystem from 'os';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function appLayout() {
     // Attempting to get local IP but os is not found even though it's found in the import above...
