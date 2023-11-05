@@ -18,7 +18,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
 
-LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
+// LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
 
 export default function CaffeineTable() {
@@ -175,7 +175,7 @@ export default function CaffeineTable() {
         >
           <View style={styles.mainContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-            <Text style={styles.bodyText}>Login or make an account to display your caffeine intake.</Text>
+            <Text style={styles.bodyText}>Login or make an account to record your caffeine intake.</Text>
           </View>
         </ImageBackground>
         <StatusBar style="auto" />

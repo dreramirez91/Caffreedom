@@ -4,30 +4,25 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ImageBackground,
   SafeAreaView,
   Dimensions,
   Pressable,
 } from "react-native";
-import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import Footer from "../components/Footer";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Graph() {
-  const [intakes, setIntakes] = useState([0]);
+  const [intakes, setIntakes] = useState([]);
   const [amounts, setAmounts] = useState([0]);
   const [totalCaffeine, setTotalCaffeine] = useState([0]);
   const [dates, setDates] = useState([0]);
   const [weekStart, setWeekStart] = useState(0);
   const [weekEnd, setWeekEnd] = useState(7);
-  // You can either go through a nested list when you press a button and increment index by 1 where each nested list
-  // is a week OR press and shift the index by 7. First option is cleaner, hard-easy and you can then put the week
-  // number for the user to see
+  console.log("\n\n\n\n", intakes, "\n\n\n\n")
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
