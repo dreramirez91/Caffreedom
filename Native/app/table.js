@@ -292,9 +292,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textDecorationLine: "underline",
   },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "black",
-    bottomBorderWidth: StyleSheet.hairlineWidth,
-  },
 });
