@@ -61,7 +61,7 @@ def api_list_caffeine_intake(request):
 
 
 @csrf_exempt
-@require_http_methods(["POST"])
+@require_http_methods(["DELETE"])
 def api_delete_caffeine_intake(request):
     data = json.loads(request.body)
     print("DATA FOR DELETE => ", data)

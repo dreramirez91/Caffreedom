@@ -69,7 +69,7 @@ export default function CaffeineTable() {
         const data = {};
         data.id = id;
         const fetchConfig = {
-          method: "post",
+          method: "delete",
           headers: {
             "Content-type": "application/json",
             Authentication: result,
