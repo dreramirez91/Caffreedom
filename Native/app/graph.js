@@ -21,8 +21,6 @@ export default function Graph() {
   const [dates, setDates] = useState([0]);
   const [weekStart, setWeekStart] = useState(0);
   const [weekEnd, setWeekEnd] = useState(7);
-  console.log("\n\n\n\n", intakes, "\n\n\n\n")
-
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
   });

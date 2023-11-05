@@ -15,6 +15,7 @@ import json
 from decimal import Decimal
 
 
+
     
 
 class CaffeineIntakesEncoder(ModelEncoder):

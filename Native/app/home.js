@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
   Image,
-  ImageBackground,
-  SafeAreaView,
   Pressable,
 } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import background from "../assets/background.jpeg";
 import logo from "../assets/logo.png";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
@@ -93,12 +89,7 @@ export default function Home() {
 
   if (fontsLoaded) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
+      <>
           <View style={styles.homeContainer}>
             <LoginModal
               setLoginModalVisible={setLoginModalVisible}
@@ -162,9 +153,7 @@ export default function Home() {
               </View>
             )}
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </SafeAreaView>
+          </>
     );
   } else {
   }
