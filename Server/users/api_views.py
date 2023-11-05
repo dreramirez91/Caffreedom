@@ -81,9 +81,9 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 def signin(request):
     username = request.data.get("username")
     password = request.data.get("password")
-    if username is None and password is None:
+    if not username and not password:
         return Response(
-            {"error": "Please provide a username & password"},
+            {"error": "Please enter a username & password"},
             status=status.HTTP_400_BAD_REQUEST,
         )
 
@@ -92,7 +92,7 @@ def signin(request):
     if user is not None:
         login(request, user)
     else:
-        return Response({"Error": "Invalid username"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error": "Invalid login credentials"}, status=status.HTTP_404_NOT_FOUND)
 
     token, _ = Token.objects.get_or_create(user=user)
     return Response({"token": token.key}, status=status.HTTP_200_OK)

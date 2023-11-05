@@ -38,7 +38,7 @@ export default function Graph() {
           },
         };
         const response = await fetch(
-          "http://192.168.86.105:8000/users/list_caffeine",
+          "http://172.16.121.190:8000/users/list_caffeine",
           fetchConfig
         );
         if (response.ok) {

@@ -74,7 +74,7 @@ export default function CaffeineTable() {
           body: JSON.stringify(data),
         };
         const response = await fetch(
-          "http://192.168.86.105:8000/users/delete",
+          "http://172.16.121.190:8000/users/delete",
           fetchConfig
         );
         if (response.ok) {
@@ -106,7 +106,7 @@ export default function CaffeineTable() {
           },
         };
         const response = await fetch(
-          "http://192.168.86.105:8000/users/list_caffeine",
+          "http://172.16.121.190:8000/users/list_caffeine",
           fetchConfig
         );
         if (response.ok) {
@@ -164,7 +164,7 @@ export default function CaffeineTable() {
     return (
           <View style={styles.mainContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-            <Text style={styles.bodyText}>Login or make an account to record your caffeine intake.</Text>
+            <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
           </View>
     );
   }
@@ -270,26 +270,5 @@ const styles = StyleSheet.create({
     textShadowRadius: 10,
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 12,
-  },
-  tableHeader: {
-    backgroundColor: "#DCDCDC",
-  },
-  userContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingBottom: 10,
-    alignContent: "center",
-  },
-  unpressedText: {
-    color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline",
-  },
-  pressedText: {
-    color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline",
   },
 });
