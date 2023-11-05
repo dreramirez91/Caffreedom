@@ -179,7 +179,6 @@ export default function CaffeineTable() {
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
-        <Footer />
       </SafeAreaView>
     );
   }
@@ -208,7 +207,6 @@ export default function CaffeineTable() {
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
-        <Footer />
       </SafeAreaView>
     );
   } else {
@@ -250,7 +248,6 @@ export default function CaffeineTable() {
           </ScrollView>
         </ImageBackground>
         <StatusBar style="auto" />
-        <Footer />
       </SafeAreaView>
     );
   }

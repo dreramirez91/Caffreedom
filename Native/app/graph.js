@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
-import Footer from "../components/Footer";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 
@@ -174,7 +173,6 @@ export default function Graph() {
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
-        <Footer />
       </SafeAreaView>
     );
   } else {
@@ -248,7 +246,6 @@ export default function Graph() {
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
-        <Footer />
       </SafeAreaView>
     );
   }

@@ -12,7 +12,6 @@ import {
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import logo from "../assets/logo.png";
-import Footer from "../components/Footer";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
@@ -165,7 +164,6 @@ export default function Home() {
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
-        <Footer />
       </SafeAreaView>
     );
   } else {

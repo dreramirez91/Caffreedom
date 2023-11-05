@@ -13,7 +13,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import logo from "../assets/logo.png";
-import Footer from "../components/Footer";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
@@ -47,7 +46,8 @@ export default function Home() {
   };
 
   const signout = async (userToken) => {
-    const logoutUrl = "http://192.168.86.105:8000/users/signout";
+    console.log("\n\n\n\nsignout\n\n\n\n")
+    const logoutUrl = "http://172.16.121.190:8000/users/signout";
     const fetchConfig = {
       method: "post",
       headers: {
@@ -143,7 +143,7 @@ export default function Home() {
               </View>
             ) : (
               <View style={styles.userContainer}>
-                <Pressable onPressIn={() => signout(token)}>
+                <Pressable onPressIn={console.log("PRESS")}>
                   <Text
                     style={
                       loginPressed ? styles.pressedText : styles.unpressedText
@@ -157,7 +157,6 @@ export default function Home() {
           </View>
         </ImageBackground>
         <StatusBar style="auto" />
-        <Footer />
       </SafeAreaView>
     );
   } else {

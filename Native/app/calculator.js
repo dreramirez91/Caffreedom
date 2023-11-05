@@ -17,7 +17,6 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
-import Footer from "../components/Footer";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -236,7 +235,6 @@ export default function Calculator() {
             </View>
           </View>
         </ImageBackground>
-        <Footer />
         <StatusBar style="auto" />
       </SafeAreaView>
     );

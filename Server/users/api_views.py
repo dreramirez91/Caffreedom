@@ -1,25 +1,18 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from rest_framework.authentication import BasicAuthentication
 from .models import CaffeineIntake
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, get_user, logout, login
-from rest_framework import generics, status, viewsets
+from django.contrib.auth import authenticate, logout, login
+from rest_framework import generics, status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 from .serializers import UserSerializer
 from django.http import JsonResponse
 from common.json import ModelEncoder, DecimalEncoder
-from django.core.handlers.wsgi import WSGIRequest
-from django.contrib.sessions.models import Session
-from django.db.utils import IntegrityError
 import json
 from decimal import Decimal
-from json import JSONEncoder
 
 
     
