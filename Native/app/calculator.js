@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StatusBar } from "expo-status-bar";
 import { caffeineContent } from "../caffeineContent";
 import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -7,16 +6,10 @@ import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
-  SafeAreaView,
   TextInput,
   Pressable,
   Alert,
-  Button,
 } from "react-native";
-import * as SplashScreen from "expo-splash-screen";
-import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import background from "../assets/background.jpeg";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -104,10 +97,6 @@ export default function Calculator() {
     getValueFor("token");
   }, []);
 
-  let [fontsLoaded] = useFonts({
-    Lora_400Regular_Italic,
-  });
-
   const addIntake = async () => {
     const data = {};
     data.caffeine = parseInt(caffeine);
@@ -145,7 +134,6 @@ export default function Calculator() {
     }
   };
 
-  if (fontsLoaded) {
     return (
           <View style={styles.calculatorContainer}>
             <Text style={styles.headerText}>Calculator</Text>
@@ -227,9 +215,8 @@ export default function Calculator() {
             </View>
           </View>
     );
-  } else {
   }
-}
+
 
 const styles = StyleSheet.create({
   buttonContainer: {

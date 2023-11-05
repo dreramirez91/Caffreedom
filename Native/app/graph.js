@@ -9,7 +9,6 @@ import {
   Dimensions,
   Pressable,
 } from "react-native";
-import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import background from "../assets/background.jpeg";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
@@ -21,9 +20,6 @@ export default function Graph() {
   const [dates, setDates] = useState([0]);
   const [weekStart, setWeekStart] = useState(0);
   const [weekEnd, setWeekEnd] = useState(7);
-  let [fontsLoaded] = useFonts({
-    Lora_400Regular_Italic,
-  });
 
   async function populateData(key) {
     try {

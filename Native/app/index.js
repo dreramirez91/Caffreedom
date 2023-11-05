@@ -6,11 +6,11 @@ import {
   Image,
   Pressable,
 } from "react-native";
-import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import logo from "../assets/logo.png";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
+import { SplashScreen } from "expo-router";
 
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
@@ -22,10 +22,6 @@ export default function Home() {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [signUpSuccessful, setSignUpSuccessful] = useState(false);
   const [signoutSuccessful, setSignOutSuccessful] = useState(false);
-
-  let [fontsLoaded] = useFonts({
-    Lora_400Regular_Italic,
-  });
 
   const loginButtonPress = () => {
     setLoginPressed(true);
@@ -85,7 +81,6 @@ export default function Home() {
     console.log("TOKEN =>", token);
   }, [token]);
 
-  if (fontsLoaded) {
     return (
       <>
           <View style={styles.homeContainer}>
@@ -153,9 +148,7 @@ export default function Home() {
           </View>
           </>
     );
-  } else {
   }
-}
 
 const styles = StyleSheet.create({
   container: {

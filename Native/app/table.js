@@ -7,14 +7,12 @@ import {
   ScrollView,
   Alert
 } from "react-native";
-import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
 
 // LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
-
 
 export default function CaffeineTable() {
   const [intakes, setIntakes] = useState([0]);
@@ -33,9 +31,6 @@ export default function CaffeineTable() {
     </Pressable>
   );
 
-  let [fontsLoaded] = useFonts({
-    Lora_400Regular_Italic,
-  });
 
   const twoOptionAlertHandler = (intake, token) => {
     console.log("INTAKE TO BE DELETED =>", intake)
