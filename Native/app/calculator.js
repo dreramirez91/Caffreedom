@@ -108,8 +108,6 @@ export default function Calculator() {
     Lora_400Regular_Italic,
   });
 
-  const Separator = () => <View style={styles.separator} />;
-
   const addIntake = async () => {
     const data = {};
     data.caffeine = parseInt(caffeine);
@@ -149,12 +147,6 @@ export default function Calculator() {
 
   if (fontsLoaded) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
           <View style={styles.calculatorContainer}>
             <Text style={styles.headerText}>Calculator</Text>
             <Text style={styles.baseText}>What drink are you having?</Text>
@@ -234,26 +226,15 @@ export default function Calculator() {
               </Pressable>
             </View>
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </SafeAreaView>
     );
   } else {
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   calculatorContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.7)",

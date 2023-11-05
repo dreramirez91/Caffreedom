@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
   Image,
-  ImageBackground,
-  SafeAreaView,
   Pressable,
 } from "react-native";
-import * as SplashScreen from "expo-splash-screen";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import background from "../assets/background.jpeg";
 import logo from "../assets/logo.png";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
-import { LogBox } from "react-native";
-
-// LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
 export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
+  const [signOutPressed, setSignOutPressed] = useState(false);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [token, setToken] = useState("");
   const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [signUpSuccessful, setSignUpSuccessful] = useState(false);
+  const [signoutSuccessful, setSignOutSuccessful] = useState(false);
 
   let [fontsLoaded] = useFonts({
     Lora_400Regular_Italic,
@@ -45,8 +39,12 @@ export default function Home() {
     setSignUpModalVisible(true);
   };
 
+  const signOutButtonPress = () => {
+    setSignOutPressed(true);
+    signout(token);
+  };
+
   const signout = async (userToken) => {
-    console.log("\n\n\n\nsignout\n\n\n\n")
     const logoutUrl = "http://192.168.86.105:8000/users/signout";
     const fetchConfig = {
       method: "post",
@@ -59,8 +57,10 @@ export default function Home() {
     if (response.ok) {
       console.log(await response.json());
       setToken("");
+      setSignOutSuccessful(true);
       SecureStore.deleteItemAsync("token");
     } else {
+      SecureStore.deleteItemAsync("token");
       console.log("Signout failed");
     }
   };
@@ -81,7 +81,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchToken("token");
-  }, [loginSuccessful, signUpSuccessful]);
+  }, [loginSuccessful, signUpSuccessful, signoutSuccessful]);
 
   useEffect(() => {
     console.log("TOKEN =>", token);
@@ -89,12 +89,7 @@ export default function Home() {
 
   if (fontsLoaded) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
+      <>
           <View style={styles.homeContainer}>
             <LoginModal
               setLoginModalVisible={setLoginModalVisible}
@@ -143,10 +138,13 @@ export default function Home() {
               </View>
             ) : (
               <View style={styles.userContainer}>
-                <Pressable onPressIn={console.log("PRESS")}>
+                <Pressable
+                  onPressIn={() => signOutButtonPress()}
+                  onPressOut={() => setSignOutPressed(false)}
+                >
                   <Text
                     style={
-                      loginPressed ? styles.pressedText : styles.unpressedText
+                      signOutPressed ? styles.pressedText : styles.unpressedText
                     }
                   >
                     Log out
@@ -155,9 +153,7 @@ export default function Home() {
               </View>
             )}
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </SafeAreaView>
+          </>
     );
   } else {
   }

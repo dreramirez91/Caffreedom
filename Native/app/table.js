@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
-  SafeAreaView,
   Pressable,
   ScrollView,
   Alert
 } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import background from "../assets/background.jpeg";
-import Footer from "../components/Footer";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
@@ -167,29 +162,15 @@ export default function CaffeineTable() {
 
   if (!userLoggedIn) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
           <View style={styles.mainContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
             <Text style={styles.bodyText}>Login or make an account to record your caffeine intake.</Text>
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </SafeAreaView>
     );
   }
   else if (intakes.length === 0) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
+
           <View style={styles.mainContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
             <Table borderStyle={{ borderWidth: 2, borderColor: "gray" }}>
@@ -205,18 +186,9 @@ export default function CaffeineTable() {
               />
             </Table>
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </SafeAreaView>
     );
   } else {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
           <ScrollView
             style={styles.scrollView}
             contentContainerStyle={styles.contentContainer}
@@ -246,23 +218,12 @@ export default function CaffeineTable() {
               />
             </Table>
           </ScrollView>
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </SafeAreaView>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   tableContainer: {
     padding: 15,
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   mainContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.70)",
@@ -309,15 +270,6 @@ const styles = StyleSheet.create({
     textShadowRadius: 10,
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 12,
-  },
-  logoContainer: {
-    alignItems: "center",
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  logo: {
-    width: 55,
-    height: 55,
   },
   tableHeader: {
     backgroundColor: "#DCDCDC",

@@ -104,28 +104,8 @@ export default function Graph() {
     [totalCaffeine]
   );
 
-  // var month = new Date().getMonth() + 1;
-
-  // function daysInThisMonth() {
-  //   var now = new Date();
-  //   return new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
-  // };
-
-  // var days = daysInThisMonth();
-  // var eachDay = []
-  // for (var day = 1; day <= days; day++) {
-  //   eachDay.push(day)
-  // }
-  // var datesThisMonth = eachDay.map(day => `${month}/${day}`);
-
   if (intakes.length === 0) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
           <View style={styles.homeContainer}>
             <Text style={styles.headerText}>Your Caffeine intake (mg)</Text>
             <LineChart
@@ -169,18 +149,9 @@ export default function Graph() {
               }}
             />
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </SafeAreaView>
     );
   } else {
     return (
-      <SafeAreaView style={styles.container}>
-        <ImageBackground
-          source={background}
-          resizeMode="cover"
-          style={styles.image}
-        >
           <View style={styles.homeContainer}>
             <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
             <LineChart
@@ -242,21 +213,10 @@ export default function Graph() {
               </Pressable>
             </View>
           </View>
-        </ImageBackground>
-        <StatusBar style="auto" />
-      </SafeAreaView>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   homeContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     justifyContent: "center",
