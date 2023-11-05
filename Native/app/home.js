@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   const signout = async (userToken) => {
-    const logoutUrl = "http://172.16.121.190:8000/users/signout";
+    const logoutUrl = "http://192.168.86.105:8000/users/signout";
     const fetchConfig = {
       method: "post",
       headers: {

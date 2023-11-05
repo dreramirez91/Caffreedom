@@ -115,7 +115,7 @@ export default function Calculator() {
       body: JSON.stringify(data),
     };
     const response = await fetch(
-      "http://172.16.121.190:8000/users/list_caffeine",
+      "http://192.168.86.105:8000/users/list_caffeine",
       fetchConfig
     );
     if (response.ok) {

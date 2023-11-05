@@ -27,7 +27,7 @@ export default function SignUpModal({
       data.username = username;
       data.password = password;
       console.log(data);
-      const signUpUrl = "http://172.16.121.190:8000/users/signup";
+      const signUpUrl = "http://192.168.86.105:8000/users/signup";
       const fetchConfig = {
         method: "post",
         body: JSON.stringify(data),

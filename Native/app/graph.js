@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
-  SafeAreaView,
   Dimensions,
   Pressable,
 } from "react-native";
-import background from "../assets/background.jpeg";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 
 export default function Graph() {
   const [intakes, setIntakes] = useState([]);
-  const [amounts, setAmounts] = useState([0]);
   const [totalCaffeine, setTotalCaffeine] = useState([0]);
   const [dates, setDates] = useState([0]);
   const [weekStart, setWeekStart] = useState(0);
@@ -34,22 +29,17 @@ export default function Graph() {
           },
         };
         const response = await fetch(
-          "http://172.16.121.190:8000/users/list_caffeine",
+          "http://192.168.86.105:8000/users/list_caffeine",
           fetchConfig
         );
         if (response.ok) {
           console.log("Token in fetch", result);
           const data = await response.json();
-          console.log("DATA", data);
-          console.log("Fetch successful");
           setIntakes(data.intakes);
-          const amountsArray = data.intakes.map((intake) => intake.caffeine);
-          setAmounts(amountsArray);
           const datesArray = data.intakes.map((intake) => intake.date.slice(5));
           datesToSet = [...new Set(datesArray)];
           datesToSet.sort();
           setDates(datesToSet);
-          //calculate total caffeine and store it in variable then render it in graph
           const caffArray = [];
           let dailyCaffeine = 0;
           for (d of datesToSet) {
@@ -234,47 +224,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 4,
   },
-  logoContainer: {
-    alignItems: "center",
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  logo: {
-    width: 55,
-    height: 55,
-  },
   changeDates: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    
-
-  },
-  userContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingBottom: 10,
-    alignContent: "center",
-  },
-  unpressedText: {
-    color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline",
   },
   week: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
-  },
-  pressedText: {
-    color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline",
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "black",
-    bottomBorderWidth: StyleSheet.hairlineWidth,
   },
 });

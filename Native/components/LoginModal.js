@@ -32,7 +32,7 @@ export default function LoginModal({
     data.username = username;
     data.password = password;
     console.log(data);
-    const loginUrl = "http://172.16.121.190:8000/users/signin";
+    const loginUrl = "http://192.168.86.105:8000/users/signin";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -142,14 +142,6 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  submitButton: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
   buttonClose: {
     backgroundColor: "rgba(157, 108, 255, 1)",
   },
@@ -166,17 +158,12 @@ const styles = StyleSheet.create({
   modalText: {
     color: "rgba(242, 255, 99, 1)",
     marginBottom: 15,
-
     fontFamily: "Lora_400Regular_Italic",
     textAlign: "center",
   },
   errorText: {
     color: "rgba(242, 255, 99, 1)",
     textDecorationLine: "underline",
-    // textShadowColor: "rgba(0, 0, 0, 0.5)",
-    // textShadowOffset: { width: -1, height: 1 },
-    // textShadowRadius: 10,
-
     fontFamily: "Lora_400Regular_Italic",
     textAlign: "center",
   },
