@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Pressable,
-} from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import logo from "../assets/logo.png";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
@@ -80,75 +74,72 @@ export default function Home() {
     console.log("TOKEN =>", token);
   }, [token]);
 
-
-    return (
-      <>
-          <View style={styles.homeContainer}>
-            <LoginModal
-              setLoginModalVisible={setLoginModalVisible}
-              loginModalVisible={loginModalVisible}
-              setLoginSuccessful={setLoginSuccessful}
-            />
+  return (
+    <>
+      <View style={styles.homeContainer}>
+        <LoginModal
+          setLoginModalVisible={setLoginModalVisible}
+          loginModalVisible={loginModalVisible}
+          setLoginSuccessful={setLoginSuccessful}
+        />
+      </View>
+      <View style={styles.homeContainer}>
+        <SignUpModal
+          setSignUpModalVisible={setSignUpModalVisible}
+          signUpModalVisible={signUpModalVisible}
+          setSignUpSuccessful={setSignUpSuccessful}
+        />
+      </View>
+      <View style={styles.homeContainer}>
+        <Text style={styles.headerText}>Caffreedom</Text>
+        <View style={styles.logoContainer}>
+          <Image style={styles.logo} source={logo} />
+        </View>
+        {!token ? (
+          <View style={styles.userContainer}>
+            <Pressable
+              onPressIn={() => loginButtonPress()}
+              onPressOut={() => setLoginPressed(false)}
+            >
+              <Text
+                style={loginPressed ? styles.pressedText : styles.unpressedText}
+              >
+                Log In
+              </Text>
+            </Pressable>
+            <Pressable
+              onPressIn={() => signUpButtonPress()}
+              onPressOut={() => setSignUpPressed(false)}
+            >
+              <Text
+                style={
+                  signUpPressed ? styles.pressedText : styles.unpressedText
+                }
+              >
+                Sign-up
+              </Text>
+            </Pressable>
           </View>
-          <View style={styles.homeContainer}>
-            <SignUpModal
-              setSignUpModalVisible={setSignUpModalVisible}
-              signUpModalVisible={signUpModalVisible}
-              setSignUpSuccessful={setSignUpSuccessful}
-            />
+        ) : (
+          <View style={styles.userContainer}>
+            <Pressable
+              onPressIn={() => signOutButtonPress()}
+              onPressOut={() => setSignOutPressed(false)}
+            >
+              <Text
+                style={
+                  signOutPressed ? styles.pressedText : styles.unpressedText
+                }
+              >
+                Log out
+              </Text>
+            </Pressable>
           </View>
-          <View style={styles.homeContainer}>
-            <Text style={styles.headerText}>Caffreedom</Text>
-            <View style={styles.logoContainer}>
-              <Image style={styles.logo} source={logo} />
-            </View>
-            {!token ? (
-              <View style={styles.userContainer}>
-                <Pressable
-                  onPressIn={() => loginButtonPress()}
-                  onPressOut={() => setLoginPressed(false)}
-                >
-                  <Text
-                    style={
-                      loginPressed ? styles.pressedText : styles.unpressedText
-                    }
-                  >
-                    Log In
-                  </Text>
-                </Pressable>
-                <Pressable
-                  onPressIn={() => signUpButtonPress()}
-                  onPressOut={() => setSignUpPressed(false)}
-                >
-                  <Text
-                    style={
-                      signUpPressed ? styles.pressedText : styles.unpressedText
-                    }
-                  >
-                    Sign-up
-                  </Text>
-                </Pressable>
-              </View>
-            ) : (
-              <View style={styles.userContainer}>
-                <Pressable
-                  onPressIn={() => signOutButtonPress()}
-                  onPressOut={() => setSignOutPressed(false)}
-                >
-                  <Text
-                    style={
-                      signOutPressed ? styles.pressedText : styles.unpressedText
-                    }
-                  >
-                    Log out
-                  </Text>
-                </Pressable>
-              </View>
-            )}
-          </View>
-          </>
-    );
-  }
+        )}
+      </View>
+    </>
+  );
+}
 
 const styles = StyleSheet.create({
   image: {

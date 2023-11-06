@@ -23,45 +23,45 @@ export default function SignUpModal({
     await SecureStore.setItemAsync(key, value);
   }
   const handleSubmit = async (e) => {
-      const data = {};
-      data.username = username;
-      data.password = password;
-      data.password_confirmation = confirmPassword;
-      console.log(data);
-      const signUpUrl = "http://192.168.86.105:8000/users/signup";
-      const fetchConfig = {
-        method: "post",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const response = await fetch(signUpUrl, fetchConfig);
-      if (response.ok) {
-        const tokenInfo = await response.json();
-        const token = tokenInfo.token;
-        console.log(token);
-        save("token", token);
-        setUsername("");
-        setPassword("");
-        setSignUpModalVisible(false);
-        setSignUpSuccessful(true);
-      } else {
-        const errorMessage = await response.json();
-        console.log(errorMessage)
-        setError(errorMessage["error"])
-        setPassword("")
-        setConfirmPassword("")
-      }
+    const data = {};
+    data.username = username;
+    data.password = password;
+    data.password_confirmation = confirmPassword;
+    console.log(data);
+    const signUpUrl = "http://192.168.86.105:8000/users/signup";
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await fetch(signUpUrl, fetchConfig);
+    if (response.ok) {
+      const tokenInfo = await response.json();
+      const token = tokenInfo.token;
+      console.log(token);
+      save("token", token);
+      setUsername("");
+      setPassword("");
+      setSignUpModalVisible(false);
+      setSignUpSuccessful(true);
+    } else {
+      const errorMessage = await response.json();
+      console.log(errorMessage);
+      setError(errorMessage["error"]);
+      setPassword("");
+      setConfirmPassword("");
+    }
   };
 
   const handleClose = () => {
-    setSignUpModalVisible(!signUpModalVisible)
-    setUsername("")
-    setPassword("")
-    setConfirmPassword("")
-    setError("")
-  }
+    setSignUpModalVisible(!signUpModalVisible);
+    setUsername("");
+    setPassword("");
+    setConfirmPassword("");
+    setError("");
+  };
 
   return (
     <View style={styles.centeredView}>
@@ -108,16 +108,10 @@ export default function SignUpModal({
               value={confirmPassword}
               secureTextEntry={true}
             ></TextInput>
-            <Pressable
-              style={[styles.button]}
-              onPress={() => handleSubmit()}
-            >
+            <Pressable style={[styles.button]} onPress={() => handleSubmit()}>
               <Text style={styles.submitStyle}>Submit</Text>
             </Pressable>
-            <Pressable
-              style={[styles.button]}
-              onPress={handleClose}
-            >
+            <Pressable style={[styles.button]} onPress={handleClose}>
               <Text style={styles.closeStyle}>Close</Text>
             </Pressable>
           </View>
@@ -134,11 +128,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalView: {
-
     margin: 20,
     backgroundColor: "rgba(157, 108, 255, 1)",
     borderRadius: 20,
-    width: '80%',
+    width: "80%",
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",
@@ -198,7 +191,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: "white",
     borderWidth: 1,
-    width: '75%',
+    width: "75%",
     padding: 10,
     margin: 10,
   },

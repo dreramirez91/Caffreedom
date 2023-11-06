@@ -5,7 +5,7 @@ import {
   View,
   Pressable,
   ScrollView,
-  Alert
+  Alert,
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
@@ -20,21 +20,20 @@ export default function CaffeineTable() {
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
-
   const twoOptionAlertHandler = (intake, token) => {
-    console.log("INTAKE TO BE DELETED =>", intake)
+    console.log("INTAKE TO BE DELETED =>", intake);
     //function to make two option alert
     Alert.alert(
       //title
-      'Delete',
+      "Delete",
       //body
-      'Are you sure?',
+      "Are you sure?",
       [
-        { text: 'Yes', onPress: () => deleteIntake(intake, token)},
+        { text: "Yes", onPress: () => deleteIntake(intake, token) },
         {
-          text: 'No',
-          onPress: () => console.log('No Pressed'),
-          style: 'cancel',
+          text: "No",
+          onPress: () => console.log("No Pressed"),
+          style: "cancel",
         },
       ],
       { cancelable: false }
@@ -121,7 +120,6 @@ export default function CaffeineTable() {
           }
           setTableData(tableDataToSet);
           setUserLoggedIn(true);
-
         } else {
           console.error("Fetch failed");
         }
@@ -140,62 +138,62 @@ export default function CaffeineTable() {
 
   if (!userLoggedIn) {
     return (
-          <View style={styles.mainContainer}>
-            <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-            <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
-          </View>
+      <View style={styles.mainContainer}>
+        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <Text style={styles.bodyText}>
+          Login or make an account to track your caffeine intake.
+        </Text>
+      </View>
     );
-  }
-  else if (intakes.length === 0) {
+  } else if (intakes.length === 0) {
     return (
-
-          <View style={styles.mainContainer}>
-            <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-            <Table borderStyle={{ borderWidth: 2, borderColor: "gray" }}>
-              <Row
-                data={tableHead}
-                style={{ height: 40, backgroundColor: "#f1f8ff" }}
-                textStyle={{ textAlign: "center", fontWeight: "bold" }}
-              />
-              <Rows
-                data={tableData}
-                style={{ height: 80 }}
-                textStyle={{ textAlign: "center" }}
-              />
-            </Table>
-          </View>
+      <View style={styles.mainContainer}>
+        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <Table borderStyle={{ borderWidth: 2, borderColor: "gray" }}>
+          <Row
+            data={tableHead}
+            style={{ height: 40, backgroundColor: "#f1f8ff" }}
+            textStyle={{ textAlign: "center", fontWeight: "bold" }}
+          />
+          <Rows
+            data={tableData}
+            style={{ height: 80 }}
+            textStyle={{ textAlign: "center" }}
+          />
+        </Table>
+      </View>
     );
   } else {
     return (
-          <ScrollView
-            style={styles.scrollView}
-            contentContainerStyle={styles.contentContainer}
-          >
-            <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.contentContainer}
+      >
+        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
 
-            <Table
-              borderStyle={{
-                borderWidth: 2,
-                borderColor: "gray",
-              }}
-            >
-              <Row
-                data={tableHead}
-                style={{ height: 40, backgroundColor: "#f1f8ff" }}
-                textStyle={{ textAlign: "center", fontWeight: "bold" }}
-              />
-              <Rows
-                data={tableData}
-                style={{ height: 80 }}
-                textStyle={{
-                  textAlign: "center",
-                  color: "rgba(242, 255, 99, 1)",
-                  fontFamily: "Lora_400Regular_Italic",
-                  fontSize: 12,
-                }}
-              />
-            </Table>
-          </ScrollView>
+        <Table
+          borderStyle={{
+            borderWidth: 2,
+            borderColor: "gray",
+          }}
+        >
+          <Row
+            data={tableHead}
+            style={{ height: 40, backgroundColor: "#f1f8ff" }}
+            textStyle={{ textAlign: "center", fontWeight: "bold" }}
+          />
+          <Rows
+            data={tableData}
+            style={{ height: 80 }}
+            textStyle={{
+              textAlign: "center",
+              color: "rgba(242, 255, 99, 1)",
+              fontFamily: "Lora_400Regular_Italic",
+              fontSize: 12,
+            }}
+          />
+        </Table>
+      </ScrollView>
     );
   }
 }
@@ -229,7 +227,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     marginBottom: 10,
-    marginTop:10,
+    marginTop: 10,
   },
   tableText: {
     textAlign: "center",

@@ -104,10 +104,7 @@ export default function LoginModal({
             >
               <Text style={styles.submitStyle}>Submit</Text>
             </Pressable>
-            <Pressable
-              style={[styles.closeButton]}
-              onPress={onClose}
-            >
+            <Pressable style={[styles.closeButton]} onPress={onClose}>
               <Text style={styles.closeStyle}>Close</Text>
             </Pressable>
           </View>
@@ -128,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(157, 108, 255, 1)",
     borderRadius: 20,
     padding: 35,
-    width: '80%',
+    width: "80%",
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -181,7 +178,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: "white",
     borderWidth: 1,
-    width: '75%',
+    width: "75%",
     padding: 10,
     margin: 10,
   },

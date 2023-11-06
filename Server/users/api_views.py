@@ -18,9 +18,7 @@ from decimal import Decimal
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
     properties = ["id", "amount", "date", "caffeine", "type", "measurement"]
-    encoders = {
-        "amount": DecimalEncoder()
-    }
+    encoders = {"amount": DecimalEncoder()}
 
 
 @csrf_exempt
@@ -48,7 +46,6 @@ def api_list_caffeine_intake(request):
         )
         intakes = user.caffeine_intakes.all()
         return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
-
 
 
 @csrf_exempt
@@ -83,14 +80,21 @@ def signin(request):
             {"error": "Please enter a username & password"},
             status=status.HTTP_400_BAD_REQUEST,
         )
-
-    user = authenticate(username=username, password=password)
-
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return Response(
+            {"error": "Please create an account"}, status=status.HTTP_404_NOT_FOUND
+        )
     if user is not None:
-        login(request, user)
-    else:
-        return Response({"error": "Invalid login credentials"}, status=status.HTTP_404_NOT_FOUND)
-
+        try:
+            user = authenticate(username=username, password=password)
+            login(request, user)
+        except AttributeError:
+            return Response(
+                {"error": "That password is incorrect"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
     token, _ = Token.objects.get_or_create(user=user)
     return Response({"token": token.key}, status=status.HTTP_200_OK)
 
@@ -114,11 +118,19 @@ def signup(request):
         user = None
     print(request.data, "\n\n\n\n")
     if user is not None:
-        return Response({"error": "That username is already taken"}, status=status.HTTP_409_CONFLICT)
+        return Response(
+            {"error": "That username is already taken"}, status=status.HTTP_409_CONFLICT
+        )
     if password != password_confirmation:
-        return Response({"error": "Passwords do not match"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(
+            {"error": "Passwords do not match"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
     if password == "":
-        return Response({"error": "Please enter a password"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(
+            {"error": "Please enter a password"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
     user = User.objects.create_user(username=username, password=password)
     user.save()
     login(request, user)

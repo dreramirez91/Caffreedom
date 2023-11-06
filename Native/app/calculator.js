@@ -12,8 +12,7 @@ import {
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { AntDesign } from '@expo/vector-icons'; 
-
+import { AntDesign } from "@expo/vector-icons";
 
 export default function Calculator() {
   const [token, setToken] = useState(null);
@@ -124,90 +123,100 @@ export default function Calculator() {
     }
   };
 
-    return (
-          <View style={styles.calculatorContainer}>
-            <Text style={styles.headerText}>Calculator</Text>
-            <Text style={styles.baseText}>What drink are you having?</Text>
-            <AutocompleteDropdown
-              containerStyle={styles.dropdown}
-              controller={(controller) => {
-                dropdownController.current = controller;
-              }}
-              clearOnFocus={false}
-              closeOnBlur={false}
-              closeOnSubmit={false}
-              onSelectItem={onChangeDrink}
-              dataSet={caffeineContent}
-              onOpenSuggestionsList={onOpenSuggestionsList}
+  return (
+    <View style={styles.calculatorContainer}>
+      <Text style={styles.headerText}>Calculator</Text>
+      <Text style={styles.baseText}>What drink are you having?</Text>
+      <AutocompleteDropdown
+        containerStyle={styles.dropdown}
+        controller={(controller) => {
+          dropdownController.current = controller;
+        }}
+        clearOnFocus={false}
+        closeOnBlur={false}
+        closeOnSubmit={false}
+        onSelectItem={onChangeDrink}
+        dataSet={caffeineContent}
+        onOpenSuggestionsList={onOpenSuggestionsList}
+      />
+      <Text style={styles.baseText}>How much?</Text>
+      <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
+        <TextInput
+          style={styles.input}
+          returnKeyType={"done"}
+          editable={drink && measurement ? true : false}
+          onChangeText={onChangeAmount}
+          keyboardType="numeric"
+          value={amount.toString()}
+          placeholder="Amount"
+        ></TextInput>
+        <DropDownPicker
+          open={open}
+          value={measurement}
+          items={items}
+          setOpen={setOpen}
+          setValue={setMeasurement}
+          setItems={setItems}
+          containerStyle={{ width: "50%" }}
+          style={{ borderWidth: 0 }}
+          placeholder="Unit of measurement"
+        />
+      </View>
+      <Text style={styles.baseText}>
+        You've consumed {parseInt(caffeine)} mg of caffeine.
+      </Text>
+      <View style={styles.calendar}></View>
+      <View style={styles.buttonContainer}>
+        <Pressable
+          style={styles.addButton}
+          onPress={() => {
+            showDatePicker();
+          }}
+          onPressIn={() => {}}
+          onPressOut={() => {}}
+        >
+          <Text style={styles.addButtonText}>
+            <AntDesign
+              name="calendar"
+              size={16}
+              color="rgba(242, 255, 99, 1)"
+            />{" "}
+            Date:{" "}
+            {selectedDate
+              ? selectedDate.toLocaleDateString()
+              : "No date selected"}
+          </Text>
+        </Pressable>
+        <Text style={styles.baseText}></Text>
+        <DateTimePickerModal
+          date={selectedDate}
+          isVisible={datePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+
+        <Pressable
+          style={styles.addButton}
+          onPress={() => {
+            addIntake();
+          }}
+          onPressIn={() => {}}
+          onPressOut={() => {}}
+        >
+          <Text style={styles.addButtonText}>
+            Save{" "}
+            <AntDesign
+              name="checkcircleo"
+              size={16}
+              color="rgba(242, 255, 99, 1)"
             />
-            <Text style={styles.baseText}>How much?</Text>
-            <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
-              <TextInput
-                style={styles.input}
-                returnKeyType={"done"}
-                editable={drink && measurement ? true : false}
-                onChangeText={onChangeAmount}
-                keyboardType="numeric"
-                value={amount.toString()}
-                placeholder="Amount"
-              ></TextInput>
-              <DropDownPicker
-                open={open}
-                value={measurement}
-                items={items}
-                setOpen={setOpen}
-                setValue={setMeasurement}
-                setItems={setItems}
-                containerStyle={{ width: "50%" }}
-                style={{ borderWidth: 0 }}
-                placeholder="Unit of measurement"
-              />
-            </View>
-            <Text style={styles.baseText}>
-              You've consumed {parseInt(caffeine)} mg of caffeine.
-            </Text>
-            <View style={styles.calendar}></View>
-            <View style={styles.buttonContainer}>
-              <Pressable
-                style={styles.addButton}
-                onPress={() => {
-                  showDatePicker();
-                }}
-                onPressIn={() => {}}
-                onPressOut={() => {}}
-              >
-                <Text style={styles.addButtonText}>
-                <AntDesign name="calendar" size={16} color="rgba(242, 255, 99, 1)" />
-                {" "}Date:{" "}
-                  {selectedDate
-                    ? selectedDate.toLocaleDateString()
-                    : "No date selected"}
-                </Text>
-              </Pressable>
-              <Text style={styles.baseText}></Text>
-              <DateTimePickerModal
-                date={selectedDate}
-                isVisible={datePickerVisible}
-                mode="date"
-                onConfirm={handleConfirm}
-                onCancel={hideDatePicker}
-              />
-
-              <Pressable
-                style={styles.addButton}
-                onPress={() => {
-                  addIntake();
-                }}
-                onPressIn={() => {}}
-                onPressOut={() => {}}
-              >
-                <Text style={styles.addButtonText}>Save <AntDesign name="checkcircleo" size={16} color="rgba(242, 255, 99, 1)" /></Text>
-              </Pressable>
-            </View>
-          </View>
-    );
-  }
-
+          </Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   buttonContainer: {

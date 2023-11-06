@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  Pressable,
-} from "react-native";
+import { StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from "@expo/vector-icons";
 
 export default function Graph() {
   const [intakes, setIntakes] = useState([]);
@@ -93,105 +87,115 @@ export default function Graph() {
 
   if (intakes.length === 0) {
     return (
-          <View style={styles.homeContainer}>
-            <Text style={styles.headerText}>Your Caffeine intake (mg)</Text>
-            <LineChart
-              data={{
-                labels: [
-                  `${new Date().getMonth() + 1}-${new Date().getDate()}`,
-                ],
-                datasets: [
-                  {
-                    data: [0],
-                  },
-                ],
-              }}
-              width={Dimensions.get("window").width}
-              height={220}
-              yAxisLabel=""
-              yAxisSuffix=""
-              yAxisInterval={1} // optional, defaults to 1
-              chartConfig={{
-                backgroundColor: "#e26a00",
-                backgroundGradientFrom: "#fb8c00",
-                backgroundGradientTo: "#ffa726",
-                backgroundGradientFromOpacity: 0,
-                backgroundGradientToOpacity: 0,
-                decimalPlaces: 2, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                },
-                propsForDots: {
-                  r: "6",
-                  strokeWidth: "2",
-                  stroke: "#ffa726",
-                },
-              }}
-              bezier
-              style={{
-                marginVertical: 8,
-                borderRadius: 16,
-              }}
-            />
-          </View>
+      <View style={styles.homeContainer}>
+        <Text style={styles.headerText}>Your Caffeine intake (mg)</Text>
+        <LineChart
+          data={{
+            labels: [`${new Date().getMonth() + 1}-${new Date().getDate()}`],
+            datasets: [
+              {
+                data: [0],
+              },
+            ],
+          }}
+          width={Dimensions.get("window").width}
+          height={220}
+          yAxisLabel=""
+          yAxisSuffix=""
+          yAxisInterval={1} // optional, defaults to 1
+          chartConfig={{
+            backgroundColor: "#e26a00",
+            backgroundGradientFrom: "#fb8c00",
+            backgroundGradientTo: "#ffa726",
+            backgroundGradientFromOpacity: 0,
+            backgroundGradientToOpacity: 0,
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            style: {
+              borderRadius: 16,
+            },
+            propsForDots: {
+              r: "6",
+              strokeWidth: "2",
+              stroke: "#ffa726",
+            },
+          }}
+          bezier
+          style={{
+            marginVertical: 8,
+            borderRadius: 16,
+          }}
+        />
+      </View>
     );
   } else {
     return (
-          <View style={styles.homeContainer}>
-            <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-            <LineChart
-              fromZero="True"
-              data={{
-                labels: dates.slice(weekStart, weekEnd),
-                datasets: [
-                  {
-                    data: totalCaffeine.slice(weekStart, weekEnd),
-                  },
-                ],
-              }}
-              width={Dimensions.get("window").width}
-              height={220}
-              yAxisLabel=""
-              yAxisSuffix=""
-              yAxisInterval={1} // optional, defaults to 1
-              chartConfig={{
-                backgroundColor: "#e26a00",
-                backgroundGradientFrom: "#fb8c00",
-                backgroundGradientTo: "#ffa726",
-                backgroundGradientFromOpacity: 0,
-                backgroundGradientToOpacity: 0,
-                decimalPlaces: 2, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                },
-                propsForDots: {
-                  r: "6",
-                  strokeWidth: "2",
-                  stroke: "#ffa726",
-                },
-              }}
-              bezier
-              style={{
-                marginVertical: 8,
-                borderRadius: 16,
-              }}
-            />
-            <View style={styles.changeDates}>
-              <Pressable onPressIn={previousDay}>
-                <Text style={styles.dayText}><AntDesign name="arrowleft" size={16} color="rgba(242, 255, 99, 1)"/> Previous Day</Text>
-              </Pressable>
-              {/* <Text style={styles.week}>Week {weekStart + 1}</Text> */}
-              <Pressable onPress={nextDay}>
-             
-                <Text style={styles.dayText}>Next Day <AntDesign name="arrowright" size={16} color="rgba(242, 255, 99, 1)"/></Text>
-                
-              </Pressable>
-            </View>
-          </View>
+      <View style={styles.homeContainer}>
+        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <LineChart
+          fromZero="True"
+          data={{
+            labels: dates.slice(weekStart, weekEnd),
+            datasets: [
+              {
+                data: totalCaffeine.slice(weekStart, weekEnd),
+              },
+            ],
+          }}
+          width={Dimensions.get("window").width}
+          height={220}
+          yAxisLabel=""
+          yAxisSuffix=""
+          yAxisInterval={1} // optional, defaults to 1
+          chartConfig={{
+            backgroundColor: "#e26a00",
+            backgroundGradientFrom: "#fb8c00",
+            backgroundGradientTo: "#ffa726",
+            backgroundGradientFromOpacity: 0,
+            backgroundGradientToOpacity: 0,
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            style: {
+              borderRadius: 16,
+            },
+            propsForDots: {
+              r: "6",
+              strokeWidth: "2",
+              stroke: "#ffa726",
+            },
+          }}
+          bezier
+          style={{
+            marginVertical: 8,
+            borderRadius: 16,
+          }}
+        />
+        <View style={styles.changeDates}>
+          <Pressable onPressIn={previousDay}>
+            <Text style={styles.dayText}>
+              <AntDesign
+                name="arrowleft"
+                size={16}
+                color="rgba(242, 255, 99, 1)"
+              />{" "}
+              Previous Day
+            </Text>
+          </Pressable>
+          {/* <Text style={styles.week}>Week {weekStart + 1}</Text> */}
+          <Pressable onPress={nextDay}>
+            <Text style={styles.dayText}>
+              Next Day{" "}
+              <AntDesign
+                name="arrowright"
+                size={16}
+                color="rgba(242, 255, 99, 1)"
+              />
+            </Text>
+          </Pressable>
+        </View>
+      </View>
     );
   }
 }
@@ -216,12 +220,12 @@ const styles = StyleSheet.create({
     borderColor: "rgba(242, 255, 99, 0.75)",
     borderWidth: 2,
     borderRadius: 4,
-    marginLeft:14,
+    marginLeft: 14,
     marginRight: 14,
   },
   changeDates: {
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   week: {
     color: "rgba(242, 255, 99, 1)",
