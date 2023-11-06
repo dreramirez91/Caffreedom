@@ -166,54 +166,56 @@ export default function Calculator() {
         You've consumed {parseInt(caffeine)} mg of caffeine.
       </Text>
       <View style={styles.calendar}></View>
-      <View style={styles.buttonContainer}>
-        <Pressable
-          style={styles.addButton}
-          onPress={() => {
-            showDatePicker();
-          }}
-          onPressIn={() => {}}
-          onPressOut={() => {}}
-        >
-          <Text style={styles.addButtonText}>
-            <AntDesign
-              name="calendar"
-              size={16}
-              color="rgba(242, 255, 99, 1)"
-            />{" "}
-            Date:{" "}
-            {selectedDate
-              ? selectedDate.toLocaleDateString()
-              : "No date selected"}
-          </Text>
-        </Pressable>
-        <Text style={styles.baseText}></Text>
-        <DateTimePickerModal
-          date={selectedDate}
-          isVisible={datePickerVisible}
-          mode="date"
-          onConfirm={handleConfirm}
-          onCancel={hideDatePicker}
-        />
+      {token ? (
+        <View style={styles.buttonContainer}>
+          <Pressable
+            style={styles.addButton}
+            onPress={() => {
+              showDatePicker();
+            }}
+            onPressIn={() => {}}
+            onPressOut={() => {}}
+          >
+            <Text style={styles.addButtonText}>
+              <AntDesign
+                name="calendar"
+                size={16}
+                color="rgba(242, 255, 99, 1)"
+              />{" "}
+              Date:{" "}
+              {selectedDate
+                ? selectedDate.toLocaleDateString()
+                : "No date selected"}
+            </Text>
+          </Pressable>
+          <Text style={styles.baseText}></Text>
+          <DateTimePickerModal
+            date={selectedDate}
+            isVisible={datePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
 
-        <Pressable
-          style={styles.addButton}
-          onPress={() => {
-            addIntake();
-          }}
-          onPressIn={() => {}}
-          onPressOut={() => {}}
-        >
-          <Text style={styles.addButtonText}>
-            Save{" "}
-            <AntDesign
-              name="checkcircleo"
-              size={16}
-              color="rgba(242, 255, 99, 1)"
-            />
-          </Text>
-        </Pressable>
-      </View>
+          <Pressable
+            style={styles.addButton}
+            onPress={() => {
+              addIntake();
+            }}
+            onPressIn={() => {}}
+            onPressOut={() => {}}
+          >
+            <Text style={styles.addButtonText}>
+              Save{" "}
+              <AntDesign
+                name="checkcircleo"
+                size={16}
+                color="rgba(242, 255, 99, 1)"
+              />
+            </Text>
+          </Pressable>
+        </View>
+      ) : null}
     </View>
   );
 }
