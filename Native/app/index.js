@@ -5,7 +5,7 @@ import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
 
-export default function Index() {
+export default function Home() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
   const [signOutPressed, setSignOutPressed] = useState(false);
@@ -68,11 +68,17 @@ export default function Index() {
 
   useEffect(() => {
     fetchToken("token");
+    setSignOutPressed(false);
   }, [loginSuccessful, signUpSuccessful, signoutSuccessful]);
 
   useEffect(() => {
     console.log("TOKEN =>", token);
   }, [token]);
+
+  // Troubleshooting glowing log out despite no one touching it
+  useEffect(() => {
+    console.log("Signout has been pressed", signOutPressed);
+  }, [signOutPressed]);
 
   return (
     <>

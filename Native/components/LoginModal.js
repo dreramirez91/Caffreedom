@@ -148,7 +148,6 @@ const styles = StyleSheet.create({
   },
   closeStyle: {
     color: "rgba(94, 25, 121, 1)",
-
     textAlign: "center",
     fontFamily: "Lora_400Regular_Italic",
   },

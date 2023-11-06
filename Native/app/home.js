@@ -68,11 +68,12 @@ export default function Home() {
 
   useEffect(() => {
     fetchToken("token");
+    setSignOutPressed(false);
   }, [loginSuccessful, signUpSuccessful, signoutSuccessful]);
 
   useEffect(() => {
-    console.log("TOKEN =>", token);
-  }, [token]);
+    console.log("SIGN UP SUCCESSFUL =>", signUpSuccessful);
+  }, [signUpSuccessful]);
 
   // Troubleshooting glowing log out despite no one touching it
   useEffect(() => {
