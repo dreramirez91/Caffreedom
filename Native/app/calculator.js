@@ -95,7 +95,7 @@ export default function Calculator() {
     data.date = selectedDate.toISOString().split("T")[0];
     console.log("Data", data);
     data.type = drink["title"];
-    data.amount = parseInt(amount);
+    data.amount = amount;
     data.measurement = measurement;
     console.log("Measurement", measurement);
     const fetchConfig = {
