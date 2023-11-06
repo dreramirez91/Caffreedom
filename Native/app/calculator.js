@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   },
   calculatorContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.7)",
-    width: "80%",
+    width: "100%",
     justifyContent: "center",
     borderRadius: 4,
     padding: 10,
