@@ -147,10 +147,8 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   closeStyle: {
-    color: "rgba(255, 99, 99, 1)",
-    textShadowColor: "rgba(0, 0, 0, 0.5)",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    color: "rgba(94, 25, 121, 1)",
+
     textAlign: "center",
     fontFamily: "Lora_400Regular_Italic",
   },
