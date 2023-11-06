@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
+import { AntDesign } from '@expo/vector-icons'; 
 
 export default function Graph() {
   const [intakes, setIntakes] = useState([]);
@@ -181,21 +182,13 @@ export default function Graph() {
             />
             <View style={styles.changeDates}>
               <Pressable onPressIn={previousDay}>
-                {/* <MaterialCommunityIcons
-                  name="calendar-arrow-left"
-                  size={24}
-                  color="rgba(242, 255, 99, 1)"
-                /> */}
-                <Text style={styles.dayText}>Previous Day</Text>
+                <Text style={styles.dayText}><AntDesign name="arrowleft" size={16} color="rgba(242, 255, 99, 1)"/> Previous Day</Text>
               </Pressable>
               {/* <Text style={styles.week}>Week {weekStart + 1}</Text> */}
               <Pressable onPress={nextDay}>
-                {/* <MaterialCommunityIcons
-                  name="calendar-arrow-right"
-                  size={24}
-                  color="rgba(242, 255, 99, 1)"
-                /> */}
-                <Text style={styles.dayText}>Next Day</Text>
+             
+                <Text style={styles.dayText}>Next Day <AntDesign name="arrowright" size={16} color="rgba(242, 255, 99, 1)"/></Text>
+                
               </Pressable>
             </View>
           </View>
@@ -223,10 +216,12 @@ const styles = StyleSheet.create({
     borderColor: "rgba(242, 255, 99, 0.75)",
     borderWidth: 2,
     borderRadius: 4,
+    marginLeft:14,
+    marginRight: 14,
   },
   changeDates: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center"
   },
   week: {
     color: "rgba(242, 255, 99, 1)",
