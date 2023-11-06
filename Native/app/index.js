@@ -5,7 +5,7 @@ import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
 
-export default function Home() {
+export default function Index() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
   const [signOutPressed, setSignOutPressed] = useState(false);

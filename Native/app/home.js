@@ -74,6 +74,11 @@ export default function Home() {
     console.log("TOKEN =>", token);
   }, [token]);
 
+  // Troubleshooting glowing log out despite no one touching it
+  useEffect(() => {
+    console.log("Signout has been pressed", signOutPressed);
+  }, [signOutPressed]);
+
   return (
     <>
       <View style={styles.homeContainer}>
