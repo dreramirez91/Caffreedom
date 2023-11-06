@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { AntDesign } from '@expo/vector-icons'; 
 
 
 export default function Calculator() {
@@ -163,7 +164,7 @@ export default function Calculator() {
               />
             </View>
             <Text style={styles.baseText}>
-              You have consumed {parseInt(caffeine)} mg of caffeine.
+              You've consumed {parseInt(caffeine)} mg of caffeine.
             </Text>
             <View style={styles.calendar}></View>
             <View style={styles.buttonContainer}>
@@ -176,7 +177,8 @@ export default function Calculator() {
                 onPressOut={() => {}}
               >
                 <Text style={styles.addButtonText}>
-                  Date:{" "}
+                <AntDesign name="calendar" size={16} color="rgba(242, 255, 99, 1)" />
+                {" "}Date:{" "}
                   {selectedDate
                     ? selectedDate.toLocaleDateString()
                     : "No date selected"}
@@ -199,7 +201,7 @@ export default function Calculator() {
                 onPressIn={() => {}}
                 onPressOut={() => {}}
               >
-                <Text style={styles.addButtonText}>Save</Text>
+                <Text style={styles.addButtonText}>Save <AntDesign name="checkcircleo" size={16} color="rgba(242, 255, 99, 1)" /></Text>
               </Pressable>
             </View>
           </View>

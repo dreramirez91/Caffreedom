@@ -10,7 +10,6 @@ import {
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
-import * as SplashScreen from 'expo-splash-screen';
 
 // LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
@@ -18,18 +17,8 @@ export default function CaffeineTable() {
   const [intakes, setIntakes] = useState([0]);
   const tableHead = ["Drink", "Amount", "Caffeine content", "Date", ""];
   const [tableData, setTableData] = useState([]);
-  const [token, setToken] = useState("");
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const elementButton = (text) => (
-    <Pressable
-      onPress={() => {
-        console.log(tableRow);
-      }}
-    >
-      <Text style={styles.tableText}>{text}</Text>
-    </Pressable>
-  );
 
 
   const twoOptionAlertHandler = (intake, token) => {
@@ -57,7 +46,6 @@ export default function CaffeineTable() {
     try {
       let result = await SecureStore.getItemAsync(key);
       if (result) {
-        console.log("TOKEN WITHIN DELETE FUNCTION", token);
         const data = {};
         data.id = id;
         const fetchConfig = {
@@ -74,7 +62,6 @@ export default function CaffeineTable() {
         );
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setDeleteSuccessful(true);
         } else {
           console.log("Delete failed");
@@ -111,8 +98,7 @@ export default function CaffeineTable() {
           console.log("Fetch successful");
           setIntakes(data.intakes);
           const tableDataToSet = [];
-          let rowNumber = 1;
-          for (intake of data.intakes) {
+          for (let intake of data.intakes) {
             const tableRow = [];
             tableRow.push(
               intake.type,
@@ -131,16 +117,13 @@ export default function CaffeineTable() {
                 <Text style={styles.deleteText}>Delete</Text>
               </Pressable>
             );
-            // rowNumber += 1;
             tableDataToSet.push(tableRow);
           }
           setTableData(tableDataToSet);
           setUserLoggedIn(true);
-          await SplashScreen.hideAsync();
 
         } else {
           console.error("Fetch failed");
-          await SplashScreen.hideAsync();
         }
       } else {
         console.log("Could not retrieve token from store");
@@ -217,9 +200,6 @@ export default function CaffeineTable() {
   }
 }
 const styles = StyleSheet.create({
-  tableContainer: {
-    padding: 15,
-  },
   mainContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     justifyContent: "center",
