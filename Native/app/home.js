@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   homeContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.70)",
-    width: "80%",
+    width: "100%",
     justifyContent: "center",
     paddingTop: 5,
     borderRadius: 4,
