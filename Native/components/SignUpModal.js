@@ -17,15 +17,16 @@ export default function SignUpModal({
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
   }
   const handleSubmit = async (e) => {
-    if (password === confirmPassword) {
       const data = {};
       data.username = username;
       data.password = password;
+      data.password_confirmation = confirmPassword;
       console.log(data);
       const signUpUrl = "http://192.168.86.105:8000/users/signup";
       const fetchConfig = {
@@ -46,12 +47,21 @@ export default function SignUpModal({
         setSignUpModalVisible(false);
         setSignUpSuccessful(true);
       } else {
-        console.log("Sign up failed");
+        const errorMessage = await response.json();
+        console.log(errorMessage)
+        setError(errorMessage["error"])
+        setPassword("")
+        setConfirmPassword("")
       }
-    } else {
-      console.log("Passwords do not match");
-    }
   };
+
+  const handleClose = () => {
+    setSignUpModalVisible(!signUpModalVisible)
+    setUsername("")
+    setPassword("")
+    setConfirmPassword("")
+    setError("")
+  }
 
   return (
     <View style={styles.centeredView}>
@@ -73,6 +83,17 @@ export default function SignUpModal({
               placeholder="Username"
               value={username}
             ></TextInput>
+            {error ? (
+              <View
+                styles={{
+                  borderWidth: 10,
+                  borderColor: "orange",
+                  borderStyle: "solid",
+                }}
+              >
+                <Text style={styles.errorText}>{error}</Text>
+              </View>
+            ) : null}
             <TextInput
               style={styles.input}
               onChangeText={setPassword}
@@ -88,16 +109,16 @@ export default function SignUpModal({
               secureTextEntry={true}
             ></TextInput>
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={[styles.button]}
               onPress={() => handleSubmit()}
             >
               <Text style={styles.submitStyle}>Submit</Text>
             </Pressable>
             <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setSignUpModalVisible(!signUpModalVisible)}
+              style={[styles.button]}
+              onPress={handleClose}
             >
-              <Text style={styles.textStyle}>Close</Text>
+              <Text style={styles.closeStyle}>Close</Text>
             </Pressable>
           </View>
         </View>
@@ -139,16 +160,24 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "rgba(157, 108, 255, 1)",
+  closeStyle: {
+    color: "rgba(255, 99, 99, 1)",
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+    textAlign: "center",
+    fontFamily: "Lora_400Regular_Italic",
   },
   textStyle: {
     color: "white",
     textAlign: "center",
     fontFamily: "Lora_400Regular_Italic",
+  },
+  errorText: {
+    color: "rgba(242, 255, 99, 1)",
+    textDecorationLine: "underline",
+    fontFamily: "Lora_400Regular_Italic",
+    textAlign: "center",
   },
   submitStyle: {
     color: "rgba(242, 255, 99, 1)",

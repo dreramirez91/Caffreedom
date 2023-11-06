@@ -25,6 +25,8 @@ export default function LoginModal({
 
   const onClose = () => {
     setLoginModalVisible(!loginModalVisible);
+    setUsername("");
+    setPassword("");
     setError("");
   };
   const handleSubmit = async (e) => {
@@ -97,16 +99,16 @@ export default function LoginModal({
               secureTextEntry={true}
             ></TextInput>
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={styles.submitButton}
               onPress={() => handleSubmit()}
             >
               <Text style={styles.submitStyle}>Submit</Text>
             </Pressable>
             <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => onClose()}
+              style={[styles.closeButton]}
+              onPress={onClose}
             >
-              <Text style={styles.textStyle}>Close</Text>
+              <Text style={styles.closeStyle}>Close</Text>
             </Pressable>
           </View>
         </View>
@@ -137,16 +139,21 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  button: {
+  submitButton: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
   },
-  buttonClose: {
-    backgroundColor: "rgba(157, 108, 255, 1)",
+  closeButton: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
   },
-  textStyle: {
-    color: "white",
+  closeStyle: {
+    color: "rgba(255, 99, 99, 1)",
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
     textAlign: "center",
     fontFamily: "Lora_400Regular_Italic",
   },

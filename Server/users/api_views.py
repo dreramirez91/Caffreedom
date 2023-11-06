@@ -15,9 +15,6 @@ import json
 from decimal import Decimal
 
 
-
-    
-
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
     properties = ["id", "amount", "date", "caffeine", "type", "measurement"]
@@ -110,6 +107,18 @@ def signout(request):
 def signup(request):
     username = request.data.get("username")
     password = request.data.get("password")
+    password_confirmation = request.data.get("password_confirmation")
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        user = None
+    print(request.data, "\n\n\n\n")
+    if user is not None:
+        return Response({"error": "That username is already taken"}, status=status.HTTP_409_CONFLICT)
+    if password != password_confirmation:
+        return Response({"error": "Passwords do not match"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    if password == "":
+        return Response({"error": "Please enter a password"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     user = User.objects.create_user(username=username, password=password)
     user.save()
     login(request, user)
