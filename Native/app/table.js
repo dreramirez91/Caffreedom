@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   deleteText: {
     textAlign: "center",
     color: "rgba(255, 99, 99, 1)",
-    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowColor: "rgba(0, 0, 0, 0.6)",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
     fontFamily: "Lora_400Regular_Italic",

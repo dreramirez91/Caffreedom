@@ -162,7 +162,7 @@ export default function Calculator() {
           placeholder="Unit of measurement"
         />
       </View>
-      <Text style={styles.baseText}>
+      <Text style={styles.report}>
         You've consumed {parseInt(caffeine)} mg of caffeine.
       </Text>
       <View style={styles.calendar}></View>
@@ -222,10 +222,11 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
+    marginBottom: 5,
   },
   calculatorContainer: {
     backgroundColor: "rgba(157, 108, 255, 0.7)",
-    width: "80%",
+    width: "100%",
     justifyContent: "center",
     borderRadius: 4,
     padding: 10,
@@ -241,6 +242,14 @@ const styles = StyleSheet.create({
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
     marginTop: 10,
+    textAlign: "center",
+  },
+  report: {
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 20,
+    marginTop: 15,
+    marginBottom: 3,
     textAlign: "center",
   },
   howMuch: {
