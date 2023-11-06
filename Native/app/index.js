@@ -42,7 +42,6 @@ export default function Home() {
     };
     const response = await fetch(logoutUrl, fetchConfig);
     if (response.ok) {
-      console.log(await response.json());
       setToken("");
       setSignOutSuccessful(true);
       SecureStore.deleteItemAsync("token");

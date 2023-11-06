@@ -14,7 +14,6 @@ export default function LoginModal({
   setLoginModalVisible,
   setLoginSuccessful,
 }) {
-  console.log("Function:", setLoginModalVisible);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -23,7 +22,7 @@ export default function LoginModal({
     await SecureStore.setItemAsync(key, value);
   }
 
-  const onClose = () => {
+  const handleClose = () => {
     setLoginModalVisible(!loginModalVisible);
     setUsername("");
     setPassword("");
@@ -104,7 +103,7 @@ export default function LoginModal({
             >
               <Text style={styles.submitStyle}>Submit</Text>
             </Pressable>
-            <Pressable style={[styles.closeButton]} onPress={onClose}>
+            <Pressable style={[styles.closeButton]} onPress={handleClose}>
               <Text style={styles.closeStyle}>Close</Text>
             </Pressable>
           </View>
