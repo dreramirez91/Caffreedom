@@ -19,11 +19,13 @@ export default function Home() {
   const loginButtonPress = () => {
     setLoginPressed(true);
     setLoginModalVisible(true);
+    setLoginSuccessful(false)
   };
 
   const signUpButtonPress = () => {
     setSignUpPressed(true);
     setSignUpModalVisible(true);
+    setSignUpSuccessful(false);
   };
 
   const signOutButtonPress = () => {
@@ -69,15 +71,6 @@ export default function Home() {
     fetchToken("token");
     setSignOutPressed(false);
   }, [loginSuccessful, signUpSuccessful, signoutSuccessful]);
-
-  useEffect(() => {
-    console.log("SIGN UP SUCCESSFUL =>", signUpSuccessful);
-  }, [signUpSuccessful]);
-
-  // Troubleshooting glowing log out despite no one touching it
-  useEffect(() => {
-    console.log("Signout has been pressed", signOutPressed);
-  }, [signOutPressed]);
 
   return (
     <>
