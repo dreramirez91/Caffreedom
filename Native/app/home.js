@@ -17,13 +17,11 @@ export default function Home() {
   const [signoutSuccessful, setSignOutSuccessful] = useState(false);
 
   const loginButtonPress = () => {
-    setLoginSuccessful(false);
     setLoginPressed(true);
     setLoginModalVisible(true);
   };
 
   const signUpButtonPress = () => {
-    setSignUpSuccessful(false);
     setSignUpPressed(true);
     setSignUpModalVisible(true);
   };
