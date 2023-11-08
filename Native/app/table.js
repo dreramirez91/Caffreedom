@@ -24,10 +24,13 @@ export default function CaffeineTable() {
   const [editSuccessful, setEditSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [newAmount, setNewAmount] = useState("0");
+  const [editSelected, setEditSelected] = useState(false);
   const patchAmount = useRef();
   patchAmount.current = newAmount;
   const patchCaffeine = useRef();
   patchCaffeine.current = caffeine;
+  const refEditSelected = useRef();
+  refEditSelected.current = editSelected;
 
   const twoOptionDeleteHandler = (intake, token) => {
     console.log("INTAKE TO BE DELETED =>", intake);
@@ -64,7 +67,7 @@ export default function CaffeineTable() {
         },
         {
           text: "No",
-          onPress: () => console.log("No Pressed"),
+          onPress: () => setNewAmount("0"),
           style: "cancel",
         },
       ],
@@ -185,10 +188,13 @@ export default function CaffeineTable() {
               intake.type,
               <View style={styles.amountStyle}>
                 <TextInput
-                  style={styles.tableText}
                   returnKeyType={"done"}
+                  maxLength={7}
+                  selectTextOnFocus={true}
                   onChangeText={setNewAmount}
                   keyboardType="numeric"
+                  onFocus={setEditSelected(true)}
+                  onBlur={setEditSelected(false)}
                   onSubmitEditing={() =>
                     twoOptionEditHandler(
                       intake.id,
@@ -198,7 +204,8 @@ export default function CaffeineTable() {
                     )
                   }
                   placeholder={`${intake.amount}`}
-                  placeholderTextColor="rgba(242, 255, 99, 1)"
+                  placeholderTextColor={"rgba(242, 255, 99, 1)"}
+                  style={styles.editText}
                 ></TextInput>
                 <Text style={styles.tableText}>
                   {" "}
@@ -342,6 +349,12 @@ const styles = StyleSheet.create({
   tableText: {
     textAlign: "center",
     color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 12,
+  },
+  editText: {
+    textAlign: "center",
+    color: "rgba(94, 25, 121, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 12,
   },

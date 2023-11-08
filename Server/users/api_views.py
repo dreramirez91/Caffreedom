@@ -49,6 +49,20 @@ def api_list_caffeine_intake(request):
 
 
 @csrf_exempt
+@require_http_methods(["PATCH"])
+def api_edit_caffeine_intake(request):
+    user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
+    data = json.loads(request.body)
+    print("\n\n\n\nEDIT DATA:", data, "\n\n\n\n")
+    amount = data["amount"]
+    id = data["id"]
+    caffeine = data["caffeine"]
+    CaffeineIntake.objects.filter(id=id).update(amount=amount, caffeine=caffeine)
+    intakes = user.caffeine_intakes.all()  # perhaps change response
+    return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
+
+
+@csrf_exempt
 @require_http_methods(["DELETE"])
 def api_delete_caffeine_intake(request):
     data = json.loads(request.body)

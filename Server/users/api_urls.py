@@ -7,6 +7,7 @@ from .api_views import (
     signout,
     signup,
     api_delete_caffeine_intake,
+    api_edit_caffeine_intake
 )
 
 urlpatterns = [
@@ -20,5 +21,10 @@ urlpatterns = [
         "delete",
         api_delete_caffeine_intake,
         name="api_delete_caffeine_intake",
+    ),
+    path(
+        "edit",
+        api_edit_caffeine_intake,
+        name="api_edit_caffeine_intake",
     ),
 ]
