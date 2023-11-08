@@ -18,7 +18,13 @@ import { caffeineContent } from "../caffeineContent";
 export default function CaffeineTable() {
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
-  const tableHead = ["Drink", "Amount", "Caffeine content", "Date", ""];
+  const tableHead = [
+    "Drink",
+    "Amount, tap to edit",
+    "Caffeine content",
+    "Date",
+    "",
+  ];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [editSuccessful, setEditSuccessful] = useState(false);
@@ -283,7 +289,6 @@ export default function CaffeineTable() {
         contentContainerStyle={styles.contentContainer}
       >
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-
         <Table
           borderStyle={{
             borderWidth: 2,
@@ -343,8 +348,8 @@ const styles = StyleSheet.create({
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 18,
     textAlign: "center",
-    marginBottom: 10,
-    marginTop: 10,
+    marginBottom: 20,
+    marginTop: 5,
   },
   tableText: {
     textAlign: "center",
