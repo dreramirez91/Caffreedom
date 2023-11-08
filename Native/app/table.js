@@ -145,28 +145,28 @@ export default function CaffeineTable() {
             const tableRow = [];
             tableRow.push(
               intake.type,
-              // <Pressable onPress={handleAmountClick}>
-              //   {/* <Text style={styles.tableText}>{`${intake.amount} ${
-              //     intake.amount === 1
-              //       ? intake.measurement.slice(0, intake.measurement.length - 1)
-              //       : intake.measurement
-              //   }`}</Text> */}
-              <TextInput
-                style={styles.tableText}
-                returnKeyType={"done"}
-                // onChangeText={onChangeAmount}
-                keyboardType="numeric"
-                // value={newAmount.toString()}
-
-                placeholder={`${intake.amount} ${
-                  intake.amount === 1
-                    ? intake.measurement.slice(0, intake.measurement.length - 1)
-                    : intake.measurement
-                }`}
-                placeholderTextColor="rgba(242, 255, 99, 1)"
-              ></TextInput>,
-              // </Pressable>,
-              // intake.amount,
+              <View style={styles.amountStyle}>
+                <TextInput
+                  style={styles.tableText}
+                  returnKeyType={"done"}
+                  // onChangeText={onChangeAmount}
+                  keyboardType="numeric"
+                  // value={newAmount.toString()}
+                  placeholder={`${intake.amount}`}
+                  placeholderTextColor="rgba(242, 255, 99, 1)"
+                ></TextInput>
+                <Text style={styles.tableText}>
+                  {" "}
+                  {`${
+                    intake.amount === 1
+                      ? intake.measurement.slice(
+                          0,
+                          intake.measurement.length - 1
+                        )
+                      : intake.measurement
+                  }`}
+                </Text>
+              </View>,
               intake.caffeine,
               intake.date,
               <Pressable
@@ -265,6 +265,10 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 4,
     width: "100%",
+  },
+  amountStyle: {
+    flexDirection: "row",
+    justifyContent: "center",
   },
   scrollView: {
     backgroundColor: "rgba(157, 108, 255, 0.70)",
