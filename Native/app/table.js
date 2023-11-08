@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -23,6 +23,10 @@ export default function CaffeineTable() {
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [newAmount, setNewAmount] = useState("0");
+  const patchAmount = useRef();
+  patchAmount.current = newAmount;
+  const patchCaffeine = useRef();
+  patchCaffeine.current = caffeine;
 
   const twoOptionDeleteHandler = (intake, token) => {
     console.log("INTAKE TO BE DELETED =>", intake);
@@ -105,14 +109,15 @@ export default function CaffeineTable() {
   }, [newAmount]);
 
   async function editIntake(id, key, measurement, beverage) {
+    console.log("suck my nuts!!!", patchAmount.current);
     for (let drink of caffeineContent) {
       if (drink["title"] == beverage) {
         if (measurement === "floz") {
-          setCaffeine(drink["mg/floz"] * newAmount);
+          setCaffeine(drink["mg/floz"] * patchAmount.current);
         } else if (measurement === "cups") {
-          setCaffeine(drink["mg/floz"] * newAmount * 8);
+          setCaffeine(drink["mg/floz"] * patchAmount.current * 8);
         } else if (measurement === "ml") {
-          setCaffeine((drink["mg/floz"] * newAmount) / 29.5735);
+          setCaffeine((drink["mg/floz"] * patchAmount.current) / 29.5735);
         }
       }
     }
@@ -121,8 +126,8 @@ export default function CaffeineTable() {
       if (result) {
         const data = {};
         data.id = id;
-        data.amount = newAmount;
-        data.caffeine = caffeine;
+        data.amount = patchAmount.current;
+        data.caffeine = patchCaffeine.current;
         console.log("DATA TO BE SENT IN EDIT REQUEST", data);
         const fetchConfig = {
           method: "patch",
