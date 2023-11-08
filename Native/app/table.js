@@ -79,9 +79,12 @@ export default function CaffeineTable() {
   function handleAmountClick() {
     setShowAmountInput(true);
     console.log(showAmountInput);
-    // return a modal or simply the keyboard (textinput with onSubmitEditing prop?)
+    // return a modal or simply the keyboard (textinput with onSubmitEditing prop?) text editable only if you click on it, perhaps with state? placeholder is the intake...
     // when submit is pressed then the editIntake is called
   }
+  const onChangeAmount = (newAmount) => {
+    setNewAmount(newAmount);
+  };
 
   async function editIntake(id, amount, key) {
     try {
@@ -142,30 +145,28 @@ export default function CaffeineTable() {
             const tableRow = [];
             tableRow.push(
               intake.type,
-              <Pressable onPress={handleAmountClick}>
-                <Text style={styles.tableText}>{`${intake.amount} ${
+              // <Pressable onPress={handleAmountClick}>
+              //   {/* <Text style={styles.tableText}>{`${intake.amount} ${
+              //     intake.amount === 1
+              //       ? intake.measurement.slice(0, intake.measurement.length - 1)
+              //       : intake.measurement
+              //   }`}</Text> */}
+              <TextInput
+                style={styles.tableText}
+                returnKeyType={"done"}
+                // onChangeText={onChangeAmount}
+                keyboardType="numeric"
+                // value={newAmount.toString()}
+
+                placeholder={`${intake.amount} ${
                   intake.amount === 1
                     ? intake.measurement.slice(0, intake.measurement.length - 1)
                     : intake.measurement
-                }`}</Text>
-                {showAmountInput ? (
-                  <TextInput
-                    style={styles.input}
-                    returnKeyType={"done"}
-                    onChangeText={setNewAmount}
-                    keyboardType="numeric"
-                    value={newAmount.toString()}
-                    placeholder={`${intake.amount} ${
-                      intake.amount === 1
-                        ? intake.measurement.slice(
-                            0,
-                            intake.measurement.length - 1
-                          )
-                        : intake.measurement
-                    }`}
-                  ></TextInput>
-                ) : null}
-              </Pressable>,
+                }`}
+                placeholderTextColor="rgba(242, 255, 99, 1)"
+              ></TextInput>,
+              // </Pressable>,
+              // intake.amount,
               intake.caffeine,
               intake.date,
               <Pressable
