@@ -30,13 +30,10 @@ export default function CaffeineTable() {
   const [editSuccessful, setEditSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [newAmount, setNewAmount] = useState("0");
-  const [editSelected, setEditSelected] = useState(false);
   const patchAmount = useRef();
   patchAmount.current = newAmount;
   const patchCaffeine = useRef();
   patchCaffeine.current = caffeine;
-  const refEditSelected = useRef();
-  refEditSelected.current = editSelected;
 
   const twoOptionDeleteHandler = (intake, token) => {
     console.log("INTAKE TO BE DELETED =>", intake);
@@ -199,8 +196,6 @@ export default function CaffeineTable() {
                   selectTextOnFocus={true}
                   onChangeText={setNewAmount}
                   keyboardType="numeric"
-                  onFocus={setEditSelected(true)}
-                  onBlur={setEditSelected(false)}
                   onSubmitEditing={() =>
                     twoOptionEditHandler(
                       intake.id,
