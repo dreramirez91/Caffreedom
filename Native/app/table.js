@@ -102,11 +102,11 @@ export default function CaffeineTable() {
             const tableRow = [];
             tableRow.push(
               intake.type,
-              `${intake.amount} ${
+              <Pressable onPress={() => {console.log("Edit pressed ---")}}><Text style={styles.tableText}>{`${intake.amount} ${
                 intake.amount === 1
                   ? intake.measurement.slice(0, intake.measurement.length - 1)
                   : intake.measurement
-              }`,
+              }`}</Text></Pressable>,
               intake.caffeine,
               intake.date,
               <Pressable
