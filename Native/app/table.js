@@ -21,6 +21,7 @@ export default function CaffeineTable() {
   const tableHead = ["Drink", "Amount", "Caffeine content", "Date", ""];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
+  const [editSuccessful, setEditSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [newAmount, setNewAmount] = useState("0");
   const patchAmount = useRef();
@@ -109,7 +110,6 @@ export default function CaffeineTable() {
   }, [newAmount]);
 
   async function editIntake(id, key, measurement, beverage) {
-    console.log("suck my nuts!!!", patchAmount.current);
     for (let drink of caffeineContent) {
       if (drink["title"] == beverage) {
         if (measurement === "floz") {
@@ -143,6 +143,7 @@ export default function CaffeineTable() {
         );
         if (response.ok) {
           const data = await response.json();
+          setEditSuccessful(true);
         } else {
           console.log("Edit failed");
         }
@@ -239,7 +240,7 @@ export default function CaffeineTable() {
 
   useEffect(() => {
     populateData("token");
-  }, [deleteSuccessful]);
+  }, [deleteSuccessful, editSuccessful]);
 
   if (!userLoggedIn) {
     return (
