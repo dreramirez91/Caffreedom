@@ -10,6 +10,7 @@ import {
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 
 // LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
@@ -19,6 +20,8 @@ export default function CaffeineTable() {
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
+  const [newAmount, setNewAmount] = useState("0");
+  const [showAmountInput, setShowAmountInput] = useState(false);
 
   const twoOptionAlertHandler = (intake, token) => {
     console.log("INTAKE TO BE DELETED =>", intake);
@@ -73,12 +76,50 @@ export default function CaffeineTable() {
     }
   }
 
+  function handleAmountClick() {
+    setShowAmountInput(true);
+    console.log(showAmountInput);
+    // return a modal or simply the keyboard (textinput with onSubmitEditing prop?)
+    // when submit is pressed then the editIntake is called
+  }
+
+  async function editIntake(id, amount, key) {
+    try {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        const data = {};
+        data.id = id;
+        data.amount = amount;
+        const fetchConfig = {
+          method: "patch",
+          headers: {
+            "Content-type": "application/json",
+            Authentication: result,
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch(
+          "http://192.168.86.105:8000/users/edit",
+          fetchConfig
+        );
+        if (response.ok) {
+          const data = await response.json();
+        } else {
+          console.log("Edit failed");
+        }
+      } else {
+        console.log("Could not retrieve token from store for delete request");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function populateData(key) {
     try {
       setDeleteSuccessful(false);
       let result = await SecureStore.getItemAsync(key);
       if (result) {
-    
         console.log("Successfully retrieved token from store", result);
         const fetchConfig = {
           method: "get",
@@ -94,7 +135,6 @@ export default function CaffeineTable() {
         if (response.ok) {
           console.log("Token in fetch", result);
           const data = await response.json();
-          console.log("DATA", data);
           console.log("Fetch successful");
           setIntakes(data.intakes);
           const tableDataToSet = [];
@@ -102,11 +142,30 @@ export default function CaffeineTable() {
             const tableRow = [];
             tableRow.push(
               intake.type,
-              <Pressable onPress={() => {console.log("Edit pressed ---")}}><Text style={styles.tableText}>{`${intake.amount} ${
-                intake.amount === 1
-                  ? intake.measurement.slice(0, intake.measurement.length - 1)
-                  : intake.measurement
-              }`}</Text></Pressable>,
+              <Pressable onPress={handleAmountClick}>
+                <Text style={styles.tableText}>{`${intake.amount} ${
+                  intake.amount === 1
+                    ? intake.measurement.slice(0, intake.measurement.length - 1)
+                    : intake.measurement
+                }`}</Text>
+                {showAmountInput ? (
+                  <TextInput
+                    style={styles.input}
+                    returnKeyType={"done"}
+                    onChangeText={setNewAmount}
+                    keyboardType="numeric"
+                    value={newAmount.toString()}
+                    placeholder={`${intake.amount} ${
+                      intake.amount === 1
+                        ? intake.measurement.slice(
+                            0,
+                            intake.measurement.length - 1
+                          )
+                        : intake.measurement
+                    }`}
+                  ></TextInput>
+                ) : null}
+              </Pressable>,
               intake.caffeine,
               intake.date,
               <Pressable
@@ -125,7 +184,7 @@ export default function CaffeineTable() {
           console.error("Fetch failed");
         }
       } else {
-        setUserLoggedIn(false)
+        setUserLoggedIn(false);
         console.log("Could not retrieve token from store");
       }
     } catch (error) {
@@ -136,7 +195,6 @@ export default function CaffeineTable() {
   useEffect(() => {
     populateData("token");
   }, [deleteSuccessful]);
-  useEffect(() => console.log("Table data", tableData), [tableData]);
 
   if (!userLoggedIn) {
     return (
