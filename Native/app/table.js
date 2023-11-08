@@ -18,7 +18,7 @@ export default function CaffeineTable() {
   const tableHead = ["Drink", "Amount", "Caffeine content", "Date", ""];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(true);
 
   const twoOptionAlertHandler = (intake, token) => {
     console.log("INTAKE TO BE DELETED =>", intake);
@@ -78,6 +78,7 @@ export default function CaffeineTable() {
       setDeleteSuccessful(false);
       let result = await SecureStore.getItemAsync(key);
       if (result) {
+    
         console.log("Successfully retrieved token from store", result);
         const fetchConfig = {
           method: "get",
@@ -124,6 +125,7 @@ export default function CaffeineTable() {
           console.error("Fetch failed");
         }
       } else {
+        setUserLoggedIn(false)
         console.log("Could not retrieve token from store");
       }
     } catch (error) {
