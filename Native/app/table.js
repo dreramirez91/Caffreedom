@@ -11,17 +11,18 @@ import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { caffeineContent } from "../caffeineContent";
 
 // LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
 export default function CaffeineTable() {
+  const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
   const tableHead = ["Drink", "Amount", "Caffeine content", "Date", ""];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [newAmount, setNewAmount] = useState("0");
-  const [showAmountInput, setShowAmountInput] = useState(false);
 
   const twoOptionDeleteHandler = (intake, token) => {
     console.log("INTAKE TO BE DELETED =>", intake);
@@ -44,7 +45,7 @@ export default function CaffeineTable() {
     );
   };
 
-  const twoOptionEditHandler = (intake, token) => {
+  const twoOptionEditHandler = (intake, token, measurement, drink) => {
     //function to make two option alert
     Alert.alert(
       //title
@@ -52,7 +53,10 @@ export default function CaffeineTable() {
       //body
       "Are you sure?",
       [
-        { text: "Yes", onPress: () => editIntake(intake, token) },
+        {
+          text: "Yes",
+          onPress: () => editIntake(intake, token, measurement, drink),
+        },
         {
           text: "No",
           onPress: () => console.log("No Pressed"),
@@ -96,24 +100,30 @@ export default function CaffeineTable() {
     }
   }
 
-  function handleAmountClick() {
-    setShowAmountInput(true);
-    console.log(showAmountInput);
-    // return a modal or simply the keyboard (textinput with onSubmitEditing prop?) text editable only if you click on it, perhaps with state? placeholder is the intake...
-    // when submit is pressed then the editIntake is called
-  }
-  const onChangeNewAmount = (newAmount) => {
-    setNewAmount(newAmount);
+  useEffect(() => {
     console.log(newAmount);
-  };
+  }, [newAmount]);
 
-  async function editIntake(id, amount, key) {
+  async function editIntake(id, key, measurement, beverage) {
+    for (let drink of caffeineContent) {
+      if (drink["title"] == beverage) {
+        if (measurement === "floz") {
+          setCaffeine(drink["mg/floz"] * newAmount);
+        } else if (measurement === "cups") {
+          setCaffeine(drink["mg/floz"] * newAmount * 8);
+        } else if (measurement === "ml") {
+          setCaffeine((drink["mg/floz"] * newAmount) / 29.5735);
+        }
+      }
+    }
     try {
       let result = await SecureStore.getItemAsync(key);
       if (result) {
         const data = {};
         data.id = id;
         data.amount = newAmount;
+        data.caffeine = caffeine;
+        console.log("DATA TO BE SENT IN EDIT REQUEST", data);
         const fetchConfig = {
           method: "patch",
           headers: {
@@ -163,6 +173,7 @@ export default function CaffeineTable() {
           setIntakes(data.intakes);
           const tableDataToSet = [];
           for (let intake of data.intakes) {
+            console.log(intake);
             const tableRow = [];
             tableRow.push(
               intake.type,
@@ -170,10 +181,16 @@ export default function CaffeineTable() {
                 <TextInput
                   style={styles.tableText}
                   returnKeyType={"done"}
-                  onChangeText={onChangeNewAmount}
+                  onChangeText={setNewAmount}
                   keyboardType="numeric"
-                  // editable={true if the person confirms they want to edit}
-                  onSubmitEditing={twoOptionEditHandler}
+                  onSubmitEditing={() =>
+                    twoOptionEditHandler(
+                      intake.id,
+                      "token",
+                      intake.measurement,
+                      intake.type
+                    )
+                  }
                   placeholder={`${intake.amount}`}
                   placeholderTextColor="rgba(242, 255, 99, 1)"
                 ></TextInput>
