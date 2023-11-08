@@ -23,7 +23,7 @@ export default function CaffeineTable() {
   const [newAmount, setNewAmount] = useState("0");
   const [showAmountInput, setShowAmountInput] = useState(false);
 
-  const twoOptionAlertHandler = (intake, token) => {
+  const twoOptionDeleteHandler = (intake, token) => {
     console.log("INTAKE TO BE DELETED =>", intake);
     //function to make two option alert
     Alert.alert(
@@ -33,6 +33,26 @@ export default function CaffeineTable() {
       "Are you sure?",
       [
         { text: "Yes", onPress: () => deleteIntake(intake, token) },
+        {
+          text: "No",
+          onPress: () => console.log("No Pressed"),
+          style: "cancel",
+        },
+      ],
+      { cancelable: false }
+      //clicking out side of alert will not cancel
+    );
+  };
+
+  const twoOptionEditHandler = (intake, token) => {
+    //function to make two option alert
+    Alert.alert(
+      //title
+      "Edit",
+      //body
+      "Are you sure?",
+      [
+        { text: "Yes", onPress: () => editIntake(intake, token) },
         {
           text: "No",
           onPress: () => console.log("No Pressed"),
@@ -82,8 +102,9 @@ export default function CaffeineTable() {
     // return a modal or simply the keyboard (textinput with onSubmitEditing prop?) text editable only if you click on it, perhaps with state? placeholder is the intake...
     // when submit is pressed then the editIntake is called
   }
-  const onChangeAmount = (newAmount) => {
+  const onChangeNewAmount = (newAmount) => {
     setNewAmount(newAmount);
+    console.log(newAmount);
   };
 
   async function editIntake(id, amount, key) {
@@ -92,7 +113,7 @@ export default function CaffeineTable() {
       if (result) {
         const data = {};
         data.id = id;
-        data.amount = amount;
+        data.amount = newAmount;
         const fetchConfig = {
           method: "patch",
           headers: {
@@ -149,9 +170,10 @@ export default function CaffeineTable() {
                 <TextInput
                   style={styles.tableText}
                   returnKeyType={"done"}
-                  // onChangeText={onChangeAmount}
+                  onChangeText={onChangeNewAmount}
                   keyboardType="numeric"
-                  // value={newAmount.toString()}
+                  // editable={true if the person confirms they want to edit}
+                  onSubmitEditing={twoOptionEditHandler}
                   placeholder={`${intake.amount}`}
                   placeholderTextColor="rgba(242, 255, 99, 1)"
                 ></TextInput>
@@ -171,7 +193,7 @@ export default function CaffeineTable() {
               intake.date,
               <Pressable
                 onPress={() => {
-                  twoOptionAlertHandler(intake.id, "token");
+                  twoOptionDeleteHandler(intake.id, "token");
                 }}
               >
                 <Text style={styles.deleteText}>Delete</Text>
