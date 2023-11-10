@@ -136,10 +136,10 @@ export default function Graph() {
         <LineChart
           fromZero="True"
           data={{
-            labels: dates.slice(weekStart, weekEnd),
+            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
             datasets: [
               {
-                data: totalCaffeine.slice(weekStart, weekEnd),
+                data: totalCaffeine,
               },
             ],
           }}
@@ -161,7 +161,7 @@ export default function Graph() {
               borderRadius: 16,
             },
             propsForDots: {
-              r: "6",
+              r: "2",
               strokeWidth: "2",
               stroke: "#ffa726",
             },
