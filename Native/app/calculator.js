@@ -41,8 +41,8 @@ export default function Calculator() {
   };
 
   const handleConfirm = (date) => {
+    console.log(new Date());
     setSelectedDate(date);
-    console.log("DATE", date);
     hideDatePicker();
   };
 
@@ -91,8 +91,8 @@ export default function Calculator() {
   const addIntake = async () => {
     const data = {};
     data.caffeine = parseInt(caffeine);
-    data.date = selectedDate.toISOString().split("T")[0];
-    console.log("Data", data);
+    data.date = selectedDate.toLocaleDateString("fr-CA");
+    //fr-Ca formats the date in a way agreeable to Django backend
     data.type = drink["title"];
     data.amount = amount;
     data.measurement = measurement;
