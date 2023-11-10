@@ -26,7 +26,7 @@ class CaffeineIntakesEncoder(ModelEncoder):
 def api_list_caffeine_intake(request):
     if request.method == "GET":
         user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
-        intakes = user.caffeine_intakes.all()
+        intakes = user.caffeine_intakes.all().order_by("-date")
         return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
     elif request.method == "POST":
         user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
