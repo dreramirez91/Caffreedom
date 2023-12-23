@@ -21,3 +21,5 @@ API/db.sqlite3
 API/users/__pycache__/
 API/Caffreedom/__pycache__/
 API/caffeine/__pycache__/
+TableData.js
+caffreedomData.xlsx
