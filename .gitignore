@@ -17,7 +17,7 @@ yarn-error.log*
 notes.txt
 learning.txt
 thoughts.txt
-Server/db.sqlite3
-Server/users/__pycache__/
-Server/Server/__pycache__/
-yarn.lock
+API/db.sqlite3
+API/users/__pycache__/
+API/Caffreedom/__pycache__/
+API/caffeine/__pycache__/

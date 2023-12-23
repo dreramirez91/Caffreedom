@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, logout, login
 from rest_framework import generics, status
@@ -8,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import UserSerializer
 from django.http import JsonResponse
+
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
