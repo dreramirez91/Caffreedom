@@ -116,8 +116,8 @@ export default function Calculator() {
   return (
     <View style={styles.calculatorContainer}>
       <Text style={styles.headerText}>Calculator</Text>
-      <Divider style={{ margin: 15 }} horizontalInset="true" />
-      <Text style={styles.baseText}>What drink are you having?</Text>
+      <Divider style={{ margin: 12 }} bold="true" horizontalInset="true" />
+      <Text style={styles.noMarginText}>What drink are you having?</Text>
       <AutocompleteDropdown
         containerStyle={styles.dropdown}
         controller={(controller) => {
@@ -130,15 +130,14 @@ export default function Calculator() {
         dataSet={caffeineContent}
         onOpenSuggestionsList={onOpenSuggestionsList}
       />
-      <Divider style={{ margin: 15 }} />
-      <Text style={styles.baseText}>How much?</Text>
+      <Text style={styles.marginText}>How much?</Text>
       <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
         <TextInput style={styles.input} returnKeyType={"done"} editable={drink && measurement ? true : false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount.toString()} placeholder="Amount"></TextInput>
         <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0 }} placeholder="Unit of measurement" />
       </View>
-      <Divider style={{ margin: 15 }} />
-      <Text style={styles.baseText}>You've consumed {parseInt(caffeine)} mg of caffeine.</Text>
-      <Divider style={{ margin: 15 }} horizontalInset="true" />
+      <Divider style={{ margin: 12 }} horizontalInset="true" />
+      <Text style={styles.noMarginText}>You've consumed {parseInt(caffeine)} mg of caffeine.</Text>
+      <Divider style={{ margin: 12 }} horizontalInset="true" />
       <View style={styles.calendar}></View>
       {token ? (
         <View style={styles.buttonContainer}>
@@ -153,7 +152,6 @@ export default function Calculator() {
               <AntDesign name="calendar" size={16} color="rgba(242, 255, 99, 1)" /> Date: {selectedDate ? selectedDate.toLocaleDateString() : "No date selected"}
             </Text>
           </Pressable>
-          <Text style={styles.baseText}></Text>
           <DateTimePickerModal date={selectedDate} isVisible={datePickerVisible} mode="date" onConfirm={handleConfirm} onCancel={hideDatePicker} />
 
           <Pressable
@@ -191,11 +189,17 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
   },
-  baseText: {
+  marginText: {
+    marginTop: 12,
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
-
+    textAlign: "center",
+  },
+  noMarginText: {
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 20,
     textAlign: "center",
   },
   howMuch: {
