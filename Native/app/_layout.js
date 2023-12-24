@@ -7,6 +7,7 @@ import background from "../assets/background.jpeg";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, ImageBackground, StyleSheet } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
+import { PaperProvider } from "react-native-paper";
 
 // SplashScreen.preventAutoHideAsync();
 
@@ -26,13 +27,15 @@ export default function appLayout() {
   }
 
   return (
-    <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
-      <ImageBackground source={background} resizeMode="cover" style={styles.image}>
-        <Slot />
-      </ImageBackground>
-      <Footer />
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <PaperProvider>
+      <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
+        <ImageBackground source={background} resizeMode="cover" style={styles.image}>
+          <Slot />
+        </ImageBackground>
+        <Footer />
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </PaperProvider>
   );
 }
 

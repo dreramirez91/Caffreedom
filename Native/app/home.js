@@ -4,6 +4,7 @@ import logo from "../assets/logo.png";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
+import { Button } from "react-native-paper";
 
 export default function Home() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -97,9 +98,9 @@ export default function Home() {
           </View>
         ) : (
           <View style={styles.userContainer}>
-            <Pressable onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
-              <Text style={signOutPressed ? styles.pressedText : styles.unpressedText}>Log out</Text>
-            </Pressable>
+            <Button mode="contained-tonal" compact="true" onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
+              <Text style={styles.pressedText}>Log out</Text>
+            </Button>
           </View>
         )}
       </View>
@@ -148,9 +149,7 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   pressedText: {
-    color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
-    textDecorationLine: "underline",
+    fontSize: 18,
   },
 });

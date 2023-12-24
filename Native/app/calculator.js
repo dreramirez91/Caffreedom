@@ -6,6 +6,7 @@ import { StyleSheet, Text, View, TextInput, Pressable, Alert } from "react-nativ
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { AntDesign } from "@expo/vector-icons";
+import { Divider } from "react-native-paper";
 
 export default function Calculator() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -115,6 +116,7 @@ export default function Calculator() {
   return (
     <View style={styles.calculatorContainer}>
       <Text style={styles.headerText}>Calculator</Text>
+      <Divider style={{ margin: 15 }} horizontalInset="true" />
       <Text style={styles.baseText}>What drink are you having?</Text>
       <AutocompleteDropdown
         containerStyle={styles.dropdown}
@@ -128,12 +130,15 @@ export default function Calculator() {
         dataSet={caffeineContent}
         onOpenSuggestionsList={onOpenSuggestionsList}
       />
+      <Divider style={{ margin: 15 }} />
       <Text style={styles.baseText}>How much?</Text>
       <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
         <TextInput style={styles.input} returnKeyType={"done"} editable={drink && measurement ? true : false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount.toString()} placeholder="Amount"></TextInput>
         <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0 }} placeholder="Unit of measurement" />
       </View>
+      <Divider style={{ margin: 15 }} />
       <Text style={styles.baseText}>You've consumed {parseInt(caffeine)} mg of caffeine.</Text>
+      <Divider style={{ margin: 15 }} horizontalInset="true" />
       <View style={styles.calendar}></View>
       {token ? (
         <View style={styles.buttonContainer}>
@@ -190,7 +195,7 @@ const styles = StyleSheet.create({
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
-    marginTop: 10,
+
     textAlign: "center",
   },
   howMuch: {
