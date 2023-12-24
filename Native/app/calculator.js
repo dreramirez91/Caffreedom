@@ -8,6 +8,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { AntDesign } from "@expo/vector-icons";
 
 export default function Calculator() {
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
   const [drink, setDrink] = useState("");
@@ -98,7 +99,7 @@ export default function Calculator() {
       },
       body: JSON.stringify(data),
     };
-    const response = await fetch("http://192.168.86.105:8000/users/list_caffeine", fetchConfig);
+    const response = await fetch(`${apiUrl}/caffeine/list_caffeine`, fetchConfig);
     if (response.ok) {
       setAmount(0);
       setCaffeine(0);

@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  ScrollView,
-  Alert,
-} from "react-native";
+import { StyleSheet, Text, View, Pressable, ScrollView, Alert } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
@@ -16,15 +9,10 @@ import { caffeineContent } from "../caffeineContent";
 // LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
 export default function CaffeineTable() {
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
-  const tableHead = [
-    "Drink",
-    "Amount, tap to edit",
-    "Caffeine content",
-    "Date",
-    "",
-  ];
+  const tableHead = ["Drink", "Amount, tap to edit", "Caffeine content", "Date", ""];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [editSuccessful, setEditSuccessful] = useState(false);
@@ -93,10 +81,7 @@ export default function CaffeineTable() {
           },
           body: JSON.stringify(data),
         };
-        const response = await fetch(
-          "http://192.168.86.105:8000/users/delete",
-          fetchConfig
-        );
+        const response = await fetch(`${apiUrl}/caffeine/delete`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setDeleteSuccessful(true);
@@ -143,10 +128,7 @@ export default function CaffeineTable() {
           },
           body: JSON.stringify(data),
         };
-        const response = await fetch(
-          "http://192.168.86.105:8000/users/edit",
-          fetchConfig
-        );
+        const response = await fetch(`${apiUrl}/caffeine/edit`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setEditSuccessful(true);
@@ -174,10 +156,7 @@ export default function CaffeineTable() {
             Authentication: result,
           },
         };
-        const response = await fetch(
-          "http://192.168.86.105:8000/users/list_caffeine",
-          fetchConfig
-        );
+        const response = await fetch(`${apiUrl}/caffeine/list_caffeine`, fetchConfig);
         if (response.ok) {
           console.log("Token in fetch", result);
           const data = await response.json();
@@ -190,35 +169,8 @@ export default function CaffeineTable() {
             tableRow.push(
               intake.type,
               <View style={styles.amountStyle}>
-                <TextInput
-                  returnKeyType={"done"}
-                  maxLength={7}
-                  selectTextOnFocus={true}
-                  onChangeText={setNewAmount}
-                  keyboardType="numeric"
-                  onSubmitEditing={() =>
-                    twoOptionEditHandler(
-                      intake.id,
-                      "token",
-                      intake.measurement,
-                      intake.type
-                    )
-                  }
-                  placeholder={`${intake.amount}`}
-                  placeholderTextColor={"rgba(242, 255, 99, 1)"}
-                  style={styles.editText}
-                ></TextInput>
-                <Text style={styles.tableText}>
-                  {" "}
-                  {`${
-                    intake.amount === 1
-                      ? intake.measurement.slice(
-                          0,
-                          intake.measurement.length - 1
-                        )
-                      : intake.measurement
-                  }`}
-                </Text>
+                <TextInput returnKeyType={"done"} maxLength={7} selectTextOnFocus={true} onChangeText={setNewAmount} keyboardType="numeric" onSubmitEditing={() => twoOptionEditHandler(intake.id, "token", intake.measurement, intake.type)} placeholder={`${intake.amount}`} placeholderTextColor={"rgba(242, 255, 99, 1)"} style={styles.editText}></TextInput>
+                <Text style={styles.tableText}> {`${intake.amount === 1 ? intake.measurement.slice(0, intake.measurement.length - 1) : intake.measurement}`}</Text>
               </View>,
               intake.caffeine,
               intake.date,
@@ -254,9 +206,7 @@ export default function CaffeineTable() {
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-        <Text style={styles.bodyText}>
-          Login or make an account to track your caffeine intake.
-        </Text>
+        <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
       </View>
     );
   } else if (intakes.length === 0) {
@@ -264,25 +214,14 @@ export default function CaffeineTable() {
       <View style={styles.mainContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
         <Table borderStyle={{ borderWidth: 2, borderColor: "gray" }}>
-          <Row
-            data={tableHead}
-            style={{ height: 40, backgroundColor: "#f1f8ff" }}
-            textStyle={{ textAlign: "center", fontWeight: "bold" }}
-          />
-          <Rows
-            data={tableData}
-            style={{ height: 80 }}
-            textStyle={{ textAlign: "center" }}
-          />
+          <Row data={tableHead} style={{ height: 40, backgroundColor: "#f1f8ff" }} textStyle={{ textAlign: "center", fontWeight: "bold" }} />
+          <Rows data={tableData} style={{ height: 80 }} textStyle={{ textAlign: "center" }} />
         </Table>
       </View>
     );
   } else {
     return (
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.contentContainer}
-      >
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
         <Table
           borderStyle={{
@@ -290,11 +229,7 @@ export default function CaffeineTable() {
             borderColor: "gray",
           }}
         >
-          <Row
-            data={tableHead}
-            style={{ height: 40, backgroundColor: "#f1f8ff" }}
-            textStyle={{ textAlign: "center", fontWeight: "bold" }}
-          />
+          <Row data={tableHead} style={{ height: 40, backgroundColor: "#f1f8ff" }} textStyle={{ textAlign: "center", fontWeight: "bold" }} />
           <Rows
             data={tableData}
             style={{ height: 80 }}

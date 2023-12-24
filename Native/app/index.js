@@ -6,6 +6,7 @@ import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
 
 export default function Home() {
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [loginPressed, setLoginPressed] = useState(false);
   const [signUpPressed, setSignUpPressed] = useState(false);
   const [signOutPressed, setSignOutPressed] = useState(false);
@@ -16,10 +17,14 @@ export default function Home() {
   const [signUpSuccessful, setSignUpSuccessful] = useState(false);
   const [signoutSuccessful, setSignOutSuccessful] = useState(false);
 
+  useEffect(() => {
+    console.log(apiUrl);
+  }, []);
+
   const loginButtonPress = () => {
     setLoginPressed(true);
     setLoginModalVisible(true);
-    setLoginSuccessful(false)
+    setLoginSuccessful(false);
   };
 
   const signUpButtonPress = () => {
@@ -34,7 +39,7 @@ export default function Home() {
   };
 
   const signout = async () => {
-    const logoutUrl = "http://192.168.86.105:8000/users/signout";
+    const logoutUrl = `${apiUrl}/users/signout`;
     const fetchConfig = {
       method: "post",
       headers: {
@@ -75,18 +80,10 @@ export default function Home() {
   return (
     <>
       <View style={styles.homeContainer}>
-        <LoginModal
-          setLoginModalVisible={setLoginModalVisible}
-          loginModalVisible={loginModalVisible}
-          setLoginSuccessful={setLoginSuccessful}
-        />
+        <LoginModal setLoginModalVisible={setLoginModalVisible} loginModalVisible={loginModalVisible} setLoginSuccessful={setLoginSuccessful} />
       </View>
       <View style={styles.homeContainer}>
-        <SignUpModal
-          setSignUpModalVisible={setSignUpModalVisible}
-          signUpModalVisible={signUpModalVisible}
-          setSignUpSuccessful={setSignUpSuccessful}
-        />
+        <SignUpModal setSignUpModalVisible={setSignUpModalVisible} signUpModalVisible={signUpModalVisible} setSignUpSuccessful={setSignUpSuccessful} />
       </View>
       <View style={styles.homeContainer}>
         <Text style={styles.headerText}>Caffreedom</Text>
@@ -95,42 +92,17 @@ export default function Home() {
         </View>
         {!token ? (
           <View style={styles.userContainer}>
-            <Pressable
-              onPressIn={() => loginButtonPress()}
-              onPressOut={() => setLoginPressed(false)}
-            >
-              <Text
-                style={loginPressed ? styles.pressedText : styles.unpressedText}
-              >
-                Log In
-              </Text>
+            <Pressable onPressIn={() => loginButtonPress()} onPressOut={() => setLoginPressed(false)}>
+              <Text style={loginPressed ? styles.pressedText : styles.unpressedText}>Log In</Text>
             </Pressable>
-            <Pressable
-              onPressIn={() => signUpButtonPress()}
-              onPressOut={() => setSignUpPressed(false)}
-            >
-              <Text
-                style={
-                  signUpPressed ? styles.pressedText : styles.unpressedText
-                }
-              >
-                Sign-up
-              </Text>
+            <Pressable onPressIn={() => signUpButtonPress()} onPressOut={() => setSignUpPressed(false)}>
+              <Text style={signUpPressed ? styles.pressedText : styles.unpressedText}>Sign-up</Text>
             </Pressable>
           </View>
         ) : (
           <View style={styles.userContainer}>
-            <Pressable
-              onPressIn={() => signOutButtonPress()}
-              onPressOut={() => setSignOutPressed(false)}
-            >
-              <Text
-                style={
-                  signOutPressed ? styles.pressedText : styles.unpressedText
-                }
-              >
-                Log out
-              </Text>
+            <Pressable onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
+              <Text style={signOutPressed ? styles.pressedText : styles.unpressedText}>Log out</Text>
             </Pressable>
           </View>
         )}

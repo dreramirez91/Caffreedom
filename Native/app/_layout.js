@@ -24,15 +24,10 @@ export default function appLayout() {
   if (!fontsLoaded && !fontError) {
     return null;
   }
-  
-  
+
   return (
     <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
-      <ImageBackground
-        source={background}
-        resizeMode="cover"
-        style={styles.image}
-      >
+      <ImageBackground source={background} resizeMode="cover" style={styles.image}>
         <Slot />
       </ImageBackground>
       <Footer />

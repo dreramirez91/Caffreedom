@@ -5,6 +5,7 @@ import * as SecureStore from "expo-secure-store";
 import { AntDesign } from "@expo/vector-icons";
 
 export default function Graph() {
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [intakes, setIntakes] = useState([]);
   const [totalCaffeine, setTotalCaffeine] = useState([0]);
   const [dates, setDates] = useState([0]);
@@ -23,10 +24,7 @@ export default function Graph() {
             Authentication: result,
           },
         };
-        const response = await fetch(
-          "http://192.168.86.105:8000/users/list_caffeine",
-          fetchConfig
-        );
+        const response = await fetch(`${apiUrl}/caffeine/list_caffeine`, fetchConfig);
         if (response.ok) {
           console.log("Token in fetch", result);
           const data = await response.json();
@@ -80,10 +78,7 @@ export default function Graph() {
   }, []);
   useEffect(() => console.log("Intakes", intakes), [intakes]);
   useEffect(() => console.log("Dates", dates), [dates]);
-  useEffect(
-    () => console.log("Total Caffeine", totalCaffeine),
-    [totalCaffeine]
-  );
+  useEffect(() => console.log("Total Caffeine", totalCaffeine), [totalCaffeine]);
 
   if (intakes.length === 0) {
     return (
@@ -175,23 +170,13 @@ export default function Graph() {
         <View style={styles.changeDates}>
           <Pressable onPressIn={previousDay}>
             <Text style={styles.dayText}>
-              <AntDesign
-                name="arrowleft"
-                size={16}
-                color="rgba(242, 255, 99, 1)"
-              />{" "}
-              Previous Day
+              <AntDesign name="arrowleft" size={16} color="rgba(242, 255, 99, 1)" /> Previous Day
             </Text>
           </Pressable>
           {/* <Text style={styles.week}>Week {weekStart + 1}</Text> */}
           <Pressable onPress={nextDay}>
             <Text style={styles.dayText}>
-              Next Day{" "}
-              <AntDesign
-                name="arrowright"
-                size={16}
-                color="rgba(242, 255, 99, 1)"
-              />
+              Next Day <AntDesign name="arrowright" size={16} color="rgba(242, 255, 99, 1)" />
             </Text>
           </Pressable>
         </View>

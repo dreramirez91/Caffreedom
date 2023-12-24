@@ -1,19 +1,9 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  Modal,
-  TextInput,
-} from "react-native";
+import { StyleSheet, Text, View, Pressable, Modal, TextInput } from "react-native";
 import * as SecureStore from "expo-secure-store";
 
-export default function LoginModal({
-  loginModalVisible,
-  setLoginModalVisible,
-  setLoginSuccessful,
-}) {
+export default function LoginModal({ loginModalVisible, setLoginModalVisible, setLoginSuccessful }) {
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -33,7 +23,7 @@ export default function LoginModal({
     data.username = username;
     data.password = password;
     console.log(data);
-    const loginUrl = "http://192.168.86.105:8000/users/signin";
+    const loginUrl = `${apiUrl}/users/signin`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -73,12 +63,7 @@ export default function LoginModal({
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Login</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={setUsername}
-              placeholder="Username"
-              value={username}
-            ></TextInput>
+            <TextInput style={styles.input} onChangeText={setUsername} placeholder="Username" value={username}></TextInput>
             {error ? (
               <View
                 styles={{
@@ -90,17 +75,8 @@ export default function LoginModal({
                 <Text style={styles.errorText}>{error}</Text>
               </View>
             ) : null}
-            <TextInput
-              style={styles.input}
-              onChangeText={setPassword}
-              placeholder="Password"
-              value={password}
-              secureTextEntry={true}
-            ></TextInput>
-            <Pressable
-              style={styles.submitButton}
-              onPress={() => handleSubmit()}
-            >
+            <TextInput style={styles.input} onChangeText={setPassword} placeholder="Password" value={password} secureTextEntry={true}></TextInput>
+            <Pressable style={styles.submitButton} onPress={() => handleSubmit()}>
               <Text style={styles.submitStyle}>Submit</Text>
             </Pressable>
             <Pressable style={[styles.closeButton]} onPress={handleClose}>
