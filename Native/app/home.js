@@ -98,9 +98,12 @@ export default function Home() {
           </View>
         ) : (
           <View style={styles.userContainer}>
-            <Button mode="contained-tonal" compact="true" onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
+            {/* <Button mode="contained-tonal" compact="true" onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
               <Text style={styles.pressedText}>Log out</Text>
-            </Button>
+            </Button> */}
+            <Pressable onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
+              <Text style={signOutPressed ? styles.pressedText : styles.unpressedText}>Sign out</Text>
+            </Pressable>
           </View>
         )}
       </View>
@@ -150,6 +153,7 @@ const styles = StyleSheet.create({
   },
   pressedText: {
     fontFamily: "Lora_400Regular_Italic",
+    color: "rgba(242, 255, 99, 1)",
     fontSize: 18,
   },
 });
