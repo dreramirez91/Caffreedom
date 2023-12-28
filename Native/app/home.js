@@ -152,8 +152,9 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   pressedText: {
-    fontFamily: "Lora_400Regular_Italic",
     color: "rgba(242, 255, 99, 1)",
-    fontSize: 18,
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 20,
+    textDecorationLine: "underline",
   },
 });
