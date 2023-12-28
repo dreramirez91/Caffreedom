@@ -137,7 +137,6 @@ export default function Calculator() {
       </View>
       <Divider style={{ margin: 12 }} horizontalInset="true" />
       <Text style={styles.noMarginText}>You've consumed {parseInt(caffeine)} mg of caffeine.</Text>
-      <Divider style={{ margin: 12 }} horizontalInset="true" />
       <View style={styles.calendar}></View>
       {token ? (
         <View style={styles.buttonContainer}>
@@ -149,11 +148,10 @@ export default function Calculator() {
             onPressOut={() => {}}
           >
             <Text style={styles.addButtonText}>
-              <AntDesign name="calendar" size={16} color="rgba(242, 255, 99, 1)" /> Date: {selectedDate ? selectedDate.toLocaleDateString() : "No date selected"}
+              <AntDesign name="calendar" size={16} color="rgba(242, 255, 99, 1)" /> {selectedDate ? selectedDate.toLocaleDateString() : "No date selected"}
             </Text>
           </Pressable>
           <DateTimePickerModal date={selectedDate} isVisible={datePickerVisible} mode="date" onConfirm={handleConfirm} onCancel={hideDatePicker} />
-
           <Pressable
             onPress={() => {
               addIntake();
@@ -243,6 +241,6 @@ const styles = StyleSheet.create({
   },
   calendar: {
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 20,
   },
 });
