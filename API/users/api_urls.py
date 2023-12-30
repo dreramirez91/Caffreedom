@@ -10,7 +10,7 @@ from .api_views import (
 urlpatterns = [
     path("", UserList.as_view(), name="user-list"),
     path("<int:pk>/", UserDetail.as_view(), name="user-detail"),
-    path("signin", signin, name="signin"),
-    path("signout", signout, name="signout"),
-    path("signup", signup, name="signup"),
+    path("signin/", signin, name="signin"),
+    path("signout/", signout, name="signout"),
+    path("signup/", signup, name="signup"),
 ]

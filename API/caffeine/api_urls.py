@@ -6,14 +6,14 @@ from .api_views import (
 )
 
 urlpatterns = [
-    path("list_caffeine", api_list_caffeine_intake, name="api_list_caffeine_intake"),
+    path("list_caffeine/", api_list_caffeine_intake, name="api_list_caffeine_intake"),
     path(
-        "delete",
+        "delete/",
         api_delete_caffeine_intake,
         name="api_delete_caffeine_intake",
     ),
     path(
-        "edit",
+        "edit/",
         api_edit_caffeine_intake,
         name="api_edit_caffeine_intake",
     ),
