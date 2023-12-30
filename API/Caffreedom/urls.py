@@ -19,7 +19,7 @@ from django.urls import path, include
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.conf.urls.static import static
-import settings
+from django.conf import settings
 
 
 @api_view(["GET"])
