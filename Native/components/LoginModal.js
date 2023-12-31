@@ -23,7 +23,7 @@ export default function LoginModal({ loginModalVisible, setLoginModalVisible, se
     data.username = username;
     data.password = password;
     console.log(data);
-    const loginUrl = `${apiUrl}/users/signin`;
+    const loginUrl = `${apiUrl}/users/signin/`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),

@@ -24,7 +24,7 @@ export default function Graph() {
             Authentication: result,
           },
         };
-        const response = await fetch(`${apiUrl}/caffeine/list_caffeine`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
         if (response.ok) {
           console.log("Token in fetch", result);
           const data = await response.json();

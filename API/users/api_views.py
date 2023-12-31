@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, logout, login
 from rest_framework import generics, status
 from rest_framework.authtoken.models import Token
@@ -19,7 +18,6 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
 
 
-@csrf_exempt
 @api_view(["POST"])
 def signin(request):
     username = request.data.get("username")
@@ -48,14 +46,12 @@ def signin(request):
     return Response({"token": token.key}, status=status.HTTP_200_OK)
 
 
-@csrf_exempt
 @api_view(["POST"])
 def signout(request):
     logout(request)
     return JsonResponse({"Logout": "Success"})
 
 
-@csrf_exempt
 @api_view(["POST"])
 def signup(request):
     username = request.data.get("username")

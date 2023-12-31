@@ -100,7 +100,7 @@ export default function Calculator() {
       },
       body: JSON.stringify(data),
     };
-    const response = await fetch(`${apiUrl}/caffeine/list_caffeine`, fetchConfig);
+    const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
     if (response.ok) {
       setAmount(0);
       setCaffeine(0);

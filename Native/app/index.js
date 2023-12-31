@@ -17,10 +17,6 @@ export default function Home() {
   const [signUpSuccessful, setSignUpSuccessful] = useState(false);
   const [signoutSuccessful, setSignOutSuccessful] = useState(false);
 
-  useEffect(() => {
-    console.log(apiUrl);
-  }, []);
-
   const loginButtonPress = () => {
     setLoginPressed(true);
     setLoginModalVisible(true);
@@ -39,7 +35,7 @@ export default function Home() {
   };
 
   const signout = async () => {
-    const logoutUrl = `${apiUrl}/users/signout`;
+    const logoutUrl = `${apiUrl}/users/signout/`;
     const fetchConfig = {
       method: "post",
       headers: {

@@ -36,12 +36,13 @@ export default function Home() {
   };
 
   const signout = async () => {
-    const logoutUrl = `${apiUrl}/users/signout`;
+    const logoutUrl = `${apiUrl}/users/signout/`;
     const fetchConfig = {
       method: "post",
       headers: {
         "Content-Type": "application/json",
         Authentication: token,
+        Referer: `${apiUrl}/`,
       },
     };
     const response = await fetch(logoutUrl, fetchConfig);
@@ -50,7 +51,6 @@ export default function Home() {
       setSignOutSuccessful(true);
       SecureStore.deleteItemAsync("token");
     } else {
-      SecureStore.deleteItemAsync("token");
       console.log("Signout failed");
     }
   };
