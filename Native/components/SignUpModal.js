@@ -18,7 +18,7 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
     data.password = password;
     data.password_confirmation = confirmPassword;
     console.log(data);
-    const signUpUrl = `${apiUrl}/users/signup`;
+    const signUpUrl = `${apiUrl}/users/signup/`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -27,6 +27,7 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
       },
     };
     const response = await fetch(signUpUrl, fetchConfig);
+    console.log("RESPONSE:", response);
     if (response.ok) {
       const tokenInfo = await response.json();
       const token = tokenInfo.token;
