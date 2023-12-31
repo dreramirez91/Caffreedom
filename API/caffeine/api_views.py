@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
 from .models import CaffeineIntake
 from django.views.decorators.http import require_http_methods
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
 from django.http import JsonResponse
 from common.json import ModelEncoder, DecimalEncoder
@@ -15,7 +14,6 @@ class CaffeineIntakesEncoder(ModelEncoder):
     encoders = {"amount": DecimalEncoder()}
 
 
-@csrf_exempt
 @require_http_methods(["GET", "POST"])
 def api_list_caffeine_intake(request):
     if request.method == "GET":
@@ -42,7 +40,6 @@ def api_list_caffeine_intake(request):
         return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
 
 
-@csrf_exempt
 @require_http_methods(["PATCH"])
 def api_edit_caffeine_intake(request):
     user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
@@ -56,7 +53,6 @@ def api_edit_caffeine_intake(request):
     return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
 
 
-@csrf_exempt
 @require_http_methods(["DELETE"])
 def api_delete_caffeine_intake(request):
     data = json.loads(request.body)
