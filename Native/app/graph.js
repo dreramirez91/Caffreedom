@@ -10,22 +10,18 @@ import { AntDesign } from "@expo/vector-icons";
 // Data type for months display (think of them as separate components even though they won't be) should be list of lists where each list has the caffeine count for each day of that month
 
 export default function Graph() {
-  function daysInThisMonth() {
-    var now = new Date();
-    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  function daysInThisMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   }
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [intakes, setIntakes] = useState([]);
   const [totalCaffeine, setTotalCaffeine] = useState([0]);
-  const [weekStart, setWeekStart] = useState(0);
-  const [weekEnd, setWeekEnd] = useState(7);
-  const [currentMonthNumeric, setCurrentMonthNumeric] = useState(new Date().toLocaleString("default", { month: "numeric" }));
-  const [currentMonthText, setCurrentMonthText] = useState(new Date().toLocaleString("default", { month: "long" }));
-  // const currentWeek = [`${currentMonthText}-${currentDay}`, `${currentMonthText}-${currentDay + 1}`, `${currentMonthText}-${currentDay + 2}`, `${currentMonthText}-${currentDay + 3}`, `${currentMonthText}-${currentDay + 4}`, `${currentMonthText}-${currentDay + 5}`, `${currentMonthText}-${currentDay + 6}`];
-  const dates = daysInThisMonth();
+  const currentMonth = new Date();
+  const dates = daysInThisMonth(currentMonth);
+  const [currentMonthNumeric, setCurrentMonthNumeric] = useState(currentMonth.toLocaleString("default", { month: "numeric" }));
+  const [currentMonthText, setCurrentMonthText] = useState(currentMonth.toLocaleString("default", { month: "long" }));
   const [monthsCaffeine, setMonthsCaffeine] = useState([...Array(dates)].map((date) => 0));
-  const monthLength = [...Array(dates)].map((date) => 0);
-  const [thisWeeksCaffeine, setThisWeeksCaffeine] = useState([0, 0, 0, 0, 0, 0, 0]);
+  const daysInMonth = [...Array(dates)].map((date) => "_");
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
 
   async function populateData(key) {
@@ -74,17 +70,13 @@ export default function Graph() {
           // }
           // setThisWeeksCaffeine(weeksCaffeine);
           const thisMonthsCaffeine = [];
-          console.log(monthLength.length);
-          for (let i = 0; i < monthLength.length; i++) {
-            console.log("FDJSAKFSJ");
+          for (let i = 0; i < daysInMonth.length; i++) {
             let intakeMonth = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[0] : undefined;
             if (intakeMonth === currentMonthNumeric) {
               thisMonthsCaffeine.push(intakes[i]["caffeine"]);
             } else {
               thisMonthsCaffeine.push(0);
             }
-            console.log("FORMAT DATE DATE:", intakeMonth);
-            console.log("MONTH NUMERIC:", currentMonthNumeric);
           }
           setMonthsCaffeine(thisMonthsCaffeine);
           setFetchSuccessful(true);
@@ -154,8 +146,8 @@ export default function Graph() {
               borderRadius: 16,
             },
             propsForDots: {
-              r: "0.5",
-              strokeWidth: "2",
+              r: "1",
+              strokeWidth: "2.5",
               stroke: "#ffa726",
             },
           }}
