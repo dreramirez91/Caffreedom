@@ -4,7 +4,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 import { AntDesign } from "@expo/vector-icons";
-import { G } from "react-native-svg";
+import { Divider } from "react-native-paper";
 
 /* For January you will need 31 data points. If there is nothing for that day, make it (ZERO or THE SAME AS THE PREVIOUS DAY, UNLESS IT'S THE FIRST DAY THEN MAKE IT ZERO)*/
 
@@ -18,14 +18,13 @@ export default function Graph() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [intakes, setIntakes] = useState([]);
   const [totalCaffeine, setTotalCaffeine] = useState([0]);
-  const currentMonth = new Date();
+  const [currentMonth, setCurrentMonth] = useState(new Date());
   const dates = daysInThisMonth(currentMonth);
   const [currentMonthNumeric, setCurrentMonthNumeric] = useState(currentMonth.toLocaleString("default", { month: "numeric" }));
   const [currentMonthText, setCurrentMonthText] = useState(currentMonth.toLocaleString("default", { month: "long" }));
   const [monthsCaffeine, setMonthsCaffeine] = useState([...Array(dates)].map((date) => 0));
   const daysInMonth = [...Array(dates)].map((date) => "_");
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
-  const widthW = Dimensions.get("window").width;
 
   async function populateData(key) {
     const formatDate = (fullDate) => {
@@ -80,20 +79,8 @@ export default function Graph() {
     }
   }
 
-  const nextDay = () => {
-    if (weekEnd === totalCaffeine.length) {
-    } else {
-      setWeekStart(weekStart + 1);
-      setWeekEnd(weekEnd + 1);
-    }
-  };
-
-  const previousDay = () => {
-    if (weekStart == 0) {
-    } else {
-      setWeekStart(weekStart - 1);
-      setWeekEnd(weekEnd - 1);
-    }
+  const nextMonth = () => {
+    setCurrentMonth(currentMonth + 1);
   };
 
   useEffect(() => {
@@ -108,6 +95,7 @@ export default function Graph() {
     return (
       <View style={styles.homeContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <Divider style={{ margin: 6 }} bold="true" />
         <Text style={styles.monthText}>{currentMonthText}</Text>
         <LineChart
           fromZero="True"
@@ -119,9 +107,8 @@ export default function Graph() {
               },
             ],
           }}
-          width={widthW + widthW / (data.length - 1)}
+          width={Dimensions.get("window").width}
           height={220}
-          yAxisInterval={1} // optional, defaults to 1
           chartConfig={{
             horizontalOffset: 0,
             backgroundColor: "#e26a00",
@@ -145,16 +132,16 @@ export default function Graph() {
           style={{
             marginTop: 8,
             borderRadius: 16,
+            paddingRight: Dimensions.get("window").width * 0.11, // (change to the percentage that fit better for yout)
           }}
         />
         <View style={styles.changeDates}>
-          <Pressable onPressIn={previousDay}>
+          <Pressable onPressIn={null}>
             <Text style={styles.dayText}>
               <AntDesign name="arrowleft" size={16} color="rgba(242, 255, 99, 1)" /> Last Month
             </Text>
           </Pressable>
-          {/* <Text style={styles.week}>Week {weekStart + 1}</Text> */}
-          <Pressable onPress={nextDay}>
+          <Pressable onPress={nextMonth}>
             <Text style={styles.dayText}>
               Next Month <AntDesign name="arrowright" size={16} color="rgba(242, 255, 99, 1)" />
             </Text>
@@ -188,11 +175,12 @@ const styles = StyleSheet.create({
   monthText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
-    marginTop: 5,
+
     // borderRadius: 2,
     // borderColor: "rgba(242, 255, 99, 0.75)",
     // borderWidth: 2,
-    fontSize: 22,
+    fontSize: 24,
+
     textAlign: "center",
   },
   dayText: {
@@ -209,10 +197,5 @@ const styles = StyleSheet.create({
   changeDates: {
     flexDirection: "row",
     justifyContent: "center",
-  },
-  week: {
-    color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 20,
   },
 });
