@@ -58,7 +58,7 @@ export default function Graph() {
   }
 
   const nextDay = () => {
-    if (weekEnd === totalCaffeine.length) {
+    if (weekEnd >= totalCaffeine.length) {
     } else {
       setWeekStart(weekStart + 1);
       setWeekEnd(weekEnd + 1);
