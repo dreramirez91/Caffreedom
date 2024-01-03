@@ -13,6 +13,7 @@ import { Divider } from "react-native-paper";
 
 export default function Graph() {
   function daysInThisMonth(date) {
+    console.log("DATE IN THE MOTHAFUCKIN FN", typeof date);
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   }
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -80,16 +81,17 @@ export default function Graph() {
   }
 
   const nextMonth = () => {
-    setCurrentMonth(currentMonth + 1);
+    const thisMonth = currentMonth;
+    setCurrentMonth(new Date(thisMonth.setMonth(currentMonth.getMonth() + 1)));
+    // why do I need new Date above??
   };
 
   useEffect(() => {
     populateData("token");
-  }, [fetchSuccessful]);
+  }, [fetchSuccessful, currentMonth]);
   useEffect(() => console.log("Intakes", intakes), [intakes]);
   // useEffect(() => console.log("Fetch successful", fetchSuccessful), [fetchSuccessful]);
-  useEffect(() => console.log("Months Caffeine", monthsCaffeine), [monthsCaffeine]);
-  useEffect(() => {}, [monthsCaffeine]);
+  useEffect(() => console.log("Current month", currentMonth.getMonth()), [currentMonth]);
 
   if (fetchSuccessful) {
     return (
