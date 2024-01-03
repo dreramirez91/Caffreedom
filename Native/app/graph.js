@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
+import { ActivityIndicator } from "react-native-paper";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 import { AntDesign } from "@expo/vector-icons";
+import { G } from "react-native-svg";
 
 /* For January you will need 31 data points. If there is nothing for that day, make it (ZERO or THE SAME AS THE PREVIOUS DAY, UNLESS IT'S THE FIRST DAY THEN MAKE IT ZERO)*/
 
@@ -55,20 +57,6 @@ export default function Graph() {
         if (response.ok) {
           const data = await response.json();
           setIntakes(data.intakes);
-          const weeksCaffeine = [];
-          // for (let i = 0; i < 7; i++) {
-          //   let intakeMonth = 0;
-          //   if (intakes[i]) {
-          //     intakeMonth = formatDate(intakes[i]["date"]);
-          //   }
-          //   // if this Date is in currentWeek at i then you have to add the caffeine to weeksCaffeine at that index to stack caffeine consumption on a given day
-          //   if (intakeMonth === currentWeek[i]) {
-          //     weeksCaffeine.push(intakes[i]["caffeine"]);
-          //   } else {
-          //     weeksCaffeine.push(weeksCaffeine[i - 1]);
-          //   }
-          // }
-          // setThisWeeksCaffeine(weeksCaffeine);
           const thisMonthsCaffeine = [];
           for (let i = 0; i < daysInMonth.length; i++) {
             let intakeMonth = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[0] : undefined;
@@ -109,12 +97,13 @@ export default function Graph() {
 
   useEffect(() => {
     populateData("token");
-  }, []);
+  }, [fetchSuccessful]);
   useEffect(() => console.log("Intakes", intakes), [intakes]);
   // useEffect(() => console.log("Fetch successful", fetchSuccessful), [fetchSuccessful]);
   useEffect(() => console.log("Months Caffeine", monthsCaffeine), [monthsCaffeine]);
+  useEffect(() => {}, [monthsCaffeine]);
 
-  if (1) {
+  if (fetchSuccessful) {
     return (
       <View style={styles.homeContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
@@ -176,45 +165,8 @@ export default function Graph() {
   } else {
     return (
       <View style={styles.homeContainer}>
-        <Text style={styles.headerText}>Your Caffeine intake (mg)</Text>
-        <LineChart
-          data={{
-            labels: [0],
-            datasets: [
-              {
-                data: [0],
-              },
-            ],
-          }}
-          width={Dimensions.get("window").width}
-          height={220}
-          yAxisLabel=""
-          yAxisSuffix=""
-          yAxisInterval={1} // optional, defaults to 1
-          chartConfig={{
-            backgroundColor: "#e26a00",
-            backgroundGradientFrom: "#fb8c00",
-            backgroundGradientTo: "#ffa726",
-            backgroundGradientFromOpacity: 0,
-            backgroundGradientToOpacity: 0,
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: "6",
-              strokeWidth: "2",
-              stroke: "#ffa726",
-            },
-          }}
-          bezier
-          style={{
-            marginVertical: 8,
-            borderRadius: 16,
-          }}
-        />
+        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <ActivityIndicator animating={true} color={"rgba(242, 255, 99, 1)"} size={"large"} style={{ padding: 50 }} />
       </View>
     );
   }
@@ -224,6 +176,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(157, 108, 255, 0.70)",
     justifyContent: "center",
     padding: 10,
+    width: "100%",
     borderRadius: 4,
   },
   headerText: {
