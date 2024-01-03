@@ -25,6 +25,7 @@ export default function Graph() {
   const [monthsCaffeine, setMonthsCaffeine] = useState([...Array(dates)].map((date) => 0));
   const daysInMonth = [...Array(dates)].map((date) => "_");
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
+  const widthW = Dimensions.get("window").width;
 
   async function populateData(key) {
     const formatDate = (fullDate) => {
@@ -107,6 +108,7 @@ export default function Graph() {
     return (
       <View style={styles.homeContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <Text style={styles.monthText}>{currentMonthText}</Text>
         <LineChart
           fromZero="True"
           data={{
@@ -117,12 +119,11 @@ export default function Graph() {
               },
             ],
           }}
-          width={Dimensions.get("window").width}
+          width={widthW + widthW / (data.length - 1)}
           height={220}
-          yAxisLabel=""
-          yAxisSuffix=""
           yAxisInterval={1} // optional, defaults to 1
           chartConfig={{
+            horizontalOffset: 0,
             backgroundColor: "#e26a00",
             backgroundGradientFrom: "#fb8c00",
             backgroundGradientTo: "#ffa726",
@@ -142,14 +143,14 @@ export default function Graph() {
           }}
           bezier
           style={{
-            marginVertical: 8,
+            marginTop: 8,
             borderRadius: 16,
           }}
         />
         <View style={styles.changeDates}>
           <Pressable onPressIn={previousDay}>
             <Text style={styles.dayText}>
-              <AntDesign name="arrowleft" size={16} color="rgba(242, 255, 99, 1)" /> Previous Month
+              <AntDesign name="arrowleft" size={16} color="rgba(242, 255, 99, 1)" /> Last Month
             </Text>
           </Pressable>
           {/* <Text style={styles.week}>Week {weekStart + 1}</Text> */}
@@ -159,7 +160,6 @@ export default function Graph() {
             </Text>
           </Pressable>
         </View>
-        <Text style={styles.monthText}>{currentMonthText}</Text>
       </View>
     );
   } else {
@@ -188,8 +188,11 @@ const styles = StyleSheet.create({
   monthText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
-    marginTop: 10,
-    fontSize: 24,
+    marginTop: 5,
+    // borderRadius: 2,
+    // borderColor: "rgba(242, 255, 99, 0.75)",
+    // borderWidth: 2,
+    fontSize: 22,
     textAlign: "center",
   },
   dayText: {
