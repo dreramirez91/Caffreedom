@@ -13,7 +13,6 @@ import { Divider } from "react-native-paper";
 
 export default function Graph() {
   function daysInThisMonth(date) {
-    console.log("DATE IN THE MOTHAFUCKIN FN", typeof date);
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   }
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -24,15 +23,14 @@ export default function Graph() {
   const [currentMonthNumeric, setCurrentMonthNumeric] = useState(currentMonth.toLocaleString("default", { month: "numeric" }));
   const [currentMonthText, setCurrentMonthText] = useState(currentMonth.toLocaleString("default", { month: "long" }));
   const [currentYearNumeric, setCurrentYearNumeric] = useState(currentMonth.toLocaleString("default", { year: "numeric" }));
+  const [currentDayNumeric, setCurrentDayNumeric] = useState(currentMonth.toLocaleString("default", { day: "numeric" }));
   const [monthsCaffeine, setMonthsCaffeine] = useState([...Array(dates)].map((date) => 0));
-  const daysInMonth = [...Array(dates)].map((date) => "_");
+  const daysInMonth = [...Array(dates).keys()].map((date) => date + 1);
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
 
   async function populateData(key) {
     const formatDate = (fullDate) => {
-      console.log("fdafjkdfjafda", fullDate);
       let splitDate = fullDate.split("-");
-      console.log("SPLIT DATE", splitDate);
       let shortenedMonth = "";
       if (splitDate[1][0] === "0") {
         shortenedMonth += splitDate[1][1];
@@ -45,7 +43,6 @@ export default function Graph() {
       } else {
         shortenedMonth += splitDate[2];
       }
-      // console.log("fdafkdfjdaskfda", shortenedMonth);
       const formattedDate = `${splitDate[0]}-${shortenedMonth}`;
       return formattedDate;
     };
@@ -63,15 +60,13 @@ export default function Graph() {
         if (response.ok) {
           const data = await response.json();
           setIntakes(data.intakes);
-          const thisMonthsCaffeine = [];
-          for (let i = 0; i < daysInMonth.length; i++) {
+          const thisMonthsCaffeine = daysInMonth.map((day) => 0);
+          for (let i = 0; i < thisMonthsCaffeine.length; i++) {
             let intakeMonth = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[1] : undefined;
             let intakeYear = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[0] : undefined;
-            // let intakeMonth = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[1] : undefined;
+            let intakeDay = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[2] : undefined;
             if (intakeMonth === currentMonthNumeric && intakeYear === currentYearNumeric) {
-              thisMonthsCaffeine.push(intakes[i]["caffeine"]);
-            } else {
-              thisMonthsCaffeine.push(0);
+              thisMonthsCaffeine.splice(intakeDay, 0, intakes[i]["caffeine"]);
             }
           }
           setMonthsCaffeine(thisMonthsCaffeine);
@@ -92,6 +87,7 @@ export default function Graph() {
     setCurrentMonth(new Date(thisMonth.setMonth(currentMonth.getMonth() + 1)));
     setCurrentMonthNumeric(currentMonth.toLocaleString("default", { month: "numeric" }));
     setCurrentYearNumeric(currentMonth.toLocaleString("default", { year: "numeric" }));
+    setCurrentDayNumeric(currentMonth.toLocaleString("default", { day: "numeric" }));
     setCurrentMonthText(currentMonth.toLocaleString("default", { month: "long" }));
     // why do I need new Date above??
   };
@@ -101,16 +97,14 @@ export default function Graph() {
     setCurrentMonth(new Date(thisMonth.setMonth(currentMonth.getMonth() - 1)));
     setCurrentMonthNumeric(currentMonth.toLocaleString("default", { month: "numeric" }));
     setCurrentYearNumeric(currentMonth.toLocaleString("default", { year: "numeric" }));
+    setCurrentDayNumeric(currentMonth.toLocaleString("default", { day: "numeric" }));
     setCurrentMonthText(currentMonth.toLocaleString("default", { month: "long" }));
-    console.log("CURRENT YEAR", currentMonth.getFullYear());
   };
 
   useEffect(() => {
     populateData("token");
   }, [fetchSuccessful, currentMonth]);
   useEffect(() => console.log("Intakes", intakes), [intakes]);
-  // useEffect(() => console.log("Fetch successful", fetchSuccessful), [fetchSuccessful]);
-  useEffect(() => console.log("Current month", currentMonth.getMonth()), [currentMonth]);
 
   if (fetchSuccessful) {
     return (
@@ -155,7 +149,7 @@ export default function Graph() {
           style={{
             marginTop: 8,
             borderRadius: 16,
-            paddingRight: Dimensions.get("window").width * 0.11, // (change to the percentage that fit better for yout)
+            paddingRight: Dimensions.get("window").width * 0.12, // (change to the percentage that fit better for yout)
           }}
         />
         <View style={styles.changeDates}>
