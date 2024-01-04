@@ -5,6 +5,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 import { LogBox } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { caffeineContent } from "../caffeineContent";
+import { Divider } from "react-native-paper";
 
 // LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
 
@@ -206,6 +207,7 @@ export default function CaffeineTable() {
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <Divider style={{ margin: 12 }} bold="true" horizontalInset="true" />
         <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
       </View>
     );
@@ -213,10 +215,8 @@ export default function CaffeineTable() {
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-        <Table borderStyle={{ borderWidth: 2, borderColor: "gray" }}>
-          <Row data={tableHead} style={{ height: 40, backgroundColor: "#f1f8ff" }} textStyle={{ textAlign: "center", fontWeight: "bold" }} />
-          <Rows data={tableData} style={{ height: 80 }} textStyle={{ textAlign: "center" }} />
-        </Table>
+        <Divider style={{ margin: 12 }} bold="true" horizontalInset="true" />
+        <Text style={styles.bodyText}>Add caffeine intakes using the calculator to have them display in the table and graph.</Text>
       </View>
     );
   } else {
@@ -271,7 +271,6 @@ const styles = StyleSheet.create({
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 26,
     textAlign: "center",
-    marginBottom: 10,
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",

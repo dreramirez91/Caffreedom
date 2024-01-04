@@ -20,6 +20,7 @@ export default function Graph() {
   const [monthsCaffeine, setMonthsCaffeine] = useState([...Array(dates)].map((date) => 0));
   const daysInMonth = [...Array(dates).keys()].map((date) => date + 1);
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   async function populateData(key) {
     const formatDate = (fullDate) => {
@@ -42,6 +43,7 @@ export default function Graph() {
     try {
       let result = await SecureStore.getItemAsync(key);
       if (result) {
+        setLoggedIn(true);
         const fetchConfig = {
           method: "get",
           headers: {
@@ -69,6 +71,7 @@ export default function Graph() {
         }
       } else {
         console.log("Could not retrieve token from store");
+        setFetchSuccessful(false);
       }
     } catch (error) {
       console.log(error);
@@ -156,11 +159,19 @@ export default function Graph() {
         </View>
       </View>
     );
-  } else {
+  } else if (loggedIn) {
     return (
       <View style={styles.homeContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
         <ActivityIndicator animating={true} color={"rgba(242, 255, 99, 1)"} size={"large"} style={{ padding: 50 }} />
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.homeContainer}>
+        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <Divider style={{ margin: 12 }} bold="true" horizontalInset="true" />
+        <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
       </View>
     );
   }
@@ -195,6 +206,14 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     marginLeft: 14,
     marginRight: 14,
+  },
+  bodyText: {
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "Lora_400Regular_Italic",
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 20,
+    marginTop: 5,
   },
   changeDates: {
     flexDirection: "row",
