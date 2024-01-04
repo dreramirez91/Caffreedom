@@ -61,7 +61,7 @@ def signup(request):
     try:
         validate_password(password)
     except ValidationError as e:
-        return JsonResponse({"error": e.__str__()}, safe=False)
+        return JsonResponse({"error": e.messages()}, safe=False)
     password_confirmation = request.data.get("password_confirmation")
     try:
         user = User.objects.get(username=username)
