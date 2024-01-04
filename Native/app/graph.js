@@ -23,26 +23,31 @@ export default function Graph() {
   const dates = daysInThisMonth(currentMonth);
   const [currentMonthNumeric, setCurrentMonthNumeric] = useState(currentMonth.toLocaleString("default", { month: "numeric" }));
   const [currentMonthText, setCurrentMonthText] = useState(currentMonth.toLocaleString("default", { month: "long" }));
+  const [currentYearNumeric, setCurrentYearNumeric] = useState(currentMonth.toLocaleString("default", { year: "numeric" }));
   const [monthsCaffeine, setMonthsCaffeine] = useState([...Array(dates)].map((date) => 0));
   const daysInMonth = [...Array(dates)].map((date) => "_");
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
 
   async function populateData(key) {
     const formatDate = (fullDate) => {
+      console.log("fdafjkdfjafda", fullDate);
       let splitDate = fullDate.split("-");
-      let shortenedDate = "";
+      console.log("SPLIT DATE", splitDate);
+      let shortenedMonth = "";
       if (splitDate[1][0] === "0") {
-        shortenedDate += splitDate[1][1];
+        shortenedMonth += splitDate[1][1];
       } else {
-        shortenedDate += splitDate[1];
+        shortenedMonth += splitDate[1];
       }
-      shortenedDate += "-";
+      shortenedMonth += "-";
       if (splitDate[2][0] === "0") {
-        shortenedDate += splitDate[2][1];
+        shortenedMonth += splitDate[2][1];
       } else {
-        shortenedDate += splitDate[2];
+        shortenedMonth += splitDate[2];
       }
-      return shortenedDate;
+      // console.log("fdafkdfjdaskfda", shortenedMonth);
+      const formattedDate = `${splitDate[0]}-${shortenedMonth}`;
+      return formattedDate;
     };
     try {
       let result = await SecureStore.getItemAsync(key);
@@ -60,8 +65,10 @@ export default function Graph() {
           setIntakes(data.intakes);
           const thisMonthsCaffeine = [];
           for (let i = 0; i < daysInMonth.length; i++) {
-            let intakeMonth = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[0] : undefined;
-            if (intakeMonth === currentMonthNumeric) {
+            let intakeMonth = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[1] : undefined;
+            let intakeYear = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[0] : undefined;
+            // let intakeMonth = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[1] : undefined;
+            if (intakeMonth === currentMonthNumeric && intakeYear === currentYearNumeric) {
               thisMonthsCaffeine.push(intakes[i]["caffeine"]);
             } else {
               thisMonthsCaffeine.push(0);
@@ -83,7 +90,19 @@ export default function Graph() {
   const nextMonth = () => {
     const thisMonth = currentMonth;
     setCurrentMonth(new Date(thisMonth.setMonth(currentMonth.getMonth() + 1)));
+    setCurrentMonthNumeric(currentMonth.toLocaleString("default", { month: "numeric" }));
+    setCurrentYearNumeric(currentMonth.toLocaleString("default", { year: "numeric" }));
+    setCurrentMonthText(currentMonth.toLocaleString("default", { month: "long" }));
     // why do I need new Date above??
+  };
+
+  const lastMonth = () => {
+    const thisMonth = currentMonth;
+    setCurrentMonth(new Date(thisMonth.setMonth(currentMonth.getMonth() - 1)));
+    setCurrentMonthNumeric(currentMonth.toLocaleString("default", { month: "numeric" }));
+    setCurrentYearNumeric(currentMonth.toLocaleString("default", { year: "numeric" }));
+    setCurrentMonthText(currentMonth.toLocaleString("default", { month: "long" }));
+    console.log("CURRENT YEAR", currentMonth.getFullYear());
   };
 
   useEffect(() => {
@@ -98,7 +117,9 @@ export default function Graph() {
       <View style={styles.homeContainer}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
         <Divider style={{ margin: 6 }} bold="true" />
-        <Text style={styles.monthText}>{currentMonthText}</Text>
+        <Text style={styles.monthText}>
+          {currentMonthText} {currentYearNumeric}
+        </Text>
         <LineChart
           fromZero="True"
           data={{
@@ -138,7 +159,7 @@ export default function Graph() {
           }}
         />
         <View style={styles.changeDates}>
-          <Pressable onPressIn={null}>
+          <Pressable onPressIn={lastMonth}>
             <Text style={styles.dayText}>
               <AntDesign name="arrowleft" size={16} color="rgba(242, 255, 99, 1)" /> Last Month
             </Text>
@@ -177,12 +198,7 @@ const styles = StyleSheet.create({
   monthText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "Lora_400Regular_Italic",
-
-    // borderRadius: 2,
-    // borderColor: "rgba(242, 255, 99, 0.75)",
-    // borderWidth: 2,
     fontSize: 24,
-
     textAlign: "center",
   },
   dayText: {
