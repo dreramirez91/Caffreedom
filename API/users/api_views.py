@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import UserSerializer
 from django.http import JsonResponse
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 
 class UserList(generics.ListCreateAPIView):
@@ -22,6 +24,10 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 def signin(request):
     username = request.data.get("username")
     password = request.data.get("password")
+    try:
+        validate_password(password)
+    except ValidationError as e:
+        return {"error": e}
     if not username and not password:
         return Response(
             {"error": "Please enter a username & password"},
@@ -61,7 +67,6 @@ def signup(request):
         user = User.objects.get(username=username)
     except User.DoesNotExist:
         user = None
-    print(request.data, "\n\n\n\n")
     if user is not None:
         return Response(
             {"error": "That username is already taken"}, status=status.HTTP_409_CONFLICT
