@@ -6,24 +6,17 @@ import * as SecureStore from "expo-secure-store";
 import { AntDesign } from "@expo/vector-icons";
 import { Divider } from "react-native-paper";
 
-/* For January you will need 31 data points. If there is nothing for that day, make it (ZERO or THE SAME AS THE PREVIOUS DAY, UNLESS IT'S THE FIRST DAY THEN MAKE IT ZERO)*/
-
-// The question is if there is no data what do you want to do I think the answer is keep it the same as the previous day
-// Data type for months display (think of them as separate components even though they won't be) should be list of lists where each list has the caffeine count for each day of that month
-
 export default function Graph() {
   function daysInThisMonth(date) {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   }
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [intakes, setIntakes] = useState([]);
-  const [totalCaffeine, setTotalCaffeine] = useState([0]);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const dates = daysInThisMonth(currentMonth);
   const [currentMonthNumeric, setCurrentMonthNumeric] = useState(currentMonth.toLocaleString("default", { month: "numeric" }));
   const [currentMonthText, setCurrentMonthText] = useState(currentMonth.toLocaleString("default", { month: "long" }));
   const [currentYearNumeric, setCurrentYearNumeric] = useState(currentMonth.toLocaleString("default", { year: "numeric" }));
-  const [currentDayNumeric, setCurrentDayNumeric] = useState(currentMonth.toLocaleString("default", { day: "numeric" }));
   const [monthsCaffeine, setMonthsCaffeine] = useState([...Array(dates)].map((date) => 0));
   const daysInMonth = [...Array(dates).keys()].map((date) => date + 1);
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
@@ -87,9 +80,7 @@ export default function Graph() {
     setCurrentMonth(new Date(thisMonth.setMonth(currentMonth.getMonth() + 1)));
     setCurrentMonthNumeric(currentMonth.toLocaleString("default", { month: "numeric" }));
     setCurrentYearNumeric(currentMonth.toLocaleString("default", { year: "numeric" }));
-    setCurrentDayNumeric(currentMonth.toLocaleString("default", { day: "numeric" }));
     setCurrentMonthText(currentMonth.toLocaleString("default", { month: "long" }));
-    // why do I need new Date above??
   };
 
   const lastMonth = () => {
@@ -97,7 +88,6 @@ export default function Graph() {
     setCurrentMonth(new Date(thisMonth.setMonth(currentMonth.getMonth() - 1)));
     setCurrentMonthNumeric(currentMonth.toLocaleString("default", { month: "numeric" }));
     setCurrentYearNumeric(currentMonth.toLocaleString("default", { year: "numeric" }));
-    setCurrentDayNumeric(currentMonth.toLocaleString("default", { day: "numeric" }));
     setCurrentMonthText(currentMonth.toLocaleString("default", { month: "long" }));
   };
 
@@ -149,7 +139,7 @@ export default function Graph() {
           style={{
             marginTop: 8,
             borderRadius: 16,
-            paddingRight: Dimensions.get("window").width * 0.12, // (change to the percentage that fit better for yout)
+            paddingRight: Dimensions.get("window").width * 0.12,
           }}
         />
         <View style={styles.changeDates}>

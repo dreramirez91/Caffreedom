@@ -31,7 +31,6 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
     if (response.ok) {
       const tokenInfo = await response.json();
       const token = tokenInfo.token;
-      console.log("ERROR MESSAGE", tokenInfo);
       save("token", token);
       setUsername("");
       setPassword("");
@@ -39,8 +38,8 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
       setSignUpSuccessful(true);
     } else {
       const errorMessage = await response.json();
-      console.log(errorMessage);
-      setError(errorMessage["error"]);
+      console.log("here", errorMessage);
+      setError(errorMessage["error"][0]);
       setPassword("");
       setConfirmPassword("");
     }
