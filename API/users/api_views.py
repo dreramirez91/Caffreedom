@@ -24,10 +24,6 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 def signin(request):
     username = request.data.get("username")
     password = request.data.get("password")
-    try:
-        validate_password(password)
-    except ValidationError as e:
-        return {"error": e}
     if not username and not password:
         return Response(
             {"error": "Please enter a username & password"},
@@ -62,6 +58,10 @@ def signout(request):
 def signup(request):
     username = request.data.get("username")
     password = request.data.get("password")
+    try:
+        validate_password(password)
+    except ValidationError as e:
+        return {"error": e}
     password_confirmation = request.data.get("password_confirmation")
     try:
         user = User.objects.get(username=username)
