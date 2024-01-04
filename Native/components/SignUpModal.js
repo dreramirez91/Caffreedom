@@ -31,7 +31,7 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
     if (response.ok) {
       const tokenInfo = await response.json();
       const token = tokenInfo.token;
-      console.log(token);
+      console.log("ERROR MESSAGE", tokenInfo);
       save("token", token);
       setUsername("");
       setPassword("");
