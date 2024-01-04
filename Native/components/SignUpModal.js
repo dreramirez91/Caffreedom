@@ -39,7 +39,11 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
     } else {
       const errorMessage = await response.json();
       console.log("here", errorMessage);
-      setError(errorMessage["error"][0]);
+      if (typeof errorMessage["error"] === "object") {
+        setError(errorMessage["error"][0]);
+      } else {
+        setError(errorMessage["error"]);
+      }
       setPassword("");
       setConfirmPassword("");
     }
