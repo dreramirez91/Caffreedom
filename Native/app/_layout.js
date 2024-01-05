@@ -9,11 +9,14 @@ import { SafeAreaView, ImageBackground, StyleSheet } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import { PaperProvider } from "react-native-paper";
 
+import { Quicksand_300Light, Quicksand_400Regular, Quicksand_500Medium, Quicksand_600SemiBold, Quicksand_700Bold } from "@expo-google-fonts/quicksand";
+
 // SplashScreen.preventAutoHideAsync();
 
 export default function appLayout() {
   const [fontsLoaded, fontError] = useFonts({
     Lora_400Regular_Italic,
+    Quicksand_300Light,
   });
 
   const onLayoutRootView = useCallback(async () => {

@@ -20,8 +20,8 @@ export default function LoginModal({ loginModalVisible, setLoginModalVisible, se
   };
   const handleSubmit = async (e) => {
     const data = {};
-    data.username = username;
-    data.password = password;
+    data.username = username.toLowerCase();
+    data.password = password.toLowerCase();
     console.log(data);
     const loginUrl = `${apiUrl}/users/signin/`;
     const fetchConfig = {
