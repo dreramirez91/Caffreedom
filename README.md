@@ -1,6 +1,6 @@
 # Caffreedom
 
-Caffreedom is a work in progress project designed to help users gain better awareness of their caffeine consumption and provide assistance with weaning off caffeine.
+Caffreedom is a project designed to help users gain better awareness of their caffeine consumption and provide assistance with weaning off caffeine.
 
 ## Getting Started
 
@@ -17,10 +17,7 @@ To run Caffreedom on your local machine, you need to run both the frontend (Nati
 
 ### Server (Backend)
 
-1. Navigate to the 'Server' directory by running: `cd Server`
-2. Start the Django development server, specifying your local IP address: `python manage.py runserver <your_local_ip_address_here>`
-
-Replace ` <your_local_ip_address_here>` with your actual local IP address, which can be found by typing `ipconfig getifaddr en0` in your terminal.
+Django backend and PostgreSQL database are deployed through Vercel and Supabase!
 
 ## Contributing
 
