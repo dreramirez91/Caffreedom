@@ -268,13 +268,13 @@ const styles = StyleSheet.create({
   headerText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 26,
+    fontSize: 30,
     textAlign: "center",
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 18,
+    fontSize: 24,
     textAlign: "center",
     marginBottom: 20,
     marginTop: 5,

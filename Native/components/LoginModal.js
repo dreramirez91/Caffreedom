@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Pressable, Modal, TextInput } from "react-native";
 import * as SecureStore from "expo-secure-store";
+import { Button } from "react-native-paper";
 
 export default function LoginModal({ loginModalVisible, setLoginModalVisible, setLoginSuccessful }) {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -63,25 +64,29 @@ export default function LoginModal({ loginModalVisible, setLoginModalVisible, se
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Login</Text>
-            <TextInput style={styles.input} onChangeText={setUsername} placeholder="Username" value={username}></TextInput>
-            {error ? (
-              <View
-                styles={{
-                  borderWidth: 10,
-                  borderColor: "orange",
-                  borderStyle: "solid",
-                }}
-              >
-                <Text style={styles.errorText}>{error}</Text>
-              </View>
-            ) : null}
-            <TextInput style={styles.input} onChangeText={setPassword} placeholder="Password" value={password} secureTextEntry={true}></TextInput>
-            <Pressable style={styles.submitButton} onPress={() => handleSubmit()}>
-              <Text style={styles.submitStyle}>Submit</Text>
-            </Pressable>
-            <Pressable style={[styles.closeButton]} onPress={handleClose}>
-              <Text style={styles.closeStyle}>Close</Text>
-            </Pressable>
+            <View style={styles.inputs}>
+              <TextInput style={styles.input} onChangeText={setUsername} placeholder="Username" value={username}></TextInput>
+              {error ? (
+                <View
+                  styles={{
+                    borderWidth: 10,
+                    borderColor: "orange",
+                    borderStyle: "solid",
+                  }}
+                >
+                  <Text style={styles.errorText}>{error}</Text>
+                </View>
+              ) : null}
+              <TextInput style={styles.input} onChangeText={setPassword} placeholder="Password" value={password} secureTextEntry={true}></TextInput>
+            </View>
+            <View style={styles.buttons}>
+              <Button onPress={() => handleSubmit()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                Submit
+              </Button>
+              <Button onPress={handleClose} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                Close
+              </Button>
+            </View>
           </View>
         </View>
       </Modal>
@@ -101,7 +106,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 35,
     width: "80%",
-    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -124,28 +128,32 @@ const styles = StyleSheet.create({
   closeStyle: {
     color: "rgba(94, 25, 121, 1)",
     textAlign: "center",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 18,
   },
   submitStyle: {
     color: "rgba(242, 255, 99, 1)",
     textAlign: "center",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 18,
   },
   modalText: {
     color: "rgba(242, 255, 99, 1)",
     marginBottom: 15,
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     textAlign: "center",
+    fontSize: 22,
   },
   errorText: {
     color: "rgba(242, 255, 99, 1)",
     textDecorationLine: "underline",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     textAlign: "center",
+    fontSize: 18,
   },
   input: {
     color: "black",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     borderRadius: 8,
     borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: "white",
@@ -153,5 +161,14 @@ const styles = StyleSheet.create({
     width: "75%",
     padding: 10,
     margin: 10,
+    fontSize: 18,
+  },
+  inputs: {
+    alignItems: "center",
+  },
+  buttons: {
+    marginTop: 12,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
 });

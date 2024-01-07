@@ -182,11 +182,11 @@ const styles = StyleSheet.create({
   headerText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 24,
+    fontSize: 30,
     textAlign: "center",
   },
   marginText: {
-    marginTop: 12,
+    marginTop: 6,
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 24,
@@ -196,13 +196,6 @@ const styles = StyleSheet.create({
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 24,
-    textAlign: "center",
-  },
-  howMuch: {
-    flex: 1,
-    color: "rgba(242, 255, 99, 1)",
-    fontFamily: "CrimsonPro_400Regular",
-    fontSize: 30,
     textAlign: "center",
   },
   input: {

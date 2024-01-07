@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   homeContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.7)",
     width: "100%",
     justifyContent: "center",
     paddingTop: 5,
@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Roboto_400Regular",
-    fontSize: 26,
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 32,
     textAlign: "center",
   },
   logoContainer: {
@@ -144,13 +144,13 @@ const styles = StyleSheet.create({
   },
   unpressedText: {
     color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Roboto_100Thin",
+    fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
     textDecorationLine: "underline",
   },
   pressedText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Roboto_100Thin",
+    fontFamily: "Lora_400Regular_Italic",
     fontSize: 20,
     textDecorationLine: "underline",
   },
