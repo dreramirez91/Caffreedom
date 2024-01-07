@@ -165,7 +165,7 @@ export default function Graph() {
   } else {
     return (
       <View style={styles.homeContainer}>
-        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <Text style={styles.headerText}>Your Caffeine Intake</Text>
         <Divider style={{ margin: 12 }} bold="true" horizontalInset="true" />
         <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
       </View>

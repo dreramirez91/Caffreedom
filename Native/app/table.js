@@ -205,7 +205,7 @@ export default function CaffeineTable() {
   if (!userLoggedIn) {
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <Text style={styles.headerText}>Your Caffeine Intake</Text>
         <Divider style={{ margin: 12 }} bold="true" horizontalInset="true" />
         <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
       </View>
@@ -249,7 +249,7 @@ export default function CaffeineTable() {
               textAlign: "center",
               color: "rgba(242, 255, 99, 1)",
               fontFamily: "CrimsonPro_400Regular",
-              fontSize: 16,
+              fontSize: 14,
             }}
           />
         </Table>
@@ -281,13 +281,13 @@ const styles = StyleSheet.create({
   headerText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 26,
+    fontSize: 30,
     textAlign: "center",
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 18,
+    fontSize: 24,
     textAlign: "center",
     marginBottom: 20,
     marginTop: 5,
@@ -296,13 +296,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 16,
+    fontSize: 14,
+    textAlignVertical: "center",
   },
   editText: {
     textAlign: "center",
     color: "rgba(94, 25, 121, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 16,
+    fontSize: 14,
   },
   deleteText: {
     textAlign: "center",
@@ -311,6 +312,6 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 16,
+    fontSize: 14,
   },
 });
