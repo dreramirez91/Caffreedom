@@ -13,7 +13,7 @@ export default function CaffeineTable() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
-  const tableHead = ["Drink", "Amount, tap to edit", "Caffeine content", "Date", ""];
+  const tableHead = ["Drink", "Amount, tap to edit", "Caffeine content", "Date", "Delete"];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [editSuccessful, setEditSuccessful] = useState(false);
@@ -228,15 +228,15 @@ export default function CaffeineTable() {
             borderColor: "gray",
           }}
         >
-          <Row data={tableHead} style={{ height: 40, backgroundColor: "#f1f8ff" }} textStyle={{ textAlign: "center", fontWeight: "bold" }} />
+          <Row data={tableHead} style={{ height: 40, backgroundColor: "#f1f8ff" }} textStyle={{ textAlign: "center", fontWeight: "bold", fontFamily: "CrimsonPro_400Regular" }} />
           <Rows
             data={tableData}
             style={{ height: 80 }}
             textStyle={{
               textAlign: "center",
               color: "rgba(242, 255, 99, 1)",
-              fontFamily: "Cormorant_400Regular",
-              fontSize: 12,
+              fontFamily: "CrimsonPro_400Regular",
+              fontSize: 16,
             }}
           />
         </Table>
@@ -267,13 +267,13 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     fontSize: 26,
     textAlign: "center",
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     fontSize: 18,
     textAlign: "center",
     marginBottom: 20,
@@ -282,14 +282,14 @@ const styles = StyleSheet.create({
   tableText: {
     textAlign: "center",
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Cormorant_400Regular",
-    fontSize: 12,
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 16,
   },
   editText: {
     textAlign: "center",
     color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Cormorant_400Regular",
-    fontSize: 12,
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 16,
   },
   deleteText: {
     textAlign: "center",
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
     textShadowColor: "rgba(0, 0, 0, 0.5)",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
-    fontFamily: "Cormorant_400Regular",
-    fontSize: 12,
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 16,
   },
 });

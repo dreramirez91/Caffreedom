@@ -6,14 +6,12 @@ import Footer from "../components/Footer";
 import background from "../assets/background.jpeg";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, ImageBackground, StyleSheet } from "react-native";
-import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
 import { PaperProvider } from "react-native-paper";
-
-// SplashScreen.preventAutoHideAsync();
+import { useFonts, CrimsonPro_400Regular } from "@expo-google-fonts/crimson-pro";
 
 export default function appLayout() {
   const [fontsLoaded, fontError] = useFonts({
-    Lora_400Regular_Italic,
+    CrimsonPro_400Regular,
   });
 
   const onLayoutRootView = useCallback(async () => {

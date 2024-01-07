@@ -182,19 +182,19 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     fontSize: 26,
     textAlign: "center",
   },
   monthText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     fontSize: 24,
     textAlign: "center",
   },
   dayText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     fontSize: 16,
     padding: 8.4,
     borderColor: "rgba(242, 255, 99, 0.75)",
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Cormorant_400Regular",
+    fontFamily: "CrimsonPro_400Regular",
     fontSize: 18,
     textAlign: "center",
     marginBottom: 20,

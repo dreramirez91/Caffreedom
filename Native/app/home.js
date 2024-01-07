@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 26,
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 32,
     textAlign: "center",
   },
   logoContainer: {

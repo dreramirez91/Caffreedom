@@ -12,16 +12,16 @@ export default function Footer() {
   if (fontsLoaded) {
     return (
       <View style={styles.footerContainer}>
-        <Link style={styles.footerText} href="/home">
+        <Link href="/home">
           <MaterialCommunityIcons name="home-outline" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
-        <Link style={styles.footerText} href="/calculator">
+        <Link href="/calculator">
           <AntDesign name="calculator" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
-        <Link style={styles.footerText} href="/table">
+        <Link href="/table">
           <FontAwesome name="table" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
-        <Link style={styles.footerText} href="/graph">
+        <Link href="/graph">
           <Octicons name="graph" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
       </View>
@@ -43,10 +43,5 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
     borderTopWidth: 2,
     borderColor: "rgba(94, 25, 121, 1)",
-  },
-  footerText: {
-    color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
-    fontSize: 18,
   },
 });
