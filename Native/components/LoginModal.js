@@ -81,7 +81,7 @@ export default function LoginModal({ loginModalVisible, setLoginModalVisible, se
             </View>
             <View style={styles.buttons}>
               <Button onPress={() => handleSubmit()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
-                Submit
+                Log In
               </Button>
               <Button onPress={handleClose} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
                 Close
