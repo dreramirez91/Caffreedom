@@ -44,19 +44,17 @@ def api_list_caffeine_intake(request):
 def api_edit_caffeine_intake(request):
     user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
     data = json.loads(request.body)
-    print("\n\n\n\nEDIT DATA:", data, "\n\n\n\n")
     amount = data["amount"]
     id = data["id"]
     caffeine = data["caffeine"]
     CaffeineIntake.objects.filter(id=id).update(amount=amount, caffeine=caffeine)
-    intakes = user.caffeine_intakes.all()  # perhaps change response
+    intakes = user.caffeine_intakes.all()
     return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
 
 
 @require_http_methods(["DELETE"])
 def api_delete_caffeine_intake(request):
     data = json.loads(request.body)
-    print("DATA FOR DELETE => ", data)
     user = Token.objects.get(key=request.META.get("HTTP_AUTHENTICATION")).user
     id = data["id"]
     intake = get_object_or_404(user.caffeine_intakes, id=id)
