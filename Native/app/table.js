@@ -142,6 +142,7 @@ export default function CaffeineTable() {
     }
   }
 
+  useEffect(() => console.log("TABLE DATA", tableData), [tableData]);
   async function populateData(key) {
     try {
       setDeleteSuccessful(false);
@@ -209,13 +210,6 @@ export default function CaffeineTable() {
         <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
       </View>
     );
-  } else if (tableData == []) {
-    return (
-      <View style={styles.homeContainer}>
-        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
-        <ActivityIndicator animating={true} color={"rgba(242, 255, 99, 1)"} size={"large"} style={{ padding: 50 }} />
-      </View>
-    );
   } else if (intakes.length === 0) {
     return (
       <View style={styles.mainContainer}>
@@ -223,6 +217,20 @@ export default function CaffeineTable() {
         <Divider style={{ margin: 12 }} bold="true" horizontalInset="true" />
         <Text style={styles.bodyText}>Add caffeine intakes using the calculator to have them display in the table and graph.</Text>
       </View>
+    );
+  } else if (tableData.length === 0) {
+    return (
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
+        <Table
+          borderStyle={{
+            borderWidth: 2,
+            borderColor: "gray",
+          }}
+        >
+          <Row data={tableHead} style={{ height: 40, backgroundColor: "#f1f8ff" }} textStyle={{ textAlign: "center", fontWeight: "bold", fontFamily: "CrimsonPro_400Regular" }} />
+        </Table>
+        <ActivityIndicator animating={true} color={"rgba(242, 255, 99, 1)"} size={"large"} style={{ padding: 50 }} />
+      </ScrollView>
     );
   } else {
     return (
