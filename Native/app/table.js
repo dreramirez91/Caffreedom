@@ -2,12 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Text, View, Pressable, ScrollView, Alert } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
-import { LogBox } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { caffeineContent } from "../caffeineContent";
 import { Divider } from "react-native-paper";
-
-// LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell', "No native splash screen registered for given view controller. Call 'SplashScreen.show' for given view controller first."]);
+import { ActivityIndicator } from "react-native-paper";
 
 export default function CaffeineTable() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -211,6 +209,13 @@ export default function CaffeineTable() {
         <Text style={styles.bodyText}>Login or make an account to track your caffeine intake.</Text>
       </View>
     );
+  } else if (tableData == []) {
+    return (
+      <View style={styles.homeContainer}>
+        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
+        <ActivityIndicator animating={true} color={"rgba(242, 255, 99, 1)"} size={"large"} style={{ padding: 50 }} />
+      </View>
+    );
   } else if (intakes.length === 0) {
     return (
       <View style={styles.mainContainer}>
@@ -268,13 +273,13 @@ const styles = StyleSheet.create({
   headerText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 30,
+    fontSize: 26,
     textAlign: "center",
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
-    fontSize: 24,
+    fontSize: 18,
     textAlign: "center",
     marginBottom: 20,
     marginTop: 5,
