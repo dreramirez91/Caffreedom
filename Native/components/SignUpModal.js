@@ -33,6 +33,7 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
       save("token", token);
       setUsername("");
       setPassword("");
+      setConfirmPassword(" ");
       setSignUpModalVisible(false);
       setSignUpSuccessful(true);
     } else {
