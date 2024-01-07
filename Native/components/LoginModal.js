@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "rgba(242, 255, 99, 1)",
-    textDecorationLine: "underline",
     fontFamily: "CrimsonPro_400Regular",
     textAlign: "center",
     fontSize: 18,

@@ -5,7 +5,6 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TextInput, Pressable, Alert } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { AntDesign } from "@expo/vector-icons";
 import { Divider, Button } from "react-native-paper";
 
 export default function Calculator() {

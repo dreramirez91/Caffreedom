@@ -8,9 +8,6 @@ import { Button } from "react-native-paper";
 
 export default function Home() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
-  const [loginPressed, setLoginPressed] = useState(false);
-  const [signUpPressed, setSignUpPressed] = useState(false);
-  const [signOutPressed, setSignOutPressed] = useState(false);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [token, setToken] = useState("");
@@ -19,19 +16,16 @@ export default function Home() {
   const [signoutSuccessful, setSignOutSuccessful] = useState(false);
 
   const loginButtonPress = () => {
-    setLoginPressed(true);
     setLoginModalVisible(true);
     setLoginSuccessful(false);
   };
 
   const signUpButtonPress = () => {
-    setSignUpPressed(true);
     setSignUpModalVisible(true);
     setSignUpSuccessful(false);
   };
 
   const signOutButtonPress = () => {
-    setSignOutPressed(true);
     signout();
   };
 
@@ -71,7 +65,6 @@ export default function Home() {
 
   useEffect(() => {
     fetchToken("token");
-    setSignOutPressed(false);
   }, [loginSuccessful, signUpSuccessful, signoutSuccessful]);
 
   return (
@@ -89,16 +82,16 @@ export default function Home() {
         </View>
         {!token ? (
           <View style={styles.userContainer}>
-            <Button onPressIn={() => loginButtonPress()} onPressOut={() => setLoginPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+            <Button onPressIn={() => loginButtonPress()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
               Log In
             </Button>
-            <Button onPressIn={() => signUpButtonPress()} onPressOut={() => setSignUpPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+            <Button onPressIn={() => signUpButtonPress()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
               Sign-up
             </Button>
           </View>
         ) : (
           <View style={styles.userContainer}>
-            <Button onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)" icon="door" contentStyle={{ flexDirection: "row-reverse" }}>
+            <Button onPressIn={() => signOutButtonPress()} mode="contained" buttonColor="rgba(94, 65, 153, 1)" icon="door" contentStyle={{ flexDirection: "row-reverse" }}>
               Sign out
             </Button>
           </View>

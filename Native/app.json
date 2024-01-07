@@ -19,13 +19,15 @@
       "supportsTablet": true,
       "config": {
         "usesNonExemptEncryption": false
-    }
+      },
+      "bundleIdentifier": "com.dreramirez91.Caffreedom"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dreramirez91.Caffreedom"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -34,6 +36,14 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "Caffreedom-scheme"
+    "scheme": "Caffreedom-scheme",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "a0428df4-73c0-4c69-9b6e-5fbda28dbf9f"
+      }
+    }
   }
 }

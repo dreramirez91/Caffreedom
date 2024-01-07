@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Pressable, Modal, TextInput } from "react-native";
+import { StyleSheet, Text, View, Modal, TextInput } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { Button } from "react-native-paper";
 
@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "rgba(242, 255, 99, 1)",
-    textDecorationLine: "underline",
     fontFamily: "CrimsonPro_400Regular",
     textAlign: "center",
     fontSize: 18,
