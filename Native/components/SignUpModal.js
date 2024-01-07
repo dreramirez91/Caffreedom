@@ -18,7 +18,6 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
     data.username = username.toLowerCase();
     data.password = password.toLowerCase();
     data.password_confirmation = confirmPassword;
-    console.log(data);
     const signUpUrl = `${apiUrl}/users/signup/`;
     const fetchConfig = {
       method: "post",
@@ -28,7 +27,6 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
       },
     };
     const response = await fetch(signUpUrl, fetchConfig);
-    console.log("RESPONSE:", response);
     if (response.ok) {
       const tokenInfo = await response.json();
       const token = tokenInfo.token;
@@ -39,7 +37,6 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
       setSignUpSuccessful(true);
     } else {
       const errorMessage = await response.json();
-      console.log("here", errorMessage);
       if (typeof errorMessage["error"] === "object") {
         setError(errorMessage["error"][0]);
       } else {

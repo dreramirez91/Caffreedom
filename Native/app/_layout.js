@@ -1,5 +1,3 @@
-// This file is used to add providers, such as Redux, into the app, which can be accessed by any route in the app.
-// Compare App.js in traditional React Native projects
 import { useCallback, useEffect } from "react";
 import { Slot, SplashScreen } from "expo-router";
 import Footer from "../components/Footer";

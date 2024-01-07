@@ -23,7 +23,6 @@ export default function LoginModal({ loginModalVisible, setLoginModalVisible, se
     const data = {};
     data.username = username.toLowerCase();
     data.password = password.toLowerCase();
-    console.log(data);
     const loginUrl = `${apiUrl}/users/signin/`;
     const fetchConfig = {
       method: "post",
@@ -37,7 +36,6 @@ export default function LoginModal({ loginModalVisible, setLoginModalVisible, se
       setError("");
       const tokenInfo = await response.json();
       const token = tokenInfo.token;
-      console.log(token);
       save("token", token);
       setUsername("");
       setPassword("");

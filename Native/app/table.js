@@ -23,12 +23,8 @@ export default function CaffeineTable() {
   patchCaffeine.current = caffeine;
 
   const twoOptionDeleteHandler = (intake, token) => {
-    console.log("INTAKE TO BE DELETED =>", intake);
-    //function to make two option alert
     Alert.alert(
-      //title
       "Delete",
-      //body
       "Are you sure?",
       [
         { text: "Yes", onPress: () => deleteIntake(intake, token) },
@@ -39,16 +35,12 @@ export default function CaffeineTable() {
         },
       ],
       { cancelable: false }
-      //clicking out side of alert will not cancel
     );
   };
 
   const twoOptionEditHandler = (intake, token, measurement, drink) => {
-    //function to make two option alert
     Alert.alert(
-      //title
       "Edit",
-      //body
       "Are you sure?",
       [
         {
@@ -62,7 +54,6 @@ export default function CaffeineTable() {
         },
       ],
       { cancelable: false }
-      //clicking out side of alert will not cancel
     );
   };
 
@@ -95,10 +86,6 @@ export default function CaffeineTable() {
     }
   }
 
-  useEffect(() => {
-    console.log(newAmount);
-  }, [newAmount]);
-
   async function editIntake(id, key, measurement, beverage) {
     for (let drink of caffeineContent) {
       if (drink["title"] == beverage) {
@@ -118,7 +105,6 @@ export default function CaffeineTable() {
         data.id = id;
         data.amount = patchAmount.current;
         data.caffeine = patchCaffeine.current;
-        console.log("DATA TO BE SENT IN EDIT REQUEST", data);
         const fetchConfig = {
           method: "patch",
           headers: {
@@ -142,13 +128,12 @@ export default function CaffeineTable() {
     }
   }
 
-  useEffect(() => console.log("TABLE DATA", tableData), [tableData]);
   async function populateData(key) {
     try {
       setDeleteSuccessful(false);
       let result = await SecureStore.getItemAsync(key);
       if (result) {
-        console.log("Successfully retrieved token from store", result);
+        console.log("Successfully retrieved token from store");
         const fetchConfig = {
           method: "get",
           headers: {
@@ -158,13 +143,11 @@ export default function CaffeineTable() {
         };
         const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
         if (response.ok) {
-          console.log("Token in fetch", result);
           const data = await response.json();
           console.log("Fetch successful");
           setIntakes(data.intakes);
           const tableDataToSet = [];
           for (let intake of data.intakes) {
-            console.log(intake);
             const tableRow = [];
             tableRow.push(
               intake.type,

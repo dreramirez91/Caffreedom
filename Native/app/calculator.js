@@ -35,7 +35,6 @@ export default function Calculator() {
   };
 
   const handleConfirm = (date) => {
-    console.log(new Date());
     setSelectedDate(date);
     hideDatePicker();
   };
@@ -44,7 +43,6 @@ export default function Calculator() {
     try {
       let result = await SecureStore.getItemAsync(key);
       if (result) {
-        console.log("Successfully retrieved token from store", result);
         setToken(result);
       }
     } catch (error) {
@@ -53,7 +51,6 @@ export default function Calculator() {
   }
 
   const onChangeDrink = (drink) => {
-    console.log(drink);
     setDrink(drink);
   };
 
@@ -86,11 +83,9 @@ export default function Calculator() {
     const data = {};
     data.caffeine = parseInt(caffeine);
     data.date = selectedDate.toLocaleDateString("fr-CA");
-    //fr-Ca formats the date in a way agreeable to Django backend
     data.type = drink["title"];
     data.amount = amount;
     data.measurement = measurement;
-    console.log("Measurement", measurement);
     const fetchConfig = {
       method: "post",
       headers: {

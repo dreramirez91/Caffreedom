@@ -97,7 +97,6 @@ export default function Graph() {
   useEffect(() => {
     populateData("token");
   }, [fetchSuccessful, currentMonth]);
-  useEffect(() => console.log("Intakes", intakes), [intakes]);
 
   if (fetchSuccessful) {
     return (
@@ -126,7 +125,7 @@ export default function Graph() {
             backgroundGradientTo: "#ffa726",
             backgroundGradientFromOpacity: 0,
             backgroundGradientToOpacity: 0,
-            decimalPlaces: 2, // optional, defaults to 2dp
+            decimalPlaces: 2,
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
