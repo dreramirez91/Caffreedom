@@ -4,7 +4,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 import { AntDesign } from "@expo/vector-icons";
-import { Divider } from "react-native-paper";
+import { Divider, Button } from "react-native-paper";
 
 export default function Graph() {
   function daysInThisMonth(date) {
@@ -146,16 +146,12 @@ export default function Graph() {
           }}
         />
         <View style={styles.changeDates}>
-          <Pressable onPressIn={lastMonth}>
-            <Text style={styles.dayText}>
-              <AntDesign name="arrowleft" size={16} color="rgba(242, 255, 99, 1)" /> Last Month
-            </Text>
-          </Pressable>
-          <Pressable onPress={nextMonth}>
-            <Text style={styles.dayText}>
-              Next Month <AntDesign name="arrowright" size={16} color="rgba(242, 255, 99, 1)" />
-            </Text>
-          </Pressable>
+          <Button onPressIn={lastMonth} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+            <AntDesign name="arrowleft" /> Last Month
+          </Button>
+          <Button onPress={nextMonth} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+            Next Month <AntDesign name="arrowright" />
+          </Button>
         </View>
       </View>
     );
@@ -186,19 +182,19 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 26,
     textAlign: "center",
   },
   monthText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 24,
     textAlign: "center",
   },
   dayText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 16,
     padding: 8.4,
     borderColor: "rgba(242, 255, 99, 0.75)",
@@ -209,7 +205,7 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 18,
     textAlign: "center",
     marginBottom: 20,
@@ -217,6 +213,6 @@ const styles = StyleSheet.create({
   },
   changeDates: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
   },
 });

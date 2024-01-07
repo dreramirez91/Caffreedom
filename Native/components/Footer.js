@@ -1,12 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import {
-  MaterialCommunityIcons,
-  Octicons,
-  AntDesign,
-  FontAwesome,
-} from "@expo/vector-icons";
+import { MaterialCommunityIcons, Octicons, AntDesign, FontAwesome } from "@expo/vector-icons";
 import { Link } from "expo-router";
 
 export default function Footer() {
@@ -18,18 +13,10 @@ export default function Footer() {
     return (
       <View style={styles.footerContainer}>
         <Link style={styles.footerText} href="/home">
-          <MaterialCommunityIcons
-            name="home-outline"
-            size={32}
-            color="rgba(242, 255, 99, 1)"
-          />
+          <MaterialCommunityIcons name="home-outline" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
         <Link style={styles.footerText} href="/calculator">
-          <AntDesign
-            name="calculator"
-            size={32}
-            color="rgba(242, 255, 99, 1)"
-          />
+          <AntDesign name="calculator" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
         <Link style={styles.footerText} href="/table">
           <FontAwesome name="table" size={32} color="rgba(242, 255, 99, 1)" />

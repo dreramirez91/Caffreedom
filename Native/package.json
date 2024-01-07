@@ -9,9 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/cormorant": "^0.2.3",
     "@expo-google-fonts/dev": "^0.2.3",
     "@expo-google-fonts/lora": "^0.2.3",
     "@expo-google-fonts/quicksand": "^0.2.3",
+    "@expo-google-fonts/roboto": "^0.2.3",
     "@expo/webpack-config": "^19.0.0",
     "@react-native-community/datetimepicker": "7.2.0",
     "expo": "^49.0.9",

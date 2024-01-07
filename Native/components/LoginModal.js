@@ -124,28 +124,28 @@ const styles = StyleSheet.create({
   closeStyle: {
     color: "rgba(94, 25, 121, 1)",
     textAlign: "center",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
   },
   submitStyle: {
     color: "rgba(242, 255, 99, 1)",
     textAlign: "center",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
   },
   modalText: {
     color: "rgba(242, 255, 99, 1)",
     marginBottom: 15,
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     textAlign: "center",
   },
   errorText: {
     color: "rgba(242, 255, 99, 1)",
     textDecorationLine: "underline",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     textAlign: "center",
   },
   input: {
     color: "black",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     borderRadius: 8,
     borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: "white",

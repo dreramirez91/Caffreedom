@@ -235,7 +235,7 @@ export default function CaffeineTable() {
             textStyle={{
               textAlign: "center",
               color: "rgba(242, 255, 99, 1)",
-              fontFamily: "Lora_400Regular_Italic",
+              fontFamily: "Cormorant_400Regular",
               fontSize: 12,
             }}
           />
@@ -267,14 +267,13 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 26,
     textAlign: "center",
-    marginBottom: 10,
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 18,
     textAlign: "center",
     marginBottom: 20,
@@ -283,13 +282,13 @@ const styles = StyleSheet.create({
   tableText: {
     textAlign: "center",
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 12,
   },
   editText: {
     textAlign: "center",
     color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 12,
   },
   deleteText: {
@@ -298,7 +297,7 @@ const styles = StyleSheet.create({
     textShadowColor: "rgba(0, 0, 0, 0.5)",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 12,
   },
 });

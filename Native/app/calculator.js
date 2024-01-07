@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, TextInput, Pressable, Alert } from "react-nativ
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { AntDesign } from "@expo/vector-icons";
-import { Divider } from "react-native-paper";
+import { Divider, Button } from "react-native-paper";
 
 export default function Calculator() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -140,29 +140,27 @@ export default function Calculator() {
       <View style={styles.calendar}></View>
       {token ? (
         <View style={styles.buttonContainer}>
-          <Pressable
+          <Button
+            mode="contained"
+            buttonColor="rgba(94, 65, 153, 1)"
+            icon="calendar"
             onPress={() => {
               showDatePicker();
             }}
-            onPressIn={() => {}}
-            onPressOut={() => {}}
           >
-            <Text style={styles.addButtonText}>
-              <AntDesign name="calendar" size={16} color="rgba(242, 255, 99, 1)" /> {selectedDate ? selectedDate.toLocaleDateString() : "No date selected"}
-            </Text>
-          </Pressable>
+            {selectedDate ? selectedDate.toLocaleDateString() : "No date selected"}
+          </Button>
           <DateTimePickerModal date={selectedDate} isVisible={datePickerVisible} mode="date" onConfirm={handleConfirm} onCancel={hideDatePicker} />
-          <Pressable
+          <Button
+            mode="contained"
+            buttonColor="rgba(94, 65, 153, 1)"
             onPress={() => {
               addIntake();
             }}
-            onPressIn={() => {}}
-            onPressOut={() => {}}
+            icon="check"
           >
-            <Text style={styles.addButtonText}>
-              Save <AntDesign name="checkcircleo" size={16} color="rgba(242, 255, 99, 1)" />
-            </Text>
-          </Pressable>
+            Save
+          </Button>
         </View>
       ) : null}
     </View>
@@ -183,27 +181,27 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 24,
     textAlign: "center",
   },
   marginText: {
     marginTop: 12,
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 20,
     textAlign: "center",
   },
   noMarginText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 20,
     textAlign: "center",
   },
   howMuch: {
     flex: 1,
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 20,
     textAlign: "center",
   },
@@ -235,7 +233,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(242, 255, 99, 1)",
     borderWidth: 2,
     borderRadius: 22,
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Cormorant_400Regular",
     fontSize: 20,
     color: "rgba(242, 255, 99, 1)",
   },

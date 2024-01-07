@@ -89,21 +89,18 @@ export default function Home() {
         </View>
         {!token ? (
           <View style={styles.userContainer}>
-            <Pressable onPressIn={() => loginButtonPress()} onPressOut={() => setLoginPressed(false)}>
-              <Text style={loginPressed ? styles.pressedText : styles.unpressedText}>Log In</Text>
-            </Pressable>
-            <Pressable onPressIn={() => signUpButtonPress()} onPressOut={() => setSignUpPressed(false)}>
-              <Text style={signUpPressed ? styles.pressedText : styles.unpressedText}>Sign-up</Text>
-            </Pressable>
+            <Button onPressIn={() => loginButtonPress()} onPressOut={() => setLoginPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+              Log In
+            </Button>
+            <Button onPressIn={() => signUpButtonPress()} onPressOut={() => setSignUpPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+              Sign-up
+            </Button>
           </View>
         ) : (
           <View style={styles.userContainer}>
-            {/* <Button mode="contained-tonal" compact="true" onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
-              <Text style={styles.pressedText}>Log out</Text>
-            </Button> */}
-            <Pressable onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
-              <Text style={signOutPressed ? styles.pressedText : styles.unpressedText}>Sign out</Text>
-            </Pressable>
+            <Button onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)" icon="door" contentStyle={{ flexDirection: "row-reverse" }}>
+              Sign out
+            </Button>
           </View>
         )}
       </View>
@@ -118,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   homeContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.7)",
     width: "100%",
     justifyContent: "center",
     paddingTop: 5,
@@ -136,8 +133,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   logo: {
-    width: 77,
-    height: 77,
+    width: 100,
+    height: 100,
   },
   userContainer: {
     flexDirection: "row",

@@ -4,6 +4,7 @@ import logo from "../assets/logo.png";
 import LoginModal from "../components/LoginModal";
 import * as SecureStore from "expo-secure-store";
 import SignUpModal from "../components/SignUpModal";
+import { Button } from "react-native-paper";
 
 export default function Home() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -41,6 +42,7 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json",
         Authentication: token,
+        Referer: `${apiUrl}/`,
       },
     };
     const response = await fetch(logoutUrl, fetchConfig);
@@ -49,7 +51,6 @@ export default function Home() {
       setSignOutSuccessful(true);
       SecureStore.deleteItemAsync("token");
     } else {
-      SecureStore.deleteItemAsync("token");
       console.log("Signout failed");
     }
   };
@@ -88,18 +89,18 @@ export default function Home() {
         </View>
         {!token ? (
           <View style={styles.userContainer}>
-            <Pressable onPressIn={() => loginButtonPress()} onPressOut={() => setLoginPressed(false)}>
-              <Text style={loginPressed ? styles.pressedText : styles.unpressedText}>Log In</Text>
-            </Pressable>
-            <Pressable onPressIn={() => signUpButtonPress()} onPressOut={() => setSignUpPressed(false)}>
-              <Text style={signUpPressed ? styles.pressedText : styles.unpressedText}>Sign-up</Text>
-            </Pressable>
+            <Button onPressIn={() => loginButtonPress()} onPressOut={() => setLoginPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+              Log In
+            </Button>
+            <Button onPressIn={() => signUpButtonPress()} onPressOut={() => setSignUpPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+              Sign-up
+            </Button>
           </View>
         ) : (
           <View style={styles.userContainer}>
-            <Pressable onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)}>
-              <Text style={signOutPressed ? styles.pressedText : styles.unpressedText}>Log out</Text>
-            </Pressable>
+            <Button onPressIn={() => signOutButtonPress()} onPressOut={() => setSignOutPressed(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)" icon="door" contentStyle={{ flexDirection: "row-reverse" }}>
+              Sign out
+            </Button>
           </View>
         )}
       </View>
@@ -132,8 +133,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   logo: {
-    width: 77,
-    height: 77,
+    width: 100,
+    height: 100,
   },
   userContainer: {
     flexDirection: "row",
@@ -143,13 +144,13 @@ const styles = StyleSheet.create({
   },
   unpressedText: {
     color: "rgba(94, 25, 121, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Roboto_100Thin",
     fontSize: 20,
     textDecorationLine: "underline",
   },
   pressedText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "Lora_400Regular_Italic",
+    fontFamily: "Roboto_100Thin",
     fontSize: 20,
     textDecorationLine: "underline",
   },
