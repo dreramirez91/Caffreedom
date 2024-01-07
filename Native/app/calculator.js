@@ -217,6 +217,7 @@ const styles = StyleSheet.create({
   },
   howMuchClosed: {
     marginTop: 10,
+    zIndex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
   },
