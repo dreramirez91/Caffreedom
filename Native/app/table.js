@@ -173,7 +173,7 @@ export default function CaffeineTable() {
                 <TextInput returnKeyType={"done"} maxLength={7} selectTextOnFocus={true} onChangeText={setNewAmount} keyboardType="numeric" onSubmitEditing={() => twoOptionEditHandler(intake.id, "token", intake.measurement, intake.type)} placeholder={`${intake.amount}`} placeholderTextColor={"rgba(242, 255, 99, 1)"} style={styles.editText}></TextInput>
                 <Text style={styles.tableText}> {`${intake.amount === 1 ? intake.measurement.slice(0, intake.measurement.length - 1) : intake.measurement}`}</Text>
               </View>,
-              intake.caffeine,
+              `${intake.caffeine} mg`,
               intake.date,
               <Pressable
                 onPress={() => {
@@ -222,7 +222,6 @@ export default function CaffeineTable() {
   } else {
     return (
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
         <Table
           borderStyle={{
             borderWidth: 2,
