@@ -271,6 +271,7 @@ const styles = StyleSheet.create({
     fontFamily: "Lora_400Regular_Italic",
     fontSize: 26,
     textAlign: "center",
+    marginBottom: 10,
   },
   bodyText: {
     color: "rgba(242, 255, 99, 1)",
