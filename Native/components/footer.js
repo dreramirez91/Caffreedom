@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { useFonts, Lora_400Regular_Italic } from "@expo-google-fonts/lora";
-import { MaterialCommunityIcons, Octicons, AntDesign, FontAwesome } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Octicons, AntDesign, FontAwesome, Entypo } from "@expo/vector-icons";
 import { Link } from "expo-router";
 
 export default function Footer() {
@@ -23,6 +23,9 @@ export default function Footer() {
         </Link>
         <Link href="/graph">
           <Octicons name="graph" size={32} color="rgba(242, 255, 99, 1)" />
+        </Link>
+        <Link href="/info">
+          <AntDesign name="infocirlceo" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
       </View>
     );
