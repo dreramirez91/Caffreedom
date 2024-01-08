@@ -131,7 +131,7 @@ export default function Calculator() {
         ) : (
           <Pressable style={styles.input} onPress={() => alert("Select drink and measurement before editing amount")}>
             <View pointerEvents="none">
-              <TextInput style={styles.amount} returnKeyType={"done"} editable={false} placeholder="Amount"></TextInput>
+              <TextInput editable={false} placeholder="Amount"></TextInput>
             </View>
           </Pressable>
         )}
@@ -209,9 +209,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     flexDirection: "row",
     alignItems: "center",
-    zIndex: 1,
-  },
-  amount: {
     zIndex: 1,
   },
   dropdown: {
