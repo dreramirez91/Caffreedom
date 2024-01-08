@@ -199,9 +199,11 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     width: "45%",
     padding: 10,
+    zIndex: 1,
   },
   dropdown: {
     marginTop: 10,
+    zIndex: 100,
   },
   howMuchOpen: {
     zIndex: 100,
@@ -211,7 +213,6 @@ const styles = StyleSheet.create({
   },
   howMuchClosed: {
     marginTop: 10,
-    zIndex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
   },
