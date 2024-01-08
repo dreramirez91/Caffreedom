@@ -4,7 +4,7 @@ import * as SecureStore from "expo-secure-store";
 import { Button } from "react-native-paper";
 
 export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible, setSignUpSuccessful }) {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -16,7 +16,7 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
   const handleSubmit = async (e) => {
     const data = {};
     data.username = username.toLowerCase();
-    data.password = password.toLowerCase();
+    data.password = password;
     data.password_confirmation = confirmPassword;
     const signUpUrl = `${apiUrl}/users/signup/`;
     const fetchConfig = {
