@@ -8,7 +8,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Divider, Button } from "react-native-paper";
 
 export default function Calculator() {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
   const [drink, setDrink] = useState("");

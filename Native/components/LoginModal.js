@@ -4,7 +4,7 @@ import * as SecureStore from "expo-secure-store";
 import { Button } from "react-native-paper";
 
 export default function LoginModal({ loginModalVisible, setLoginModalVisible, setLoginSuccessful }) {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");

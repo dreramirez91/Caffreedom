@@ -8,7 +8,7 @@ import { Divider } from "react-native-paper";
 import { ActivityIndicator } from "react-native-paper";
 
 export default function CaffeineTable() {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
   const tableHead = ["Drink", "Amount, tap to edit", "Caffeine content", "Date", "Delete"];
