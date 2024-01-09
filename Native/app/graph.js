@@ -116,8 +116,8 @@ export default function Graph() {
               },
             ],
           }}
-          width={Dimensions.get("window").width}
-          height={220}
+          width={Dimensions.get("window").width - 10}
+          height={225}
           chartConfig={{
             horizontalOffset: 0,
             backgroundColor: "#e26a00",
