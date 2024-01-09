@@ -5,7 +5,7 @@ import background from "../assets/background.jpeg";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, ImageBackground, StyleSheet, Platform } from "react-native";
 import { PaperProvider } from "react-native-paper";
-import { useFonts, CrimsonPro_400Regular, CrimsonPro_600SemiBold } from "@expo-google-fonts/crimson-pro";
+import { useFonts, CrimsonPro_400Regular, CrimsonPro_600SemiBold, CrimsonPro_400Regular_Italic } from "@expo-google-fonts/crimson-pro";
 import { LogBox } from "react-native";
 
 LogBox.ignoreAllLogs();
@@ -14,6 +14,7 @@ export default function appLayout() {
   const [fontsLoaded, fontError] = useFonts({
     CrimsonPro_400Regular,
     CrimsonPro_600SemiBold,
+    CrimsonPro_400Regular_Italic,
   });
 
   const onLayoutRootView = useCallback(async () => {

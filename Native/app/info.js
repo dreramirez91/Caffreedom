@@ -56,6 +56,7 @@ export default function Info() {
                   {"\n\n"}
                   If you have any questions or concerns about this Privacy Policy, please contact us at caffreedom@gmail.com.
                   {"\n\n"}
+                  <Text style={styles.lastUpdated}>Last Updated: January 9th, 2024</Text>
                 </>
               }
             />
@@ -79,6 +80,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: { fontSize: 30, fontFamily: "CrimsonPro_400Regular", color: "rgba(242, 255, 99, 1)" },
   subSectionHeader: { fontFamily: "CrimsonPro_600SemiBold", fontSize: 22, textDecorationLine: "underline" },
+  lastUpdated: { fontFamily: "CrimsonPro_400Regular_Italic", fontSize: 18 },
+
   accordianTitle: { fontSize: 24, fontFamily: "CrimsonPro_400Regular", color: "rgba(157, 108, 255, 1)" },
   description: { fontSize: 18, fontFamily: "CrimsonPro_400Regular", color: "rgba(242, 255, 99, 1)" },
 });
