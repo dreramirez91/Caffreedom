@@ -66,7 +66,7 @@ export default function CaffeineTable() {
           method: "delete",
           headers: {
             "Content-type": "application/json",
-            Authentication: result,
+            Authorization: result,
           },
           body: JSON.stringify(data),
         };
@@ -108,7 +108,7 @@ export default function CaffeineTable() {
           method: "patch",
           headers: {
             "Content-type": "application/json",
-            Authentication: result,
+            Authorization: result,
           },
           body: JSON.stringify(data),
         };
@@ -137,7 +137,7 @@ export default function CaffeineTable() {
           method: "get",
           headers: {
             "Content-Type": "application/json",
-            Authentication: result,
+            Authorization: result,
           },
         };
         const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
