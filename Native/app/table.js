@@ -5,6 +5,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 import { TextInput } from "react-native-gesture-handler";
 import { caffeineContent } from "../caffeineContent";
 import { Divider } from "react-native-paper";
+import { LogBox } from "react-native";
 
 export default function CaffeineTable() {
   const apiUrl = "http://192.168.86.102:8000";
