@@ -1,14 +1,56 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable, TextInput } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { List } from "react-native-paper";
+import { Modal, Portal, List, Button } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";
-import { Redirect } from "expo-router";
+import { useRouter } from "expo-router";
+import { Row } from "react-native-table-component";
 
 export default function Info() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
+  const router = useRouter();
+  const [visible, setVisible] = useState(false);
+  const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const handleClose = () => {
+    // setSignUpModalVisible(!signUpModalVisible);
+    setUsername("");
+    setError("");
+  };
+
+  async function deleteUser(key) {
+    console.log("SUP");
+    try {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        const fetchConfig = {
+          method: "delete",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: result,
+          },
+        };
+        const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
+        if (response.ok) {
+          const data = await response.json();
+          SecureStore.deleteItemAsync("token");
+          router.replace("/home");
+          return;
+        } else {
+          console.log("Delete failed");
+        }
+      } else {
+        console.log("Could not retrieve token from store for delete request");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function deleteUser(key) {
     try {
@@ -100,9 +142,38 @@ export default function Info() {
               descriptionNumberOfLines={99}
               description={
                 <>
-                  <Pressable onPress={() => deleteUser("token")}>
+                  <Pressable onPress={() => showModal(true)}>
                     <Text style={styles.deleteYourAccount}>Click here to delete your account and all of its associated records.</Text>
                   </Pressable>
+                  <View style={styles.centeredView}>
+                    <Portal>
+                      <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
+                        <Text style={styles.modalHeader}>Are you sure?</Text>
+                        <View style={styles.inputs}>
+                          <TextInput style={styles.input} onChangeText={setUsername} placeholder="Enter your username to confirm" value={username}></TextInput>
+                          {error ? (
+                            <View
+                              styles={{
+                                borderWidth: 10,
+                                borderColor: "orange",
+                                borderStyle: "solid",
+                              }}
+                            >
+                              <Text style={styles.errorText}>{error}</Text>
+                            </View>
+                          ) : null}
+                        </View>
+                        <View style={styles.buttons}>
+                          <Button onPress={() => handleSubmit()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                            Delete my Account
+                          </Button>
+                          <Button onPress={() => setVisible(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                            Cancel
+                          </Button>
+                        </View>
+                      </Modal>
+                    </Portal>
+                  </View>
                 </>
               }
             />
@@ -130,11 +201,49 @@ const styles = StyleSheet.create({
   accordianTitle: { fontSize: 24, fontFamily: "CrimsonPro_400Regular", color: "rgba(157, 108, 255, 1)" },
   description: { fontSize: 18, fontFamily: "CrimsonPro_400Regular", color: "rgba(242, 255, 99, 1)" },
   deleteYourAccount: {
-    color: "rgba(255, 99, 99, 1)",
+    color: "rgba(242, 255, 99, 1)",
     textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textDecorationLine: "underline",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 22,
+  },
+  modalHeader: {
+    textAlign: "center",
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 22,
+    padding: 10,
+  },
+  input: {
+    color: "black",
+    fontFamily: "CrimsonPro_400Regular",
+    borderRadius: 8,
+    borderColor: "rgba(242, 255, 99, 1)",
+    backgroundColor: "white",
+    borderWidth: 1,
+    padding: 10,
+    margin: 10,
+    fontSize: 18,
+  },
+  containerStyle: {
+    margin: 20,
+    backgroundColor: "rgba(157, 108, 255, 1)",
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    padding: 10,
   },
 });
