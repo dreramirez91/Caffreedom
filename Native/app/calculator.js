@@ -126,7 +126,15 @@ export default function Calculator() {
       />
       <Text style={styles.marginText}>How much?</Text>
       <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
-        <TextInput style={styles.input} returnKeyType={"done"} editable={drink && measurement ? true : false} onChangeText={onChangeAmount} keyboardType="numeric" value={amount.toString()} placeholder="Amount"></TextInput>
+        {drink && measurement ? (
+          <TextInput style={styles.input} returnKeyType={"done"} editable={true} onChangeText={onChangeAmount} keyboardType="numeric" value={amount.toString()} placeholder="Amount"></TextInput>
+        ) : (
+          <Pressable style={styles.input} onPress={() => alert("Select drink and measurement before editing amount")}>
+            <View pointerEvents="none">
+              <TextInput editable={false} placeholder="Amount"></TextInput>
+            </View>
+          </Pressable>
+        )}
         <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0 }} placeholder="Unit of measurement" />
       </View>
       <Divider style={{ margin: 12 }} horizontalInset="true" />
@@ -198,10 +206,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderWidth: 0,
     width: "45%",
-    padding: 10,
+    paddingLeft: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    zIndex: 1,
   },
   dropdown: {
     marginTop: 10,
+    zIndex: 100,
   },
   howMuchOpen: {
     zIndex: 100,
@@ -211,7 +223,6 @@ const styles = StyleSheet.create({
   },
   howMuchClosed: {
     marginTop: 10,
-    zIndex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
   },

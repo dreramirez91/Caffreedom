@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
-import { ActivityIndicator } from "react-native-paper";
+import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 import { AntDesign } from "@expo/vector-icons";
@@ -116,8 +115,8 @@ export default function Graph() {
               },
             ],
           }}
-          width={Dimensions.get("window").width}
-          height={220}
+          width={Dimensions.get("window").width - 10}
+          height={225}
           chartConfig={{
             horizontalOffset: 0,
             backgroundColor: "#e26a00",

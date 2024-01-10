@@ -58,16 +58,6 @@ def signout(request):
 def signup(request):
     username = request.data.get("username")
     password = request.data.get("password")
-    allowed_special_characters = ["@", ".", "+", "-", "_"]
-    for char in password:
-        if not char.isalnum():
-            if char not in allowed_special_characters:
-                return Response(
-                    {
-                        "error": "Username may only contain the following special characters: @ . + - _"
-                    },
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                )
     if len(username) < 7:
         return Response(
             {"error": "Username must be at least 7 characters"},

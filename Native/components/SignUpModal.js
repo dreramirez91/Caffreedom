@@ -16,7 +16,7 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
   const handleSubmit = async (e) => {
     const data = {};
     data.username = username.toLowerCase();
-    data.password = password.toLowerCase();
+    data.password = password;
     data.password_confirmation = confirmPassword;
     const signUpUrl = `${apiUrl}/users/signup/`;
     const fetchConfig = {
