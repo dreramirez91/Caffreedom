@@ -10,7 +10,7 @@ from decimal import Decimal
 
 class CaffeineIntakesEncoder(ModelEncoder):
     model = CaffeineIntake
-    properties = ["id", "amount", "date", "caffeine", "type", "measurement"]
+    properties = ["id", "amount", "date", "caffeine", "type", "measurement", "notes"]
     encoders = {"amount": DecimalEncoder()}
 
 
@@ -26,6 +26,7 @@ def api_list_caffeine_intake(request):
         amount = Decimal(data["amount"])
         caffeine = data["caffeine"]
         date = data["date"]
+        notes = data["notes"]
         type = data["type"]
         measurement = data["measurement"]
         amount = data["amount"]
@@ -33,6 +34,7 @@ def api_list_caffeine_intake(request):
             amount=amount,
             date=date,
             type=type,
+            notes=notes,
             caffeine=caffeine,
             measurement=measurement,
         )
