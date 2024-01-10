@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Text, View, Pressable, ScrollView, Alert } from "react-native";
+import { StyleSheet, Text, View, Pressable, ActivityIndicator, ScrollView, Alert } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { TextInput } from "react-native-gesture-handler";
 import { caffeineContent } from "../caffeineContent";
 import { Divider } from "react-native-paper";
-import { ActivityIndicator } from "react-native-paper";
 
 export default function CaffeineTable() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
