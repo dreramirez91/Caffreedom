@@ -22,12 +22,11 @@ export default function Info() {
             "Content-type": "application/json",
             Authorization: result,
           },
-          body: JSON.stringify(data),
         };
         const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
-          console.log("data");
+          SecureStore.deleteItemAsync("token");
           router.replace("/home");
           return;
         } else {
