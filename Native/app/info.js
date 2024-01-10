@@ -12,6 +12,7 @@ export default function Info() {
   const handlePress = () => setExpanded(!expanded);
   const router = useRouter();
   const [visible, setVisible] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const showModal = () => setVisible(true);
@@ -20,6 +21,18 @@ export default function Info() {
     setError("");
     setVisible(false);
   };
+  async function fetchUser(key) {
+    let result = await SecureStore.getItemAsync(key);
+    if (result) {
+      setLoggedIn(true);
+    } else {
+      console.log("Could not retrieve token from store");
+    }
+  }
+
+  useEffect(() => {
+    fetchUser("token");
+  }, []);
 
   async function deleteUser(key) {
     try {
@@ -39,6 +52,7 @@ export default function Info() {
         const data = await response.json();
         if (response.ok) {
           SecureStore.deleteItemAsync("token");
+          setLoggedIn(false);
           router.replace("/home");
         } else {
           setError(data.Error);
@@ -107,42 +121,44 @@ export default function Info() {
           </List.Accordion>
         </List.AccordionGroup>
       </List.Section>
-      <List.Section titleStyle={styles.sectionTitle} title="About You">
-        <List.AccordionGroup>
-          <List.Accordion id="1" titleStyle={styles.accordianTitle} title="Delete your account" left={(props) => <List.Icon {...props} icon="" />} expanded={expanded} onPress={handlePress}>
-            <List.Item
-              descriptionNumberOfLines={99}
-              description={
-                <>
-                  <Pressable onPress={() => showModal(true)}>
-                    <Text style={styles.deleteYourAccount}>Click here to delete your account and all of its associated records.</Text>
-                  </Pressable>
-                  <View style={styles.centeredView}>
-                    <Portal>
-                      <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
-                        <Text style={styles.modalHeader}>Are you sure?</Text>
+      {loggedIn ? (
+        <List.Section titleStyle={styles.sectionTitle} title="About You">
+          <List.AccordionGroup>
+            <List.Accordion id="1" titleStyle={styles.accordianTitle} title="Delete your account" left={(props) => <List.Icon {...props} icon="" />} expanded={expanded} onPress={handlePress}>
+              <List.Item
+                descriptionNumberOfLines={99}
+                description={
+                  <>
+                    <Pressable onPress={() => showModal(true)}>
+                      <Text style={styles.deleteYourAccount}>Click here to delete your account and all of its associated records.</Text>
+                    </Pressable>
+                    <View style={styles.centeredView}>
+                      <Portal>
+                        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
+                          <Text style={styles.modalHeader}>Are you sure?</Text>
 
-                        <View>
-                          <TextInput style={styles.input} onChangeText={setUsername} placeholder="Enter your username to confirm" value={username}></TextInput>
-                          {error ? <Text style={styles.errorText}>{error}</Text> : null}
-                        </View>
-                        <View style={styles.buttons}>
-                          <Button onPress={() => deleteUser("token")} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
-                            Delete my Account
-                          </Button>
-                          <Button onPress={() => hideModal()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
-                            Cancel
-                          </Button>
-                        </View>
-                      </Modal>
-                    </Portal>
-                  </View>
-                </>
-              }
-            />
-          </List.Accordion>
-        </List.AccordionGroup>
-      </List.Section>
+                          <View>
+                            <TextInput style={styles.input} onChangeText={setUsername} placeholder="Enter your username to confirm" value={username}></TextInput>
+                            {error ? <Text style={styles.errorText}>{error}</Text> : null}
+                          </View>
+                          <View style={styles.buttons}>
+                            <Button onPress={() => deleteUser("token")} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                              Delete my Account
+                            </Button>
+                            <Button onPress={() => hideModal()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                              Cancel
+                            </Button>
+                          </View>
+                        </Modal>
+                      </Portal>
+                    </View>
+                  </>
+                }
+              />
+            </List.Accordion>
+          </List.AccordionGroup>
+        </List.Section>
+      ) : null}
     </ScrollView>
   );
 }

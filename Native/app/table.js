@@ -5,8 +5,10 @@ import { Table, Row, Rows } from "react-native-table-component";
 import { TextInput } from "react-native-gesture-handler";
 import { caffeineContent } from "../caffeineContent";
 import { Divider } from "react-native-paper";
+import { LogBox } from "react-native";
 
 export default function CaffeineTable() {
+  LogBox.ignoreLogs(["Invalid prop textStyle of type array supplied to Cell"]);
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
