@@ -107,6 +107,7 @@ export default function Info() {
           </List.Accordion>
         </List.AccordionGroup>
       </List.Section>
+
       <List.Section titleStyle={styles.sectionTitle} title="About You">
         <List.AccordionGroup>
           <List.Accordion id="1" titleStyle={styles.accordianTitle} title="Delete your account" left={(props) => <List.Icon {...props} icon="" />} expanded={expanded} onPress={handlePress}>
@@ -120,9 +121,9 @@ export default function Info() {
                   <View style={styles.centeredView}>
                     <Portal>
                       <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
-                        <Text style={styles.deleteYourAccount}>Are you sure?</Text>
+                        <Text style={styles.modalHeader}>Are you sure?</Text>
                         <View style={styles.inputs}>
-                          <TextInput style={styles.input} onChangeText={setUsername} placeholder="Username" value={username}></TextInput>
+                          <TextInput style={styles.input} onChangeText={setUsername} placeholder="Enter your username to confirm" value={username}></TextInput>
                           {error ? (
                             <View
                               styles={{
@@ -173,12 +174,20 @@ const styles = StyleSheet.create({
   accordianTitle: { fontSize: 24, fontFamily: "CrimsonPro_400Regular", color: "rgba(157, 108, 255, 1)" },
   description: { fontSize: 18, fontFamily: "CrimsonPro_400Regular", color: "rgba(242, 255, 99, 1)" },
   deleteYourAccount: {
-    color: "rgba(255, 99, 99, 1)",
+    color: "rgba(242, 255, 99, 1)",
     textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textDecorationLine: "underline",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 22,
+  },
+  modalHeader: {
+    textAlign: "center",
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 22,
+    padding: 10,
   },
   input: {
     color: "black",
@@ -187,7 +196,6 @@ const styles = StyleSheet.create({
     borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: "white",
     borderWidth: 1,
-    width: "75%",
     padding: 10,
     margin: 10,
     fontSize: 18,
@@ -196,9 +204,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "rgba(157, 108, 255, 1)",
     borderRadius: 20,
-    width: "80%",
     padding: 35,
-
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -211,5 +217,6 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: "row",
     justifyContent: "space-evenly",
+    padding: 10,
   },
 });
