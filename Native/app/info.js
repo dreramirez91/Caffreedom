@@ -102,9 +102,9 @@ export default function Info() {
               descriptionNumberOfLines={99}
               description={
                 <>
-                  <Button onPress={() => deleteUser("token")}>
+                  <Pressable onPress={() => deleteUser("token")}>
                     <Text style={styles.deleteYourAccount}>Click here to delete your account and all of its associated records.</Text>
-                  </Button>
+                  </Pressable>
                 </>
               }
             />
