@@ -2,11 +2,43 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { List } from "react-native-paper";
+import * as SecureStore from "expo-secure-store";
+import { useRouter, useFocusEffect } from "expo-router";
 
 export default function Info() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
+  const router = useRouter();
+
+  async function deleteUser(key) {
+    try {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        const fetchConfig = {
+          method: "delete",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: result,
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("data");
+          router.replace("/home");
+          return;
+        } else {
+          console.log("Delete failed");
+        }
+      } else {
+        console.log("Could not retrieve token from store for delete request");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <ScrollView style={styles.infoContainer}>
@@ -63,6 +95,22 @@ export default function Info() {
           </List.Accordion>
         </List.AccordionGroup>
       </List.Section>
+      <List.Section titleStyle={styles.sectionTitle} title="About You">
+        <List.AccordionGroup>
+          <List.Accordion id="1" titleStyle={styles.accordianTitle} title="Delete your account" left={(props) => <List.Icon {...props} icon="" />} expanded={expanded} onPress={handlePress}>
+            <List.Item
+              descriptionNumberOfLines={99}
+              description={
+                <>
+                  <Pressable onPress={() => deleteUser("token")}>
+                    <Text style={styles.deleteYourAccount}>Click here to delete your account and all of its associated records.</Text>
+                  </Pressable>
+                </>
+              }
+            />
+          </List.Accordion>
+        </List.AccordionGroup>
+      </List.Section>
     </ScrollView>
   );
 }
@@ -79,9 +127,16 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   sectionTitle: { fontSize: 30, fontFamily: "CrimsonPro_400Regular", color: "rgba(242, 255, 99, 1)" },
-  subSectionHeader: { fontFamily: "CrimsonPro_600SemiBold", fontSize: 22, textDecorationLine: "underline" },
+  subSectionHeader: { fontFamily: "CrimsonPro_600SemiBold", fontSize: 22, textDecorationLine: "underline", color: "rgba(242, 255, 99, 1)" },
   lastUpdated: { fontFamily: "CrimsonPro_400Regular_Italic", fontSize: 18 },
-
   accordianTitle: { fontSize: 24, fontFamily: "CrimsonPro_400Regular", color: "rgba(157, 108, 255, 1)" },
   description: { fontSize: 18, fontFamily: "CrimsonPro_400Regular", color: "rgba(242, 255, 99, 1)" },
+  deleteYourAccount: {
+    color: "rgba(255, 99, 99, 1)",
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 22,
+  },
 });
