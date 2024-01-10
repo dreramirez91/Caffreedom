@@ -108,6 +108,13 @@ def signup(request):
 
 @api_view(["DELETE"])
 def delete(request):
+    username = request.data.get("username")
     user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
-    number_deleted, _ = user.delete()
-    return JsonResponse({"Delete": number_deleted}, status=status.HTTP_200_OK)
+    if username == str(user):
+        number_deleted, _ = user.delete()
+        return JsonResponse({"Delete": number_deleted}, status=status.HTTP_200_OK)
+    else:
+        return JsonResponse(
+            {"Error": "Please check the spelling of your username."},
+            status=status.HTTP_400_BAD_REQUEST,
+        )

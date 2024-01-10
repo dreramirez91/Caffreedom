@@ -7,53 +7,23 @@ import { useRouter } from "expo-router";
 import { Row } from "react-native-table-component";
 
 export default function Info() {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
-
   const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const handleClose = () => {
-    // setSignUpModalVisible(!signUpModalVisible);
+  const hideModal = () => {
     setUsername("");
     setError("");
+    setVisible(false);
   };
 
   async function deleteUser(key) {
-    console.log("SUP");
     try {
-      let result = await SecureStore.getItemAsync(key);
-      if (result) {
-        const fetchConfig = {
-          method: "delete",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: result,
-          },
-        };
-        const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
-        if (response.ok) {
-          const data = await response.json();
-          SecureStore.deleteItemAsync("token");
-          router.replace("/home");
-          return;
-        } else {
-          console.log("Delete failed");
-        }
-      } else {
-        console.log("Could not retrieve token from store for delete request");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function deleteUser(key) {
-    try {
+      data = { username: username.toLowerCase() };
       let result = await SecureStore.getItemAsync(key);
       if (result) {
         const fetchConfig = {
@@ -65,11 +35,13 @@ export default function Info() {
           body: JSON.stringify(data),
         };
         const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
+        const data = await response.json();
         if (response.ok) {
-          const data = await response.json();
-          console.log("data");
-          return <Redirect href="/home" />;
+          SecureStore.deleteItemAsync("token");
+          router.replace("/home");
+          return;
         } else {
+          setError(data.error);
           console.log("Delete failed");
         }
       } else {
@@ -149,25 +121,16 @@ export default function Info() {
                     <Portal>
                       <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
                         <Text style={styles.modalHeader}>Are you sure?</Text>
-                        <View style={styles.inputs}>
+
+                        <View>
                           <TextInput style={styles.input} onChangeText={setUsername} placeholder="Enter your username to confirm" value={username}></TextInput>
-                          {error ? (
-                            <View
-                              styles={{
-                                borderWidth: 10,
-                                borderColor: "orange",
-                                borderStyle: "solid",
-                              }}
-                            >
-                              <Text style={styles.errorText}>{error}</Text>
-                            </View>
-                          ) : null}
+                          {error ? <Text style={styles.errorText}>{error}</Text> : null}
                         </View>
                         <View style={styles.buttons}>
-                          <Button onPress={() => handleSubmit()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                          <Button onPress={() => deleteUser("token")} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
                             Delete my Account
                           </Button>
-                          <Button onPress={() => setVisible(false)} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                          <Button onPress={() => hideModal()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
                             Cancel
                           </Button>
                         </View>
@@ -245,5 +208,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     padding: 10,
+  },
+  errorText: {
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "CrimsonPro_400Regular",
+    textAlign: "center",
+    fontSize: 18,
   },
 });
