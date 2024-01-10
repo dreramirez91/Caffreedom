@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Modal, TextInput } from "react-native";
 import * as SecureStore from "expo-secure-store";
-import { Button } from "react-native-paper";
+import { Button, HelperText } from "react-native-paper";
 
 export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible, setSignUpSuccessful }) {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 16,
   },
   submitStyle: {
     color: "rgba(242, 255, 99, 1)",
