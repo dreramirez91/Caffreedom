@@ -113,3 +113,9 @@ def signup(request):
     login(request, user)
     token, _ = Token.objects.get_or_create(user=user)
     return Response({"token": token.key}, status=status.HTTP_200_OK)
+
+
+@api_view(["DELETE"])
+def delete(request):
+    print("\n\nDELETE REQUEST DATA:", request.data, "\n\n")
+    return JsonResponse({"Delete": "In Progress"})
