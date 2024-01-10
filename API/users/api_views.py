@@ -8,6 +8,7 @@ from .serializers import UserSerializer
 from django.http import JsonResponse
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
+import json
 
 
 class UserList(generics.ListCreateAPIView):
@@ -103,3 +104,10 @@ def signup(request):
     login(request, user)
     token, _ = Token.objects.get_or_create(user=user)
     return Response({"token": token.key}, status=status.HTTP_200_OK)
+
+
+@api_view(["DELETE"])
+def delete(request):
+    user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
+    number_deleted, _ = user.delete()
+    return JsonResponse({"Delete": number_deleted}, status=status.HTTP_200_OK)
