@@ -35,7 +35,7 @@ export default function Home() {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        Authentication: token,
+        Authorization: token,
         Referer: `${apiUrl}/`,
       },
     };

@@ -90,7 +90,7 @@ export default function Calculator() {
       method: "post",
       headers: {
         "Content-type": "application/json",
-        Authentication: token,
+        Authorization: token,
       },
       body: JSON.stringify(data),
     };

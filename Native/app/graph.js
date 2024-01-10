@@ -47,7 +47,7 @@ export default function Graph() {
           method: "get",
           headers: {
             "Content-Type": "application/json",
-            Authentication: result,
+            Authorization: result,
           },
         };
         const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
