@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { List } from "react-native-paper";
+import { Button, List } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";
 import { useRouter, useFocusEffect } from "expo-router";
 
@@ -12,6 +12,7 @@ export default function Info() {
   const router = useRouter();
 
   async function deleteUser(key) {
+    console.log("SUP");
     try {
       let result = await SecureStore.getItemAsync(key);
       if (result) {
@@ -102,9 +103,9 @@ export default function Info() {
               descriptionNumberOfLines={99}
               description={
                 <>
-                  <Pressable onPress={() => deleteUser("token")}>
+                  <Button onPress={() => deleteUser("token")}>
                     <Text style={styles.deleteYourAccount}>Click here to delete your account and all of its associated records.</Text>
-                  </Pressable>
+                  </Button>
                 </>
               }
             />
