@@ -7,7 +7,7 @@ import { useRouter } from "expo-router";
 import { Row } from "react-native-table-component";
 
 export default function Info() {
-  const apiUrl = "http://192.168.86.102:8000";
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function Info() {
 
   async function deleteUser(key) {
     try {
-      data = { username: username.toLowerCase() };
+      confirmation = { username: username.toLowerCase() };
       let result = await SecureStore.getItemAsync(key);
       if (result) {
         const fetchConfig = {
@@ -32,16 +32,16 @@ export default function Info() {
             "Content-type": "application/json",
             Authorization: result,
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(confirmation),
         };
         const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
+        console.log(response);
         const data = await response.json();
         if (response.ok) {
           SecureStore.deleteItemAsync("token");
           router.replace("/home");
-          return;
         } else {
-          setError(data.error);
+          setError(data.Error);
           console.log("Delete failed");
         }
       } else {
