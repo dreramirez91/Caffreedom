@@ -174,8 +174,9 @@ export default function CaffeineTable() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
-          setOriginalNote(currentNote);
+          setOriginalNote("");
           setEdit(false);
+          populateData("token");
         } else {
           console.log("Edit failed");
         }
