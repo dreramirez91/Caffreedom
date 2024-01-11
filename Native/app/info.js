@@ -4,7 +4,6 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Modal, Portal, List, Button } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
-import { Row } from "react-native-table-component";
 
 export default function Info() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;

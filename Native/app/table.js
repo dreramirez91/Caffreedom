@@ -7,6 +7,7 @@ import { caffeineContent } from "../caffeineContent";
 import { Divider, Portal, Modal, Button } from "react-native-paper";
 import { LogBox } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 export default function CaffeineTable() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -314,10 +315,16 @@ export default function CaffeineTable() {
         </Table>
         <Portal>
           <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
-            <Text style={styles.modalHeader}>Note</Text>
-            <View>
-              <TextInput style={styles.notesInput} maxLength={1000} editable={edit ? true : false} onChangeText={setCurrentNote} placeholder="Notes" value={currentNote}></TextInput>
-            </View>
+            <Text style={styles.modalHeader}>
+              <Feather name="sun" size={24} color="rgba(242, 255, 99, 1)" />
+            </Text>
+            {edit ? (
+              <View>
+                <TextInput style={styles.notesInput} maxLength={1000} editable={edit ? true : false} onChangeText={setCurrentNote} placeholder="Notes" value={currentNote}></TextInput>
+              </View>
+            ) : (
+              <Text style={styles.modalText}>{currentNote ? currentNote : "No notes added for this date."}</Text>
+            )}
             <View style={styles.buttons}>
               {!edit ? (
                 <Button
@@ -414,8 +421,15 @@ const styles = StyleSheet.create({
   modalHeader: {
     textAlign: "center",
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "CrimsonPro_400Regular",
+    fontFamily: "CrimsonPro_400Regular_Italic",
     fontSize: 22,
+    padding: 10,
+  },
+  modalText: {
+    textAlign: "center",
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 20,
     padding: 10,
   },
   buttons: {
@@ -426,6 +440,18 @@ const styles = StyleSheet.create({
   notesInput: {
     color: "black",
     fontFamily: "CrimsonPro_400Regular",
+    borderRadius: 8,
+    borderColor: "rgba(242, 255, 99, 1)",
+    backgroundColor: "white",
+    borderWidth: 1,
+    padding: 10,
+    margin: 10,
+    fontSize: 18,
+  },
+  notesView: {
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "CrimsonPro_400Regular",
+    backgroundColor: "rgba(157, 108, 255, 1)",
     borderRadius: 8,
     borderColor: "rgba(242, 255, 99, 1)",
     backgroundColor: "white",
