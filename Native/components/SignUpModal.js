@@ -147,9 +147,10 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "CrimsonPro_400Regular",
+    fontFamily: "CrimsonPro_400Regular_Italic",
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 18,
+    margin: 4,
   },
   submitStyle: {
     color: "rgba(242, 255, 99, 1)",

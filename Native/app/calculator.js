@@ -179,7 +179,7 @@ export default function Calculator() {
           </View>
         </>
       ) : null}
-      <Divider style={{ marginBottom: 12 }} horizontalInset="true" />
+      <Divider style={token ? { marginBottom: 12 } : { margin: 12 }} horizontalInset="true" />
       <Text style={styles.noMarginText}>You've consumed {parseInt(caffeine)} mg of caffeine.</Text>
       <View style={styles.calendar}></View>
       {token ? (

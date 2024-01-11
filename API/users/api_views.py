@@ -59,21 +59,21 @@ def signout(request):
 def signup(request):
     username = request.data.get("username")
     password = request.data.get("password")
-    # if len(username) < 7:
-    #     return Response(
-    #         {"error": "Username must be at least 7 characters"},
-    #         status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-    #     )
-    # elif username.isalpha():
-    #     return Response(
-    #         {"error": "Username must contain at least one number"},
-    #         status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-    #     )
-    # elif username.isdigit():
-    #     return Response(
-    #         {"error": "Username must contain at least one letter"},
-    #         status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-    #     )
+    if len(username) < 7:
+        return Response(
+            {"error": "Username must be at least 7 characters"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+    elif username.isalpha():
+        return Response(
+            {"error": "Username must contain at least one number"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+    elif username.isdigit():
+        return Response(
+            {"error": "Username must contain at least one letter"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
     try:
         validate_password(password)
     except ValidationError as e:

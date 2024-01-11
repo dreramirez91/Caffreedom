@@ -9,7 +9,7 @@ import { LogBox } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function CaffeineTable() {
-  const apiUrl = "http://192.168.86.102:8000";
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
   const tableHead = ["Drink", "Amount,\nTap to edit", "Caffeine content", "Date", "Notes", "Delete"];
