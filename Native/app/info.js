@@ -4,7 +4,6 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Modal, Portal, List, Button } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
-import { Row } from "react-native-table-component";
 
 export default function Info() {
   const apiUrl = "http://192.168.86.102:8000";
@@ -13,30 +12,43 @@ export default function Info() {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
+  const [retrievedUsername, setRetrievedUsername] = useState("");
+  const [enteredUsername, setEnteredUsername] = useState("");
   const [error, setError] = useState("");
   const showModal = () => setVisible(true);
   const hideModal = () => {
-    setUsername("");
+    setEnteredUsername("");
     setError("");
     setVisible(false);
   };
-  async function fetchUser(key) {
+  async function getUsername(key) {
     let result = await SecureStore.getItemAsync(key);
     if (result) {
       setLoggedIn(true);
+      const fetchConfig = {
+        method: "get",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: result,
+        },
+      };
+      const response = await fetch(`${apiUrl}/users/get_username/`, fetchConfig);
+      if (response.ok) {
+        const data = await response.json();
+        setRetrievedUsername(data.username);
+      }
     } else {
       console.log("Could not retrieve token from store");
     }
   }
 
   useEffect(() => {
-    fetchUser("token");
+    getUsername("token");
   }, []);
 
   async function deleteUser(key) {
     try {
-      confirmation = { username: username.toLowerCase() };
+      confirmation = { enteredUsername: enteredUsername.toLowerCase() };
       let result = await SecureStore.getItemAsync(key);
       if (result) {
         const fetchConfig = {
@@ -48,7 +60,6 @@ export default function Info() {
           body: JSON.stringify(confirmation),
         };
         const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
-        console.log(response);
         const data = await response.json();
         if (response.ok) {
           SecureStore.deleteItemAsync("token");
@@ -136,8 +147,9 @@ export default function Info() {
                       <Portal>
                         <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
                           <Text style={styles.modalHeader}>Are you sure?</Text>
+                          <Text style={styles.modalBody}>Your username: {retrievedUsername}</Text>
                           <View>
-                            <TextInput style={styles.input} onChangeText={setUsername} placeholder="Enter your username to confirm" value={username}></TextInput>
+                            <TextInput style={styles.input} onChangeText={setEnteredUsername} placeholder="Enter your username to confirm" value={enteredUsername}></TextInput>
                             {error ? <Text style={styles.errorText}>{error}</Text> : null}
                           </View>
                           <View style={styles.buttons}>
@@ -191,6 +203,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "rgba(242, 255, 99, 1)",
     fontFamily: "CrimsonPro_400Regular",
+    fontSize: 22,
+    padding: 10,
+  },
+  modalBody: {
+    textAlign: "center",
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "CrimsonPro_400Regular_Italic",
     fontSize: 22,
     padding: 10,
   },
