@@ -23,6 +23,7 @@ API/Caffreedom/__pycache__/
 API/caffeine/__pycache__/
 TableData.js
 caffreedomData.xlsx
+home.js
 
 # env files
 */.env
