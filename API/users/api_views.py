@@ -118,3 +118,11 @@ def delete(request):
             {"Error": "Please check the spelling of your username."},
             status=status.HTTP_400_BAD_REQUEST,
         )
+
+
+@api_view(["GET"])
+def get_username(request):
+    print(request.META.get("HTTP_AUTHORIZATION"))
+    user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
+    print("\n\n", user, "\n\n")
+    return JsonResponse({"username": str(user)}, status=status.HTTP_200_OK)
