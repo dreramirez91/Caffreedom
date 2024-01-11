@@ -27,14 +27,14 @@ def signin(request):
     password = request.data.get("password")
     if not username and not password:
         return Response(
-            {"error": "Please enter a username & password"},
+            {"error": "Please enter a username & password."},
             status=status.HTTP_400_BAD_REQUEST,
         )
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
         return Response(
-            {"error": "Please create an account"}, status=status.HTTP_404_NOT_FOUND
+            {"error": "Please create an account."}, status=status.HTTP_404_NOT_FOUND
         )
     if user is not None:
         try:
@@ -42,7 +42,7 @@ def signin(request):
             login(request, user)
         except AttributeError:
             return Response(
-                {"error": "That password is incorrect"},
+                {"error": "That password is incorrect."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
     token, _ = Token.objects.get_or_create(user=user)
@@ -59,21 +59,21 @@ def signout(request):
 def signup(request):
     username = request.data.get("username")
     password = request.data.get("password")
-    if len(username) < 7:
-        return Response(
-            {"error": "Username must be at least 7 characters"},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        )
-    elif username.isalpha():
-        return Response(
-            {"error": "Username contain at least one number"},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        )
-    elif username.isdigit():
-        return Response(
-            {"error": "Username contain at least one letter"},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        )
+    # if len(username) < 7:
+    #     return Response(
+    #         {"error": "Username must be at least 7 characters"},
+    #         status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    #     )
+    # elif username.isalpha():
+    #     return Response(
+    #         {"error": "Username must contain at least one number"},
+    #         status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    #     )
+    # elif username.isdigit():
+    #     return Response(
+    #         {"error": "Username must contain at least one letter"},
+    #         status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    #     )
     try:
         validate_password(password)
     except ValidationError as e:
@@ -91,12 +91,12 @@ def signup(request):
         )
     if password != password_confirmation:
         return Response(
-            {"error": "Passwords do not match"},
+            {"error": "Passwords do not match."},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     if password == "":
         return Response(
-            {"error": "Please enter a password"},
+            {"error": "Please enter a password."},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     user = User.objects.create_user(username=username, password=password)
