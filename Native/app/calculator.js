@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { caffeineContent } from "../caffeineContent";
 import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -6,8 +6,14 @@ import { StyleSheet, Text, View, TextInput, Pressable, Alert } from "react-nativ
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Divider, Button, Portal, Modal } from "react-native-paper";
-
+import { NavigatorContext } from "expo-router";
+import { UserContext } from "./_layout";
 export default function Calculator() {
+  const test = useContext(UserContext);
+
+  useEffect(() => {
+    console.log(test);
+  }, []);
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
