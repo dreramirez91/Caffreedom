@@ -144,9 +144,10 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "CrimsonPro_400Regular",
+    fontFamily: "CrimsonPro_400Regular_Italic",
     textAlign: "center",
     fontSize: 18,
+    margin: 4,
   },
   input: {
     color: "black",
