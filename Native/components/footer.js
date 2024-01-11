@@ -12,7 +12,7 @@ export default function Footer() {
   if (fontsLoaded) {
     return (
       <View style={styles.footerContainer}>
-        <Link href="/home">
+        <Link href="/">
           <MaterialCommunityIcons name="home-outline" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
         <Link href="/calculator">
