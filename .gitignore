@@ -23,6 +23,5 @@ API/Caffreedom/__pycache__/
 API/caffeine/__pycache__/
 TableData.js
 caffreedomData.xlsx
-API/caffeine/migrations/__pycache__/0002_caffeineintake_notes.cpython-310.pyc
 # env files
 */.env
