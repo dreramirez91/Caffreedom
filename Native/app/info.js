@@ -130,7 +130,7 @@ export default function Info() {
                 description={
                   <>
                     <Pressable onPress={() => showModal(true)}>
-                      <Text style={styles.deleteYourAccount}>Click here to delete your account and all of its associated records.</Text>
+                      <Text style={styles.deleteYourAccount}>Click here to delete your account and all of its associated records. Note, once you have confirmed deletion, we will have no way to recover your records.</Text>
                     </Pressable>
                     <View style={styles.centeredView}>
                       <Portal>
@@ -181,10 +181,9 @@ const styles = StyleSheet.create({
   deleteYourAccount: {
     color: "rgba(242, 255, 99, 1)",
     textShadowColor: "rgba(0, 0, 0, 0.5)",
-    textDecorationLine: "underline",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
-    fontFamily: "CrimsonPro_400Regular",
+    fontFamily: "CrimsonPro_400Regular_Italic",
     fontSize: 22,
   },
   modalHeader: {
