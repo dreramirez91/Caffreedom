@@ -46,10 +46,15 @@ def api_list_caffeine_intake(request):
 def api_edit_caffeine_intake(request):
     user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
     data = json.loads(request.body)
-    amount = data["amount"]
-    id = data["id"]
-    caffeine = data["caffeine"]
-    CaffeineIntake.objects.filter(id=id).update(amount=amount, caffeine=caffeine)
+    if "notes" in data.keys():
+        notes = data["notes"]
+        id = data["id"]
+        CaffeineIntake.objects.filter(id=id).update(notes=notes)
+    else:
+        amount = data["amount"]
+        id = data["id"]
+        caffeine = data["caffeine"]
+        CaffeineIntake.objects.filter(id=id).update(amount=amount, caffeine=caffeine)
     intakes = user.caffeine_intakes.all()
     return JsonResponse({"intakes": intakes}, encoder=CaffeineIntakesEncoder)
 

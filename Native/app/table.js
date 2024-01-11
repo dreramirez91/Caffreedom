@@ -12,7 +12,7 @@ export default function CaffeineTable() {
   const apiUrl = "http://192.168.86.102:8000";
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
-  const tableHead = ["Drink", "Amount\n(Tap to edit)", "Caffeine content", "Date", "Notes", "Delete"];
+  const tableHead = ["Drink", "Amount,\nTap to edit", "Caffeine content", "Date", "Notes", "Delete"];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -21,9 +21,11 @@ export default function CaffeineTable() {
   const [newAmount, setNewAmount] = useState("0");
   const [edit, setEdit] = useState(false);
   const [currentNote, setCurrentNote] = useState(null);
+  const [originalNote, setOriginalNote] = useState(null);
   const [currentNoteId, setCurrentNoteId] = useState(null);
   const showNotesModal = (note, id) => {
     setCurrentNote(note);
+    setOriginalNote(note);
     setCurrentNoteId(id);
     setVisible(true);
   };
@@ -40,6 +42,12 @@ export default function CaffeineTable() {
   patchAmount.current = newAmount;
   const patchCaffeine = useRef();
   patchCaffeine.current = caffeine;
+
+  const formatDate = (date) => {
+    const dateSplit = date.split("-");
+    const year = dateSplit.shift();
+    return `${dateSplit[0]}-${dateSplit[1]}-${year.slice(2)}`;
+  };
 
   const twoOptionDeleteHandler = (intake, token) => {
     Alert.alert(
@@ -147,35 +155,36 @@ export default function CaffeineTable() {
     }
   }
 
-  async function editNote(id) {
-    console.log(id);
-    // try {
-    //   let result = await SecureStore.getItemAsync(key);
-    //   if (result) {
-    //     const data = {};
-    //     data.id = id;
-    //     data.notes = currentNote
-    //     const fetchConfig = {
-    //       method: "patch",
-    //       headers: {
-    //         "Content-type": "application/json",
-    //         Authorization: result,
-    //       },
-    //       body: JSON.stringify(data),
-    //     };
-    //     const response = await fetch(`${apiUrl}/caffeine/edit/`, fetchConfig);
-    //     if (response.ok) {
-    //       const data = await response.json();
-    //       setEditSuccessful(true);
-    //     } else {
-    //       console.log("Edit failed");
-    //     }
-    //   } else {
-    //     console.log("Could not retrieve token from store for delete request");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  async function editNote(id, key) {
+    try {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        const data = {};
+        data.id = id;
+        data.notes = currentNote;
+        const fetchConfig = {
+          method: "patch",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: result,
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch(`${apiUrl}/caffeine/edit/`, fetchConfig);
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setOriginalNote(currentNote);
+          setEdit(false);
+        } else {
+          console.log("Edit failed");
+        }
+      } else {
+        console.log("Could not retrieve token from store for delete request");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function populateData(key) {
@@ -199,6 +208,8 @@ export default function CaffeineTable() {
           const tableDataToSet = [];
           for (let intake of data.intakes) {
             const tableRow = [];
+            const date = formatDate(intake.date);
+            console.log(date);
             tableRow.push(
               intake.type,
               <View style={styles.amountStyle}>
@@ -206,7 +217,7 @@ export default function CaffeineTable() {
                 <Text style={styles.tableText}> {`${intake.amount === 1 ? intake.measurement.slice(0, intake.measurement.length - 1) : intake.measurement}`}</Text>
               </View>,
               `${intake.caffeine} mg`,
-              intake.date,
+              date,
               <Pressable
                 onPress={() => {
                   showNotesModal(intake.notes, intake.id);
@@ -221,7 +232,9 @@ export default function CaffeineTable() {
                   twoOptionDeleteHandler(intake.id, "token");
                 }}
               >
-                <Text style={styles.deleteText}>Delete</Text>
+                <Text style={styles.trashCan}>
+                  <MaterialCommunityIcons name="trash-can-outline" />
+                </Text>
               </Pressable>
             );
             tableDataToSet.push(tableRow);
@@ -320,7 +333,7 @@ export default function CaffeineTable() {
                 <>
                   <Button
                     onPress={() => {
-                      editNote(currentNoteId);
+                      editNote(currentNoteId, "token");
                     }}
                     mode="contained"
                     buttonColor="rgba(94, 65, 153, 1)"
@@ -330,6 +343,7 @@ export default function CaffeineTable() {
                   <Button
                     onPress={() => {
                       setEdit(false);
+                      setCurrentNote(originalNote);
                     }}
                     mode="contained"
                     buttonColor="rgba(94, 65, 153, 1)"
@@ -419,12 +433,9 @@ const styles = StyleSheet.create({
     margin: 10,
     fontSize: 18,
   },
-  deleteText: {
+  trashCan: {
     textAlign: "center",
     color: "rgba(255, 99, 99, 1)",
-    textShadowColor: "rgba(0, 0, 0, 0.5)",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 14,
   },
