@@ -4,24 +4,50 @@ import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { TextInput } from "react-native-gesture-handler";
 import { caffeineContent } from "../caffeineContent";
-import { Divider } from "react-native-paper";
+import { Divider, Portal, Modal, Button } from "react-native-paper";
 import { LogBox } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function CaffeineTable() {
-  LogBox.ignoreLogs(["Invalid prop textStyle of type array supplied to Cell"]);
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
-  const tableHead = ["Drink", "Amount\n(Tap to edit)", "Caffeine content", "Date", "Delete"];
+  const tableHead = ["Drink", "Amount,\nTap to edit", "Caffeine content", "Date", "Notes", "Delete"];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [editSuccessful, setEditSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [newAmount, setNewAmount] = useState("0");
+  const [edit, setEdit] = useState(false);
+  const [currentNote, setCurrentNote] = useState(null);
+  const [originalNote, setOriginalNote] = useState(null);
+  const [currentNoteId, setCurrentNoteId] = useState(null);
+  const showNotesModal = (note, id) => {
+    setCurrentNote(note);
+    setOriginalNote(note);
+    setCurrentNoteId(id);
+    setVisible(true);
+  };
+  const hideModal = () => {
+    setVisible(false);
+  };
+  const cancelNotes = () => {
+    setEdit(false);
+    setCurrentNote(null);
+    setCurrentNoteId(null);
+    setVisible(false);
+  };
   const patchAmount = useRef();
   patchAmount.current = newAmount;
   const patchCaffeine = useRef();
   patchCaffeine.current = caffeine;
+
+  const formatDate = (date) => {
+    const dateSplit = date.split("-");
+    const year = dateSplit.shift();
+    return `${dateSplit[0]}-${dateSplit[1]}-${year.slice(2)}`;
+  };
 
   const twoOptionDeleteHandler = (intake, token) => {
     Alert.alert(
@@ -129,6 +155,39 @@ export default function CaffeineTable() {
     }
   }
 
+  async function editNote(id, key) {
+    try {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        const data = {};
+        data.id = id;
+        data.notes = currentNote;
+        const fetchConfig = {
+          method: "patch",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: result,
+          },
+          body: JSON.stringify(data),
+        };
+        const response = await fetch(`${apiUrl}/caffeine/edit/`, fetchConfig);
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setOriginalNote("");
+          setEdit(false);
+          populateData("token");
+        } else {
+          console.log("Edit failed");
+        }
+      } else {
+        console.log("Could not retrieve token from store for delete request");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function populateData(key) {
     try {
       setDeleteSuccessful(false);
@@ -150,6 +209,8 @@ export default function CaffeineTable() {
           const tableDataToSet = [];
           for (let intake of data.intakes) {
             const tableRow = [];
+            const date = formatDate(intake.date);
+            console.log(date);
             tableRow.push(
               intake.type,
               <View style={styles.amountStyle}>
@@ -157,13 +218,24 @@ export default function CaffeineTable() {
                 <Text style={styles.tableText}> {`${intake.amount === 1 ? intake.measurement.slice(0, intake.measurement.length - 1) : intake.measurement}`}</Text>
               </View>,
               `${intake.caffeine} mg`,
-              intake.date,
+              date,
+              <Pressable
+                onPress={() => {
+                  showNotesModal(intake.notes, intake.id);
+                }}
+              >
+                <Text style={styles.tableText}>
+                  <MaterialCommunityIcons name="note" />
+                </Text>
+              </Pressable>,
               <Pressable
                 onPress={() => {
                   twoOptionDeleteHandler(intake.id, "token");
                 }}
               >
-                <Text style={styles.deleteText}>Delete</Text>
+                <Text style={styles.trashCan}>
+                  <MaterialCommunityIcons name="trash-can-outline" />
+                </Text>
               </Pressable>
             );
             tableDataToSet.push(tableRow);
@@ -181,6 +253,9 @@ export default function CaffeineTable() {
       console.log(error);
     }
   }
+  useEffect(() => {
+    console.log(intakes);
+  }, [intakes]);
 
   useEffect(() => {
     populateData("token");
@@ -237,6 +312,53 @@ export default function CaffeineTable() {
             }}
           />
         </Table>
+        <Portal>
+          <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
+            <Text style={styles.modalHeader}>Note</Text>
+            <View>
+              <TextInput style={styles.notesInput} maxLength={1000} editable={edit ? true : false} onChangeText={setCurrentNote} placeholder="Notes" value={currentNote}></TextInput>
+            </View>
+            <View style={styles.buttons}>
+              {!edit ? (
+                <Button
+                  onPress={() => {
+                    setEdit(true);
+                  }}
+                  mode="contained"
+                  buttonColor="rgba(94, 65, 153, 1)"
+                >
+                  Edit
+                </Button>
+              ) : null}
+              {edit ? (
+                <>
+                  <Button
+                    onPress={() => {
+                      editNote(currentNoteId, "token");
+                    }}
+                    mode="contained"
+                    buttonColor="rgba(94, 65, 153, 1)"
+                  >
+                    Save
+                  </Button>
+                  <Button
+                    onPress={() => {
+                      setEdit(false);
+                      setCurrentNote(originalNote);
+                    }}
+                    mode="contained"
+                    buttonColor="rgba(94, 65, 153, 1)"
+                  >
+                    Cancel Edit
+                  </Button>
+                </>
+              ) : null}
+              <Button onPress={() => cancelNotes()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                Close
+              </Button>
+            </View>
+          </Modal>
+        </Portal>
       </ScrollView>
     );
   }
@@ -289,13 +411,48 @@ const styles = StyleSheet.create({
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 14,
   },
-  deleteText: {
+  modalHeader: {
+    textAlign: "center",
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 22,
+    padding: 10,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    padding: 10,
+  },
+  notesInput: {
+    color: "black",
+    fontFamily: "CrimsonPro_400Regular",
+    borderRadius: 8,
+    borderColor: "rgba(242, 255, 99, 1)",
+    backgroundColor: "white",
+    borderWidth: 1,
+    padding: 10,
+    margin: 10,
+    fontSize: 18,
+  },
+  trashCan: {
     textAlign: "center",
     color: "rgba(255, 99, 99, 1)",
-    textShadowColor: "rgba(0, 0, 0, 0.5)",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 14,
+  },
+  containerStyle: {
+    margin: 20,
+    backgroundColor: "rgba(157, 108, 255, 1)",
+    borderRadius: 20,
+    padding: 30,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });

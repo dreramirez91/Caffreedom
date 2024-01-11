@@ -7,6 +7,7 @@ class CaffeineIntake(models.Model):
     caffeine = models.PositiveSmallIntegerField(default=0)
     amount = models.DecimalField(default=0, max_digits=7, decimal_places=2)
     type = models.CharField(max_length=100)
+    notes = models.TextField(null=True, blank=True)
     measurement = models.CharField(max_length=100)
     date = models.DateField(default=date.today)
     user = models.ForeignKey(

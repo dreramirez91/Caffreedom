@@ -5,7 +5,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TextInput, Pressable, Alert } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Divider, Button } from "react-native-paper";
+import { Divider, Button, Portal, Modal } from "react-native-paper";
 
 export default function Calculator() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -23,6 +23,16 @@ export default function Calculator() {
   const dropdownController = useRef(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [datePickerVisible, setDatePickerVisible] = useState(false);
+  const [notes, setNotes] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => {
+    setVisible(false);
+  };
+  const cancelNotes = () => {
+    setNotes("");
+    setVisible(false);
+  };
 
   const onOpenSuggestionsList = () => setOpen(false);
 
@@ -52,6 +62,10 @@ export default function Calculator() {
 
   const onChangeDrink = (drink) => {
     setDrink(drink);
+  };
+
+  const onChangeNotes = (text) => {
+    setNotes(text);
   };
 
   const onChangeAmount = (amount) => {
@@ -85,6 +99,7 @@ export default function Calculator() {
     data.date = selectedDate.toLocaleDateString("fr-CA");
     data.type = drink["title"];
     data.amount = amount;
+    data.notes = notes;
     data.measurement = measurement;
     const fetchConfig = {
       method: "post",
@@ -100,6 +115,7 @@ export default function Calculator() {
       setCaffeine(0);
       setMeasurement(null);
       setDrink("");
+      setNotes("");
       dropdownController.current.clear();
       Alert.alert("Intake added", "", [{ text: "OK", onPress: () => console.log("OK Pressed") }]);
     } else {
@@ -127,7 +143,7 @@ export default function Calculator() {
       <Text style={styles.marginText}>How much?</Text>
       <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
         {drink && measurement ? (
-          <TextInput style={styles.input} returnKeyType={"done"} editable={true} onChangeText={onChangeAmount} keyboardType="numeric" value={amount.toString()} placeholder="Amount"></TextInput>
+          <TextInput style={styles.input} returnKeyType={"done"} editable={true} onChangeText={onChangeAmount} inputMode="numeric" keyboardType="number-pad" value={amount.toString()} placeholder="Amount"></TextInput>
         ) : (
           <Pressable style={styles.input} onPress={() => alert("Select drink and measurement before editing amount")}>
             <View pointerEvents="none">
@@ -137,7 +153,33 @@ export default function Calculator() {
         )}
         <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0 }} placeholder="Unit of measurement" />
       </View>
-      <Divider style={{ margin: 12 }} horizontalInset="true" />
+      {token ? (
+        <>
+          <Divider style={{ margin: 12 }} horizontalInset="true" />
+          <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            <Button mode="contained" buttonColor="rgba(94, 65, 153, 1)" icon="note" style={{ marginBottom: 10, justifyContent: "center", width: "100%" }} onPress={() => showModal()}>
+              Notes (optional)
+            </Button>
+            <Portal>
+              <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
+                <Text style={styles.modalHeader}>Notes</Text>
+                <View>
+                  <TextInput style={styles.notesInput} maxLength={1000} onChangeText={setNotes} placeholder="Notes" value={notes}></TextInput>
+                </View>
+                <View style={styles.buttons}>
+                  <Button onPress={() => hideModal()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                    Confirm
+                  </Button>
+                  <Button onPress={() => cancelNotes()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                    Cancel
+                  </Button>
+                </View>
+              </Modal>
+            </Portal>
+          </View>
+        </>
+      ) : null}
+      <Divider style={{ marginBottom: 12 }} horizontalInset="true" />
       <Text style={styles.noMarginText}>You've consumed {parseInt(caffeine)} mg of caffeine.</Text>
       <View style={styles.calendar}></View>
       {token ? (
@@ -186,6 +228,44 @@ const styles = StyleSheet.create({
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 30,
     textAlign: "center",
+  },
+  modalHeader: {
+    textAlign: "center",
+    color: "rgba(242, 255, 99, 1)",
+    fontFamily: "CrimsonPro_400Regular",
+    fontSize: 22,
+    padding: 10,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    padding: 10,
+  },
+  notesInput: {
+    color: "black",
+    fontFamily: "CrimsonPro_400Regular",
+    borderRadius: 8,
+    borderColor: "rgba(242, 255, 99, 1)",
+    backgroundColor: "white",
+    borderWidth: 1,
+    padding: 10,
+    margin: 10,
+    fontSize: 18,
+  },
+  containerStyle: {
+    margin: 20,
+    backgroundColor: "rgba(157, 108, 255, 1)",
+    borderRadius: 20,
+    padding: 30,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   marginText: {
     marginTop: 6,

@@ -136,7 +136,6 @@ export default function Info() {
                       <Portal>
                         <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
                           <Text style={styles.modalHeader}>Are you sure?</Text>
-
                           <View>
                             <TextInput style={styles.input} onChangeText={setUsername} placeholder="Enter your username to confirm" value={username}></TextInput>
                             {error ? <Text style={styles.errorText}>{error}</Text> : null}
@@ -210,7 +209,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "rgba(157, 108, 255, 1)",
     borderRadius: 20,
-    padding: 35,
+    padding: 30,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -227,8 +226,9 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "CrimsonPro_400Regular",
+    fontFamily: "CrimsonPro_400Regular_Italic",
     textAlign: "center",
     fontSize: 18,
+    margin: 4,
   },
 });
