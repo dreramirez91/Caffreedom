@@ -4,7 +4,7 @@ import * as SecureStore from "expo-secure-store";
 import { Table, Row, Rows } from "react-native-table-component";
 import { TextInput } from "react-native-gesture-handler";
 import { caffeineContent } from "../caffeineContent";
-import { Divider, Portal, Modal, Button } from "react-native-paper";
+import { Divider, Portal, Modal, Button, DataTable } from "react-native-paper";
 import { LogBox } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
@@ -303,6 +303,24 @@ export default function CaffeineTable() {
   } else {
     return (
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
+        <DataTable>
+          <DataTable.Header>
+            <DataTable.Title>Dessert</DataTable.Title>
+            <DataTable.Title numeric>Calories</DataTable.Title>
+            <DataTable.Title numeric>Fat</DataTable.Title>
+          </DataTable.Header>
+
+          {items.slice(from, to).map((item) => (
+            <DataTable.Row key={item.key}>
+              <DataTable.Cell>{item.name}</DataTable.Cell>
+              <DataTable.Cell numeric>{item.calories}</DataTable.Cell>
+              <DataTable.Cell numeric>{item.fat}</DataTable.Cell>
+            </DataTable.Row>
+          ))}
+
+          <DataTable.Pagination page={page} numberOfPages={Math.ceil(items.length / itemsPerPage)} onPageChange={(page) => setPage(page)} label={`${from + 1}-${to} of ${items.length}`} numberOfItemsPerPageList={numberOfItemsPerPageList} numberOfItemsPerPage={itemsPerPage} onItemsPerPageChange={onItemsPerPageChange} showFastPaginationControls selectPageDropdownLabel={"Rows per page"} />
+        </DataTable>
+
         <Table
           borderStyle={{
             borderWidth: 2,

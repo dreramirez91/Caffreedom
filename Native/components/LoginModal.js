@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Pressable, Modal, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput } from "react-native";
 import * as SecureStore from "expo-secure-store";
-import { Button } from "react-native-paper";
+import { Button, Modal, Portal } from "react-native-paper";
 
 export default function LoginModal({ loginModalVisible, setLoginModalVisible, setLoginSuccessful }) {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [visible, setVisible] = useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => {
+    setEnteredUsername("");
+    setError("");
+    setVisible(false);
+  };
 
   async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
@@ -48,47 +55,34 @@ export default function LoginModal({ loginModalVisible, setLoginModalVisible, se
   };
 
   return (
-    <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={loginModalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setLoginModalVisible(!loginModalVisible);
-          setError("");
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Login</Text>
-            <View style={styles.inputs}>
-              <TextInput style={styles.input} onChangeText={setUsername} placeholder="Username" value={username}></TextInput>
-              {error ? (
-                <View
-                  styles={{
-                    borderWidth: 10,
-                    borderColor: "orange",
-                    borderStyle: "solid",
-                  }}
-                >
-                  <Text style={styles.errorText}>{error}</Text>
-                </View>
-              ) : null}
-              <TextInput style={styles.input} onChangeText={setPassword} placeholder="Password" value={password} secureTextEntry={true}></TextInput>
+    <Portal>
+      <Modal visible={loginModalVisible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
+        <Text style={styles.modalText}>Login</Text>
+        <View style={styles.inputs}>
+          <TextInput style={styles.input} onChangeText={setUsername} placeholder="Username" value={username}></TextInput>
+          {error ? (
+            <View
+              styles={{
+                borderWidth: 10,
+                borderColor: "orange",
+                borderStyle: "solid",
+              }}
+            >
+              <Text style={styles.errorText}>{error}</Text>
             </View>
-            <View style={styles.buttons}>
-              <Button onPress={() => handleSubmit()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
-                Log In
-              </Button>
-              <Button onPress={handleClose} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
-                Close
-              </Button>
-            </View>
-          </View>
+          ) : null}
+          <TextInput style={styles.input} onChangeText={setPassword} placeholder="Password" value={password} secureTextEntry={true}></TextInput>
+        </View>
+        <View style={styles.buttons}>
+          <Button onPress={() => handleSubmit()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+            Log In
+          </Button>
+          <Button onPress={handleClose} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+            Close
+          </Button>
         </View>
       </Modal>
-    </View>
+    </Portal>
   );
 }
 
@@ -128,6 +122,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "CrimsonPro_400Regular",
     fontSize: 18,
+  },
+  containerStyle: {
+    margin: 40,
+    marginBottom: 55,
+    backgroundColor: "rgba(157, 108, 255, 1)",
+    borderRadius: 20,
+    padding: 35,
+    width: "80%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   submitStyle: {
     color: "rgba(242, 255, 99, 1)",
