@@ -16,33 +16,58 @@ export default function CaffeineTable() {
   const tableHead = ["Drink", "Amount,\nTap to edit", "Caffeine content", "Date", "Notes", "Delete"];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [notesModalVisible, setNotesModalVisible] = useState(false);
+  const [amountModalVisible, setAmountModalVisible] = useState(false);
   const [editSuccessful, setEditSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [newAmount, setNewAmount] = useState("0");
-  const [edit, setEdit] = useState(false);
+  const [editNotes, setEditNotes] = useState(false);
+  const [editAmount, setEditAmount] = useState(false);
   const [currentNote, setCurrentNote] = useState(null);
   const [originalNote, setOriginalNote] = useState(null);
+  const [currentAmount, setCurrentAmount] = useState(null);
+  const [originalAmount, setOriginalAmount] = useState(null);
+  const [currentMeasurement, setCurrentMeasurement] = useState(0);
+  const [currentBeverage, setCurrentBeverage] = useState("");
   const [currentNoteId, setCurrentNoteId] = useState(null);
+  const [currentAmountId, setCurrentAmountId] = useState(null);
+
   const showNotesModal = (note, id) => {
     setCurrentNote(note);
     setOriginalNote(note);
     setCurrentNoteId(id);
-    setVisible(true);
+    setNotesModalVisible(true);
   };
-  const hideModal = () => {
-    setVisible(false);
+  const showAmountModal = (amount, id, measurement, beverage) => {
+    setCurrentAmount(amount);
+    setOriginalAmount(amount);
+    setCurrentAmountId(id);
+    setCurrentMeasurement(measurement);
+    setCurrentBeverage(beverage);
+    setAmountModalVisible(true);
+  };
+  const hideNotesModal = () => {
+    setNotesModalVisible(false);
+  };
+  const hideAmountModal = () => {
+    setAmountModalVisible(false);
   };
   const cancelNotes = () => {
-    setEdit(false);
+    setNotesModalVisible(false);
+    setEditNotes(false);
     setCurrentNote(null);
     setCurrentNoteId(null);
-    setVisible(false);
   };
-  const patchAmount = useRef();
-  patchAmount.current = newAmount;
-  const patchCaffeine = useRef();
-  patchCaffeine.current = caffeine;
+  const cancelAmount = () => {
+    setEditAmount(false);
+    setCurrentAmount(0);
+    setCurrentAmountId(null);
+    setAmountModalVisible(false);
+  };
+  // const patchAmount = useRef();
+  // patchAmount.current = newAmount;
+  // const patchCaffeine = useRef();
+  // patchCaffeine.current = caffeine;
 
   const formatDate = (date) => {
     const dateSplit = date.split("-");
@@ -118,21 +143,22 @@ export default function CaffeineTable() {
     for (let drink of caffeineContent) {
       if (drink["title"] == beverage) {
         if (measurement === "floz") {
-          setCaffeine(drink["mg/floz"] * patchAmount.current);
+          setCaffeine(drink["mg/floz"] * currentAmount);
         } else if (measurement === "cups") {
-          setCaffeine(drink["mg/floz"] * patchAmount.current * 8);
+          setCaffeine(drink["mg/floz"] * currentAmount * 8);
         } else if (measurement === "ml") {
-          setCaffeine((drink["mg/floz"] * patchAmount.current) / 29.5735);
+          setCaffeine((drink["mg/floz"] * currentAmount) / 29.5735);
         }
       }
     }
+    console.log("EDIT INTAKE DATA", id, key, measurement, beverage, currentAmount, caffeine);
     try {
       let result = await SecureStore.getItemAsync(key);
       if (result) {
         const data = {};
         data.id = id;
-        data.amount = patchAmount.current;
-        data.caffeine = patchCaffeine.current;
+        data.amount = currentAmount;
+        data.caffeine = caffeine;
         const fetchConfig = {
           method: "patch",
           headers: {
@@ -171,12 +197,12 @@ export default function CaffeineTable() {
           },
           body: JSON.stringify(data),
         };
-        const response = await fetch(`${apiUrl}/caffeine/edit/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/editNotes/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           console.log(data);
           setOriginalNote("");
-          setEdit(false);
+          setEditNotes(false);
           populateData("token");
         } else {
           console.log("Edit failed");
@@ -214,10 +240,13 @@ export default function CaffeineTable() {
             console.log(date);
             tableRow.push(
               intake.type,
-              <View style={styles.amountStyle}>
-                <TextInput returnKeyType={"done"} maxLength={7} selectTextOnFocus={true} onChangeText={setNewAmount} keyboardType="numeric" onSubmitEditing={() => twoOptionEditHandler(intake.id, "token", intake.measurement, intake.type)} placeholder={`${intake.amount}`} placeholderTextColor={"rgba(242, 255, 99, 1)"} style={styles.editText}></TextInput>
-                <Text style={styles.tableText}> {`${intake.amount === 1 ? intake.measurement.slice(0, intake.measurement.length - 1) : intake.measurement}`}</Text>
-              </View>,
+              <Pressable
+                onPress={() => {
+                  showAmountModal(intake.amount, intake.id, intake.measurement, intake.type);
+                }}
+              >
+                <Text style={styles.tableText}>{`${intake.amount} ${intake.amount === 1 ? intake.measurement.slice(0, intake.measurement.length - 1) : intake.measurement}`}</Text>
+              </Pressable>,
               `${intake.caffeine} mg`,
               date,
               <Pressable
@@ -314,22 +343,22 @@ export default function CaffeineTable() {
           />
         </Table>
         <Portal>
-          <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
+          <Modal visible={notesModalVisible} onDismiss={hideNotesModal} contentContainerStyle={styles.containerStyle}>
             <Text style={styles.modalHeader}>
               <Feather name="sun" size={24} color="rgba(242, 255, 99, 1)" />
             </Text>
-            {edit ? (
+            {editNotes ? (
               <View>
-                <TextInput style={styles.notesInput} maxLength={1000} editable={edit ? true : false} onChangeText={setCurrentNote} placeholder="Notes" value={currentNote}></TextInput>
+                <TextInput style={styles.notesInput} maxLength={1000} editable={editNotes ? true : false} onChangeText={setCurrentNote} placeholder="Notes" value={currentNote}></TextInput>
               </View>
             ) : (
               <Text style={styles.modalText}>{currentNote ? currentNote : "No notes added for this date."}</Text>
             )}
             <View style={styles.buttons}>
-              {!edit ? (
+              {!editNotes ? (
                 <Button
                   onPress={() => {
-                    setEdit(true);
+                    setEditNotes(true);
                   }}
                   mode="contained"
                   buttonColor="rgba(94, 65, 153, 1)"
@@ -337,7 +366,7 @@ export default function CaffeineTable() {
                   Edit
                 </Button>
               ) : null}
-              {edit ? (
+              {editNotes ? (
                 <>
                   <Button
                     onPress={() => {
@@ -350,7 +379,7 @@ export default function CaffeineTable() {
                   </Button>
                   <Button
                     onPress={() => {
-                      setEdit(false);
+                      setEditNotes(false);
                       setCurrentNote(originalNote);
                     }}
                     mode="contained"
@@ -362,6 +391,30 @@ export default function CaffeineTable() {
               ) : null}
               <Button onPress={() => cancelNotes()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
                 Close
+              </Button>
+            </View>
+          </Modal>
+        </Portal>
+        <Portal>
+          <Modal visible={amountModalVisible} onDismiss={hideAmountModal} contentContainerStyle={styles.containerStyle}>
+            <Text style={styles.modalHeader}>
+              <Feather name="coffee" size={24} color="rgba(242, 255, 99, 1)" />
+            </Text>
+            <View>
+              <TextInput style={styles.notesInput} maxLength={100} editable onChangeText={setCurrentAmount} placeholder="Notes" value={currentAmount}></TextInput>
+            </View>
+            <View style={styles.buttons}>
+              <Button
+                onPress={() => {
+                  editIntake(currentAmountId, "token", currentMeasurement, currentBeverage);
+                }}
+                mode="contained"
+                buttonColor="rgba(94, 65, 153, 1)"
+              >
+                Save
+              </Button>
+              <Button onPress={() => cancelAmount()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                Cancel
               </Button>
             </View>
           </Modal>
