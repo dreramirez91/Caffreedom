@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Modal, TextInput } from "react-native";
 import * as SecureStore from "expo-secure-store";
-import { Button, HelperText } from "react-native-paper";
+import { Button } from "react-native-paper";
 
 export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible, setSignUpSuccessful }) {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;

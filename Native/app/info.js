@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, Pressable, TextInput } from "react-native";
+import { StyleSheet, Text, View, Pressable, TextInput } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Modal, Portal, List, Button } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";

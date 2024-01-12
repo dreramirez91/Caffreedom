@@ -5,7 +5,6 @@ import { Table, Row, Rows } from "react-native-table-component";
 import { TextInput } from "react-native-gesture-handler";
 import { caffeineContent } from "../caffeineContent";
 import { Divider, Portal, Modal, Button } from "react-native-paper";
-import { LogBox } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 
@@ -179,7 +178,6 @@ export default function CaffeineTable() {
         const response = await fetch(`${apiUrl}/caffeine/editNotes/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setOriginalNote("");
           setEditNotes(false);
           populateData("token");
@@ -210,13 +208,11 @@ export default function CaffeineTable() {
         const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
-          console.log("Fetch successful");
           setIntakes(data.intakes);
           const tableDataToSet = [];
           for (let intake of data.intakes) {
             const tableRow = [];
             const date = formatDate(intake.date);
-            console.log(date);
             tableRow.push(
               intake.type,
               <Pressable
