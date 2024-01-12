@@ -146,7 +146,6 @@ export default function CaffeineTable() {
         };
         const response = await fetch(`${apiUrl}/caffeine/edit/`, fetchConfig);
         if (response.ok) {
-          const data = await response.json();
           setEditSuccessful(true);
           populateData("token");
           Alert.alert("Edit Successful");
@@ -199,7 +198,6 @@ export default function CaffeineTable() {
       setDeleteSuccessful(false);
       let result = await SecureStore.getItemAsync(key);
       if (result) {
-        console.log("Successfully retrieved token from store");
         const fetchConfig = {
           method: "get",
           headers: {
@@ -263,7 +261,7 @@ export default function CaffeineTable() {
 
   useEffect(() => {
     populateData("token");
-  }, [deleteSuccessful, editSuccessful, caffeine]);
+  }, [deleteSuccessful, editSuccessful]);
 
   if (!userLoggedIn) {
     return (
