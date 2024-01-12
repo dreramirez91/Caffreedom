@@ -50,10 +50,6 @@ export default function Info() {
     try {
       const lowerUsername = enteredUsername.toLowerCase();
       confirmation = { username: lowerUsername };
-      console.log("\n\n");
-      console.log(confirmation);
-      console.log("\n\n");
-
       let result = await SecureStore.getItemAsync(key);
       if (result) {
         const fetchConfig = {

@@ -53,7 +53,6 @@ export default function Home() {
     try {
       let result = await SecureStore.getItemAsync(key);
       if (result) {
-        console.log("Successfully retrieved token from store");
         setToken(result);
       } else {
         console.log("Could not retrieve token from store");

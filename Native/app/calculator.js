@@ -117,7 +117,7 @@ export default function Calculator() {
       setDrink("");
       setNotes("");
       dropdownController.current.clear();
-      Alert.alert("Intake added", "", [{ text: "OK", onPress: () => console.log("OK Pressed") }]);
+      Alert.alert("Intake added", "", [{ text: "OK" }]);
     } else {
       console.log("Post failed");
     }

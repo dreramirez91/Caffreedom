@@ -9,7 +9,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { LogBox } from "react-native";
 
-LogBox.ignoreLogs(["Invalid prop textStyle of type array supplied to Cell"]);
+LogBox.ignoreAllLogs();
 
 export default function CaffeineTable() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -76,7 +76,6 @@ export default function CaffeineTable() {
         { text: "Yes", onPress: () => deleteIntake(intake, token) },
         {
           text: "No",
-          onPress: () => console.log("No Pressed"),
           style: "cancel",
         },
       ],
@@ -150,6 +149,8 @@ export default function CaffeineTable() {
           const data = await response.json();
           setEditSuccessful(true);
           populateData("token");
+          Alert.alert("Edit Successful");
+          setAmountModalVisible(false);
         } else {
           console.log("Edit failed");
         }
@@ -259,9 +260,6 @@ export default function CaffeineTable() {
       console.log(error);
     }
   }
-  useEffect(() => {
-    console.log(intakes);
-  }, [intakes]);
 
   useEffect(() => {
     populateData("token");
@@ -331,7 +329,7 @@ export default function CaffeineTable() {
               <Text style={styles.modalText}>{currentNote ? currentNote : "No notes added for this date."}</Text>
             )}
             <View style={styles.buttons}>
-              {!editNotes ? (
+              {!editNotes && currentNote ? (
                 <Button
                   onPress={() => {
                     setEditNotes(true);
@@ -340,6 +338,17 @@ export default function CaffeineTable() {
                   buttonColor="rgba(94, 65, 153, 1)"
                 >
                   Edit
+                </Button>
+              ) : null}
+              {!editNotes && !currentNote ? (
+                <Button
+                  onPress={() => {
+                    setEditNotes(true);
+                  }}
+                  mode="contained"
+                  buttonColor="rgba(94, 65, 153, 1)"
+                >
+                  Add
                 </Button>
               ) : null}
               {editNotes ? (
