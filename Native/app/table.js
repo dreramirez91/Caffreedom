@@ -7,6 +7,9 @@ import { caffeineContent } from "../caffeineContent";
 import { Divider, Portal, Modal, Button } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(["Invalid prop textStyle of type array supplied to Cell"]);
 
 export default function CaffeineTable() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -22,7 +25,7 @@ export default function CaffeineTable() {
   const [editNotes, setEditNotes] = useState(false);
   const [currentNote, setCurrentNote] = useState(null);
   const [originalNote, setOriginalNote] = useState(null);
-  const [currentAmount, setCurrentAmount] = useState(null);
+  const [currentAmount, setCurrentAmount] = useState("");
   const [currentMeasurement, setCurrentMeasurement] = useState(0);
   const [currentBeverage, setCurrentBeverage] = useState("");
   const [currentNoteId, setCurrentNoteId] = useState(null);
@@ -36,7 +39,6 @@ export default function CaffeineTable() {
   };
   const showAmountModal = (amount, id, measurement, beverage) => {
     setCurrentAmount(amount);
-    setOriginalAmount(amount);
     setCurrentAmountId(id);
     setCurrentMeasurement(measurement);
     setCurrentBeverage(beverage);
@@ -51,11 +53,10 @@ export default function CaffeineTable() {
   const cancelNotes = () => {
     setNotesModalVisible(false);
     setEditNotes(false);
-    setCurrentNote(null);
+    setCurrentNote(currentNote);
     setCurrentNoteId(null);
   };
   const cancelAmount = () => {
-    setEditAmount(false);
     setCurrentAmount(0);
     setCurrentAmountId(null);
     setAmountModalVisible(false);
@@ -175,7 +176,7 @@ export default function CaffeineTable() {
           },
           body: JSON.stringify(data),
         };
-        const response = await fetch(`${apiUrl}/caffeine/editNotes/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/edit/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setOriginalNote("");

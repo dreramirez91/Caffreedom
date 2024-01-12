@@ -48,7 +48,12 @@ export default function Info() {
 
   async function deleteUser(key) {
     try {
-      confirmation = { enteredUsername: enteredUsername.toLowerCase() };
+      const lowerUsername = enteredUsername.toLowerCase();
+      confirmation = { username: lowerUsername };
+      console.log("\n\n");
+      console.log(confirmation);
+      console.log("\n\n");
+
       let result = await SecureStore.getItemAsync(key);
       if (result) {
         const fetchConfig = {
@@ -64,7 +69,7 @@ export default function Info() {
         if (response.ok) {
           SecureStore.deleteItemAsync("token");
           setLoggedIn(false);
-          router.replace("/home");
+          router.replace("/");
         } else {
           setError(data.Error);
           console.log("Delete failed");
