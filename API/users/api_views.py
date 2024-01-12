@@ -8,7 +8,6 @@ from .serializers import UserSerializer
 from django.http import JsonResponse
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-import json
 
 
 class UserList(generics.ListCreateAPIView):
@@ -122,7 +121,5 @@ def delete(request):
 
 @api_view(["GET"])
 def get_username(request):
-    print(request.META.get("HTTP_AUTHORIZATION"))
     user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
-    print("\n\n", user, "\n\n")
     return JsonResponse({"username": str(user)}, status=status.HTTP_200_OK)
