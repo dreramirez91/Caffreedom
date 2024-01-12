@@ -20,13 +20,10 @@ export default function CaffeineTable() {
   const [amountModalVisible, setAmountModalVisible] = useState(false);
   const [editSuccessful, setEditSuccessful] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
-  const [newAmount, setNewAmount] = useState("0");
   const [editNotes, setEditNotes] = useState(false);
-  const [editAmount, setEditAmount] = useState(false);
   const [currentNote, setCurrentNote] = useState(null);
   const [originalNote, setOriginalNote] = useState(null);
   const [currentAmount, setCurrentAmount] = useState(null);
-  const [originalAmount, setOriginalAmount] = useState(null);
   const [currentMeasurement, setCurrentMeasurement] = useState(0);
   const [currentBeverage, setCurrentBeverage] = useState("");
   const [currentNoteId, setCurrentNoteId] = useState(null);
@@ -64,10 +61,6 @@ export default function CaffeineTable() {
     setCurrentAmountId(null);
     setAmountModalVisible(false);
   };
-  // const patchAmount = useRef();
-  // patchAmount.current = newAmount;
-  // const patchCaffeine = useRef();
-  // patchCaffeine.current = caffeine;
 
   const formatDate = (date) => {
     const dateSplit = date.split("-");
@@ -84,25 +77,6 @@ export default function CaffeineTable() {
         {
           text: "No",
           onPress: () => console.log("No Pressed"),
-          style: "cancel",
-        },
-      ],
-      { cancelable: false }
-    );
-  };
-
-  const twoOptionEditHandler = (intake, token, measurement, drink) => {
-    Alert.alert(
-      "Edit",
-      "Are you sure?",
-      [
-        {
-          text: "Yes",
-          onPress: () => editIntake(intake, token, measurement, drink),
-        },
-        {
-          text: "No",
-          onPress: () => setNewAmount("0"),
           style: "cancel",
         },
       ],
@@ -139,7 +113,7 @@ export default function CaffeineTable() {
     }
   }
 
-  async function editIntake(id, key, measurement, beverage) {
+  function calculateCaffeineContent(measurement, beverage) {
     for (let drink of caffeineContent) {
       if (drink["title"] == beverage) {
         if (measurement === "floz") {
@@ -151,7 +125,11 @@ export default function CaffeineTable() {
         }
       }
     }
-    console.log("EDIT INTAKE DATA", id, key, measurement, beverage, currentAmount, caffeine);
+  }
+
+  useEffect(() => calculateCaffeineContent(currentMeasurement, currentBeverage), [currentAmount]);
+
+  async function editIntake(id, key) {
     try {
       let result = await SecureStore.getItemAsync(key);
       if (result) {
@@ -171,6 +149,7 @@ export default function CaffeineTable() {
         if (response.ok) {
           const data = await response.json();
           setEditSuccessful(true);
+          populateData("token");
         } else {
           console.log("Edit failed");
         }
@@ -289,7 +268,7 @@ export default function CaffeineTable() {
 
   useEffect(() => {
     populateData("token");
-  }, [deleteSuccessful, editSuccessful]);
+  }, [deleteSuccessful, editSuccessful, caffeine]);
 
   if (!userLoggedIn) {
     return (
@@ -406,7 +385,7 @@ export default function CaffeineTable() {
             <View style={styles.buttons}>
               <Button
                 onPress={() => {
-                  editIntake(currentAmountId, "token", currentMeasurement, currentBeverage);
+                  editIntake(currentAmountId, "token");
                 }}
                 mode="contained"
                 buttonColor="rgba(94, 65, 153, 1)"
