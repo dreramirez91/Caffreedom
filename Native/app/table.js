@@ -15,7 +15,7 @@ export default function CaffeineTable() {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
-  const tableHead = ["Drink", "Amount,\nTap to edit", "Caffeine content", "Date", "Notes", "Delete"];
+  const tableHead = ["Drink", "Amount,\nTap edit", "Caffeine content", "Date", "Notes", "Delete"];
   const [tableData, setTableData] = useState([]);
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
   const [notesModalVisible, setNotesModalVisible] = useState(false);

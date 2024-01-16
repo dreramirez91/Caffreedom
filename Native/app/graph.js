@@ -20,6 +20,7 @@ export default function Graph() {
   const daysInMonth = [...Array(dates).keys()].map((date) => date + 1);
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [chartParentWidth, setChartParentWidth] = useState(0);
 
   async function populateData(key) {
     const formatDate = (fullDate) => {
@@ -99,7 +100,7 @@ export default function Graph() {
 
   if (fetchSuccessful) {
     return (
-      <View style={styles.homeContainer}>
+      <View style={styles.homeContainer} onLayout={({ nativeEvent }) => setChartParentWidth(nativeEvent.layout.width)}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
         <Divider style={{ margin: 6 }} bold="true" />
         <Text style={styles.monthText}>
@@ -115,7 +116,7 @@ export default function Graph() {
               },
             ],
           }}
-          width={Dimensions.get("window").width - 10}
+          width={chartParentWidth}
           height={225}
           chartConfig={{
             horizontalOffset: 0,
@@ -140,7 +141,6 @@ export default function Graph() {
           style={{
             marginTop: 8,
             borderRadius: 16,
-            paddingRight: Dimensions.get("window").width * 0.155,
           }}
         />
         <View style={styles.changeDates}>
