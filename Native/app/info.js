@@ -32,7 +32,7 @@ export default function Info() {
           Authorization: result,
         },
       };
-      const response = await fetch(`${apiUrl}/users/get_username/`, fetchConfig);
+      const response = await fetch(`${apiUrl}/users/`, fetchConfig);
       if (response.ok) {
         const data = await response.json();
         setRetrievedUsername(data.username);
@@ -60,7 +60,7 @@ export default function Info() {
           },
           body: JSON.stringify(confirmation),
         };
-        const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/users/`, fetchConfig);
         const data = await response.json();
         if (response.ok) {
           SecureStore.deleteItemAsync("token");

@@ -50,7 +50,7 @@ export default function Graph() {
             Authorization: result,
           },
         };
-        const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setIntakes(data.intakes);
