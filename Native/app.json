@@ -20,7 +20,8 @@
       "config": {
         "usesNonExemptEncryption": false
       },
-      "bundleIdentifier": "com.dreramirez91.Caffreedom"
+      "bundleIdentifier": "com.dreramirez91.Caffreedom",
+      "buildNumber": "3"
     },
     "android": {
       "adaptiveIcon": {
