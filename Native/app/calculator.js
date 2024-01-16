@@ -5,13 +5,14 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TextInput, Pressable, Alert } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Divider, Button, Portal, Modal } from "react-native-paper";
+import { Divider, Button, Modal, Portal } from "react-native-paper";
 
 export default function Calculator() {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
   const [drink, setDrink] = useState("");
+  const [notes, setNotes] = useState("");
   const [measurement, setMeasurement] = useState(null);
   const [items, setItems] = useState([
     { label: "fl oz", value: "floz" },
@@ -23,7 +24,6 @@ export default function Calculator() {
   const dropdownController = useRef(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [datePickerVisible, setDatePickerVisible] = useState(false);
-  const [notes, setNotes] = useState(null);
   const [visible, setVisible] = useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => {
@@ -109,7 +109,7 @@ export default function Calculator() {
       },
       body: JSON.stringify(data),
     };
-    const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
+    const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
     if (response.ok) {
       setAmount(0);
       setCaffeine(0);
@@ -117,7 +117,7 @@ export default function Calculator() {
       setDrink("");
       setNotes("");
       dropdownController.current.clear();
-      Alert.alert("Intake added", "", [{ text: "OK" }]);
+      Alert.alert("Intake added", "", [{ text: "OK", onPress: () => console.log("OK Pressed") }]);
     } else {
       console.log("Post failed");
     }
@@ -179,7 +179,7 @@ export default function Calculator() {
           </View>
         </>
       ) : null}
-      <Divider style={token ? { marginBottom: 12 } : { margin: 12 }} horizontalInset="true" />
+      <Divider style={{ marginBottom: 12 }} horizontalInset="true" />
       <Text style={styles.noMarginText}>You've consumed {parseInt(caffeine)} mg of caffeine.</Text>
       <View style={styles.calendar}></View>
       {token ? (

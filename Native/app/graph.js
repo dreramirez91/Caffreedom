@@ -9,7 +9,7 @@ export default function Graph() {
   function daysInThisMonth(date) {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   }
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [intakes, setIntakes] = useState([]);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const dates = daysInThisMonth(currentMonth);
@@ -50,7 +50,7 @@ export default function Graph() {
             Authorization: result,
           },
         };
-        const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setIntakes(data.intakes);

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable, TextInput } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Modal, Portal, List, Button } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
 
 export default function Info() {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function Info() {
           Authorization: result,
         },
       };
-      const response = await fetch(`${apiUrl}/users/get_username/`, fetchConfig);
+      const response = await fetch(`${apiUrl}/users/`, fetchConfig);
       if (response.ok) {
         const data = await response.json();
         setRetrievedUsername(data.username);
@@ -60,7 +60,7 @@ export default function Info() {
           },
           body: JSON.stringify(confirmation),
         };
-        const response = await fetch(`${apiUrl}/users/delete/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/users/`, fetchConfig);
         const data = await response.json();
         if (response.ok) {
           SecureStore.deleteItemAsync("token");

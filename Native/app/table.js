@@ -12,7 +12,7 @@ import { LogBox } from "react-native";
 LogBox.ignoreAllLogs();
 
 export default function CaffeineTable() {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [caffeine, setCaffeine] = useState(0);
   const [intakes, setIntakes] = useState([0]);
   const tableHead = ["Drink", "Amount,\nTap to edit", "Caffeine content", "Date", "Notes", "Delete"];
@@ -176,7 +176,7 @@ export default function CaffeineTable() {
           },
           body: JSON.stringify(data),
         };
-        const response = await fetch(`${apiUrl}/caffeine/edit/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setOriginalNote("");
@@ -205,7 +205,7 @@ export default function CaffeineTable() {
             Authorization: result,
           },
         };
-        const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setIntakes(data.intakes);

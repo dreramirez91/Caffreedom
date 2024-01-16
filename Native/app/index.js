@@ -7,7 +7,7 @@ import SignUpModal from "../components/SignUpModal";
 import { Button } from "react-native-paper";
 
 export default function Home() {
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+  const apiUrl = "http://192.168.86.102:8000";
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [token, setToken] = useState("");
