@@ -105,21 +105,19 @@ def signup(request):
     return Response({"token": token.key}, status=status.HTTP_200_OK)
 
 
-@api_view(["DELETE"])
-def delete(request):
-    username = request.data.get("username")
-    user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
-    if username == str(user):
-        number_deleted, _ = user.delete()
-        return JsonResponse({"Delete": number_deleted}, status=status.HTTP_200_OK)
-    else:
-        return JsonResponse(
-            {"Error": "Please check the spelling of your username."},
-            status=status.HTTP_400_BAD_REQUEST,
-        )
-
-
-@api_view(["GET"])
-def get_username(request):
-    user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
-    return JsonResponse({"username": str(user)}, status=status.HTTP_200_OK)
+@api_view(["GET", "DELETE"])
+def api_user(request):
+    if request.method == "GET":
+        user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
+        return JsonResponse({"username": str(user)}, status=status.HTTP_200_OK)
+    elif request.method == "DELETE":
+        username = request.data.get("username")
+        user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
+        if username == str(user):
+            number_deleted, _ = user.delete()
+            return JsonResponse({"Delete": number_deleted}, status=status.HTTP_200_OK)
+        else:
+            return JsonResponse(
+                {"Error": "Please check the spelling of your username."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )

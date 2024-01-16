@@ -97,7 +97,7 @@ export default function CaffeineTable() {
           },
           body: JSON.stringify(data),
         };
-        const response = await fetch(`${apiUrl}/caffeine/delete/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setDeleteSuccessful(true);
@@ -144,7 +144,7 @@ export default function CaffeineTable() {
           },
           body: JSON.stringify(data),
         };
-        const response = await fetch(`${apiUrl}/caffeine/edit/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
         if (response.ok) {
           setEditSuccessful(true);
           populateData("token");
