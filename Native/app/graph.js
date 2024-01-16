@@ -140,7 +140,7 @@ export default function Graph() {
           style={{
             marginTop: 8,
             borderRadius: 16,
-            paddingRight: Dimensions.get("window").width * 0.14,
+            paddingRight: Dimensions.get("window").width * 0.155,
           }}
         />
         <View style={styles.changeDates}>
