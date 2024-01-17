@@ -21,7 +21,7 @@
         "usesNonExemptEncryption": false
       },
       "bundleIdentifier": "com.dreramirez91.Caffreedom",
-      "buildNumber": "4"
+      "buildNumber": "5"
     },
     "android": {
       "adaptiveIcon": {

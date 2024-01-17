@@ -151,7 +151,7 @@ export default function Calculator() {
             </View>
           </Pressable>
         )}
-        <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0 }} placeholder="Unit of measurement" />
+        <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0, zIndex: 1 }} placeholder="Unit of measurement" />
       </View>
       {token ? (
         <>

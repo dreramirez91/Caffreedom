@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 import { AntDesign } from "@expo/vector-icons";
