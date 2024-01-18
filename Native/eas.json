@@ -7,12 +7,13 @@
       "developmentClient": true,
       "distribution": "internal"
     },
-    "preview": { "ios": {
-      "simulator": true
-    },
+    "preview": {
+      "ios": {
+        "simulator": true
+      },
       "distribution": "internal"
     },
-    "production": {"autoIncrement": true}
+    "production": { "autoIncrement": true }
   },
   "submit": {
     "production": {}
