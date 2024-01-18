@@ -61,7 +61,7 @@ export default function Graph() {
             let intakeYear = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[0] : undefined;
             let intakeDay = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[2] : undefined;
             if (intakeMonth === currentMonthNumeric && intakeYear === currentYearNumeric) {
-              thisMonthsCaffeine.splice(intakeDay, 0, intakes[i]["caffeine"]);
+              thisMonthsCaffeine.splice(intakeDay, 1, intakes[i]["caffeine"]);
             }
           }
           setMonthsCaffeine(thisMonthsCaffeine);
@@ -186,8 +186,8 @@ const styles = StyleSheet.create({
   },
   monthText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "CrimsonPro_400Regular",
-    fontSize: 24,
+    fontFamily: "CrimsonPro_400Regular_Italic",
+    fontSize: 25,
     textAlign: "center",
   },
   dayText: {
