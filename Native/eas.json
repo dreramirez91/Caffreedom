@@ -6,16 +6,14 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "ios": {
-        "simulator": true,
-        "resourceClass": "m-medium"
-      },
       "env": {
         "EXPO_PUBLIC_API_URL": "https://caffreedom.vercel.app"
       }
     },
     "preview": {
-      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      },
       "env": {
         "EXPO_PUBLIC_API_URL": "https://caffreedom.vercel.app"
       }
