@@ -28,7 +28,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.dreramirez91.Caffreedom"
+      "package": "com.dreramirez91.Caffreedom",
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png",
