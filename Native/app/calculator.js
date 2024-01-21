@@ -18,7 +18,7 @@ export default function Calculator() {
     { label: "cups", value: "cups" },
     { label: "mL", value: "ml" },
   ]);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [caffeine, setCaffeine] = useState(0);
   const dropdownController = useRef(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -112,7 +112,7 @@ export default function Calculator() {
     };
     const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
     if (response.ok) {
-      setAmount(0);
+      setAmount("");
       setCaffeine(0);
       setMeasurement(null);
       setDrink("");
