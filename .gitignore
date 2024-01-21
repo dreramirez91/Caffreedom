@@ -1,5 +1,5 @@
 # dependencies
-/node_modules
+node_modules
 # testing
 /coverage
 # production
@@ -15,15 +15,11 @@ yarn-debug.log*
 yarn-error.log*
 
 notes.txt
-API/db.sqlite3
-API/users/__pycache__/
-API/Caffreedom/__pycache__/
-API/caffeine/__pycache__/
+db.sqlite3
+__pycache__/
 TableData.js
 caffreedomData.xlsx
 home.js
-
-Native/node_modules
 
 # env files
 */.env

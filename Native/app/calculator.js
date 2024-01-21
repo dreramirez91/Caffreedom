@@ -139,11 +139,12 @@ export default function Calculator() {
         onSelectItem={onChangeDrink}
         dataSet={caffeineContent}
         onOpenSuggestionsList={onOpenSuggestionsList}
+        textInputProps={{ maxLength: 39 }}
       />
       <Text style={styles.marginText}>How much?</Text>
       <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
         {drink && measurement ? (
-          <TextInput style={styles.input} returnKeyType={"done"} editable={true} onChangeText={onChangeAmount} inputMode="numeric" keyboardType="number-pad" value={amount.toString()} placeholder="Amount"></TextInput>
+          <TextInput style={styles.input} returnKeyType={"done"} maxLength={5} editable={true} onChangeText={onChangeAmount} inputMode="numeric" keyboardType="number-pad" value={amount.toString()} placeholder="Amount"></TextInput>
         ) : (
           <Pressable style={styles.input} onPress={() => alert("Select drink and measurement before editing amount")}>
             <View pointerEvents="none">
@@ -164,7 +165,7 @@ export default function Calculator() {
               <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
                 <Text style={styles.modalHeader}>Notes</Text>
                 <View>
-                  <TextInput style={styles.notesInput} maxLength={1000} onChangeText={setNotes} placeholder="Notes" value={notes}></TextInput>
+                  <TextInput style={styles.notesInput} maxLength={640} onChangeText={setNotes} placeholder="Notes" value={notes}></TextInput>
                 </View>
                 <View style={styles.buttons}>
                   <Button onPress={() => hideModal()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
