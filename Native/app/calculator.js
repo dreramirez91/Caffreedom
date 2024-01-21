@@ -69,13 +69,14 @@ export default function Calculator() {
   };
 
   const onChangeAmount = (amount) => {
-    setAmount(amount);
+    cleanedAmount = amount.replace(/[^0-9]/g, "");
+    setAmount(cleanedAmount);
     if (measurement === "floz") {
-      setCaffeine(drink["mg/floz"] * amount);
+      setCaffeine(drink["mg/floz"] * cleanedAmount);
     } else if (measurement === "cups") {
-      setCaffeine(drink["mg/floz"] * amount * 8);
+      setCaffeine(drink["mg/floz"] * cleanedAmount * 8);
     } else if (measurement === "ml") {
-      setCaffeine((drink["mg/floz"] * amount) / 29.5735);
+      setCaffeine((drink["mg/floz"] * cleanedAmount) / 29.5735);
     }
   };
 
