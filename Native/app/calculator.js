@@ -147,7 +147,7 @@ export default function Calculator() {
         {drink && measurement ? (
           <TextInput style={styles.input} returnKeyType={"done"} maxLength={5} editable={true} onChangeText={onChangeAmount} inputMode="numeric" keyboardType="number-pad" value={amount.toString()} placeholder="Amount"></TextInput>
         ) : (
-          <Pressable style={styles.input} onPress={() => alert("Select drink and measurement before editing amount")}>
+          <Pressable style={styles.input} onPress={() => Alert.alert((title = "Select drink and measurement before editing amount"))}>
             <View pointerEvents="none">
               <TextInput editable={false} placeholder="Amount"></TextInput>
             </View>
@@ -170,7 +170,7 @@ export default function Calculator() {
                 </View>
                 <View style={styles.buttons}>
                   <Button onPress={() => hideModal()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
-                    Confirm
+                    Save
                   </Button>
                   <Button onPress={() => cancelNotes()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
                     Cancel

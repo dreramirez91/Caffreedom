@@ -328,26 +328,36 @@ export default function CaffeineTable() {
             )}
             <View style={styles.buttons}>
               {!editNotes && currentNote ? (
-                <Button
-                  onPress={() => {
-                    setEditNotes(true);
-                  }}
-                  mode="contained"
-                  buttonColor="rgba(94, 65, 153, 1)"
-                >
-                  Edit
-                </Button>
+                <>
+                  <Button
+                    onPress={() => {
+                      setEditNotes(true);
+                    }}
+                    mode="contained"
+                    buttonColor="rgba(94, 65, 153, 1)"
+                  >
+                    Edit
+                  </Button>
+                  <Button onPress={() => cancelNotes()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                    Close
+                  </Button>
+                </>
               ) : null}
               {!editNotes && !currentNote ? (
-                <Button
-                  onPress={() => {
-                    setEditNotes(true);
-                  }}
-                  mode="contained"
-                  buttonColor="rgba(94, 65, 153, 1)"
-                >
-                  Add
-                </Button>
+                <>
+                  <Button
+                    onPress={() => {
+                      setEditNotes(true);
+                    }}
+                    mode="contained"
+                    buttonColor="rgba(94, 65, 153, 1)"
+                  >
+                    Add
+                  </Button>
+                  <Button onPress={() => cancelNotes()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
+                    Close
+                  </Button>
+                </>
               ) : null}
               {editNotes ? (
                 <>
@@ -372,9 +382,6 @@ export default function CaffeineTable() {
                   </Button>
                 </>
               ) : null}
-              <Button onPress={() => cancelNotes()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
-                Close
-              </Button>
             </View>
           </Modal>
         </Portal>
