@@ -172,7 +172,7 @@ export default function Graph() {
 }
 const styles = StyleSheet.create({
   homeContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     justifyContent: "center",
     padding: 10,
     width: "100%",

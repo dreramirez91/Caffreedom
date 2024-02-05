@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   calculatorContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.7)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     width: "100%",
     justifyContent: "center",
     borderRadius: 4,

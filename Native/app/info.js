@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   infoContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.7)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     width: "100%",
     borderRadius: 4,
   },

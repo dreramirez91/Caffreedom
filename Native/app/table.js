@@ -415,7 +415,7 @@ export default function CaffeineTable() {
 }
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     justifyContent: "center",
     padding: 10,
     borderRadius: 4,
@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   scrollView: {
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     padding: 10,
     borderRadius: 4,
     width: "100%",

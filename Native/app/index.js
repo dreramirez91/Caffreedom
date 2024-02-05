@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   homeContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.7)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     width: "100%",
     justifyContent: "center",
     paddingTop: 5,

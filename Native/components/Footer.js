@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   footerContainer: {
     bottom: 0,
     position: "fixed",
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",
