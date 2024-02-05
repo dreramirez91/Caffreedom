@@ -230,7 +230,7 @@ export default function CaffeineTable() {
                 }}
               >
                 <Text style={styles.tableText}>
-                  <MaterialCommunityIcons size={12} name="note" />
+                  <MaterialCommunityIcons size={14} name="note" />
                 </Text>
               </Pressable>,
               <Pressable
@@ -239,7 +239,7 @@ export default function CaffeineTable() {
                 }}
               >
                 <Text style={styles.trashCan}>
-                  <MaterialCommunityIcons size={12} name="trash-can-outline" />
+                  <MaterialCommunityIcons size={14} name="trash-can-outline" />
                 </Text>
               </Pressable>
             );
