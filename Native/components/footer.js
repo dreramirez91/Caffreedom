@@ -12,7 +12,7 @@ export default function Footer() {
   if (fontsLoaded) {
     return (
       <View style={styles.footerContainer}>
-        <Link href="/home">
+        <Link href="/">
           <MaterialCommunityIcons name="home-outline" size={32} color="rgba(242, 255, 99, 1)" />
         </Link>
         <Link href="/calculator">
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   footerContainer: {
     bottom: 0,
     position: "fixed",
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",

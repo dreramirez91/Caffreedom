@@ -8,7 +8,6 @@ from .serializers import UserSerializer
 from django.http import JsonResponse
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-import json
 
 
 class UserList(generics.ListCreateAPIView):
@@ -27,14 +26,14 @@ def signin(request):
     password = request.data.get("password")
     if not username and not password:
         return Response(
-            {"error": "Please enter a username & password"},
+            {"error": "Please enter a username & password."},
             status=status.HTTP_400_BAD_REQUEST,
         )
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
         return Response(
-            {"error": "Please create an account"}, status=status.HTTP_404_NOT_FOUND
+            {"error": "Please create an account."}, status=status.HTTP_404_NOT_FOUND
         )
     if user is not None:
         try:
@@ -42,7 +41,7 @@ def signin(request):
             login(request, user)
         except AttributeError:
             return Response(
-                {"error": "That password is incorrect"},
+                {"error": "That password is incorrect."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
     token, _ = Token.objects.get_or_create(user=user)
@@ -66,12 +65,12 @@ def signup(request):
         )
     elif username.isalpha():
         return Response(
-            {"error": "Username contain at least one number"},
+            {"error": "Username must contain at least one number"},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     elif username.isdigit():
         return Response(
-            {"error": "Username contain at least one letter"},
+            {"error": "Username must contain at least one letter"},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     try:
@@ -91,12 +90,12 @@ def signup(request):
         )
     if password != password_confirmation:
         return Response(
-            {"error": "Passwords do not match"},
+            {"error": "Passwords do not match."},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     if password == "":
         return Response(
-            {"error": "Please enter a password"},
+            {"error": "Please enter a password."},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     user = User.objects.create_user(username=username, password=password)
@@ -106,23 +105,19 @@ def signup(request):
     return Response({"token": token.key}, status=status.HTTP_200_OK)
 
 
-@api_view(["DELETE"])
-def delete(request):
-    username = request.data.get("username")
-    user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
-    if username == str(user):
-        number_deleted, _ = user.delete()
-        return JsonResponse({"Delete": number_deleted}, status=status.HTTP_200_OK)
-    else:
-        return JsonResponse(
-            {"Error": "Please check the spelling of your username."},
-            status=status.HTTP_400_BAD_REQUEST,
-        )
-
-
-@api_view(["GET"])
-def get_username(request):
-    print(request.META.get("HTTP_AUTHORIZATION"))
-    user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
-    print("\n\n", user, "\n\n")
-    return JsonResponse({"username": str(user)}, status=status.HTTP_200_OK)
+@api_view(["GET", "DELETE"])
+def api_user(request):
+    if request.method == "GET":
+        user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
+        return JsonResponse({"username": str(user)}, status=status.HTTP_200_OK)
+    elif request.method == "DELETE":
+        username = request.data.get("username")
+        user = Token.objects.get(key=request.META.get("HTTP_AUTHORIZATION")).user
+        if username == str(user):
+            number_deleted, _ = user.delete()
+            return JsonResponse({"Delete": number_deleted}, status=status.HTTP_200_OK)
+        else:
+            return JsonResponse(
+                {"Error": "Please check the spelling of your username."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )

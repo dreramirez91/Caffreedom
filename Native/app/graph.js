@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import * as SecureStore from "expo-secure-store";
 import { AntDesign } from "@expo/vector-icons";
@@ -20,6 +20,7 @@ export default function Graph() {
   const daysInMonth = [...Array(dates).keys()].map((date) => date + 1);
   const [fetchSuccessful, setFetchSuccessful] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [chartParentWidth, setChartParentWidth] = useState(0);
 
   async function populateData(key) {
     const formatDate = (fullDate) => {
@@ -50,7 +51,7 @@ export default function Graph() {
             Authorization: result,
           },
         };
-        const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
+        const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
         if (response.ok) {
           const data = await response.json();
           setIntakes(data.intakes);
@@ -60,7 +61,7 @@ export default function Graph() {
             let intakeYear = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[0] : undefined;
             let intakeDay = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[2] : undefined;
             if (intakeMonth === currentMonthNumeric && intakeYear === currentYearNumeric) {
-              thisMonthsCaffeine.splice(intakeDay, 0, intakes[i]["caffeine"]);
+              thisMonthsCaffeine.splice(intakeDay, 1, intakes[i]["caffeine"]);
             }
           }
           setMonthsCaffeine(thisMonthsCaffeine);
@@ -99,7 +100,7 @@ export default function Graph() {
 
   if (fetchSuccessful) {
     return (
-      <View style={styles.homeContainer}>
+      <View style={styles.homeContainer} onLayout={({ nativeEvent }) => setChartParentWidth(nativeEvent.layout.width)}>
         <Text style={styles.headerText}>Your Caffeine Intake (mg)</Text>
         <Divider style={{ margin: 6 }} bold="true" />
         <Text style={styles.monthText}>
@@ -115,7 +116,7 @@ export default function Graph() {
               },
             ],
           }}
-          width={Dimensions.get("window").width - 10}
+          width={chartParentWidth}
           height={225}
           chartConfig={{
             horizontalOffset: 0,
@@ -140,7 +141,6 @@ export default function Graph() {
           style={{
             marginTop: 8,
             borderRadius: 16,
-            paddingRight: Dimensions.get("window").width * 0.12,
           }}
         />
         <View style={styles.changeDates}>
@@ -172,7 +172,7 @@ export default function Graph() {
 }
 const styles = StyleSheet.create({
   homeContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.70)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     justifyContent: "center",
     padding: 10,
     width: "100%",
@@ -186,8 +186,8 @@ const styles = StyleSheet.create({
   },
   monthText: {
     color: "rgba(242, 255, 99, 1)",
-    fontFamily: "CrimsonPro_400Regular",
-    fontSize: 24,
+    fontFamily: "CrimsonPro_400Regular_Italic",
+    fontSize: 25,
     textAlign: "center",
   },
   dayText: {

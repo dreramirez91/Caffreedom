@@ -5,25 +5,25 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { StyleSheet, Text, View, TextInput, Pressable, Alert } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Divider, Button, Modal, Portal } from "react-native-paper";
+import { Divider, Button, Portal, Modal } from "react-native-paper";
 
 export default function Calculator() {
   const apiUrl = "http://192.168.86.102:8000";
   const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
   const [drink, setDrink] = useState("");
-  const [notes, setNotes] = useState("");
   const [measurement, setMeasurement] = useState(null);
   const [items, setItems] = useState([
     { label: "fl oz", value: "floz" },
     { label: "cups", value: "cups" },
     { label: "mL", value: "ml" },
   ]);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [caffeine, setCaffeine] = useState(0);
   const dropdownController = useRef(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [datePickerVisible, setDatePickerVisible] = useState(false);
+  const [notes, setNotes] = useState(null);
   const [visible, setVisible] = useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => {
@@ -69,13 +69,14 @@ export default function Calculator() {
   };
 
   const onChangeAmount = (amount) => {
-    setAmount(amount);
+    cleanedAmount = amount.replace(/[^0-9]/g, "");
+    setAmount(cleanedAmount);
     if (measurement === "floz") {
-      setCaffeine(drink["mg/floz"] * amount);
+      setCaffeine(drink["mg/floz"] * cleanedAmount);
     } else if (measurement === "cups") {
-      setCaffeine(drink["mg/floz"] * amount * 8);
+      setCaffeine(drink["mg/floz"] * cleanedAmount * 8);
     } else if (measurement === "ml") {
-      setCaffeine((drink["mg/floz"] * amount) / 29.5735);
+      setCaffeine((drink["mg/floz"] * cleanedAmount) / 29.5735);
     }
   };
 
@@ -109,15 +110,15 @@ export default function Calculator() {
       },
       body: JSON.stringify(data),
     };
-    const response = await fetch(`${apiUrl}/caffeine/list_caffeine/`, fetchConfig);
+    const response = await fetch(`${apiUrl}/caffeine/`, fetchConfig);
     if (response.ok) {
-      setAmount(0);
+      setAmount("");
       setCaffeine(0);
       setMeasurement(null);
       setDrink("");
       setNotes("");
       dropdownController.current.clear();
-      Alert.alert("Intake added", "", [{ text: "OK", onPress: () => console.log("OK Pressed") }]);
+      Alert.alert("Intake added", "", [{ text: "OK" }]);
     } else {
       console.log("Post failed");
     }
@@ -139,19 +140,20 @@ export default function Calculator() {
         onSelectItem={onChangeDrink}
         dataSet={caffeineContent}
         onOpenSuggestionsList={onOpenSuggestionsList}
+        textInputProps={{ maxLength: 39 }}
       />
       <Text style={styles.marginText}>How much?</Text>
       <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
         {drink && measurement ? (
-          <TextInput style={styles.input} returnKeyType={"done"} editable={true} onChangeText={onChangeAmount} inputMode="numeric" keyboardType="number-pad" value={amount.toString()} placeholder="Amount"></TextInput>
+          <TextInput style={styles.input} returnKeyType={"done"} maxLength={5} editable={true} onChangeText={onChangeAmount} inputMode="numeric" keyboardType="number-pad" value={amount.toString()} placeholder="Amount"></TextInput>
         ) : (
-          <Pressable style={styles.input} onPress={() => alert("Select drink and measurement before editing amount")}>
+          <Pressable style={styles.input} onPress={() => Alert.alert((title = "Select drink and measurement before editing amount"))}>
             <View pointerEvents="none">
               <TextInput editable={false} placeholder="Amount"></TextInput>
             </View>
           </Pressable>
         )}
-        <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0 }} placeholder="Unit of measurement" />
+        <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0, zIndex: 1 }} placeholder="Unit of measurement" />
       </View>
       {token ? (
         <>
@@ -164,11 +166,11 @@ export default function Calculator() {
               <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
                 <Text style={styles.modalHeader}>Notes</Text>
                 <View>
-                  <TextInput style={styles.notesInput} maxLength={1000} onChangeText={setNotes} placeholder="Notes" value={notes}></TextInput>
+                  <TextInput style={styles.notesInput} maxLength={640} onChangeText={setNotes} placeholder="Notes" value={notes}></TextInput>
                 </View>
                 <View style={styles.buttons}>
                   <Button onPress={() => hideModal()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
-                    Confirm
+                    Save
                   </Button>
                   <Button onPress={() => cancelNotes()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">
                     Cancel
@@ -179,7 +181,7 @@ export default function Calculator() {
           </View>
         </>
       ) : null}
-      <Divider style={{ marginBottom: 12 }} horizontalInset="true" />
+      <Divider style={token ? { marginBottom: 12 } : { margin: 12 }} horizontalInset="true" />
       <Text style={styles.noMarginText}>You've consumed {parseInt(caffeine)} mg of caffeine.</Text>
       <View style={styles.calendar}></View>
       {token ? (
@@ -217,7 +219,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   calculatorContainer: {
-    backgroundColor: "rgba(157, 108, 255, 0.7)",
+    backgroundColor: "rgba(157, 108, 255, 0.78)",
     width: "100%",
     justifyContent: "center",
     borderRadius: 4,

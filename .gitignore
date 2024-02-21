@@ -15,13 +15,11 @@ yarn-debug.log*
 yarn-error.log*
 
 notes.txt
-learning.txt
-thoughts.txt
-API/db.sqlite3
-API/users/__pycache__/
-API/Caffreedom/__pycache__/
-API/caffeine/__pycache__/
+db.sqlite3
+__pycache__/
 TableData.js
 caffreedomData.xlsx
+home.js
+
 # env files
 */.env
