@@ -140,20 +140,20 @@ export default function Calculator() {
         onSelectItem={onChangeDrink}
         dataSet={caffeineContent}
         onOpenSuggestionsList={onOpenSuggestionsList}
-        textInputProps={{ maxLength: 39 }}
+        textInputProps={{ maxLength: 39, placeholder: "Select a drink", placeholderTextColor: "rgb(70, 70, 70)" }}
       />
       <Text style={styles.marginText}>How much?</Text>
       <View style={open ? styles.howMuchOpen : styles.howMuchClosed}>
         {drink && measurement ? (
-          <TextInput style={styles.input} returnKeyType={"done"} maxLength={5} editable={true} onChangeText={onChangeAmount} inputMode="numeric" keyboardType="number-pad" value={amount.toString()} placeholder="Amount"></TextInput>
+          <TextInput style={styles.input} returnKeyType={"done"} maxLength={5} editable={true} onChangeText={onChangeAmount} inputMode="numeric" keyboardType="number-pad" value={amount.toString()} placeholder="Amount" placeholderTextColor="rgb(70, 70, 70)"></TextInput>
         ) : (
           <Pressable style={styles.input} onPress={() => Alert.alert((title = "Select drink and measurement before editing amount"))}>
             <View pointerEvents="none">
-              <TextInput editable={false} placeholder="Amount"></TextInput>
+              <TextInput editable={false} placeholder="Amount" placeholderTextColor="rgb(70, 70, 70)"></TextInput>
             </View>
           </Pressable>
         )}
-        <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0, zIndex: 1 }} placeholder="Unit of measurement" />
+        <DropDownPicker open={open} value={measurement} items={items} setOpen={setOpen} setValue={setMeasurement} setItems={setItems} containerStyle={{ width: "50%" }} style={{ borderWidth: 0, zIndex: 1 }} placeholder="Unit of measurement" placeholderTextColor="rgb(70, 70, 70)" />
       </View>
       {token ? (
         <>
@@ -166,7 +166,7 @@ export default function Calculator() {
               <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
                 <Text style={styles.modalHeader}>Notes</Text>
                 <View>
-                  <TextInput style={styles.notesInput} maxLength={640} onChangeText={setNotes} placeholder="Notes" value={notes}></TextInput>
+                  <TextInput style={styles.notesInput} maxLength={640} onChangeText={setNotes} placeholder="Notes" placeholderTextColor="rgb(70, 70, 70)" value={notes}></TextInput>
                 </View>
                 <View style={styles.buttons}>
                   <Button onPress={() => hideModal()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">

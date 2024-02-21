@@ -71,7 +71,7 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Sign Up</Text>
             <View style={styles.inputs}>
-              <TextInput style={styles.input} onChangeText={setUsername} placeholder="Username" value={username}></TextInput>
+              <TextInput style={styles.input} onChangeText={setUsername} placeholder="Username" placeholderTextColor="rgb(70, 70, 70)" value={username}></TextInput>
               {error ? (
                 <View
                   styles={{
@@ -83,8 +83,8 @@ export default function SignUpModal({ signUpModalVisible, setSignUpModalVisible,
                   <Text style={styles.errorText}>{error}</Text>
                 </View>
               ) : null}
-              <TextInput style={styles.input} onChangeText={setPassword} placeholder="Password" value={password} secureTextEntry={true}></TextInput>
-              <TextInput style={styles.input} onChangeText={setConfirmPassword} placeholder="Confirm Password" value={confirmPassword} secureTextEntry={true}></TextInput>
+              <TextInput style={styles.input} onChangeText={setPassword} placeholder="Password" placeholderTextColor="rgb(70, 70, 70)" value={password} secureTextEntry={true}></TextInput>
+              <TextInput style={styles.input} onChangeText={setConfirmPassword} placeholder="Confirm Password" placeholderTextColor="rgb(70, 70, 70)" value={confirmPassword} secureTextEntry={true}></TextInput>
             </View>
             <View style={styles.buttons}>
               <Button onPress={() => handleSubmit()} mode="contained" buttonColor="rgba(94, 65, 153, 1)">

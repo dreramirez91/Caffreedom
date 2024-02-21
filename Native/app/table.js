@@ -321,7 +321,7 @@ export default function CaffeineTable() {
             </Text>
             {editNotes ? (
               <View>
-                <TextInput style={styles.notesInput} maxLength={1000} editable={editNotes ? true : false} onChangeText={setCurrentNote} placeholder="Notes" value={currentNote}></TextInput>
+                <TextInput style={styles.notesInput} maxLength={1000} editable={editNotes ? true : false} onChangeText={setCurrentNote} placeholder="Notes" placeholderTextColor="rgb(70, 70, 70)" value={currentNote}></TextInput>
               </View>
             ) : (
               <Text style={styles.modalText}>{currentNote ? currentNote : "No notes added for this date."}</Text>
@@ -391,7 +391,7 @@ export default function CaffeineTable() {
               <Feather name="coffee" size={24} color="rgba(242, 255, 99, 1)" />
             </Text>
             <View>
-              <TextInput style={styles.notesInput} maxLength={100} editable onChangeText={setCurrentAmount} placeholder="Notes" value={currentAmount}></TextInput>
+              <TextInput style={styles.notesInput} maxLength={100} editable onChangeText={setCurrentAmount} placeholder="Notes" placeholderTextColor="rgb(70, 70, 70)" value={currentAmount}></TextInput>
             </View>
             <View style={styles.buttons}>
               <Button

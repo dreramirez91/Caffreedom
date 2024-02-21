@@ -150,7 +150,7 @@ export default function Info() {
                           <Text style={styles.modalHeader}>Are you sure?</Text>
                           <Text style={styles.modalBody}>Your username: {retrievedUsername}</Text>
                           <View>
-                            <TextInput style={styles.input} onChangeText={setEnteredUsername} placeholder="Enter your username to confirm" value={enteredUsername}></TextInput>
+                            <TextInput style={styles.input} onChangeText={setEnteredUsername} placeholder="Enter your username to confirm" placeholderTextColor="rgb(70, 70, 70)" value={enteredUsername}></TextInput>
                             {error ? <Text style={styles.errorText}>{error}</Text> : null}
                           </View>
                           <View style={styles.buttons}>
