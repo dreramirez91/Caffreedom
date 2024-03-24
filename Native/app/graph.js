@@ -25,19 +25,19 @@ export default function Graph() {
   async function populateData(key) {
     const formatDate = (fullDate) => {
       let splitDate = fullDate.split("-");
-      let shortenedMonth = "";
+      let shortenedDate = "";
       if (splitDate[1][0] === "0") {
-        shortenedMonth += splitDate[1][1];
+        shortenedDate += splitDate[1][1];
       } else {
-        shortenedMonth += splitDate[1];
+        shortenedDate += splitDate[1];
       }
-      shortenedMonth += "-";
+      shortenedDate += "-";
       if (splitDate[2][0] === "0") {
-        shortenedMonth += splitDate[2][1];
+        shortenedDate += splitDate[2][1];
       } else {
-        shortenedMonth += splitDate[2];
+        shortenedDate += splitDate[2];
       }
-      const formattedDate = `${splitDate[0]}-${shortenedMonth}`;
+      const formattedDate = `${splitDate[0]}-${shortenedDate}`;
       return formattedDate;
     };
     try {
@@ -60,8 +60,10 @@ export default function Graph() {
             let intakeMonth = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[1] : undefined;
             let intakeYear = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[0] : undefined;
             let intakeDay = intakes[i] ? formatDate(intakes[i]["date"]).split("-")[2] : undefined;
+            let caffeineSoFar = thisMonthsCaffeine[intakeDay] ? thisMonthsCaffeine[intakeDay] : 0;
+            let incomingCaffeine = intakes[i] ? intakes[i]["caffeine"] : 0;
             if (intakeMonth === currentMonthNumeric && intakeYear === currentYearNumeric) {
-              thisMonthsCaffeine.splice(intakeDay, 1, intakes[i]["caffeine"]);
+              thisMonthsCaffeine.splice(intakeDay, 1, caffeineSoFar + incomingCaffeine);
             }
           }
           setMonthsCaffeine(thisMonthsCaffeine);
